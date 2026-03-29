@@ -1,0 +1,31 @@
+{
+  "name": "biomonie-web",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "npx vite",
+    "build": "npx vite build",
+    "preview": "npx vite preview",
+    "server": "node server/server.js",
+    "build:single": "npx vite build && node -e \"const fs=require('fs'); const p=require('path'); const out=p.join('server','public'); fs.mkdirSync(out,{recursive:true}); fs.readdirSync('dist').forEach(f=>{ const src=p.join('dist',f); const dest=p.join(out,f); fs.cpSync(src, dest, {recursive: true}); }); const srcAssets=p.join('src','assets'); const publicSrcAssets=p.join(out,'src','assets'); if(fs.existsSync(srcAssets)){ fs.mkdirSync(publicSrcAssets,{recursive:true}); fs.cpSync(srcAssets, publicSrcAssets, {recursive:true}); }\""
+  },
+  "dependencies": {
+    "framer-motion": "^11.0.0",
+    "lucide-react": "^0.462.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.5",
+    "@types/react": "^18.3.27",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.11",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.1"
+  }
+}
