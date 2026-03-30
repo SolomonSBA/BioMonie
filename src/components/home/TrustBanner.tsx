@@ -3,17 +3,17 @@ import { CheckCircle2, Globe2, Lock } from "lucide-react";
 import { easeOutExpo } from "@/lib/motion";
 
 const items = [
-  { icon: CheckCircle2, text: "Licensed & compliant with central bank regulations" },
+  { icon: CheckCircle2, text: "Licensed & compliant with central bank regulations." },
   {
     icon: Lock,
     text: (
       <>
-        Transaction security  <strong className="font-semibold text-biomonie-lemon">YOU</strong> are your money
+        Transaction security:  <strong className="font-semibold text-biomonie-lemon">YOU</strong> are the money access.
       </>
     ),
   },
   { icon: CheckCircle2, text: "No hidden fees. No surprise charges." },
-  { icon: Globe2, text: "Global biometric payment ecosystem" },
+  { icon: Globe2, text: "Global biometric payment ecosystem." },
 ];
 
 export default function TrustBanner() {

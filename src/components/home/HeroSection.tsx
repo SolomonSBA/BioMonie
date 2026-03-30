@@ -40,31 +40,34 @@ export default function HeroSection() {
         }}
       />
 
-      <div className="relative z-[2] mx-auto grid w-full max-w-[1280px] grid-cols-1 items-start gap-y-14 min-[901px]:grid-cols-[1fr_1px_1fr] min-[901px]:gap-y-0 min-[901px]:gap-x-0">
+      <div className="relative z-[2] mx-auto grid w-full max-w-[1280px] grid-cols-1 items-start gap-y-14 min-[901px]:grid-cols-2 min-[901px]:gap-x-0 min-[901px]:gap-y-0">
+        <div className="min-[901px]:col-span-2">
+          <div className="mb-8 flex justify-center min-[901px]:mb-10">
+            <div className="inline-flex max-w-full items-center gap-2 rounded-md border border-biomonie-lemon/40 bg-biomonie-lemon/[0.11] px-4 py-2 text-left text-[0.72rem] font-bold uppercase leading-snug tracking-[0.14em] text-biomonie-lemon shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
+              <Globe className="h-3.5 w-3.5 shrink-0 opacity-90" aria-hidden />
+              The First-Ever Global Biometric Cardless Payment Ecosystem
+            </div>
+          </div>
+        </div>
+        <div className="pointer-events-none absolute bottom-0 left-1/2 top-[5.6rem] hidden w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-white/[0.35] to-transparent min-[901px]:block" />
         {/* Push this panel toward the center divider: outer flex justify-end + inner max-width (not w-full on outer). */}
-        <div className="min-w-0 min-[901px]:flex min-[901px]:justify-end min-[901px]:pr-2 lg:pr-4">
+        <div className="min-w-0 min-[901px]:flex min-[901px]:justify-end min-[901px]:pr-8 lg:pr-14">
           <div className="w-full max-w-[540px] text-left min-[901px]:text-right">
-            <FadeUp delay={0}>
-              <div className="mb-6 flex min-[901px]:justify-end">
-                <div className="inline-flex max-w-full items-center gap-2 rounded-md border border-biomonie-lemon/40 bg-biomonie-lemon/[0.11] px-4 py-2 text-left text-[0.72rem] font-bold uppercase leading-snug tracking-[0.14em] text-biomonie-lemon shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] min-[901px]:text-right">
-                  <Globe className="h-3.5 w-3.5 shrink-0 opacity-90" aria-hidden />
-                  The First-Ever Global Biometric Payment Ecosystem
-                </div>
-              </div>
-            </FadeUp>
             <FadeUp delay={0.08}>
               <h1 className="mb-6 text-[clamp(2.8rem,6vw,5.2rem)] font-extrabold leading-[1.05] tracking-[-0.04em] text-white">
-                The new form of Money Access
-                <br />
+                <span className="block">The new</span>
+                <span className="block">form of</span>
+                <span className="block whitespace-nowrap">Money Access</span>
                 <em className="not-italic">
                   &quot;<span className="text-biomonie-lemon drop-shadow-[0_0_40px_rgba(245,255,0,0.15)]">YOU</span>&quot;
                 </em>
               </h1>
             </FadeUp>
             <FadeUp delay={0.16}>
-              <p className="mb-10 text-[1.08rem] leading-[1.75] text-white/[0.88]">
-                <span className="font-semibold text-biomonie-lemon">BIOMONIE</span> allows you to be the money access for all your payments and cash needs. No pin. No password. Just{" "}
-                <strong className="font-bold text-biomonie-lemon">YOU</strong>.
+              <p className="mb-10 text-[1.08rem] leading-[1.75] text-white/[0.88] min-[901px]:min-h-[112px]">
+                <span className="font-semibold text-biomonie-lemon">BIOMONIE</span> allows you to be the money access for all your payments and cash needs. No pin. No password.
+                <br />
+                Just <strong className="font-bold text-biomonie-lemon">YOU</strong>.
               </p>
             </FadeUp>
             <FadeUp delay={0.22}>
@@ -86,15 +89,15 @@ export default function HeroSection() {
               </div>
             </FadeUp>
             <FadeUp delay={0.28}>
-              <div className="mt-4 grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-3 min-[901px]:justify-items-end min-[901px]:gap-x-5">
+          <div className="mt-4 grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-3 min-[901px]:justify-items-start min-[901px]:gap-x-5">
                 {[
                   { k: "Zero", l: "Cost to join and refer" },
                   { k: "Payout", l: "Earned per activated Agent / Merchant referral" },
                   { k: "Low-cost", l: "Per transaction flat, simple, fair" },
                 ].map((s) => (
-                  <div key={s.k} className="text-left min-[901px]:text-right">
+                  <div key={s.k} className="text-left">
                     <div className="font-mono text-[2.15rem] font-bold leading-none tracking-tight text-biomonie-lemon">{s.k}</div>
-                    <div className="mt-1.5 max-w-[11.5rem] text-[0.8rem] leading-snug text-white/[0.68] min-[901px]:ml-auto min-[901px]:max-w-[10rem]">{s.l}</div>
+                    <div className="mt-1.5 max-w-[11.5rem] text-[0.8rem] leading-snug text-white/[0.68] min-[901px]:max-w-[10rem]">{s.l}</div>
                   </div>
                 ))}
               </div>
@@ -102,25 +105,55 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="hidden min-h-[min(60vh,520px)] w-px self-stretch bg-gradient-to-b from-transparent via-white/[0.35] to-transparent min-[901px]:block" />
-
         <motion.div
-          className="min-[901px]:pl-4 lg:pl-12"
+          className="min-[901px]:pl-6 lg:pl-10"
           initial={reduce ? false : { opacity: 0, y: 20 }}
           animate={reduce ? false : { opacity: 1, y: 0 }}
           transition={{ duration: 0.65, delay: 0.2, ease: easeOutExpo }}
         >
-          <p className="mb-6 text-[clamp(2.2rem,5vw,4.25rem)] font-extrabold leading-[1.08] tracking-[-0.035em] text-white">
-            Introducing the new <span className="text-biomonie-lemon">BIOMONIE</span> Ecosystem
+          <p className="mb-6 text-[clamp(2.8rem,6vw,5.2rem)] font-extrabold leading-[1.05] tracking-[-0.04em] text-white">
+            <span className="block">Introducing</span>
+            <span className="block">the new</span>
+            <span className="block">
+              <span className="text-biomonie-lemon">BIOMONIE</span> Ecosystem
+            </span>
           </p>
-          <p className="mb-10 max-w-[480px] text-[clamp(1rem,1.35vw,1.12rem)] leading-[1.75] text-white/[0.86]">
-            <span className="font-semibold text-biomonie-lemon">BIOMONIE</span> ecosystem allows customers to pay merchants to receive payments and agents to offer cash in and cash out. All with the new money access —{" "}
+          <p className="mb-10 max-w-[500px] text-[clamp(0.94rem,1.15vw,1.02rem)] leading-[1.7] text-white/[0.86] min-[901px]:min-h-[112px]">
+            <span className="font-semibold text-biomonie-lemon">BIOMONIE</span> ecosystem allows customers to pay, merchants receive payments and agents offer cash-in and cash-out services. All with the new money access —{" "}
             <span className="font-semibold text-biomonie-lemon">YOU</span>.
           </p>
-          <div className="mb-8 border-l-[3px] border-biomonie-lemon pl-3.5 text-[1.05rem] font-bold uppercase tracking-[0.12em] text-biomonie-lemon">
+           <div className="mb-16 flex flex-wrap justify-start gap-3 min-[901px]:justify-start sm:gap-4">
+                <motion.a
+                  href="#join"
+                  whileTap={{ scale: 0.98 }}
+                  className="inline-block rounded-lg bg-biomonie-lemon px-9 py-3.5 text-base font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_8px_32px_rgba(245,255,0,0.25)]"
+                >
+               BIOMONIE Ecosystem
+                </motion.a>
+                <motion.a
+                  href="#how"
+                  whileTap={{ scale: 0.98 }}
+                  className="inline-block rounded-lg border-2 border-white/40 bg-white/[0.04] px-9 py-3.5 text-base font-semibold text-white no-underline backdrop-blur-[2px] transition duration-200 hover:border-biomonie-lemon hover:bg-white/[0.07] hover:text-biomonie-lemon"
+                >
+                  Learn How It Works
+                </motion.a>
+              </div>
+          {/* <div className="mb-8 border-l-[3px] border-biomonie-lemon pl-3.5 text-[1.05rem] font-bold uppercase tracking-[0.12em] text-biomonie-lemon">
             BIOMONIE Ecosystem
-          </div>
-          <div className="flex flex-col gap-3">
+          </div> */}
+          <div className="mt-4 grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-3 min-[901px]:justify-items-left min-[901px]:gap-x-5">
+                {[
+                  { k: "Customers", l: " can pay with a flex and earn." },
+                  { k: "Merchants", l: "can receive payments with a flex and earn." },
+                  { k: "Agents", l: "can provide agent banking services with a flex and earn." },
+                ].map((s) => (
+                  <div key={s.k} className="text-left">
+                    <div className="font-mono text-[2.15rem] font-bold leading-none tracking-tight text-biomonie-lemon">{s.k}</div>
+                    <div className="mt-1.5 max-w-[11.5rem] text-[0.8rem] leading-snug text-white/[0.68] min-[901px]:max-w-[10rem]">{s.l}</div>
+                  </div>
+                ))}
+              </div>
+          {/* <div className="flex flex-col gap-3">
             {[
               { t: "For Customers", d: "Where customers can pay with a flex and earn" },
               { t: "For Merchants", d: "Where merchants can receive payments with a flex and earn" },
@@ -139,7 +172,7 @@ export default function HeroSection() {
                 {box.d}
               </motion.div>
             ))}
-          </div>
+          </div> */}
         </motion.div>
       </div>
     </section>
