@@ -57,7 +57,7 @@ export default function HeroSection() {
               <h1 className="mb-6 text-[clamp(2.8rem,6vw,5.2rem)] font-extrabold leading-[1.05] tracking-[-0.04em] text-white">
                 <span className="block">The new</span>
                 <span className="block">form of</span>
-                <span className="block whitespace-nowrap">Money Access</span>
+                <span className="block whitespace-nowrap text-[0.94em] tracking-[-0.05em]">Money Access</span>
                 <em className="not-italic">
                   &quot;<span className="text-biomonie-lemon drop-shadow-[0_0_40px_rgba(245,255,0,0.15)]">YOU</span>&quot;
                 </em>

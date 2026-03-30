@@ -98,7 +98,7 @@ function FaqItem({
     <RevealItem>
       <motion.div
         layout
-        className="h-full rounded-xl border border-[#dde8f0] bg-white shadow-biomonie-sm transition-shadow duration-300 hover:border-biomonie-teal/15 hover:shadow-biomonie-md"
+        className="rounded-xl border border-[#dde8f0] bg-white shadow-biomonie-sm transition-shadow duration-300 hover:border-biomonie-teal/15 hover:shadow-biomonie-md"
       >
         <button
           type="button"

@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { Fingerprint } from "lucide-react";
+import { PadlockWithKeyIcon } from "@/components/icons/PadlockWithKeyIcon";
 import { Reveal, easeOutExpo } from "@/lib/motion";
 
 export default function WhatSection() {
@@ -17,23 +17,26 @@ export default function WhatSection() {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_65%_30%,rgba(245,255,0,.14),transparent_58%)]" />
             <div className="absolute inset-0 bg-[linear-gradient(145deg,transparent_40%,rgba(15,30,38,0.25)_100%)]" />
             {reduce ? (
-              <Fingerprint
+              <PadlockWithKeyIcon
                 className="relative z-[2] h-36 w-36 text-biomonie-lemon drop-shadow-[0_0_36px_rgba(245,255,0,0.35)]"
                 strokeWidth={1.15}
               />
             ) : (
               <motion.div
+                className="relative z-[2]"
                 animate={{ y: [0, -4, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                aria-hidden
               >
-                <Fingerprint
-                  className="relative z-[2] h-36 w-36 text-biomonie-lemon drop-shadow-[0_0_36px_rgba(245,255,0,0.35)]"
+                <PadlockWithKeyIcon
+                  className="h-36 w-36 text-biomonie-lemon drop-shadow-[0_0_36px_rgba(245,255,0,0.35)]"
                   strokeWidth={1.15}
                 />
               </motion.div>
             )}
-            <div className="relative z-[2] mt-5 text-center text-[0.92rem] font-bold uppercase tracking-[0.12em] text-biomonie-lemon">
-              YOU are the money access
+            <div className="relative z-[2] mt-5 inline-flex items-center justify-center gap-2 text-center text-[0.92rem] font-bold uppercase tracking-[0.12em] text-biomonie-lemon">
+              <span>YOU are the money access</span>
+              <PadlockWithKeyIcon className="h-4 w-auto shrink-0 text-biomonie-lemon [aspect-ratio:32/24]" strokeWidth={2.2} />
             </div>
           </motion.div>
         </Reveal>

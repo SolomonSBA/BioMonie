@@ -8,11 +8,12 @@ export default function Footer() {
       <Reveal className="mb-10">
         <div className="flex flex-wrap items-start justify-between gap-10">
           <div className="max-w-xs">
-            <Link
-              to="/"
-              className="mb-3 block text-[1.4rem] font-extrabold tracking-tight text-white no-underline transition-opacity hover:opacity-90"
-            >
-              Bi<span className="text-biomonie-lemon">○</span>monie
+            <Link to="/" className="mb-3 inline-flex items-center no-underline transition-opacity hover:opacity-90">
+              <img
+                src="/biomonie_logo_editable v2 PNG.png"
+                alt="Biomonie"
+                className="h-8 w-auto"
+              />
             </Link>
             <p className="text-[0.84rem] leading-relaxed text-white/[0.58]">
               Explore the new form of money access  <strong className="font-semibold text-biomonie-lemon">YOU</strong>.

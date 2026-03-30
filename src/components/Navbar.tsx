@@ -51,11 +51,12 @@ export default function Navbar() {
         scrolled ? "border-biomonie-lemon/25 bg-biomonie-teal-dark/[0.98]" : "border-biomonie-lemon/20 bg-biomonie-teal-dark/[0.96]"
       }`}
     >
-      <Link
-        to="/"
-        className="text-[1.65rem] font-extrabold tracking-tight text-white no-underline transition-opacity hover:opacity-95"
-      >
-        Bi<span className="text-biomonie-lemon">○</span>monie
+      <Link to="/" className="inline-flex items-center no-underline transition-opacity hover:opacity-95">
+        <img
+          src="/biomonie_logo_editable v2 PNG.png"
+          alt="Biomonie"
+          className="h-9 w-auto"
+        />
       </Link>
 
       <ul className="hidden list-none items-center gap-8 min-[901px]:flex">
