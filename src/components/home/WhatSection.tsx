@@ -1,9 +1,15 @@
 import { motion, useReducedMotion } from "framer-motion";
+import type { MouseEvent } from "react";
 import { PadlockWithKeyIcon } from "@/components/icons/PadlockWithKeyIcon";
 import { Reveal, easeOutExpo } from "@/lib/motion";
+import { navigateToSection } from "@/lib/section-nav";
 
 export default function WhatSection() {
   const reduce = useReducedMotion();
+  const onSectionClick = (e: MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    navigateToSection(id);
+  };
 
   return (
     <section id="about" className="bg-biomonie-pale px-[5%] py-[100px]">
@@ -74,7 +80,8 @@ export default function WhatSection() {
           </Reveal>
           <Reveal delay={0.22}>
             <a
-              href="#join"
+              href="/join"
+              onClick={(e) => onSectionClick(e, "join")}
               className="inline-block rounded-lg bg-biomonie-lemon px-8 py-3.5 text-base font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_8px_28px_rgba(245,255,0,0.22)] active:scale-[0.99]"
             >
               Register Now  It&apos;s Free

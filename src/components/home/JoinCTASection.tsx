@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom";
+import type { MouseEvent } from "react";
 import { motion } from "framer-motion";
 import { Reveal } from "@/lib/motion";
+import { navigateToSection } from "@/lib/section-nav";
 
 export default function JoinCTASection() {
+  const onSectionClick = (e: MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    navigateToSection(id);
+  };
+
   return (
     <section
       id="join"
@@ -37,7 +44,8 @@ export default function JoinCTASection() {
             </motion.div>
             <motion.div whileTap={{ scale: 0.98 }}>
               <a
-                href="#earn"
+                href="/earn"
+                onClick={(e) => onSectionClick(e, "earn")}
                 className="inline-block rounded-lg border-2 border-white/[0.42] bg-white/[0.06] px-10 py-4 text-[1.05rem] font-semibold text-white no-underline backdrop-blur-sm transition duration-200 hover:border-biomonie-lemon hover:bg-biomonie-lemon/[0.08] hover:text-biomonie-lemon"
               >
                 See the Earning Guide

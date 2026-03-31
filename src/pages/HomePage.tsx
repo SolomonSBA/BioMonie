@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/home/HeroSection";
@@ -10,8 +11,16 @@ import LoansSection from "@/components/home/LoansSection";
 import MerchantsSection from "@/components/home/MerchantsSection";
 import FAQSection from "@/components/home/FAQSection";
 import JoinCTASection from "@/components/home/JoinCTASection";
+import { useLocation } from "react-router-dom";
+import { syncSectionNavigationFromUrl } from "@/lib/section-nav";
 
 export default function HomePage() {
+  const location = useLocation();
+
+  useEffect(() => {
+    syncSectionNavigationFromUrl(location.pathname, window.location.hash);
+  }, [location.pathname]);
+
   return (
     <>
       <Navbar />

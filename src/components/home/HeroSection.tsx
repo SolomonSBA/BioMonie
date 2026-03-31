@@ -1,6 +1,8 @@
 import { motion, useReducedMotion } from "framer-motion";
+import type { MouseEvent } from "react";
 import { Globe } from "lucide-react";
 import { easeOutExpo } from "@/lib/motion";
+import { navigateToSection } from "@/lib/section-nav";
 
 function FadeUp({
   children,
@@ -27,6 +29,10 @@ function FadeUp({
 
 export default function HeroSection() {
   const reduce = useReducedMotion();
+  const onSectionClick = (e: MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    navigateToSection(id);
+  };
 
   return (
     <section className="biomonie-grain relative flex min-h-screen flex-col justify-center overflow-hidden bg-gradient-to-br from-biomonie-teal-dark via-biomonie-teal-mid to-[#1e5c78] px-[5%] pb-24 pt-[120px]">
@@ -53,6 +59,7 @@ export default function HeroSection() {
         {/* Push this panel toward the center divider: outer flex justify-end + inner max-width (not w-full on outer). */}
         <div className="min-w-0 min-[901px]:flex min-[901px]:justify-end min-[901px]:pr-8 lg:pr-14">
           <div className="w-full max-w-[540px] text-left min-[901px]:text-right">
+            <div className="min-[901px]:min-h-[430px]">
             <FadeUp delay={0.08}>
               <h1 className="mb-6 text-[clamp(2.8rem,6vw,5.2rem)] font-extrabold leading-[1.05] tracking-[-0.04em] text-white">
                 <span className="block">The new</span>
@@ -64,23 +71,26 @@ export default function HeroSection() {
               </h1>
             </FadeUp>
             <FadeUp delay={0.16}>
-              <p className="mb-10 text-[1.08rem] leading-[1.75] text-white/[0.88] min-[901px]:min-h-[112px]">
+              <p className="mb-10 text-[1.08rem] leading-[1.75] text-white/[0.88]">
                 <span className="font-semibold text-biomonie-lemon">BIOMONIE</span> allows you to be the money access for all your payments and cash needs. No pin. No password.
                 <br />
                 Just <strong className="font-bold text-biomonie-lemon">YOU</strong>.
               </p>
             </FadeUp>
+            </div>
             <FadeUp delay={0.22}>
               <div className="mb-16 flex flex-wrap justify-start gap-3 min-[901px]:justify-end sm:gap-4">
                 <motion.a
-                  href="#join"
+                  href="/join"
+                  onClick={(e) => onSectionClick(e, "join")}
                   whileTap={{ scale: 0.98 }}
                   className="inline-block rounded-lg bg-biomonie-lemon px-9 py-3.5 text-base font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_8px_32px_rgba(245,255,0,0.25)]"
                 >
                   Get Started — It&apos;s Free
                 </motion.a>
                 <motion.a
-                  href="#how"
+                  href="/how"
+                  onClick={(e) => onSectionClick(e, "how")}
                   whileTap={{ scale: 0.98 }}
                   className="inline-block rounded-lg border-2 border-white/40 bg-white/[0.04] px-9 py-3.5 text-base font-semibold text-white no-underline backdrop-blur-[2px] transition duration-200 hover:border-biomonie-lemon hover:bg-white/[0.07] hover:text-biomonie-lemon"
                 >
@@ -111,6 +121,7 @@ export default function HeroSection() {
           animate={reduce ? false : { opacity: 1, y: 0 }}
           transition={{ duration: 0.65, delay: 0.2, ease: easeOutExpo }}
         >
+          <div className="min-[901px]:min-h-[430px]">
           <p className="mb-6 text-[clamp(2.8rem,6vw,5.2rem)] font-extrabold leading-[1.05] tracking-[-0.04em] text-white">
             <span className="block">Introducing</span>
             <span className="block">the new</span>
@@ -118,20 +129,23 @@ export default function HeroSection() {
               <span className="text-biomonie-lemon">BIOMONIE</span> Ecosystem
             </span>
           </p>
-          <p className="mb-10 max-w-[500px] text-[clamp(0.94rem,1.15vw,1.02rem)] leading-[1.7] text-white/[0.86] min-[901px]:min-h-[112px]">
+          <p className="mb-10 max-w-[500px] text-[clamp(0.94rem,1.15vw,1.02rem)] leading-[1.7] text-white/[0.86]">
             <span className="font-semibold text-biomonie-lemon">BIOMONIE</span> ecosystem allows customers to pay, merchants receive payments and agents offer cash-in and cash-out services. All with the new money access —{" "}
             <span className="font-semibold text-biomonie-lemon">YOU</span>.
           </p>
+          </div>
            <div className="mb-16 flex flex-wrap justify-start gap-3 min-[901px]:justify-start sm:gap-4">
                 <motion.a
-                  href="#join"
+                  href="/join"
+                  onClick={(e) => onSectionClick(e, "join")}
                   whileTap={{ scale: 0.98 }}
                   className="inline-block rounded-lg bg-biomonie-lemon px-9 py-3.5 text-base font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_8px_32px_rgba(245,255,0,0.25)]"
                 >
                BIOMONIE Ecosystem
                 </motion.a>
                 <motion.a
-                  href="#how"
+                  href="/how"
+                  onClick={(e) => onSectionClick(e, "how")}
                   whileTap={{ scale: 0.98 }}
                   className="inline-block rounded-lg border-2 border-white/40 bg-white/[0.04] px-9 py-3.5 text-base font-semibold text-white no-underline backdrop-blur-[2px] transition duration-200 hover:border-biomonie-lemon hover:bg-white/[0.07] hover:text-biomonie-lemon"
                 >

@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type MouseEvent } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import BiomonieLogo from '@/components/icons/BiomonieLogo';
+import { navigateToSection } from '@/lib/section-nav';
 
 const navLinkClass =
   'relative text-sm font-medium text-white/[0.92] transition-colors duration-200 hover:text-biomonie-lemon after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-biomonie-lemon after:transition-all after:duration-300 hover:after:w-full';
@@ -11,8 +12,6 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
-  const base = pathname === '/' ? '' : '/';
-
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
@@ -34,12 +33,22 @@ export default function Navbar() {
   }, [open]);
 
   const links = [
-    { to: `${base}#how`, label: 'How It Works' },
-    { to: `${base}#who`, label: "Who It's For" },
-    { to: `${base}#earn`, label: 'Earn' },
-    { to: `${base}#merchants`, label: 'For Merchants' },
-    { to: `${base}#faq`, label: 'FAQ' },
+    { id: 'how', label: 'How It Works' },
+    { id: 'who', label: "Who It's For" },
+    { id: 'earn', label: 'Earn' },
+    { id: 'merchants', label: 'For Merchants' },
+    { id: 'faq', label: 'FAQ' },
   ];
+
+  const onSectionClick = (e: MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    if (open) {
+      setOpen(false);
+      window.setTimeout(() => navigateToSection(id), 120);
+      return;
+    }
+    navigateToSection(id);
+  };
 
   return (
     <motion.nav
@@ -65,16 +74,17 @@ export default function Navbar() {
 
       <ul className="hidden list-none items-center gap-8 min-[901px]:flex">
         {links.map((l) => (
-          <li key={l.to}>
-            <a href={l.to} className={navLinkClass}>
+          <li key={l.id}>
+            <a href={`/${l.id}`} className={navLinkClass} onClick={(e) => onSectionClick(e, l.id)}>
               {l.label}
             </a>
           </li>
         ))}
         <li>
           <a
-            href={`${base}#join`}
+            href="/join"
             className="rounded-lg bg-biomonie-lemon px-5 py-2.5 text-sm font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_6px_28px_rgba(245,255,0,0.28)] active:scale-[0.98]"
+            onClick={(e) => onSectionClick(e, 'join')}
           >
             Get Started
           </a>
@@ -111,11 +121,11 @@ export default function Navbar() {
             <div className="border-b border-white/10 bg-biomonie-teal-dark px-[5%] py-5 shadow-biomonie-nav">
               <ul className="flex list-none flex-col gap-1">
                 {links.map((l) => (
-                  <li key={l.to}>
+                  <li key={l.id}>
                     <a
-                      href={l.to}
+                      href={`/${l.id}`}
                       className="block rounded-lg px-2 py-3 text-[0.95rem] text-white/90 no-underline transition-colors hover:bg-white/5 hover:text-biomonie-lemon"
-                      onClick={() => setOpen(false)}
+                      onClick={(e) => onSectionClick(e, l.id)}
                     >
                       {l.label}
                     </a>
@@ -123,9 +133,9 @@ export default function Navbar() {
                 ))}
                 <li className="pt-2">
                   <a
-                    href={`${base}#join`}
+                    href="/join"
                     className="block rounded-lg bg-biomonie-lemon py-3 text-center text-sm font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta"
-                    onClick={() => setOpen(false)}
+                    onClick={(e) => onSectionClick(e, 'join')}
                   >
                     Get Started
                   </a>

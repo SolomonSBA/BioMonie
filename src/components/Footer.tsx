@@ -1,9 +1,16 @@
 import { Link } from 'react-router-dom';
+import type { MouseEvent } from 'react';
 import { motion } from 'framer-motion';
 import { Reveal } from '@/lib/motion';
 import BiomonieLogo from '@/components/icons/BiomonieLogo';
+import { navigateToSection } from '@/lib/section-nav';
 
 export default function Footer() {
+  const onSectionClick = (e: MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    navigateToSection(id);
+  };
+
   return (
     <footer className="border-t-2 border-biomonie-lemon/15 bg-biomonie-teal-dark px-[5%] py-14">
       <Reveal className="mb-10">
@@ -35,19 +42,22 @@ export default function Footer() {
               Home
             </Link>
             <a
-              href="/#how"
+              href="/how"
+              onClick={(e) => onSectionClick(e, 'how')}
               className="mb-1.5 block text-[0.86rem] text-white/[0.58] no-underline transition-colors hover:text-biomonie-lemon"
             >
               How It Works
             </a>
             <a
-              href="/#merchants"
+              href="/merchants"
+              onClick={(e) => onSectionClick(e, 'merchants')}
               className="mb-1.5 block text-[0.86rem] text-white/[0.58] no-underline transition-colors hover:text-biomonie-lemon"
             >
               For Merchants
             </a>
             <a
-              href="/#who"
+              href="/who"
+              onClick={(e) => onSectionClick(e, 'who')}
               className="mb-1.5 block text-[0.86rem] text-white/[0.58] no-underline transition-colors hover:text-biomonie-lemon"
             >
               For Agents
@@ -58,7 +68,8 @@ export default function Footer() {
               Earn
             </h5>
             <a
-              href="/#earn"
+              href="/earn"
+              onClick={(e) => onSectionClick(e, 'earn')}
               className="mb-1.5 block text-[0.86rem] text-white/[0.58] no-underline transition-colors hover:text-biomonie-lemon"
             >
               Affiliate programme
