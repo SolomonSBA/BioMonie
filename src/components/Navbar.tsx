@@ -69,13 +69,17 @@ export default function Navbar() {
         to="/"
         className="inline-flex items-center no-underline transition-opacity hover:opacity-95"
       >
-        <BiomonieLogo className="h-11 w-auto" aria-label="Biomonie" />
+        <BiomonieLogo className="h-12 w-auto" aria-label="Biomonie" />
       </Link>
 
       <ul className="hidden list-none items-center gap-8 min-[901px]:flex">
         {links.map((l) => (
           <li key={l.id}>
-            <a href={`/${l.id}`} className={navLinkClass} onClick={(e) => onSectionClick(e, l.id)}>
+            <a
+              href={`/${l.id}`}
+              className={navLinkClass}
+              onClick={(e) => onSectionClick(e, l.id)}
+            >
               {l.label}
             </a>
           </li>

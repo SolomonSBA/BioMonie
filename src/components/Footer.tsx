@@ -96,9 +96,9 @@ export default function Footer() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="flex flex-wrap items-center justify-between gap-2 border-t border-white/[0.12] pt-8"
+        className="flex flex-wrap items-center justify-center gap-2 border-t border-white/[0.12] pt-8"
       >
-        <p className="text-[0.8rem] text-white/[0.48]">
+        <p className="text-center text-[0.8rem] text-white/[0.48]">
           © {new Date().getFullYear()}{' '}
           <span className="font-semibold text-biomonie-lemon">BIOMONIE</span>.
           All rights reserved.

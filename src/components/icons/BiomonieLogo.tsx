@@ -3,54 +3,36 @@ import type { SVGProps } from 'react';
 export default function BiomonieLogo(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
-      width="680"
-      height="200"
-      viewBox="0 0 680 200"
+      width="1200"
+      height="450"
+      viewBox="120 0 920 340"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <text
-        id="text-bi"
-        x="170"
-        y="115"
-        textAnchor="end"
-        fontFamily="Arial, sans-serif"
-        fontWeight="800"
-        fontSize="72"
-        fill="white"
-      >
+      <text id="text-bi" x="350" y="240" textAnchor="end" fontFamily="Arial, sans-serif" fontWeight="800" fontSize="230" fill="white">
         Bi
       </text>
 
-      <circle id="lemon-o" cx="192" cy="100" r="20" fill="none" stroke="#E2FF02" strokeWidth="8" />
+      <circle id="lemon-o" cx="405" cy="205" r="48" fill="none" stroke="#E2FF02" strokeWidth="18" />
 
-      <text
-        id="text-monie"
-        x="214"
-        y="115"
-        textAnchor="start"
-        fontFamily="Arial, sans-serif"
-        fontWeight="800"
-        fontSize="72"
-        fill="white"
-      >
+      <text id="text-monie" x="460" y="240" textAnchor="start" fontFamily="Arial, sans-serif" fontWeight="800" fontSize="230" fill="white">
         monie
       </text>
 
       <g id="connecting-dots" fill="#E2FF02">
-        <circle cx="192" cy="128" r="2.5" />
-        <circle cx="192" cy="136" r="2.5" />
+        <circle cx="405" cy="275" r="6" />
+        <circle cx="405" cy="295" r="6" />
       </g>
 
-      <circle id="stick-head" cx="192" cy="154" r="10" fill="#E2FF02" stroke="#E2FF02" strokeWidth="2" />
+      <circle id="stick-head" cx="405" cy="335" r="22" fill="#E2FF02" stroke="#E2FF02" strokeWidth="4" />
 
-      <line id="stick-body" x1="192" y1="164" x2="192" y2="182" stroke="#E2FF02" strokeWidth="5" strokeLinecap="round" />
+      <line id="stick-body" x1="405" y1="357" x2="405" y2="400" stroke="#E2FF02" strokeWidth="12" strokeLinecap="round" />
 
-      <line id="stick-arm-left" x1="192" y1="170" x2="180" y2="170" stroke="#E2FF02" strokeWidth="5" strokeLinecap="round" />
-      <line id="stick-arm-right" x1="192" y1="170" x2="204" y2="170" stroke="#E2FF02" strokeWidth="5" strokeLinecap="round" />
+      <line id="stick-arm-left" x1="405" y1="375" x2="375" y2="375" stroke="#E2FF02" strokeWidth="12" strokeLinecap="round" />
+      <line id="stick-arm-right" x1="405" y1="375" x2="435" y2="375" stroke="#E2FF02" strokeWidth="12" strokeLinecap="round" />
 
-      <line id="stick-leg-left" x1="192" y1="182" x2="184" y2="194" stroke="#E2FF02" strokeWidth="5" strokeLinecap="round" />
-      <line id="stick-leg-right" x1="192" y1="182" x2="200" y2="194" stroke="#E2FF02" strokeWidth="5" strokeLinecap="round" />
+      <line id="stick-leg-left" x1="405" y1="400" x2="385" y2="430" stroke="#E2FF02" strokeWidth="12" strokeLinecap="round" />
+      <line id="stick-leg-right" x1="405" y1="400" x2="425" y2="430" stroke="#E2FF02" strokeWidth="12" strokeLinecap="round" />
     </svg>
   );
 }
