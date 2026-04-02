@@ -23,7 +23,7 @@ export default function TrustBanner() {
     <div className="relative border-y border-white/10 bg-biomonie-teal px-[5%] py-7">
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-biomonie-teal-dark/25 via-transparent to-biomonie-teal-dark/25 opacity-50" />
       <motion.div
-        className="relative mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-12 gap-y-5"
+        className="relative mx-auto grid max-w-6xl grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2 lg:grid-cols-4"
         initial={reduce ? false : { opacity: 0 }}
         whileInView={reduce ? undefined : { opacity: 1 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -36,7 +36,7 @@ export default function TrustBanner() {
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: i * 0.06, ease: easeOutExpo }}
-            className="flex max-w-[320px] items-start gap-3 text-[0.88rem] font-medium leading-snug text-white/[0.92]"
+            className="flex items-start gap-3 text-[0.88rem] font-medium leading-snug text-white/[0.92]"
           >
             <item.icon
               className="mt-0.5 h-[1.05rem] w-[1.05rem] shrink-0 text-biomonie-lemon"
