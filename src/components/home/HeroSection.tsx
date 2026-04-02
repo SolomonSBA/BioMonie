@@ -46,8 +46,8 @@ export default function HeroSection() {
         }}
       />
 
-      <div className="relative z-[2] mx-auto grid w-full max-w-[1280px] grid-cols-1 items-start gap-y-14 min-[901px]:grid-cols-2 min-[901px]:gap-x-0 min-[901px]:gap-y-0">
-        <div className="min-[901px]:col-span-2">
+      <div className="relative z-[2] mx-auto grid w-full max-w-[1280px] grid-cols-1 items-stretch gap-y-14 min-[901px]:grid-cols-[1fr_1px_1fr] min-[901px]:gap-x-0 min-[901px]:gap-y-0">
+        <div className="min-[901px]:col-span-3">
           <div className="mb-8 flex justify-center min-[901px]:mb-10">
             <div className="inline-flex max-w-full items-center gap-2 rounded-md border border-biomonie-lemon/40 bg-biomonie-lemon/[0.11] px-4 py-2 text-left text-[0.72rem] font-bold uppercase leading-snug tracking-[0.14em] text-biomonie-lemon shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
               <Globe className="h-3.5 w-3.5 shrink-0 opacity-90" aria-hidden />
@@ -55,11 +55,10 @@ export default function HeroSection() {
             </div>
           </div>
         </div>
-        <div className="pointer-events-none absolute bottom-0 left-1/2 top-[5.6rem] hidden w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-white/[0.35] to-transparent min-[901px]:block" />
         {/* Push this panel toward the center divider: outer flex justify-end + inner max-width (not w-full on outer). */}
-        <div className="min-w-0 min-[901px]:flex min-[901px]:justify-end min-[901px]:pr-8 lg:pr-14">
+        <div className="min-w-0 min-[901px]:flex min-[901px]:h-full min-[901px]:justify-end min-[901px]:pr-6 lg:pr-10">
           <div className="w-full max-w-[540px] text-left min-[901px]:text-right">
-            <div className="min-[901px]:min-h-[430px]">
+            <div className="min-[901px]:h-[470px] min-[901px]:overflow-visible">
             <FadeUp delay={0.08}>
               <h1 className="mb-6 text-[clamp(2.8rem,6vw,5.2rem)] font-extrabold leading-[1.05] tracking-[-0.04em] text-white">
                 <span className="block">The new</span>
@@ -115,13 +114,15 @@ export default function HeroSection() {
           </div>
         </div>
 
+        <div className="hidden min-[901px]:block w-px bg-gradient-to-b from-transparent via-white/[0.35] to-transparent" />
+
         <motion.div
-          className="min-[901px]:pl-6 lg:pl-10"
+          className="min-[901px]:pl-6 min-[901px]:h-full lg:pl-10"
           initial={reduce ? false : { opacity: 0, y: 20 }}
           animate={reduce ? false : { opacity: 1, y: 0 }}
           transition={{ duration: 0.65, delay: 0.2, ease: easeOutExpo }}
         >
-          <div className="min-[901px]:min-h-[430px]">
+          <div className="min-[901px]:h-[470px] min-[901px]:overflow-visible">
           <p className="mb-6 text-[clamp(2.8rem,6vw,5.2rem)] font-extrabold leading-[1.05] tracking-[-0.04em] text-white">
             <span className="block">Introducing</span>
             <span className="block">the new</span>
