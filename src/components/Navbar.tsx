@@ -36,6 +36,8 @@ export default function Navbar() {
     { id: 'how', label: 'How It Works' },
     { id: 'who', label: "Who It's For" },
     { id: 'earn', label: 'Earn' },
+    { id: 'who', label: 'For Customers' },
+    { id: 'who', label: 'For Agents' },
     { id: 'merchants', label: 'For Merchants' },
     { id: 'faq', label: 'FAQ' },
   ];
@@ -67,7 +69,7 @@ export default function Navbar() {
     >
       <Link
         to="/"
-        className="inline-flex h-[84px] w-[240px] items-center no-underline transition-opacity hover:opacity-95"
+        className="inline-flex h-[70px] w-[220px] items-center no-underline transition-opacity hover:opacity-95"
       >
         <BiomonieLogo
           className="block h-full w-full origin-left translate-x-1 translate-y-3 scale-100"

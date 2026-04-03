@@ -124,7 +124,7 @@ export default function HeroSection() {
             <FadeUp delay={0.28}>
               <div className="mt-4 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2 sm:gap-x-3 min-[1024px]:justify-items-start min-[1024px]:gap-x-5 min-[1280px]:grid-cols-3">
                 {[
-                  { k: 'Zero', l: 'Cost to join and refer' },
+                  { k: 'Net-Zero', l: 'Cost to join and refer' },
                   {
                     k: 'Payout',
                     l: 'Earned per activated Agent / Merchant referral',
@@ -132,7 +132,7 @@ export default function HeroSection() {
                   { k: 'Low-cost', l: 'Per transaction flat, simple, fair' },
                 ].map((s) => (
                   <div key={s.k} className="text-left">
-                    <div className="font-mono text-[2.15rem] font-bold leading-none tracking-tight text-biomonie-lemon">
+                    <div className="font-mono text-[1.80rem] font-bold leading-none tracking-tight text-biomonie-lemon">
                       {s.k}
                     </div>
                     <div className="mt-1.5 max-w-[11.5rem] text-[0.8rem] leading-snug text-white/[0.68] min-[1024px]:max-w-[10rem]">
@@ -200,7 +200,7 @@ export default function HeroSection() {
               },
             ].map((s) => (
               <div key={s.k} className="text-left">
-                <div className="font-mono text-[2.15rem] font-bold leading-none tracking-tight text-biomonie-lemon">
+                <div className="font-mono text-[1.80rem] font-bold leading-none tracking-tight text-biomonie-lemon">
                   {s.k}
                 </div>
                 <div className="mt-1.5 max-w-[11.5rem] text-[0.8rem] leading-snug text-white/[0.68] min-[1024px]:max-w-[10rem]">
@@ -254,18 +254,18 @@ export default function HeroSection() {
 
           <div className="min-[1024px]:justify-items-left mt-4 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2 sm:gap-x-3 min-[1024px]:gap-x-5 min-[1280px]:grid-cols-3">
             {[
-              { k: 'Customers', l: ' can pay with a flex and earn.' },
+              { k: 'Refer', l: ' everyone and anyone; customers, agents, merchants.' },
               {
-                k: 'Merchants',
-                l: 'can receive payments with a flex and earn.',
+                k: 'Earn',
+                l: 'everytime they perform transactions.',
               },
               {
-                k: 'Agents',
-                l: 'can provide agent banking services with a flex and earn.',
+                k: 'Grow',
+                l: 'grow your downlines and earn perpetually.',
               },
             ].map((s) => (
               <div key={`third-${s.k}`} className="text-left">
-                <div className="font-mono text-[2.15rem] font-bold leading-none tracking-tight text-biomonie-lemon">
+                <div className="font-mono text-[1.80rem] font-bold leading-none tracking-tight text-biomonie-lemon">
                   {s.k}
                 </div>
                 <div className="mt-1.5 max-w-[11.5rem] text-[0.8rem] leading-snug text-white/[0.68] min-[1024px]:max-w-[10rem]">
