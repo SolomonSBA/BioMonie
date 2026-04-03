@@ -3,9 +3,7 @@ import type { SVGProps } from 'react';
 export default function BiomonieLogo(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
-      width="1200"
-      height="450"
-      viewBox="120 0 920 340"
+      viewBox="60 0 1300 450"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >

@@ -67,9 +67,12 @@ export default function Navbar() {
     >
       <Link
         to="/"
-        className="inline-flex items-center no-underline transition-opacity hover:opacity-95"
+        className="inline-flex h-[84px] w-[240px] items-center no-underline transition-opacity hover:opacity-95"
       >
-        <BiomonieLogo className="h-12 w-auto" aria-label="Biomonie" />
+        <BiomonieLogo
+          className="block h-full w-full origin-left translate-x-1 translate-y-3 scale-100"
+          aria-label="Biomonie"
+        />
       </Link>
 
       <ul className="hidden list-none items-center gap-8 min-[901px]:flex">
