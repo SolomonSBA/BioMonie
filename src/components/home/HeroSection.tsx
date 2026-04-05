@@ -7,11 +7,46 @@ import { navigateToSection } from '@/lib/section-nav';
 function ColumnLabel({ n }: { n: 1 | 2 | 3 }) {
   return (
     <p
-      className="mb-6 text-[1.75rem] font-extrabold tabular-nums leading-none text-biomonie-lemon min-[1024px]:mb-7"
+      className="mb-6 text-[1.75rem] font-extrabold tabular-nums leading-none text-biomonie-lemon min-[1280px]:mb-7"
       aria-label={`Column ${n}`}
     >
       {n}
     </p>
+  );
+}
+
+/** Stat tiles: 3 across on desktop hero; minmax(0,1fr) + min-w-0 cells prevents middle-column overlap.
+ *  Equal min-height on desktop so shorter stat rows don’t steal flex space and push CTAs out of alignment. */
+const heroStatGridClass =
+  'mt-4 grid w-full min-w-0 grid-cols-1 gap-x-3 gap-y-5 sm:grid-cols-2 sm:gap-y-6 min-[1280px]:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)] min-[1280px]:gap-x-2 min-[1280px]:gap-y-0 min-[1280px]:min-h-[9rem] xl:gap-x-3';
+const heroStatTitleClass =
+  'break-words font-mono text-[clamp(0.72rem,1.15vw,1.35rem)] font-bold leading-tight tracking-tight text-biomonie-lemon';
+const heroStatDescClass =
+  'mt-1.5 max-w-full break-words text-[0.8rem] leading-snug text-white/[0.68]';
+
+/** Centered mark above column index (1 / 2 / 3). Assets live in /public. */
+function HeroColumnMark({ variant }: { variant: 1 | 2 | 3 }) {
+  const src =
+    variant === 1
+      ? '/circle.svg'
+      : variant === 2
+        ? '/Dot.svg'
+        : '/stickMan.svg';
+  return (
+    <div className="mb-3 flex w-full justify-center min-[1280px]:mb-4">
+      <div
+        className="flex h-[3.75rem] w-[3.75rem] items-center justify-center rounded-2xl border border-biomonie-lemon/25 bg-biomonie-lemon/[0.06] shadow-[0_0_32px_rgba(245,255,0,0.08)] sm:h-[4.25rem] sm:w-[4.25rem] xl:h-[4.75rem] xl:w-[4.75rem]"
+        aria-hidden
+      >
+        <img
+          src={src}
+          alt=""
+          width={76}
+          height={76}
+          className="max-h-[72%] max-w-[72%] object-contain object-center"
+        />
+      </div>
+    </div>
   );
 }
 
@@ -56,25 +91,26 @@ export default function HeroSection() {
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         }}
       />
-      <div className="justify-left mr-18 mb-8 flex min-[1024px]:mb-10">
+      <div className="justify-left mr-18 mb-8 flex min-[1280px]:mb-10">
         <div className="inline-flex max-w-full items-center gap-2 rounded-md border border-biomonie-lemon/40 bg-biomonie-lemon/[0.11] px-4 py-2 text-left text-[0.72rem] font-bold uppercase leading-snug tracking-[0.14em] text-biomonie-lemon shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
           <Globe className="h-3.5 w-3.5 shrink-0 opacity-90" aria-hidden />
           The First-Ever Global Biometric Cardless Payment Ecosystem
         </div>
       </div>
 
-      <div className="relative z-[2] mx-auto grid w-full max-w-[1680px] grid-cols-1 items-stretch gap-y-14 min-[1024px]:grid-cols-3 min-[1024px]:gap-x-8 min-[1024px]:gap-y-0">
+      <div className="relative z-[2] mx-auto grid w-full max-w-[1680px] grid-cols-1 items-stretch gap-y-14 min-[1280px]:grid-cols-3 min-[1280px]:gap-x-6 min-[1280px]:gap-y-0 xl:gap-x-8">
         {/* <div className="min-[1024px]:col-span-3">
           
         </div> */}
         {/* Push this panel toward the center divider: outer flex justify-end + inner max-width (not w-full on outer). */}
-        <div className="min-w-0 lg:pr-10 min-[1024px]:flex min-[1024px]:h-full min-[1024px]:min-h-0 min-[1024px]:flex-col min-[1024px]:items-start min-[1024px]:justify-start min-[1024px]:pr-6">
-          <div className="flex w-full max-w-[540px] flex-col text-left min-[1024px]:h-full min-[1024px]:min-h-0 min-[1024px]:flex-1">
+        <div className="min-w-0 lg:pr-10 min-[1280px]:flex min-[1280px]:h-full min-[1280px]:min-h-0 min-[1280px]:flex-col min-[1280px]:items-start min-[1280px]:justify-start min-[1280px]:pr-6">
+          <div className="flex w-full max-w-[540px] flex-col text-left min-[1280px]:h-full min-[1280px]:min-h-0 min-[1280px]:flex-1">
+            <HeroColumnMark variant={1} />
             <ColumnLabel n={1} />
-            <div className="flex min-h-0 flex-col min-[1024px]:flex-1">
-              <div className="min-[1024px]:overflow-visible">
+            <div className="flex min-h-0 flex-col min-[1280px]:flex-1">
+              <div className="min-[1280px]:overflow-visible">
                 <FadeUp delay={0.08}>
-                  <h1 className="mb-5 text-[clamp(2.1rem,4.65vw,4.05rem)] font-extrabold leading-[1.05] tracking-[-0.04em] text-white min-[1024px]:min-h-0">
+                  <h1 className="mb-5 text-[clamp(2.1rem,4.65vw,4.05rem)] font-extrabold leading-[1.05] tracking-[-0.04em] text-white min-[1280px]:min-h-0">
                     <span className="block">Explore the </span>
                     <span className="block"> new form of</span>
                     <span className="block whitespace-nowrap text-[0.94em] tracking-[-0.05em]">
@@ -90,7 +126,7 @@ export default function HeroSection() {
                   </h1>
                 </FadeUp>
                 <FadeUp delay={0.16}>
-                  <p className="mb-10 mt-0 max-w-[500px] text-[1.08rem] leading-[1.75] text-white/[0.88] min-[1024px]:min-h-[132px]">
+                  <p className="mb-10 mt-0 max-w-[500px] text-[1.08rem] leading-[1.75] text-white/[0.88] min-[1280px]:min-h-[132px]">
                     <span className="font-semibold text-biomonie-lemon">
                       BIOMONIE
                     </span>{' '}
@@ -107,8 +143,8 @@ export default function HeroSection() {
                 </FadeUp>
               </div>
 
-              <FadeUp delay={0.22} className="w-full min-[1024px]:mt-auto">
-                <div className="mb-14 flex w-full flex-wrap justify-start gap-3 sm:gap-4">
+              <FadeUp delay={0.22} className="w-full min-[1280px]:mt-auto">
+                <div className="mb-16 flex w-full flex-shrink-0 flex-wrap justify-start gap-3 sm:gap-4">
                   <motion.a
                     href="/join"
                     onClick={(e) => onSectionClick(e, 'join')}
@@ -122,7 +158,7 @@ export default function HeroSection() {
             </div>
 
             <FadeUp delay={0.28}>
-              <div className="mt-4 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2 sm:gap-x-3 min-[1024px]:justify-items-start min-[1024px]:gap-x-5 min-[1280px]:grid-cols-3">
+              <div className={heroStatGridClass}>
                 {[
                   { k: 'Net-Zero', l: 'Cost to join and refer' },
                   {
@@ -131,13 +167,9 @@ export default function HeroSection() {
                   },
                   { k: 'Low-cost', l: 'Per transaction flat, simple, fair' },
                 ].map((s) => (
-                  <div key={s.k} className="text-left">
-                    <div className="font-mono text-[1.80rem] font-bold leading-none tracking-tight text-biomonie-lemon">
-                      {s.k}
-                    </div>
-                    <div className="mt-1.5 max-w-[11.5rem] text-[0.8rem] leading-snug text-white/[0.68] min-[1024px]:max-w-[10rem]">
-                      {s.l}
-                    </div>
+                  <div key={s.k} className="min-w-0 text-left">
+                    <div className={heroStatTitleClass}>{s.k}</div>
+                    <div className={heroStatDescClass}>{s.l}</div>
                   </div>
                 ))}
               </div>
@@ -146,16 +178,17 @@ export default function HeroSection() {
         </div>
 
         <motion.div
-          className="relative min-[1024px]:flex min-[1024px]:h-full min-[1024px]:min-h-0 min-[1024px]:flex-col min-[1024px]:pl-6"
+          className="relative min-w-0 w-full min-[1280px]:flex min-[1280px]:h-full min-[1280px]:min-h-0 min-[1280px]:flex-col min-[1280px]:pl-6"
           initial={reduce ? false : { opacity: 0, y: 20 }}
           animate={reduce ? false : { opacity: 1, y: 0 }}
           transition={{ duration: 0.65, delay: 0.2, ease: easeOutExpo }}
         >
+          <HeroColumnMark variant={2} />
           <ColumnLabel n={2} />
-          <div className="pointer-events-none absolute left-0 top-0 hidden h-[610px] w-px bg-white/[0.28] min-[1024px]:block" />
-          <div className="flex min-h-0 flex-col min-[1024px]:flex-1">
-            <div className="min-[1024px]:overflow-visible">
-              <p className="mb-5 text-[clamp(2.1rem,4.65vw,4.05rem)] font-extrabold leading-[1.05] tracking-[-0.04em] text-white min-[1024px]:min-h-0">
+          <div className="pointer-events-none absolute left-0 top-0 hidden h-[610px] w-px bg-white/[0.28] min-[1280px]:block" />
+          <div className="flex min-h-0 flex-col min-[1280px]:flex-1">
+            <div className="min-[1280px]:overflow-visible">
+              <p className="mb-5 text-[clamp(2.1rem,4.65vw,4.05rem)] font-extrabold leading-[1.05] tracking-[-0.04em] text-white min-[1280px]:min-h-0">
                 <span className="block">Be part</span>
                 <span className="block">of the new</span>
                 <span className="block text-[0.94em] tracking-[-0.05em]">
@@ -164,7 +197,7 @@ export default function HeroSection() {
                 </span>
               </p>
 
-              <p className="mb-10 mt-0 text-[1.08rem] leading-[1.75] text-white/[0.88] min-[1024px]:min-h-[132px] min-[1024px]:max-w-[540px]">
+              <p className="mb-10 mt-0 text-[1.08rem] leading-[1.75] text-white/[0.88] min-[1280px]:min-h-[132px] min-[1280px]:max-w-[540px]">
                 <span className="font-semibold text-biomonie-lemon">
                   BIOMONIE
                 </span>{' '}
@@ -175,7 +208,7 @@ export default function HeroSection() {
               </p>
             </div>
 
-            <div className="mb-16 flex flex-wrap justify-start gap-3 sm:gap-4 min-[1024px]:mt-auto min-[1024px]:justify-start">
+            <div className="mb-16 flex w-full flex-shrink-0 flex-wrap justify-start gap-3 sm:gap-4 min-[1280px]:mt-auto min-[1280px]:justify-start">
               <motion.a
                 href="/how"
                 onClick={(e) => onSectionClick(e, 'how')}
@@ -187,7 +220,7 @@ export default function HeroSection() {
             </div>
           </div>
 
-          <div className="min-[1024px]:justify-items-left mt-4 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2 sm:gap-x-3 min-[1024px]:gap-x-5 min-[1280px]:grid-cols-3">
+          <div className={heroStatGridClass}>
             {[
               { k: 'Customers', l: ' can pay with a flex and earn.' },
               {
@@ -199,29 +232,26 @@ export default function HeroSection() {
                 l: 'can provide agent banking services with a flex and earn.',
               },
             ].map((s) => (
-              <div key={s.k} className="text-left">
-                <div className="font-mono text-[1.80rem] font-bold leading-none tracking-tight text-biomonie-lemon">
-                  {s.k}
-                </div>
-                <div className="mt-1.5 max-w-[11.5rem] text-[0.8rem] leading-snug text-white/[0.68] min-[1024px]:max-w-[10rem]">
-                  {s.l}
-                </div>
+              <div key={s.k} className="min-w-0 text-left">
+                <div className={heroStatTitleClass}>{s.k}</div>
+                <div className={heroStatDescClass}>{s.l}</div>
               </div>
             ))}
           </div>
         </motion.div>
 
         <motion.div
-          className="relative min-[1024px]:flex min-[1024px]:h-full min-[1024px]:min-h-0 min-[1024px]:flex-col min-[1024px]:pl-6"
+          className="relative min-w-0 w-full min-[1280px]:flex min-[1280px]:h-full min-[1280px]:min-h-0 min-[1280px]:flex-col min-[1280px]:pl-6"
           initial={reduce ? false : { opacity: 0, y: 20 }}
           animate={reduce ? false : { opacity: 1, y: 0 }}
           transition={{ duration: 0.65, delay: 0.28, ease: easeOutExpo }}
         >
+          <HeroColumnMark variant={3} />
           <ColumnLabel n={3} />
-          <div className="pointer-events-none absolute left-0 top-0 hidden h-[610px] w-px bg-white/[0.28] min-[1024px]:block" />
-          <div className="flex min-h-0 flex-col min-[1024px]:flex-1">
-            <div className="min-[1024px]:overflow-visible">
-              <p className="mb-5 text-[clamp(2.1rem,4.65vw,4.05rem)] font-extrabold leading-[1.05] tracking-[-0.04em] text-white min-[1024px]:min-h-0">
+          <div className="pointer-events-none absolute left-0 top-0 hidden h-[610px] w-px bg-white/[0.28] min-[1280px]:block" />
+          <div className="flex min-h-0 flex-col min-[1280px]:flex-1">
+            <div className="min-[1280px]:overflow-visible">
+              <p className="mb-5 text-[clamp(2.1rem,4.65vw,4.05rem)] font-extrabold leading-[1.05] tracking-[-0.04em] text-white min-[1280px]:min-h-0">
                 <span className="block">Join &amp; Earn</span>
                 <span className="block">as a</span>
                 <span className="block text-[0.94em] tracking-[-0.05em]">
@@ -230,7 +260,7 @@ export default function HeroSection() {
                 </span>
               </p>
 
-              <p className="mb-10 mt-0 text-[1.08rem] leading-[1.75] text-white/[0.88] min-[1024px]:min-h-[132px] min-[1024px]:max-w-[540px]">
+              <p className="mb-10 mt-0 text-[1.08rem] leading-[1.75] text-white/[0.88] min-[1280px]:min-h-[132px] min-[1280px]:max-w-[540px]">
                 <span className="font-semibold text-biomonie-lemon">
                   BIOMONIE
                 </span>{' '}
@@ -240,7 +270,7 @@ export default function HeroSection() {
               </p>
             </div>
 
-            <div className="mb-16 flex flex-wrap justify-start gap-3 sm:gap-4 min-[1024px]:mt-auto min-[1024px]:justify-start">
+            <div className="mb-16 flex w-full flex-shrink-0 flex-wrap justify-start gap-3 sm:gap-4 min-[1280px]:mt-auto min-[1280px]:justify-start">
               <motion.a
                 href="/join"
                 onClick={(e) => onSectionClick(e, 'join')}
@@ -252,7 +282,7 @@ export default function HeroSection() {
             </div>
           </div>
 
-          <div className="min-[1024px]:justify-items-left mt-4 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2 sm:gap-x-3 min-[1024px]:gap-x-5 min-[1280px]:grid-cols-3">
+          <div className={heroStatGridClass}>
             {[
               { k: 'Refer', l: ' everyone and anyone; customers, agents, merchants.' },
               {
@@ -264,13 +294,9 @@ export default function HeroSection() {
                 l: 'grow your downlines and earn perpetually.',
               },
             ].map((s) => (
-              <div key={`third-${s.k}`} className="text-left">
-                <div className="font-mono text-[1.80rem] font-bold leading-none tracking-tight text-biomonie-lemon">
-                  {s.k}
-                </div>
-                <div className="mt-1.5 max-w-[11.5rem] text-[0.8rem] leading-snug text-white/[0.68] min-[1024px]:max-w-[10rem]">
-                  {s.l}
-                </div>
+              <div key={`third-${s.k}`} className="min-w-0 text-left">
+                <div className={heroStatTitleClass}>{s.k}</div>
+                <div className={heroStatDescClass}>{s.l}</div>
               </div>
             ))}
           </div>
