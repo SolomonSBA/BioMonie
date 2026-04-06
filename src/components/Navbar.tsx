@@ -65,7 +65,7 @@ export default function Navbar() {
           : '0 0 0 rgba(0,0,0,0)',
       }}
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed left-0 right-0 top-0 z-[100] flex h-16 min-h-16 items-center justify-between gap-3 border-b px-4 backdrop-blur-xl transition-colors duration-300 sm:px-[5%] xl:h-[68px] xl:min-h-[68px] ${
+      className={`fixed left-0 right-0 top-0 z-[100] flex h-16 min-h-16 items-center justify-between gap-3 border-b px-4 backdrop-blur-xl transition-colors duration-300 sm:px-[5%] min-[1180px]:h-[68px] min-[1180px]:min-h-[68px] ${
         scrolled
           ? 'border-biomonie-lemon/25 bg-biomonie-teal-dark/[0.98]'
           : 'border-biomonie-lemon/20 bg-biomonie-teal-dark/[0.96]'
@@ -73,15 +73,15 @@ export default function Navbar() {
     >
       <Link
         to="/"
-        className="flex min-h-0 min-w-0 max-w-[50vw] shrink items-center no-underline transition-opacity hover:opacity-95 sm:max-w-[240px] xl:max-w-[280px]"
+        className="flex min-h-0 min-w-0 max-w-[50vw] shrink items-center no-underline transition-opacity hover:opacity-95 sm:max-w-[240px] min-[1180px]:max-w-[280px]"
       >
         <BiomonieLogo
-          className="block h-12 w-auto max-h-12 translate-y-1 origin-left sm:h-[52px] sm:max-h-[52px] sm:translate-y-1.5 xl:h-[60px] xl:max-h-[60px] xl:translate-y-[15px]"
+          className="block h-12 w-auto max-h-12 translate-y-1 origin-left sm:h-[52px] sm:max-h-[52px] sm:translate-y-1.5 min-[1180px]:h-[60px] min-[1180px]:max-h-[60px] min-[1180px]:translate-y-[15px]"
           aria-label="Biomonie"
         />
       </Link>
 
-      <ul className="hidden min-w-0 list-none items-center justify-end gap-3 xl:flex 2xl:gap-5">
+      <ul className="hidden min-w-0 list-none items-center justify-end gap-3 min-[1180px]:flex 2xl:gap-5">
         {links.map((l) => (
           <li key={l.key} className="shrink-0">
             <a
@@ -114,7 +114,7 @@ export default function Navbar() {
 
       <button
         type="button"
-        className="shrink-0 rounded-lg p-2 text-white transition-colors hover:bg-white/10 xl:hidden"
+        className="shrink-0 rounded-lg p-2 text-white transition-colors hover:bg-white/10 min-[1180px]:hidden"
         aria-expanded={open}
         aria-label={open ? 'Close menu' : 'Open menu'}
         onClick={() => setOpen(!open)}
@@ -125,7 +125,7 @@ export default function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="absolute left-0 right-0 top-16 z-[110] max-h-[min(70vh,calc(100dvh-4rem))] overflow-y-auto xl:top-[68px] xl:hidden"
+            className="absolute left-0 right-0 top-16 z-[110] max-h-[min(70vh,calc(100dvh-4rem))] overflow-y-auto min-[1180px]:top-[68px] min-[1180px]:hidden"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
