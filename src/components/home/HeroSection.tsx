@@ -28,14 +28,14 @@ const heroStatDescClass =
 function HeroColumnMark({ variant }: { variant: 1 | 2 | 3 }) {
   const src =
     variant === 1
-      ? '/circle.svg'
+      ? '/stickMan.svg'
       : variant === 2
-        ? '/Dot.svg'
+        ? '/stickMan.svg'
         : '/stickMan.svg';
   return (
     <div className="mb-3 flex w-full justify-center min-[1180px]:mb-4">
       <div
-        className="flex h-[3.75rem] w-[3.75rem] items-center justify-center rounded-2xl border border-biomonie-lemon/25 bg-biomonie-lemon/[0.06] shadow-[0_0_32px_rgba(245,255,0,0.08)] sm:h-[4.25rem] sm:w-[4.25rem] xl:h-[4.75rem] xl:w-[4.75rem]"
+        className="flex h-[3.75rem] w-[3.75rem] items-center justify-center rounded-2xl sm:h-[4.25rem] sm:w-[4.25rem] xl:h-[4.75rem] xl:w-[4.75rem]"
         aria-hidden
       >
         <img
@@ -91,7 +91,7 @@ export default function HeroSection() {
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         }}
       />
-      <div className="mb-8 flex justify-center min-[1180px]:justify-start min-[1180px]:mb-10">
+      <div className="mb-8 flex justify-center min-[1180px]:mb-10 min-[1180px]:justify-start">
         <div className="inline-flex max-w-full items-center gap-2 rounded-md border border-biomonie-lemon/40 bg-biomonie-lemon/[0.11] px-3 py-2 text-left text-[0.62rem] font-bold uppercase leading-snug tracking-[0.12em] text-biomonie-lemon shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] sm:px-4 sm:text-[0.72rem] sm:tracking-[0.14em]">
           <Globe className="h-3.5 w-3.5 shrink-0 opacity-90" aria-hidden />
           The First-Ever Global Biometric Cardless Payment Ecosystem
@@ -103,7 +103,7 @@ export default function HeroSection() {
           
         </div> */}
         {/* Push this panel toward the center divider: outer flex justify-end + inner max-width (not w-full on outer). */}
-        <div className="min-w-0 w-full max-[1179px]:mx-auto max-[1179px]:max-w-xl lg:pr-10 min-[1180px]:flex min-[1180px]:h-full min-[1180px]:min-h-0 min-[1180px]:max-w-none min-[1180px]:flex-col min-[1180px]:items-start min-[1180px]:justify-start min-[1180px]:pr-6">
+        <div className="w-full min-w-0 max-[1179px]:mx-auto max-[1179px]:max-w-xl lg:pr-10 min-[1180px]:flex min-[1180px]:h-full min-[1180px]:min-h-0 min-[1180px]:max-w-none min-[1180px]:flex-col min-[1180px]:items-start min-[1180px]:justify-start min-[1180px]:pr-6">
           <div className="flex w-full max-w-[540px] flex-col text-left max-[1179px]:mx-auto min-[1180px]:h-full min-[1180px]:min-h-0 min-[1180px]:flex-1">
             <HeroColumnMark variant={1} />
             <ColumnLabel n={1} />
@@ -178,7 +178,7 @@ export default function HeroSection() {
         </div>
 
         <motion.div
-          className="relative min-w-0 w-full max-[1179px]:mx-auto max-[1179px]:max-w-xl min-[1180px]:mx-0 min-[1180px]:max-w-none min-[1180px]:flex min-[1180px]:h-full min-[1180px]:min-h-0 min-[1180px]:flex-col min-[1180px]:pl-6"
+          className="relative w-full min-w-0 max-[1179px]:mx-auto max-[1179px]:max-w-xl min-[1180px]:mx-0 min-[1180px]:flex min-[1180px]:h-full min-[1180px]:min-h-0 min-[1180px]:max-w-none min-[1180px]:flex-col min-[1180px]:pl-6"
           initial={reduce ? false : { opacity: 0, y: 20 }}
           animate={reduce ? false : { opacity: 1, y: 0 }}
           transition={{ duration: 0.65, delay: 0.2, ease: easeOutExpo }}
@@ -208,7 +208,7 @@ export default function HeroSection() {
               </p>
             </div>
 
-            <div className="mb-16 flex w-full flex-shrink-0 flex-wrap justify-center gap-3 sm:gap-4 min-[1180px]:mt-auto min-[1180px]:justify-start">
+            <div className="mb-16 flex w-full flex-shrink-0 flex-wrap justify-center gap-3 sm:gap-4 min-[1180px]:mt-auto min-[1180px]:justify-center">
               <motion.a
                 href="/how"
                 onClick={(e) => onSectionClick(e, 'how')}
@@ -241,7 +241,7 @@ export default function HeroSection() {
         </motion.div>
 
         <motion.div
-          className="relative min-w-0 w-full max-[1179px]:mx-auto max-[1179px]:max-w-xl min-[1180px]:mx-0 min-[1180px]:max-w-none min-[1180px]:flex min-[1180px]:h-full min-[1180px]:min-h-0 min-[1180px]:flex-col min-[1180px]:pl-6"
+          className="relative w-full min-w-0 max-[1179px]:mx-auto max-[1179px]:max-w-xl min-[1180px]:mx-0 min-[1180px]:flex min-[1180px]:h-full min-[1180px]:min-h-0 min-[1180px]:max-w-none min-[1180px]:flex-col min-[1180px]:pl-6"
           initial={reduce ? false : { opacity: 0, y: 20 }}
           animate={reduce ? false : { opacity: 1, y: 0 }}
           transition={{ duration: 0.65, delay: 0.28, ease: easeOutExpo }}
@@ -265,12 +265,13 @@ export default function HeroSection() {
                   BIOMONIE
                 </span>{' '}
                 affilates allows customers , merchants and agents to refer
-                fellow customers,  merchants, and agents. earn transcation perform —{' '}
+                fellow customers, merchants, and agents. earn transcation
+                perform —{' '}
                 <span className="font-semibold text-biomonie-lemon">YOU</span>.
               </p>
             </div>
 
-            <div className="mb-16 flex w-full flex-shrink-0 flex-wrap justify-center gap-3 sm:gap-4 min-[1180px]:mt-auto min-[1180px]:justify-start">
+            <div className="mb-16 flex w-full flex-shrink-0 flex-wrap justify-center gap-3 sm:gap-4 min-[1180px]:mt-auto min-[1180px]:justify-center">
               <motion.a
                 href="/join"
                 onClick={(e) => onSectionClick(e, 'join')}
@@ -284,7 +285,10 @@ export default function HeroSection() {
 
           <div className={heroStatGridClass}>
             {[
-              { k: 'Refer', l: ' everyone and anyone; customers, agents, merchants.' },
+              {
+                k: 'Refer',
+                l: ' everyone and anyone; customers, agents, merchants.',
+              },
               {
                 k: 'Earn',
                 l: 'everytime they perform transactions.',
