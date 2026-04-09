@@ -4,17 +4,6 @@ import { Globe } from 'lucide-react';
 import { easeOutExpo } from '@/lib/motion';
 import { navigateToSection } from '@/lib/section-nav';
 
-function ColumnLabel({ n }: { n: 1 | 2 | 3 }) {
-  return (
-    <p
-      className="mb-6 text-[1.75rem] font-extrabold tabular-nums leading-none text-biomonie-lemon min-[1180px]:mb-7"
-      aria-label={`Column ${n}`}
-    >
-      {n}
-    </p>
-  );
-}
-
 /** Stat tiles: 3 across on desktop hero; minmax(0,1fr) + min-w-0 cells prevents middle-column overlap.
  *  Equal min-height on desktop so shorter stat rows don’t steal flex space and push CTAs out of alignment. */
 const heroStatGridClass =
@@ -27,23 +16,19 @@ const heroStatDescClass =
 /** Centered mark above column index (1 / 2 / 3). Assets live in /public. */
 function HeroColumnMark({ variant }: { variant: 1 | 2 | 3 }) {
   const src =
-    variant === 1
-      ? '/stickMan.svg'
-      : variant === 2
-        ? '/stickMan.svg'
-        : '/stickMan.svg';
+    variant === 1 ? '/stickMan.svg' : variant === 2 ? '/7.png' : '/8.png';
   return (
     <div className="mb-3 flex w-full justify-center min-[1180px]:mb-4">
       <div
-        className="flex h-[3.75rem] w-[3.75rem] items-center justify-center rounded-2xl sm:h-[4.25rem] sm:w-[4.25rem] xl:h-[4.75rem] xl:w-[4.75rem]"
+        className="flex h-[6.5rem] w-[6.5rem] items-center justify-center rounded-2xl sm:h-[7.5rem] sm:w-[7.5rem] xl:h-[8.5rem] xl:w-[8.5rem]"
         aria-hidden
       >
         <img
           src={src}
           alt=""
-          width={76}
-          height={76}
-          className="max-h-[72%] max-w-[72%] object-contain object-center"
+          width={100}
+          height={100}
+          className="max-h-[96%] max-w-[96%] object-contain object-center"
         />
       </div>
     </div>
@@ -106,7 +91,6 @@ export default function HeroSection() {
         <div className="w-full min-w-0 max-[1179px]:mx-auto max-[1179px]:max-w-xl lg:pr-10 min-[1180px]:flex min-[1180px]:h-full min-[1180px]:min-h-0 min-[1180px]:max-w-none min-[1180px]:flex-col min-[1180px]:items-start min-[1180px]:justify-start min-[1180px]:pr-6">
           <div className="flex w-full max-w-[540px] flex-col text-left max-[1179px]:mx-auto min-[1180px]:h-full min-[1180px]:min-h-0 min-[1180px]:flex-1">
             <HeroColumnMark variant={1} />
-            <ColumnLabel n={1} />
             <div className="flex min-h-0 flex-col min-[1180px]:flex-1">
               <div className="min-[1180px]:overflow-visible">
                 <FadeUp delay={0.08}>
@@ -130,8 +114,8 @@ export default function HeroSection() {
                     <span className="font-semibold text-biomonie-lemon">
                       BIOMONIE
                     </span>{' '}
-                    allows you to be the money access for all your payments and
-                    cash needs. No pin. No password.{' '}
+                    makes you the money access for any and all your payment and
+                    cash needs. No pin, No password and Nothing else;{' '}
                     <span className="sm:whitespace-nowrap">
                       Just{' '}
                       <strong className="font-bold text-biomonie-lemon">
@@ -144,7 +128,7 @@ export default function HeroSection() {
               </div>
 
               <FadeUp delay={0.22} className="w-full min-[1180px]:mt-auto">
-                <div className="mb-16 flex w-full flex-shrink-0 flex-wrap justify-center gap-3 sm:gap-4 min-[1180px]:justify-start">
+                <div className="mb-16 flex w-full flex-shrink-0 flex-wrap justify-center gap-3 sm:gap-4 min-[1180px]:justify-center">
                   <motion.a
                     href="/join"
                     onClick={(e) => onSectionClick(e, 'join')}
@@ -184,7 +168,6 @@ export default function HeroSection() {
           transition={{ duration: 0.65, delay: 0.2, ease: easeOutExpo }}
         >
           <HeroColumnMark variant={2} />
-          <ColumnLabel n={2} />
           <div className="pointer-events-none absolute left-0 top-0 hidden h-[610px] w-px bg-white/[0.28] min-[1180px]:block" />
           <div className="flex min-h-0 flex-col min-[1180px]:flex-1">
             <div className="min-[1180px]:overflow-visible">
@@ -201,10 +184,10 @@ export default function HeroSection() {
                 <span className="font-semibold text-biomonie-lemon">
                   BIOMONIE
                 </span>{' '}
-                ecosystem allows customers to pay, merchants receive payments,
-                and agents offer cash-in and cash-out services. All with the new
-                money access —{' '}
-                <span className="font-semibold text-biomonie-lemon">YOU</span>.
+                ecosystem allows Customers pay, Merchants receive payments and
+                Agents offer cash-in or cash-out services. All with the new
+                money access.{' '}
+                {/* <span className="font-semibold text-biomonie-lemon">YOU</span>. */}
               </p>
             </div>
 
@@ -247,7 +230,6 @@ export default function HeroSection() {
           transition={{ duration: 0.65, delay: 0.28, ease: easeOutExpo }}
         >
           <HeroColumnMark variant={3} />
-          <ColumnLabel n={3} />
           <div className="pointer-events-none absolute left-0 top-0 hidden h-[610px] w-px bg-white/[0.28] min-[1180px]:block" />
           <div className="flex min-h-0 flex-col min-[1180px]:flex-1">
             <div className="min-[1180px]:overflow-visible">
@@ -264,10 +246,11 @@ export default function HeroSection() {
                 <span className="font-semibold text-biomonie-lemon">
                   BIOMONIE
                 </span>{' '}
-                affilates allows customers , merchants and agents to refer
-                fellow customers, merchants, and agents. earn transcation
-                perform —{' '}
-                <span className="font-semibold text-biomonie-lemon">YOU</span>.
+                Affiliates allows anyone and everyone to refer customers,
+                merchants or agents as Single Level Downline (SLD), earn
+                refferal fee and continoulsy earn on transactions they perform
+                within the ecosystem.{' '}
+                {/* <span className="font-semibold text-biomonie-lemon">YOU</span>. */}
               </p>
             </div>
 
