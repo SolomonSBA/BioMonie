@@ -21,6 +21,7 @@ export default {
       fontFamily: {
         sans: ["Sora", "system-ui", "sans-serif"],
         mono: ["Space Mono", "ui-monospace", "monospace"],
+        serif: ['"Source Serif 4"', "Georgia", "ui-serif", "serif"],
       },
       boxShadow: {
         "biomonie-sm": "0 4px 24px rgba(15, 30, 38, 0.06)",

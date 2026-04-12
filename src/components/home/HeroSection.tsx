@@ -3,6 +3,7 @@ import type { MouseEvent } from 'react';
 import { Globe } from 'lucide-react';
 import { easeOutExpo } from '@/lib/motion';
 import { navigateToSection } from '@/lib/section-nav';
+import HeroMessageCarousel from '@/components/home/HeroMessageCarousel';
 
 /** Stat tiles: 3 across on desktop hero; minmax(0,1fr) + min-w-0 cells prevents middle-column overlap.
  *  Equal min-height on desktop so shorter stat rows don’t steal flex space and push CTAs out of alignment. */
@@ -82,6 +83,8 @@ export default function HeroSection() {
           The First-Ever Global Biometric Cardless Payment Ecosystem
         </div>
       </div>
+
+      <HeroMessageCarousel />
 
       <div className="relative z-[2] mx-auto grid w-full max-w-[1680px] grid-cols-1 items-stretch gap-y-14 min-[1180px]:grid-cols-3 min-[1180px]:gap-x-6 min-[1180px]:gap-y-0 xl:gap-x-8">
         {/* <div className="min-[1024px]:col-span-3">
