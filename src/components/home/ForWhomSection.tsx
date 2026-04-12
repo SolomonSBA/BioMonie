@@ -8,23 +8,23 @@ const cards = [
     title: "Customers",
     desc: (
       <>
-        Shop and pay anywhere with <span className="font-bold text-biomonie-lemon">YOU</span> as the new form of money access. No pin, no password, no wallet  just{" "}
-        <span className="font-bold text-biomonie-lemon">YOU</span>. <span className="font-bold text-biomonie-lemon">YOU</span> are the money access. Transfer, pay everywhere in the ecosystem.
+       Shop & Pay anywhere with <span className="font-bold text-biomonie-lemon">YOU</span> as the new form of money access. No pin, No passwords and nothing else; just{" "}
+        <span className="font-bold text-biomonie-lemon">YOU</span>. <span className="font-bold text-biomonie-lemon">YOU</span> are the money access; Flex, Pay or Spend everywhere and anywhere in the ecosystem.
       </>
     ),
-    earn: "₦500 per 75 transactions from anyone you refer, ongoing",
+    earn: "Earn a fee for any Merchant/Agent referred and on all transactions performed by all your single level downlines (Customers/Merchants/Agents) perpetually.",
   },
   {
     Icon: Landmark,
     title: "Agents",
-    desc: "As the financial hub of your community, facilitate cash-in and cash-out transactions with the new form of money access. Bring others to transact and build your downline.",
-    earn: "Transaction commissions + ₦3,000 per Agent/Merchant referral activated + ₦500 per 75 transaction blocks",
+    desc: "As the financial hub of the community facilitating cash-in & cash-out services with and other financial transactions; the customers enjoys the new form of money access with a flex and zero downtimes while both the agent and customer uplines earn.",
+    earn: "Earn a fee for any Merchant/Agent referred and on all transactions performed by all your single level downlines (Customers/Merchants/Agents) perpetually.",
   },
   {
     Icon: ShoppingBag,
     title: "Merchants",
-    desc: "Accept payments at your shop, stall, or outlet. Your customers pay with the new form of money access, zero downtime and a flex.",
-    earn: "₦3,000 per Agent/Merchant referral activated + ₦500 per transaction block, indefinitely",
+    desc: "Accept payment for goods and services at your shop, stall or outlets. Your customers enjoys and pay with the new form of money access with zero downtime while both the merchant and customer uplines earn.",
+    earn: "Earn a fee for any Merchant/Agent referred and on all transactions performed by all your single level downlines (Customers/Merchants/Agents) perpetually.",
   },
 ];
 
@@ -40,15 +40,15 @@ export default function ForWhomSection() {
         </Reveal>
         <Reveal delay={0.06}>
           <h2 className="mb-4 text-[clamp(1.9rem,4vw,3rem)] font-extrabold leading-[1.15] tracking-tight text-white">
-            One ecosystem.
+            One Ecosystem.
             <br />
             <em className="not-italic text-white">Everybody earns.</em>
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
           <p className="mb-14 max-w-[620px] text-[1.06rem] leading-[1.75] text-white/[0.82]">
-            <span className="font-semibold text-biomonie-lemon">BIOMONIE</span> works for Customers, Agents, and Merchants  and everyone in the ecosystem earns by bringing others in through the{" "}
-            <span className="font-semibold text-biomonie-lemon">BIOMONIE</span> affiliate programme.
+            <span className="font-semibold text-biomonie-lemon">BIOMONIE</span> works for anyone; Customers, Merchants or Agents either Paying or Spending, Receiving Payment or Cash-in / Cash-out all earning as{" "}
+            <span className="font-semibold text-biomonie-lemon">BIOMONIE</span> Affiliates perpetually.
           </p>
         </Reveal>
         <RevealStagger className="grid grid-cols-1 gap-6 min-[900px]:grid-cols-3">
