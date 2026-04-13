@@ -95,7 +95,8 @@ const slides: Slide[] = [
     eyebrow: 'For everyone, everywhere',
     headline: (
       <>
-        The money access for <strong className="text-biomonie-lemon">everyone</strong> everywhere.
+        The money access for{' '}
+        <strong className="text-biomonie-lemon">everyone</strong> everywhere.
       </>
     ),
     sub: <>One ecosystem for customers, merchants and agents.</>,
@@ -117,23 +118,17 @@ function sliderImageForSlide(slideIndex: number) {
   return SLIDER_IMAGES[slideIndex % SLIDER_IMAGES.length];
 }
 
-function SlideTextBlock({
-  slide,
-  reduce,
-}: {
-  slide: Slide;
-  reduce: boolean;
-}) {
+function SlideTextBlock({ slide, reduce }: { slide: Slide; reduce: boolean }) {
   if (reduce) {
     return (
       <>
-        <p className="mb-3 font-sans text-[0.62rem] font-bold uppercase tracking-[0.18em] text-biomonie-lemon">
+        <p className="mb-1.5 font-sans text-[0.56rem] font-bold uppercase tracking-[0.17em] text-biomonie-lemon">
           {slide.eyebrow}
         </p>
-        <h3 className="mb-4 max-w-[34ch] font-sans text-[clamp(1.5rem,3vw,2.5rem)] font-extrabold leading-[1.16] text-white">
+        <h3 className="mb-2 max-w-[34ch] font-sans text-[clamp(1.05rem,1.9vw,1.5rem)] font-extrabold leading-[1.12] text-white">
           {slide.headline}
         </h3>
-        <p className="max-w-[330px] text-[0.84rem] leading-[1.72] text-white/70">
+        <p className="max-w-[330px] text-[0.8rem] leading-[1.58] text-white/90">
           {slide.sub}
         </p>
       </>
@@ -143,7 +138,7 @@ function SlideTextBlock({
   return (
     <>
       <motion.p
-        className="mb-3 font-sans text-[0.62rem] font-bold uppercase tracking-[0.18em] text-biomonie-lemon"
+        className="mb-1.5 font-sans text-[0.56rem] font-bold uppercase tracking-[0.17em] text-biomonie-lemon"
         initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.12, ease: easeOutExpo }}
@@ -151,7 +146,7 @@ function SlideTextBlock({
         {slide.eyebrow}
       </motion.p>
       <motion.h3
-        className="mb-4 max-w-[34ch] font-sans text-[clamp(1.5rem,3vw,2.5rem)] font-extrabold leading-[1.16] text-white"
+        className="mb-2 max-w-[34ch] font-sans text-[clamp(1.05rem,1.9vw,1.5rem)] font-extrabold leading-[1.12] text-white"
         initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.22, ease: easeOutExpo }}
@@ -159,7 +154,7 @@ function SlideTextBlock({
         {slide.headline}
       </motion.h3>
       <motion.p
-        className="max-w-[330px] text-[0.84rem] leading-[1.72] text-white/70"
+        className="max-w-[330px] text-[0.8rem] leading-[1.58] text-white/90"
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.32, ease: easeOutExpo }}
@@ -199,7 +194,7 @@ export default function HeroMessageCarousel() {
       aria-roledescription="carousel"
       aria-label="Key messages"
     >
-      <div className="relative isolate min-h-[min(70vh,30rem)] overflow-hidden border-y border-white/[0.12] shadow-[0_12px_48px_rgba(15,30,38,0.45)] sm:min-h-[27rem] sm:rounded-xl sm:border sm:border-white/[0.12] lg:min-h-[30rem] xl:min-h-[32rem]">
+      <div className="relative isolate min-h-[min(25vh,15rem)] overflow-hidden border-y border-white/[0.12] shadow-[0_12px_48px_rgba(15,30,38,0.45)] sm:min-h-[15rem] sm:rounded-xl sm:border sm:border-white/[0.12] lg:min-h-[15rem] xl:min-h-[15rem]">
         <div className="pointer-events-none absolute left-0 top-0 z-[6] h-0 w-0 border-r-[48px] border-t-[48px] border-r-transparent border-t-biomonie-lemon sm:border-r-[64px] sm:border-t-[64px]" />
 
         <AnimatePresence mode="sync" initial={false}>
@@ -211,11 +206,8 @@ export default function HeroMessageCarousel() {
             exit={reduce ? undefined : { opacity: 0, x: -34 }}
             transition={{ duration: 0.52, ease: slideEase }}
           >
-            <div className="relative z-[2] flex w-full flex-col justify-center bg-[#050f14]/95 px-6 py-8 sm:px-8 md:min-w-[360px] md:max-w-[540px] md:flex-[0_0_46%] md:bg-[#050f14]/88 md:px-12 md:py-12 lg:px-14">
+            <div className="md:bg-[#050f14]/88 relative z-[2] flex w-full flex-col justify-center bg-[#050f14]/95 px-5 py-5 sm:px-6 md:min-w-[300px] md:max-w-[520px] md:flex-[0_0_46%] md:px-8 md:py-6 lg:px-10">
               <div className="pointer-events-none absolute left-0 top-0 h-full w-[5px] bg-[linear-gradient(180deg,#E2FF02_0%,#295C72_65%,transparent_100%)]" />
-              <span className="pointer-events-none absolute left-6 top-4 z-[3] font-sans text-[0.72rem] font-bold tracking-[0.04em] text-white/35 sm:left-8 md:left-12 md:top-6">
-                BIOMONIE
-              </span>
               <div className="pointer-events-none absolute -right-5 top-1/2 hidden h-24 w-24 -translate-y-1/2 rounded-full border border-biomonie-lemon/15 md:block">
                 <div className="absolute inset-[18px] rounded-full border border-[#C89B3C]/20" />
               </div>
