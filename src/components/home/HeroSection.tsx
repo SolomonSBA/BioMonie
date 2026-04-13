@@ -113,7 +113,7 @@ export default function HeroSection() {
                   </h1>
                 </FadeUp>
                 <FadeUp delay={0.16}>
-                  <p className="mb-10 mt-0 max-w-[500px] text-[1.08rem] leading-[1.75] text-white/[0.88] min-[1180px]:min-h-[132px]">
+                  <p className="mb-10 mt-0 max-w-[500px] text-[0.8rem] leading-snug text-white/[0.88] min-[1180px]:min-h-[132px]">
                     <span className="font-semibold text-biomonie-lemon">
                       BIOMONIE
                     </span>{' '}
@@ -183,7 +183,7 @@ export default function HeroSection() {
                 </span>
               </p>
 
-              <p className="mb-10 mt-0 text-[1.08rem] leading-[1.75] text-white/[0.88] min-[1180px]:min-h-[132px] min-[1180px]:max-w-[540px]">
+              <p className="mb-10 mt-0 text-[0.8rem] leading-snug text-white/[0.88] min-[1180px]:min-h-[132px] min-[1180px]:max-w-[540px]">
                 <span className="font-semibold text-biomonie-lemon">
                   BIOMONIE
                 </span>{' '}
@@ -245,7 +245,7 @@ export default function HeroSection() {
                 </span>
               </p>
 
-              <p className="mb-10 mt-0 text-[1.08rem] leading-[1.75] text-white/[0.88] min-[1180px]:min-h-[132px] min-[1180px]:max-w-[540px]">
+              <p className="mb-10 mt-0 text-[0.8rem] leading-snug text-white/[0.88] min-[1180px]:min-h-[132px] min-[1180px]:max-w-[540px]">
                 <span className="font-semibold text-biomonie-lemon">
                   BIOMONIE
                 </span>{' '}
