@@ -97,7 +97,7 @@ export default function HeroSection() {
             <div className="flex min-h-0 flex-col min-[1180px]:flex-1">
               <div className="min-[1180px]:overflow-visible">
                 <FadeUp delay={0.08}>
-                  <h1 className="mb-5 text-[clamp(2.1rem,4.65vw,4.05rem)] font-extrabold leading-[1.05] tracking-[-0.04em] text-white min-[1180px]:min-h-0">
+                  <h1 className="mb-5 text-center text-[clamp(1.85rem,4.05vw,3.35rem)] font-extrabold leading-[1.08] tracking-[-0.04em] text-white min-[1180px]:min-h-0">
                     <span className="block">Explore the </span>
                     <span className="block"> new form of</span>
                     <span className="block text-[0.94em] tracking-[-0.05em] sm:whitespace-nowrap">
@@ -113,9 +113,9 @@ export default function HeroSection() {
                   </h1>
                 </FadeUp>
                 <FadeUp delay={0.16}>
-                  <p className="mb-10 mt-0 max-w-[500px] text-[0.8rem] leading-snug text-white/[0.88] min-[1180px]:min-h-[132px]">
+                  <p className="mb-5 mt-0 max-w-[500px] text-[0.8rem] leading-snug text-white/[0.88] min-[1180px]:min-h-[120px]">
                     <span className="font-semibold text-biomonie-lemon">
-                      BIOMONIE
+                      BIOMONI
                     </span>{' '}
                     makes you the money access for any and all your payment and
                     cash needs. No pin, No password and Nothing else;{' '}
@@ -130,8 +130,8 @@ export default function HeroSection() {
                 </FadeUp>
               </div>
 
-              <FadeUp delay={0.22} className="w-full min-[1180px]:mt-auto">
-                <div className="mb-16 flex w-full flex-shrink-0 flex-wrap justify-center gap-3 sm:gap-4 min-[1180px]:justify-center">
+              <FadeUp delay={0.22} className="w-full min-[1180px]:mt-0">
+                <div className="mb-6 flex w-full flex-shrink-0 flex-wrap justify-center gap-3 sm:gap-4 min-[1180px]:mb-3 min-[1180px]:justify-center">
                   <motion.a
                     href="/join"
                     onClick={(e) => onSectionClick(e, 'join')}
@@ -147,12 +147,15 @@ export default function HeroSection() {
             <FadeUp delay={0.28}>
               <div className={heroStatGridClass}>
                 {[
-                  { k: 'Net-Zero', l: 'Cost to join and refer' },
+                  { k: 'Net-Gain', l: 'To join and refer.' },
                   {
                     k: 'Payout',
-                    l: 'Earned per activated Agent / Merchant referral',
+                    l: 'Earned per activated Agent / Merchant referral.',
                   },
-                  { k: 'Low-cost', l: 'Per transaction flat, simple, fair' },
+                  {
+                    k: 'Low-cost',
+                    l: 'Per transaction. Flat, simple and fair.',
+                  },
                 ].map((s) => (
                   <div key={s.k} className="min-w-0 text-left">
                     <div className={heroStatTitleClass}>{s.k}</div>
@@ -174,7 +177,7 @@ export default function HeroSection() {
           <div className="pointer-events-none absolute left-0 top-0 hidden h-[610px] w-px bg-white/[0.28] min-[1180px]:block" />
           <div className="flex min-h-0 flex-col min-[1180px]:flex-1">
             <div className="min-[1180px]:overflow-visible">
-              <p className="mb-5 text-[clamp(2.1rem,4.65vw,4.05rem)] font-extrabold leading-[1.05] tracking-[-0.04em] text-white min-[1180px]:min-h-0">
+              <p className="mb-5 text-center text-[clamp(1.85rem,4.05vw,3.35rem)] font-extrabold leading-[1.08] tracking-[-0.04em] text-white min-[1180px]:min-h-0">
                 <span className="block">Be part</span>
                 <span className="block">of the new</span>
                 <span className="block text-[0.94em] tracking-[-0.05em]">
@@ -183,7 +186,7 @@ export default function HeroSection() {
                 </span>
               </p>
 
-              <p className="mb-10 mt-0 text-[0.8rem] leading-snug text-white/[0.88] min-[1180px]:min-h-[132px] min-[1180px]:max-w-[540px]">
+              <p className="mb-5 mt-0 text-[0.8rem] leading-snug text-white/[0.88] min-[1180px]:min-h-[92px] min-[1180px]:max-w-[540px]">
                 <span className="font-semibold text-biomonie-lemon">
                   BIOMONIE
                 </span>{' '}
@@ -194,7 +197,7 @@ export default function HeroSection() {
               </p>
             </div>
 
-            <div className="mb-16 flex w-full flex-shrink-0 flex-wrap justify-center gap-3 sm:gap-4 min-[1180px]:mt-auto min-[1180px]:justify-center">
+            <div className="mb-6 flex w-full flex-shrink-0 flex-wrap justify-center gap-3 sm:gap-4 min-[1180px]:mb-3 min-[1180px]:mt-0 min-[1180px]:justify-center">
               <motion.a
                 href="/how"
                 onClick={(e) => onSectionClick(e, 'how')}
@@ -236,16 +239,18 @@ export default function HeroSection() {
           <div className="pointer-events-none absolute left-0 top-0 hidden h-[610px] w-px bg-white/[0.28] min-[1180px]:block" />
           <div className="flex min-h-0 flex-col min-[1180px]:flex-1">
             <div className="min-[1180px]:overflow-visible">
-              <p className="mb-5 text-[clamp(2.1rem,4.65vw,4.05rem)] font-extrabold leading-[1.05] tracking-[-0.04em] text-white min-[1180px]:min-h-0">
+              <p className="mb-5 text-center text-[clamp(1.85rem,4.05vw,3.35rem)] font-extrabold leading-[1.08] tracking-[-0.04em] text-white min-[1180px]:min-h-0">
                 <span className="block">Join &amp; Earn</span>
                 <span className="block">as a</span>
                 <span className="block text-[0.94em] tracking-[-0.05em]">
-                  <span className="text-biomonie-lemon">BIOMONIE</span>{' '}
+                  <span className="text-biomonie-lemon">BIOMONIE</span>
+                </span>
+                <span className="block text-[0.94em] tracking-[-0.05em]">
                   Affiliate
                 </span>
               </p>
 
-              <p className="mb-10 mt-0 text-[0.8rem] leading-snug text-white/[0.88] min-[1180px]:min-h-[132px] min-[1180px]:max-w-[540px]">
+              <p className="mb-5 mt-0 text-[0.8rem] leading-snug text-white/[0.88] min-[1180px]:min-h-[92px] min-[1180px]:max-w-[540px]">
                 <span className="font-semibold text-biomonie-lemon">
                   BIOMONIE
                 </span>{' '}
@@ -257,7 +262,7 @@ export default function HeroSection() {
               </p>
             </div>
 
-            <div className="mb-16 flex w-full flex-shrink-0 flex-wrap justify-center gap-3 sm:gap-4 min-[1180px]:mt-auto min-[1180px]:justify-center">
+            <div className="mb-6 flex w-full flex-shrink-0 flex-wrap justify-center gap-3 sm:gap-4 min-[1180px]:mb-3 min-[1180px]:mt-0 min-[1180px]:justify-center">
               <motion.a
                 href="/join"
                 onClick={(e) => onSectionClick(e, 'join')}
@@ -273,7 +278,7 @@ export default function HeroSection() {
             {[
               {
                 k: 'Refer',
-                l: ' everyone and anyone; customers, agents, merchants.',
+                l: ' everyone and anyone; customers, agents or merchants.',
               },
               {
                 k: 'Earn',
@@ -281,7 +286,7 @@ export default function HeroSection() {
               },
               {
                 k: 'Grow',
-                l: 'grow your downlines and earn perpetually.',
+                l: 'your downlines and earn perpetually.',
               },
             ].map((s) => (
               <div key={`third-${s.k}`} className="min-w-0 text-left">
