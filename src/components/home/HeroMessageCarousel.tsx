@@ -5,13 +5,13 @@ import { easeOutExpo } from '@/lib/motion';
 const INTERVAL_MS = 8000;
 
 const SLIDER_FILENAMES = [
-  'Screenshot 2026-04-11 133310.png',
-  'shawn-fields-zsppCWsxJy0-unsplash 1.jpg',
-  'Screenshot 2026-04-11 133207.png',
-  'mubarak-showole-Ve7xjKImd28-unsplash.jpg',
-  'Screenshot 2026-04-11 132619.png',
-  'eye-for-ebony-3dqSZidOkvs-unsplash.jpg',
-  'Screenshot 2026-04-11 132916.png',
+  'biomonie_banner_1.png',
+  'biomonie_banner_2.png',
+  'biomonie_banner_3.png',
+  'biomonie_banner_4.png',
+  'biomonie_banner_1.png',
+  'biomonie_banner_6.png',
+  'biomonie_banner_2.png',
 ];
 
 const slideEase = [0.4, 0, 0.2, 1] as const;
@@ -194,20 +194,21 @@ export default function HeroMessageCarousel() {
       aria-roledescription="carousel"
       aria-label="Key messages"
     >
-      <div className="relative isolate min-h-[min(25vh,15rem)] overflow-hidden border-y border-white/[0.12] shadow-[0_12px_48px_rgba(15,30,38,0.45)] sm:min-h-[15rem] sm:rounded-xl sm:border sm:border-white/[0.12] lg:min-h-[15rem] xl:min-h-[15rem]">
+      <div className="relative isolate min-h-[13.5rem] overflow-hidden border-y border-white/[0.12] shadow-[0_12px_48px_rgba(15,30,38,0.45)] sm:min-h-[15rem] sm:rounded-xl sm:border sm:border-white/[0.12] lg:min-h-[15rem] xl:min-h-[15rem]">
         <div className="pointer-events-none absolute left-0 top-0 z-[6] h-0 w-0 border-r-[48px] border-t-[48px] border-r-transparent border-t-biomonie-lemon sm:border-r-[64px] sm:border-t-[64px]" />
 
         <AnimatePresence mode="sync" initial={false}>
           <motion.div
             key={slide.id}
-            className="absolute inset-0 flex flex-col-reverse md:flex-row"
+            className="absolute inset-0 flex flex-row"
             initial={reduce ? false : { opacity: 0.7, x: 38 }}
             animate={reduce ? undefined : { opacity: 1, x: 0 }}
             exit={reduce ? undefined : { opacity: 0, x: -34 }}
             transition={{ duration: 0.52, ease: slideEase }}
           >
-            <div className="md:bg-[#050f14]/88 relative z-[2] flex w-full flex-col justify-center bg-[#050f14]/95 px-5 py-5 sm:px-6 md:min-w-[300px] md:max-w-[520px] md:flex-[0_0_46%] md:px-8 md:py-6 lg:px-10">
+            <div className="relative z-[2] flex w-[48%] min-w-[190px] max-w-[520px] flex-col justify-center bg-[linear-gradient(90deg,rgba(5,15,20,0.98)_0%,rgba(5,15,20,0.95)_55%,rgba(5,15,20,0.82)_100%)] px-3 py-4 sm:w-[46%] sm:px-4 sm:py-5 md:px-8 md:py-6 lg:w-[20%] lg:max-w-none lg:px-10 xl:w-[50%]">
               <div className="pointer-events-none absolute left-0 top-0 h-full w-[5px] bg-[linear-gradient(180deg,#E2FF02_0%,#295C72_65%,transparent_100%)]" />
+              <div className="from-[#050f14]/92 md:from-[#050f14]/86 pointer-events-none absolute inset-y-0 -right-20 z-[3] w-20 bg-gradient-to-r via-[#050f14]/55 to-transparent md:via-[#050f14]/45" />
               <div className="pointer-events-none absolute -right-5 top-1/2 hidden h-24 w-24 -translate-y-1/2 rounded-full border border-biomonie-lemon/15 md:block">
                 <div className="absolute inset-[18px] rounded-full border border-[#C89B3C]/20" />
               </div>
@@ -217,16 +218,17 @@ export default function HeroMessageCarousel() {
               </div>
             </div>
 
-            <div className="relative min-h-[200px] flex-1 overflow-hidden sm:min-h-[220px] md:min-h-0">
+            <div className="relative min-h-0 flex-1 overflow-hidden">
               <img
                 src={imageSrc}
                 alt=""
-                className="absolute inset-0 h-full w-full object-cover object-top"
+                className="absolute inset-0 h-full w-full object-cover [object-position:center_20%] sm:[object-position:center_16%] md:[object-position:center_12%] lg:object-top"
+                sizes="(max-width: 767px) 100vw, 54vw"
                 loading={index === 0 ? 'eager' : 'lazy'}
                 decoding="async"
                 fetchPriority={index === 0 ? 'high' : 'auto'}
               />
-              <div className="pointer-events-none absolute inset-y-0 left-0 z-[1] w-[52%] bg-gradient-to-r from-[#060f0a] to-transparent" />
+              <div className="from-[#060f0a]/32 pointer-events-none absolute inset-y-0 left-0 z-[1] w-[38%] bg-gradient-to-r via-transparent to-transparent sm:w-[34%] md:w-[30%]" />
             </div>
           </motion.div>
         </AnimatePresence>

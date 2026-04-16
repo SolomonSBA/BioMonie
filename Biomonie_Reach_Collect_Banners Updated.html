@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biomonie Reach & Collect — Product Banners</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* Brand */
+  --g:#1A7A4A;--gd:#0D4F2E;--gm:#2E9B63;--gl:#E8F5EE;--gll:#F2FAF5;
+  --gold:#C89B3C;--goldl:#F5C842;--goldll:#FBF4E3;
+  /* Reach palette — deep forest + warm gold */
+  --reach-bg:#071410;--reach-mid:#0c2018;--reach-accent:#F5C842;
+  /* Collect palette — midnight navy + Biomonie green */
+  --coll-bg:#04090f;--coll-mid:#061525;--coll-accent:#3EC882;
+  --wh:#FFFFFF;--bk:#0F1A14;
+  --f:'Plus Jakarta Sans',sans-serif;--fh:'Sora',sans-serif;
+}
+body{background:#111;font-family:var(--f);padding:32px 24px;display:flex;flex-direction:column;gap:32px;align-items:center}
+
+/* ─────────────────────────────
+   SHARED BANNER SHELL
+───────────────────────────── */
+.banner{
+  width:100%;max-width:1100px;
+  height:460px;
+  position:relative;overflow:hidden;
+  display:flex;align-items:stretch;
+  border-radius:4px;
+}
+
+/* ── LEFT TEXT COLUMN ── */
+.b-left{
+  position:relative;z-index:2;
+  width:44%;min-width:340px;
+  display:flex;flex-direction:column;
+  justify-content:center;
+  padding:52px 44px 52px 56px;
+  flex-shrink:0;
+}
+/* accent left bar */
+.b-left::before{
+  content:'';position:absolute;top:0;left:0;
+  width:5px;height:100%;
+}
+
+/* ── RIGHT VISUAL COLUMN ── */
+.b-right{
+  flex:1;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* CORNER MARK */
+.corner{
+  position:absolute;top:0;left:0;z-index:6;
+  width:0;height:0;
+}
+
+/* PRODUCT BADGE (top-right) */
+.prod-badge{
+  position:absolute;top:28px;right:32px;z-index:10;
+  font-family:var(--fh);font-size:10px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  padding:5px 14px;border-radius:20px;
+}
+
+/* TAG above headline */
+.b-tag{
+  font-family:var(--fh);font-size:9.5px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  margin-bottom:12px;display:inline-flex;align-items:center;gap:7px;
+}
+.b-tag::before{
+  content:'';display:inline-block;width:22px;height:2px;border-radius:1px;
+}
+
+/* PRODUCT NAME */
+.b-product{
+  font-family:var(--fh);font-size:clamp(32px,3.8vw,52px);
+  font-weight:800;line-height:1.05;margin-bottom:6px;
+  letter-spacing:-.02em;
+}
+.b-product span{display:block}
+
+/* TAGLINE */
+.b-tagline{
+  font-size:14.5px;font-weight:600;line-height:1.45;
+  margin-bottom:8px;max-width:310px;
+}
+
+/* BODY */
+.b-body{
+  font-size:13px;font-weight:400;line-height:1.72;
+  margin-bottom:28px;max-width:300px;
+  color:rgba(255,255,255,.58);
+}
+
+/* CTA */
+.b-cta{
+  display:inline-flex;align-items:center;gap:9px;width:fit-content;
+  font-family:var(--fh);font-size:12px;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;padding:12px 24px;border-radius:2px;
+  text-decoration:none;border:none;cursor:pointer;
+}
+.b-cta::after{content:'→';font-size:13px}
+
+/* ── PARTICIPANT FLOW (right side SVG) ── */
+.flow-wrap{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;align-items:center;
+  gap:0;
+}
+
+/* IMAGE PLACEHOLDER */
+.img-zone{
+  position:absolute;inset:0;
+  /* DEVELOPER: set background-image here */
+  /* background-image:url('your-photo.jpg');background-size:cover;background-position:center */
+}
+.img-hint{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:6px;pointer-events:none;
+}
+.img-hint p{
+  font-family:var(--fh);font-size:9px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.1);text-align:center;line-height:1.8;padding:0 28px;
+}
+
+/* ══════════════════════════
+   ██  BIOMONIE REACH BANNER
+═════════════════════════ */
+.reach-banner{background:linear-gradient(118deg,var(--reach-bg) 0%,var(--reach-mid) 100%)}
+
+.reach-banner .b-left{background:transparent}
+.reach-banner .b-left::before{background:linear-gradient(180deg,var(--reach-accent) 0%,var(--g) 70%,transparent 100%)}
+.reach-banner .corner{
+  border-top:68px solid var(--reach-accent);
+  border-right:68px solid transparent;opacity:.88
+}
+.reach-banner .b-tag{color:var(--reach-accent)}
+.reach-banner .b-tag::before{background:var(--reach-accent)}
+.reach-banner .b-product{color:var(--wh)}
+.reach-banner .b-product .accent{color:var(--reach-accent)}
+.reach-banner .b-tagline{color:rgba(255,255,255,.92)}
+.reach-banner .b-cta{background:var(--reach-accent);color:var(--reach-bg)}
+.reach-banner .b-cta:hover{background:#e6b630}
+.reach-banner .prod-badge{
+  background:rgba(245,200,66,.12);border:1px solid rgba(245,200,66,.3);
+  color:var(--reach-accent)
+}
+
+/* Right side gradient fade */
+.reach-banner .b-right::before{
+  content:'';position:absolute;top:0;left:0;width:58%;height:100%;
+  background:linear-gradient(90deg,var(--reach-bg) 0%,transparent 100%);
+  z-index:1;pointer-events:none
+}
+/* Subtle grid texture */
+.reach-banner .b-right::after{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(245,200,66,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(245,200,66,.04) 1px,transparent 1px);
+  background-size:40px 40px;z-index:0;pointer-events:none
+}
+
+/* ══════════════════════════
+   ██  BIOMONIE COLLECT BANNER
+═════════════════════════ */
+.coll-banner{background:linear-gradient(118deg,var(--coll-bg) 0%,var(--coll-mid) 100%)}
+
+.coll-banner .b-left::before{background:linear-gradient(180deg,var(--coll-accent) 0%,var(--g) 70%,transparent 100%)}
+.coll-banner .corner{
+  border-top:68px solid var(--coll-accent);
+  border-right:68px solid transparent;opacity:.85
+}
+.coll-banner .b-tag{color:var(--coll-accent)}
+.coll-banner .b-tag::before{background:var(--coll-accent)}
+.coll-banner .b-product{color:var(--wh)}
+.coll-banner .b-product .accent{color:var(--coll-accent)}
+.coll-banner .b-tagline{color:rgba(255,255,255,.92)}
+.coll-banner .b-cta{background:var(--g);color:#fff}
+.coll-banner .b-cta:hover{background:var(--gm)}
+.coll-banner .prod-badge{
+  background:rgba(62,200,130,.1);border:1px solid rgba(62,200,130,.28);
+  color:var(--coll-accent)
+}
+
+.coll-banner .b-right::before{
+  content:'';position:absolute;top:0;left:0;width:55%;height:100%;
+  background:linear-gradient(90deg,var(--coll-bg) 0%,transparent 100%);
+  z-index:1;pointer-events:none
+}
+.coll-banner .b-right::after{
+  content:'';position:absolute;inset:0;
+  background-image:
+    radial-gradient(circle,rgba(62,200,130,.07) 1px,transparent 1px);
+  background-size:28px 28px;z-index:0;pointer-events:none
+}
+
+/* ══════════════════════════
+   ██  BIOMONIE BILLS BANNER
+═════════════════════════ */
+.coll-banner{background:linear-gradient(118deg,var(--coll-bg) 0%,var(--coll-mid) 100%)}
+
+.coll-banner .b-left::before{background:linear-gradient(180deg,var(--coll-accent) 0%,var(--g) 70%,transparent 100%)}
+.coll-banner .corner{
+  border-top:68px solid var(--coll-accent);
+  border-right:68px solid transparent;opacity:.85
+}
+.coll-banner .b-tag{color:var(--coll-accent)}
+.coll-banner .b-tag::before{background:var(--coll-accent)}
+.coll-banner .b-product{color:var(--wh)}
+.coll-banner .b-product .accent{color:var(--coll-accent)}
+.coll-banner .b-tagline{color:rgba(255,255,255,.92)}
+.coll-banner .b-cta{background:var(--g);color:#fff}
+.coll-banner .b-cta:hover{background:var(--gm)}
+.coll-banner .prod-badge{
+  background:rgba(62,200,130,.1);border:1px solid rgba(62,200,130,.28);
+  color:var(--coll-accent)
+}
+
+.coll-banner .b-right::before{
+  content:'';position:absolute;top:0;left:0;width:55%;height:100%;
+  background:linear-gradient(90deg,var(--coll-bg) 0%,transparent 100%);
+  z-index:1;pointer-events:none
+}
+.coll-banner .b-right::after{
+  content:'';position:absolute;inset:0;
+  background-image:
+    radial-gradient(circle,rgba(62,200,130,.07) 1px,transparent 1px);
+  background-size:28px 28px;z-index:0;pointer-events:none
+}
+
+
+/* ══════════════════════════
+   PARTICIPANT FLOW NODES
+═════════════════════════ */
+.flow{
+  position:relative;z-index:3;
+  display:flex;flex-direction:column;align-items:center;
+  gap:0;padding:0 20px;
+}
+
+.flow-node{
+  display:flex;align-items:center;gap:14px;
+  padding:12px 18px;
+  border-radius:6px;
+  width:210px;
+  position:relative;
+}
+.node-icon{
+  width:40px;height:40px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;flex-shrink:0;
+}
+.node-info{flex:1}
+.node-role{
+  font-family:var(--fh);font-size:9px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;margin-bottom:1px;
+}
+.node-name{
+  font-family:var(--fh);font-size:13px;font-weight:700;color:#fff;
+}
+.node-desc{font-size:10px;color:rgba(255,255,255,.5);line-height:1.4;margin-top:1px}
+
+.flow-connector{
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+  padding:4px 0;z-index:3;position:relative;
+}
+.conn-line{width:2px;height:18px;border-radius:1px}
+.conn-label{
+  font-family:var(--fh);font-size:9px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;padding:3px 10px;border-radius:20px;
+}
+.conn-arrow{font-size:12px;line-height:1}
+
+/* REACH flow colours */
+.reach-node-sponsor{background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.28)}
+.reach-node-sponsor .node-icon{background:rgba(245,200,66,.15)}
+.reach-node-sponsor .node-role{color:var(--reach-accent)}
+
+.reach-node-bio{background:rgba(26,122,74,.18);border:1px solid rgba(26,122,74,.35)}
+.reach-node-bio .node-icon{background:rgba(26,122,74,.25)}
+.reach-node-bio .node-role{color:#6EE8A2}
+
+.reach-node-bene{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12)}
+.reach-node-bene .node-icon{background:rgba(255,255,255,.08)}
+.reach-node-bene .node-role{color:rgba(255,255,255,.45)}
+
+.reach-connector .conn-line{background:rgba(245,200,66,.35)}
+.reach-connector .conn-label{background:rgba(245,200,66,.1);color:var(--reach-accent);border:1px solid rgba(245,200,66,.2)}
+.reach-connector .conn-arrow{color:var(--reach-accent)}
+
+/* COLLECT flow colours */
+.coll-node-sponsor{background:rgba(62,200,130,.08);border:1px solid rgba(62,200,130,.25)}
+.coll-node-sponsor .node-icon{background:rgba(62,200,130,.14)}
+.coll-node-sponsor .node-role{color:var(--coll-accent)}
+
+.coll-node-vendor{background:rgba(245,200,66,.07);border:1px solid rgba(245,200,66,.22)}
+.coll-node-vendor .node-icon{background:rgba(245,200,66,.12)}
+.coll-node-vendor .node-role{color:var(--goldl)}
+
+.coll-node-bio{background:rgba(26,122,74,.18);border:1px solid rgba(26,122,74,.32)}
+.coll-node-bio .node-icon{background:rgba(26,122,74,.22)}
+.coll-node-bio .node-role{color:#6EE8A2}
+
+.coll-node-bene{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)}
+.coll-node-bene .node-icon{background:rgba(255,255,255,.07)}
+.coll-node-bene .node-role{color:rgba(255,255,255,.4)}
+
+.coll-connector .conn-line{background:rgba(62,200,130,.3)}
+.coll-connector .conn-label{background:rgba(62,200,130,.08);color:var(--coll-accent);border:1px solid rgba(62,200,130,.18)}
+.coll-connector .conn-arrow{color:var(--coll-accent)}
+
+/* BIOMETRIC VERIFICATION SEAL */
+.bio-seal{
+  position:absolute;bottom:28px;right:28px;z-index:10;
+  display:flex;align-items:center;gap:8px;
+  padding:8px 14px;border-radius:4px;
+  background:rgba(0,0,0,.45);
+  border:1px solid rgba(255,255,255,.1);
+  backdrop-filter:blur(6px);
+}
+.bio-seal-dot{
+  width:8px;height:8px;border-radius:50%;animation:pulse 2s infinite;
+}
+.bio-seal-text{
+  font-family:var(--fh);font-size:9px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.55)
+}
+.bio-seal-text strong{display:block;font-size:10px;letter-spacing:.06em}
+
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(110,232,162,.5)}
+  50%{box-shadow:0 0 0 5px rgba(110,232,162,0)}
+}
+
+/* BIOMONIE WORDMARK on panels */
+.bm-mark{
+  font-family:var(--fh);font-size:12px;font-weight:700;
+  color:rgba(255,255,255,.3);letter-spacing:.04em;
+  position:absolute;top:28px;left:56px;z-index:3;
+}
+
+/* QUOTE ACCENT LINE */
+.b-quote{
+  font-size:11px;font-style:italic;
+  color:rgba(255,255,255,.32);
+  border-left:2px solid;padding-left:10px;
+  margin-bottom:22px;line-height:1.5;max-width:280px;
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:820px){
+  .banner{height:auto;flex-direction:column}
+  .b-left{width:100%;min-width:0;padding:40px 24px 32px}
+  .b-right{height:280px}
+  .b-left::before{width:100%;height:4px}
+  .corner{border-top-width:44px;border-right-width:44px}
+  .bm-mark{left:24px}
+}
+
+/* PAGE LABELS */
+.page-label{
+  font-family:var(--fh);font-size:10px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.25);text-align:center;margin-bottom:-10px;
+}
+
+/* DEV NOTE */
+.dev-note{
+  width:100%;max-width:1100px;
+  background:#060f0a;border:1px dashed rgba(110,237,166,.16);
+  font-family:var(--f);font-size:11.5px;color:rgba(110,237,166,.5);
+  line-height:1.8;padding:14px 24px;border-radius:4px;
+}
+.dev-note strong{color:rgba(110,237,166,.85)}
+code{background:rgba(110,237,166,.08);padding:2px 5px;border-radius:3px;font-size:11px}
+</style>
+</head>
+<body>
+
+
+
+
+
+<!-- ═══════════════════════════════════════
+     BANNER 3 — REACH + COLLECT COMBINED
+     (Side-by-side product suite card)
+═══════════════════════════════════════ -->
+<p class="page-label">Banner 3 — Product Suite (Reach + Collect together)</p>
+
+<div style="width:100%;max-width:1100px;background:linear-gradient(118deg,#060e09 0%,#07111a 50%,#04090f 100%);border-radius:4px;overflow:hidden;position:relative;">
+
+  <!-- Corner accent -->
+  <div style="position:absolute;top:0;left:0;width:0;height:0;border-top:56px solid #F5C842;border-right:56px solid transparent;opacity:.85;z-index:5"></div>
+
+  <!-- Top bar -->
+  <div style="padding:28px 52px 0;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:3">
+    <div style="display:flex;align-items:center;gap:10px">
+      <span style="font-family:var(--fh);font-size:12px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.04em">biomonie</span>
+      <span style="width:1px;height:14px;background:rgba(255,255,255,.12)"></span>
+      <span style="font-family:var(--fh);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.28)">Social Intervention Suite</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px">
+      <div style="width:7px;height:7px;border-radius:50%;background:#6EE8A2;animation:pulse 2s infinite"></div>
+      <span style="font-family:var(--fh);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(110,232,162,.55)">Biometric Auth Live</span>
+    </div>
+  </div>
+
+  <!-- Headline block -->
+  <div style="padding:24px 52px 32px;position:relative;z-index:3;border-bottom:1px solid rgba(255,255,255,.06)">
+    <p style="font-family:var(--fh);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#F5C842;margin-bottom:10px">Built for social good. Powered by biometric truth.</p>
+    <h2 style="font-family:var(--fh);font-size:clamp(22px,3vw,38px);font-weight:800;color:#fff;line-height:1.18;max-width:700px">
+      Intervention that <span style="color:#F5C842">reaches</span> the right people,<br>
+      and <span style="color:#3EC882">collects</span> evidence they were there.
+    </h2>
+  </div>
+
+  <!-- Three product cards side by side -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;position:relative;z-index:3">
+
+    <!-- REACH card -->
+    <div style="padding:32px 36px 36px 52px;border-right:1px solid rgba(255,255,255,.06);position:relative">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
+        <div style="width:36px;height:36px;border-radius:8px;background:rgba(245,200,66,.12);border:1px solid rgba(245,200,66,.25);display:flex;align-items:center;justify-content:center;font-size:16px">📡</div>
+        <div>
+          <p style="font-family:var(--fh);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#F5C842;margin-bottom:1px">Product 01</p>
+          <p style="font-family:var(--fh);font-size:20px;font-weight:800;color:#fff;line-height:1">Biomonie <span style="color:#F5C842">Reach</span></p>
+        </div>
+      </div>
+      <p style="font-size:13px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:20px">Direct cash or value disbursement from sponsors to verified beneficiaries. No leakage. No ghost recipients. Just biometric-confirmed delivery.</p>
+
+      <!-- Reach mini flow -->
+      <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap">
+        <div style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.22);border-radius:5px;padding:7px 12px;text-align:center">
+          <p style="font-family:var(--fh);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#F5C842;margin-bottom:2px">Sponsor</p>
+          <p style="font-size:11px;font-weight:600;color:#fff">Funds</p>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;padding:0 8px">
+          <div style="height:1px;width:20px;background:rgba(245,200,66,.3)"></div>
+          <p style="font-size:8px;color:rgba(245,200,66,.5);margin-top:2px;font-family:var(--fh);font-weight:700;letter-spacing:.06em">via Biomonie</p>
+        </div>
+        <div style="background:rgba(26,122,74,.18);border:1px solid rgba(26,122,74,.3);border-radius:5px;padding:7px 12px;text-align:center">
+          <p style="font-family:var(--fh);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#6EE8A2;margin-bottom:2px">Auth</p>
+          <p style="font-size:11px;font-weight:600;color:#fff">Biometric</p>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;padding:0 8px">
+          <div style="height:1px;width:20px;background:rgba(26,122,74,.4)"></div>
+          <p style="font-size:8px;color:rgba(110,232,162,.4);margin-top:2px;font-family:var(--fh);font-weight:700;letter-spacing:.06em">confirmed</p>
+        </div>
+        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:5px;padding:7px 12px;text-align:center">
+          <p style="font-family:var(--fh);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:2px">Beneficiary</p>
+          <p style="font-size:11px;font-weight:600;color:#fff">Receives</p>
+        </div>
+      </div>
+
+      <a href="#" style="margin-top:22px;display:inline-flex;align-items:center;gap:8px;font-family:var(--fh);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#F5C842;text-decoration:none;border:1px solid rgba(245,200,66,.3);padding:9px 18px;border-radius:2px">Explore Reach →</a>
+    </div>
+
+    <!-- COLLECT card -->
+    <div style="padding:32px 52px 36px 36px;position:relative">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
+        <div style="width:36px;height:36px;border-radius:8px;background:rgba(62,200,130,.1);border:1px solid rgba(62,200,130,.22);display:flex;align-items:center;justify-content:center;font-size:16px">🧾</div>
+        <div>
+          <p style="font-family:var(--fh);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3EC882;margin-bottom:1px">Product 02</p>
+          <p style="font-family:var(--fh);font-size:20px;font-weight:800;color:#fff;line-height:1">Biomonie <span style="color:#3EC882">Collect</span></p>
+        </div>
+      </div>
+      <p style="font-size:13px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:20px">Goods and voucher collection at approved vendor outlets. Beneficiaries are biometrically verified at the point of collection — preventing duplication and fraud.</p>
+
+      <!-- Collect mini flow -->
+      <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap">
+        <div style="background:rgba(62,200,130,.08);border:1px solid rgba(62,200,130,.22);border-radius:5px;padding:7px 12px;text-align:center">
+          <p style="font-family:var(--fh);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#3EC882;margin-bottom:2px">Sponsor</p>
+          <p style="font-size:11px;font-weight:600;color:#fff">Authorises</p>
+        </div>
+        <div style="padding:0 5px"><p style="font-size:10px;color:rgba(62,200,130,.4)">→</p></div>
+        <div style="background:rgba(245,200,66,.07);border:1px solid rgba(245,200,66,.2);border-radius:5px;padding:7px 12px;text-align:center">
+          <p style="font-family:var(--fh);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#F5C842;margin-bottom:2px">Vendor</p>
+          <p style="font-size:11px;font-weight:600;color:#fff">Dispenses</p>
+        </div>
+        <div style="padding:0 5px"><p style="font-size:10px;color:rgba(62,200,130,.4)">→</p></div>
+        <div style="background:rgba(26,122,74,.18);border:1px solid rgba(26,122,74,.3);border-radius:5px;padding:7px 12px;text-align:center">
+          <p style="font-family:var(--fh);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#6EE8A2;margin-bottom:2px">Auth</p>
+          <p style="font-size:11px;font-weight:600;color:#fff">Biometric</p>
+        </div>
+        <div style="padding:0 5px"><p style="font-size:10px;color:rgba(62,200,130,.4)">→</p></div>
+        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:5px;padding:7px 12px;text-align:center">
+          <p style="font-family:var(--fh);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:2px">Beneficiary</p>
+          <p style="font-size:11px;font-weight:600;color:#fff">Collects</p>
+        </div>
+      </div>
+
+      <a href="#" style="margin-top:22px;display:inline-flex;align-items:center;gap:8px;font-family:var(--fh);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#3EC882;text-decoration:none;border:1px solid rgba(62,200,130,.28);padding:9px 18px;border-radius:2px">Explore Collect →</a>
+    </div>
+
+  </div>
+  <!-- /grid -->
+
+  <!-- Bottom strip -->
+  <div style="padding:16px 52px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;position:relative;z-index:3">
+    <p style="font-size:11px;color:rgba(255,255,255,.28);font-family:var(--fh)">Powered by live biometric verification against the NIMC National Identity Database</p>
+    <div style="display:flex;align-items:center;gap:16px">
+      <div style="display:flex;align-items:center;gap:5px"><span style="font-size:10px">🛡️</span><span style="font-family:var(--fh);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.25)">Zero Leakage</span></div>
+      <div style="width:1px;height:12px;background:rgba(255,255,255,.1)"></div>
+      <div style="display:flex;align-items:center;gap:5px"><span style="font-size:10px">🔒</span><span style="font-family:var(--fh);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.25)">No Ghost Recipients</span></div>
+      <div style="width:1px;height:12px;background:rgba(255,255,255,.1)"></div>
+      <div style="display:flex;align-items:center;gap:5px"><span style="font-size:10px">✅</span><span style="font-family:var(--fh);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.25)">Auditable Records</span></div>
+    </div>
+  </div>
+
+</div>
+
+  <!-- Bills card -->
+    <div style="padding:32px 52px 36px 36px;position:relative">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
+        <div style="width:36px;height:36px;border-radius:8px;background:rgba(62,200,130,.1);border:1px solid rgba(62,200,130,.22);display:flex;align-items:center;justify-content:center;font-size:16px">🧾</div>
+        <div>
+          <p style="font-family:var(--fh);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3EC882;margin-bottom:1px">Product 03</p>
+          <p style="font-family:var(--fh);font-size:20px;font-weight:800;color:#fff;line-height:1">Biomonie <span style="color:#3EC882">Bills</span></p>
+        </div>
+      </div>
+      <p style="font-size:13px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:20px">Pay utilities, subscriptions, and everyday bills securely — with biometric authorisation replacing PINs and passwords. No failed payments. No identity fraud. Just verified transactions.</p>
+
+      <!-- Bills mini flow -->
+      <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap">
+        <div style="background:rgba(62,200,130,.08);border:1px solid rgba(62,200,130,.22);border-radius:5px;padding:7px 12px;text-align:center">
+          <p style="font-family:var(--fh);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#3EC882;margin-bottom:2px">User</p>
+          <p style="font-size:11px;font-weight:600;color:#fff">Selects</p>
+        </div>
+        <div style="padding:0 5px"><p style="font-size:10px;color:rgba(62,200,130,.4)">→</p></div>
+        <div style="background:rgba(245,200,66,.07);border:1px solid rgba(245,200,66,.2);border-radius:5px;padding:7px 12px;text-align:center">
+          <p style="font-family:var(--fh);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#F5C842;margin-bottom:2px">Bill Initiates</p>
+          <p style="font-size:11px;font-weight:600;color:#fff">via Biomonie</p>
+        </div>
+        <div style="padding:0 5px"><p style="font-size:10px;color:rgba(62,200,130,.4)">→</p></div>
+        <div style="background:rgba(26,122,74,.18);border:1px solid rgba(26,122,74,.3);border-radius:5px;padding:7px 12px;text-align:center">
+          <p style="font-family:var(--fh);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#6EE8A2;margin-bottom:2px">Auth</p>
+          <p style="font-size:11px;font-weight:600;color:#fff">Biometric</p>
+        </div>
+        <div style="padding:0 5px"><p style="font-size:10px;color:rgba(62,200,130,.4)">→</p></div>
+        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:5px;padding:7px 12px;text-align:center">
+          <p style="font-family:var(--fh);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:2px">Payment</p>
+          <p style="font-size:11px;font-weight:600;color:#fff">Confirmed</p>
+        </div>
+      </div>
+
+      <a href="#" style="margin-top:22px;display:inline-flex;align-items:center;gap:8px;font-family:var(--fh);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#3EC882;text-decoration:none;border:1px solid rgba(62,200,130,.28);padding:9px 18px;border-radius:2px">Explore Bills →</a>
+    </div>
+
+  </div>
+  <!-- /grid -->
+
+  <!-- Bottom strip -->
+  <div style="padding:16px 52px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;position:relative;z-index:3">
+    <p style="font-size:11px;color:rgba(255,255,255,.28);font-family:var(--fh)">Powered by live biometric verification against the NIMC National Identity Database</p>
+    <div style="display:flex;align-items:center;gap:16px">
+      <div style="display:flex;align-items:center;gap:5px"><span style="font-size:10px">🛡️</span><span style="font-family:var(--fh);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.25)">Instant Payments</span></div>
+      <div style="width:1px;height:12px;background:rgba(255,255,255,.1)"></div>
+      <div style="display:flex;align-items:center;gap:5px"><span style="font-size:10px">🔒</span><span style="font-family:var(--fh);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.25)">Fraud-Proof Authorisation</span></div>
+      <div style="width:1px;height:12px;background:rgba(255,255,255,.1)"></div>
+      <div style="display:flex;align-items:center;gap:5px"><span style="font-size:10px">✅</span><span style="font-family:var(--fh);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.25)">Traceable Transactions</span></div>
+    </div>
+  </div>
+
+</div>
+<!-- /suite banner -->
+
+
+
+
+</body>
+</html>
