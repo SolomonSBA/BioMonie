@@ -491,34 +491,34 @@ export default function HeroSection() {
             </div>
           </div>
 
-          <div className="flex justify-center overflow-x-auto bg-biomonie-teal-dark/20 px-5 py-3 sm:px-7">
-            <div className="flex min-w-max flex-nowrap items-center justify-center gap-3">
-              <span className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap text-[0.52rem] font-bold uppercase tracking-[0.07em] text-white/80">
+          <div className="flex justify-center bg-biomonie-teal-dark/20 px-5 py-3 sm:px-7">
+            <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
+              <span className="inline-flex items-center gap-1 whitespace-nowrap text-[0.52rem] font-bold uppercase tracking-[0.07em] text-white/80">
                 <ShieldCheck className="h-3 w-3 text-biomonie-lemon" />
                 Zero Leakage
               </span>
               <span className="hidden h-3 w-px bg-biomonie-lemon/35 sm:block" />
-              <span className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap text-[0.52rem] font-bold uppercase tracking-[0.07em] text-white/80">
+              <span className="inline-flex items-center gap-1 whitespace-nowrap text-[0.52rem] font-bold uppercase tracking-[0.07em] text-white/80">
                 <Lock className="h-3 w-3 text-biomonie-lemon" />
                 No Ghost Recipients
               </span>
               <span className="hidden h-3 w-px bg-biomonie-lemon/35 sm:block" />
-              <span className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap text-[0.52rem] font-bold uppercase tracking-[0.07em] text-white/80">
+              <span className="inline-flex items-center gap-1 whitespace-nowrap text-[0.52rem] font-bold uppercase tracking-[0.07em] text-white/80">
                 <CheckCircle2 className="h-3 w-3 text-biomonie-lemon" />
                 Auditable Records
               </span>
               <span className="hidden h-3 w-px bg-biomonie-lemon/35 sm:block" />
-              <span className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap text-[0.52rem] font-bold uppercase tracking-[0.07em] text-white/80">
+              <span className="inline-flex items-center gap-1 whitespace-nowrap text-[0.52rem] font-bold uppercase tracking-[0.07em] text-white/80">
                 <ShieldCheck className="h-3 w-3 text-biomonie-lemon" />
                 Instant Payments
               </span>
               <span className="hidden h-3 w-px bg-biomonie-lemon/35 sm:block" />
-              <span className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap text-[0.52rem] font-bold uppercase tracking-[0.07em] text-white/80">
+              <span className="inline-flex items-center gap-1 whitespace-nowrap text-[0.52rem] font-bold uppercase tracking-[0.07em] text-white/80">
                 <Lock className="h-3 w-3 text-biomonie-lemon" />
                 Fraud-Proof Authorisation
               </span>
               <span className="hidden h-3 w-px bg-biomonie-lemon/35 sm:block" />
-              <span className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap text-[0.52rem] font-bold uppercase tracking-[0.07em] text-white/80">
+              <span className="inline-flex items-center gap-1 whitespace-nowrap text-[0.52rem] font-bold uppercase tracking-[0.07em] text-white/80">
                 <CheckCircle2 className="h-3 w-3 text-biomonie-lemon" />
                 Traceable Transactions
               </span>
