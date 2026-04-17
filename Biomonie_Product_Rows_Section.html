@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIOMONIE — Products Section</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --casal:#295C72;
+  --casal-border:rgba(41,92,114,.28);
+  --lemon:#E2FF02;
+  --lemon-faint:rgba(226,255,2,.07);
+  --lemon-border:rgba(226,255,2,.22);
+  --white:#fff;
+  --muted:rgba(255,255,255,.45);
+  --muted2:rgba(255,255,255,.26);
+  --bg:#07111a;
+  --bg2:#060e14;
+  --f:'Plus Jakarta Sans',sans-serif;
+  --fh:'Sora',sans-serif;
+}
+
+body{
+  background:#050d14;
+  font-family:var(--f);
+  padding:48px 24px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.products-section{
+  width:100%;
+  max-width:1140px;
+  border-radius:6px;
+  overflow:hidden;
+  border:1px solid var(--casal-border);
+}
+
+/* ═══════════════════
+   ROW STRUCTURE
+═══════════════════ */
+.product-row{
+  display:grid;
+  grid-template-columns:1fr 2fr;
+  border-bottom:1px solid var(--casal-border);
+  position:relative;
+}
+.product-row:last-child{border-bottom:none}
+
+/* LEFT COLUMN */
+.row-label{
+  position:relative;
+  padding:36px 32px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  gap:14px;
+  border-right:1px solid var(--casal-border);
+  background:var(--bg2);
+  overflow:hidden;
+}
+.row-label::before{
+  content:'';
+  position:absolute;top:0;left:0;
+  width:4px;height:100%;
+  background:var(--lemon);
+}
+
+/* RIGHT COLUMN */
+.row-content{
+  padding:40px 48px;
+  background:var(--bg);
+  position:relative;
+}
+
+/* LEFT HEADLINE — all rows (sized to match right-side body text scale) */
+.left-headline{
+  font-family:var(--fh);
+  font-size:clamp(20px,2.5vw,32px);
+  font-weight:800;
+  color:var(--white);
+  line-height:1.22;
+  letter-spacing:-.01em;
+  text-align:center;
+}
+.left-headline em{font-style:normal;color:var(--lemon)}
+
+/* BIOMONIE PRODUCT TITLE (below headline in Bills, standalone in Clan) */
+.row-title{
+  font-family:var(--fh);
+  font-size:clamp(22px,2.4vw,32px);
+  font-weight:800;
+  line-height:1.06;
+  letter-spacing:-.025em;
+  color:var(--white);
+}
+.bm{color:var(--lemon);font-weight:800}
+
+/* GET STARTED BUTTON */
+.get-started-btn{
+  display:inline-block;
+  background:var(--lemon);
+  color:#060e14;
+  font-family:var(--fh);
+  font-size:10.5px;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:9px 20px;
+  border-radius:3px;
+  text-decoration:none;
+  transition:opacity .2s;
+  white-space:nowrap;
+}
+.get-started-btn:hover{opacity:.85}
+
+/* ═══════════════════
+   BILLS GRID
+═══════════════════ */
+.bills-sub{
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.7;
+  margin-bottom:18px;
+  max-width:500px;
+}
+
+.bills-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:8px;
+}
+.bill-chip{
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--casal-border);
+  border-radius:6px;
+  padding:10px 8px;
+  text-align:center;
+  transition:background .2s,border-color .2s,transform .15s;
+  cursor:default;
+}
+.bill-chip:hover{
+  background:var(--lemon-faint);
+  border-color:var(--lemon-border);
+  transform:translateY(-2px);
+}
+.bill-chip-icon{font-size:17px;line-height:1;margin-bottom:5px}
+.bill-chip-label{
+  font-family:var(--fh);
+  font-size:8px;font-weight:700;
+  letter-spacing:.04em;text-transform:uppercase;
+  color:var(--muted2);line-height:1.3;
+}
+.bill-chip:hover .bill-chip-label{color:var(--lemon)}
+
+/* ═══════════════════
+   REACH + COLLECT
+═══════════════════ */
+.rc-split{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+}
+.rc-col{padding-right:24px}
+.rc-col + .rc-col{
+  padding-right:0;
+  padding-left:24px;
+  border-left:1px solid var(--casal-border);
+}
+
+.rc-product-name{
+  font-family:var(--fh);
+  font-size:18px;font-weight:800;
+  color:var(--white);line-height:1;
+  margin-bottom:10px;
+}
+.rc-body{
+  font-size:12.5px;color:var(--muted);
+  line-height:1.72;margin-bottom:14px;
+}
+
+/* HORIZONTAL STAT CARDS */
+.stat-cards-h{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+  margin-bottom:0;
+}
+.stat-card-h{
+  flex:1;
+  min-width:70px;
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--casal-border);
+  border-radius:5px;
+  padding:9px 10px;
+}
+.stat-card-h-num{
+  font-family:var(--fh);
+  font-size:clamp(11px,1.2vw,14px);
+  font-weight:800;
+  color:var(--lemon);
+  line-height:1;
+  margin-bottom:3px;
+}
+.stat-card-h-label{
+  font-size:9.5px;
+  color:var(--muted);
+  line-height:1.35;
+}
+
+/* ═══════════════════
+   SPACER
+═══════════════════ */
+.row-spacer{
+  height:24px;
+  background:var(--bg2);
+  border-bottom:1px solid var(--casal-border);
+}
+
+/* ═══════════════════
+   CLAN
+═══════════════════ */
+.clan-tagline{
+  font-size:12.5px;color:var(--muted);
+  line-height:1.7;margin-bottom:20px;
+  max-width:520px;
+}
+
+.clan-flow-cards{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:20px;
+}
+.clan-flow-card{
+  flex:1;min-width:100px;
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--casal-border);
+  border-radius:5px;
+  padding:10px 12px;
+}
+.clan-flow-actor{
+  font-family:var(--fh);
+  font-size:8px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--lemon);margin-bottom:4px;
+}
+.clan-flow-action{
+  font-size:13px;font-weight:700;
+  color:var(--white);line-height:1.2;
+}
+
+.clan-stats-row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.clan-stat-card{
+  flex:1;min-width:140px;
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--casal-border);
+  border-radius:5px;
+  padding:14px 16px;
+}
+.clan-stat-num{
+  font-family:var(--fh);
+  font-size:clamp(16px,1.7vw,22px);
+  font-weight:800;
+  color:var(--lemon);
+  line-height:1;margin-bottom:5px;
+}
+.clan-stat-label{
+  font-size:11px;
+  color:var(--muted);
+  line-height:1.45;
+}
+
+/* ═══════════════════
+   RESPONSIVE
+═══════════════════ */
+@media(max-width:860px){
+  .product-row{grid-template-columns:1fr}
+  .row-label{
+    border-right:none;
+    border-bottom:1px solid var(--casal-border);
+    padding:28px 24px;
+  }
+  .row-label::before{width:100%;height:4px;top:auto;left:0;bottom:0;right:0}
+  .row-content{padding:28px 24px}
+  .rc-split{grid-template-columns:1fr}
+  .rc-col + .rc-col{padding-left:0;border-left:none;padding-top:20px;border-top:1px solid var(--casal-border)}
+  .bills-grid{grid-template-columns:repeat(3,1fr)}
+  .clan-stats-row{flex-direction:column}
+  .clan-flow-cards{flex-direction:column}
+  .stat-cards-h{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div class="products-section">
+
+  <!-- ══════════════════════════════
+       ROW 1 — BILLS
+  ══════════════════════════════ -->
+  <div class="product-row">
+
+    <!-- LEFT -->
+    <div class="row-label">
+      <div class="left-headline">
+        Your everyday bills — paid <em>smarter</em>, settled instantly, always rewarded with <em>BIOMONIE</em> Bills.
+      </div>
+      <div class="row-title">
+        
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="row-content">
+      <p class="bills-sub">Pay bills with a flex. No cards. No friction. <span class="bm">YOU</span> are the money access — every payment earning you within the <span class="bm">BIOMONIE</span> ecosystem.</p>
+
+      <div class="bills-grid">
+        <div class="bill-chip">
+          <div class="bill-chip-icon">📱</div>
+          <div class="bill-chip-label">Airtime &amp; Data</div>
+        </div>
+        <div class="bill-chip">
+          <div class="bill-chip-icon">⚡</div>
+          <div class="bill-chip-label">Electricity Prepaid / Postpaid</div>
+        </div>
+        <div class="bill-chip">
+          <div class="bill-chip-icon">📡</div>
+          <div class="bill-chip-label">Cable TV &amp; Internet</div>
+        </div>
+        <div class="bill-chip">
+          <div class="bill-chip-icon">💧</div>
+          <div class="bill-chip-label">Water &amp; Waste Mgmt</div>
+        </div>
+        <div class="bill-chip">
+          <div class="bill-chip-icon">🎓</div>
+          <div class="bill-chip-label">School Fees &amp; Exam Pins</div>
+        </div>
+        <div class="bill-chip">
+          <div class="bill-chip-icon">🏛️</div>
+          <div class="bill-chip-label">Govt Levies &amp; Taxes (Remita)</div>
+        </div>
+        <div class="bill-chip">
+          <div class="bill-chip-icon">🛡️</div>
+          <div class="bill-chip-label">Insurance Premiums</div>
+        </div>
+        <div class="bill-chip">
+          <div class="bill-chip-icon">🎰</div>
+          <div class="bill-chip-label">Betting Wallet Funding</div>
+        </div>
+        <div class="bill-chip" style="border-color:var(--lemon-border);background:var(--lemon-faint)">
+          <div class="bill-chip-icon">＋</div>
+          <div class="bill-chip-label" style="color:rgba(226,255,2,.5)">And more…</div>
+        </div>
+      </div>
+
+      <a href="#" class="get-started-btn">Get Started</a>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       ROW 2 — REACH + COLLECT
+  ══════════════════════════════ -->
+  <div class="product-row">
+
+    <!-- LEFT -->
+    <div class="row-label">
+      <div class="left-headline">
+        Intervention that <em>reaches</em> the right people, and <em>collects</em> evidence they were there with <em>BIOMONIE</em> Reach &amp; Collect.
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="row-content">
+      <div class="rc-split">
+
+        <!-- REACH -->
+        <div class="rc-col">
+          <div class="rc-product-name"><span class="bm">BIOMONIE</span> Reach</div>
+          <p class="rc-body">Direct cash or value disbursement from sponsors to verified beneficiaries. No leakage. No ghost recipients. Delivery confirmed to the right person — <span class="bm">YOU</span> are the money access.</p>
+          <div class="stat-cards-h">
+            <div class="stat-card-h">
+              <div class="stat-card-h-num">Sponsor</div>
+              <div class="stat-card-h-label">Funds the disbursement</div>
+            </div>
+            <div class="stat-card-h">
+              <div class="stat-card-h-num">Beneficiary</div>
+              <div class="stat-card-h-label">Receives — confirmed, no leakage</div>
+            </div>
+          </div>
+          <a href="#" class="get-started-btn">Get Started</a>
+        </div>
+
+        <!-- COLLECT -->
+        <div class="rc-col">
+          <div class="rc-product-name"><span class="bm">BIOMONIE</span> Collect</div>
+          <p class="rc-body">Goods and voucher collection at approved vendor outlets. Recipients are verified at the point of collection — <span class="bm">YOU</span> are the money access. No duplication, no fraud.</p>
+          <div class="stat-cards-h">
+            <div class="stat-card-h">
+              <div class="stat-card-h-num">Sponsor</div>
+              <div class="stat-card-h-label">Authorises the collection</div>
+            </div>
+            <div class="stat-card-h">
+              <div class="stat-card-h-num">Vendor</div>
+              <div class="stat-card-h-label">Dispenses goods or vouchers</div>
+            </div>
+            <div class="stat-card-h">
+              <div class="stat-card-h-num">Beneficiary</div>
+              <div class="stat-card-h-label">Collects — verified, fraud-proof</div>
+            </div>
+          </div>
+          <a href="#" class="get-started-btn">Get Started</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SPACER between Reach/Collect and Clan -->
+  <div class="row-spacer"></div>
+
+  <!-- ══════════════════════════════
+       ROW 3 — CLAN
+  ══════════════════════════════ -->
+  <div class="product-row" style="border-bottom:none">
+
+    <!-- LEFT -->
+    <div class="row-label">
+      <div class="left-headline">Built for the people behind the system.</div>
+      <div class="row-title">
+        <span class="bm">BIOMONIE</span> Clan
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="row-content">
+
+      <p class="clan-tagline"><span class="bm">BIOMONIE</span> Clan members don't just operate the network — they power it, grow it, and earn from it. Every action contributes to the ecosystem, and every contribution is rewarded.</p>
+
+      <!-- Clan value chain -->
+      <div class="clan-flow-cards">
+        <div class="clan-flow-card">
+          
+        </div>
+      </div>
+
+      <!-- Clan Stats -->
+      <div class="clan-stats-row">
+        <div class="clan-stat-card">
+          <div class="clan-stat-num">Payout</div>
+          <div class="clan-stat-label">Earned per activated Agent / Merchant referral</div>
+        </div>
+        <div class="clan-stat-card">
+          <div class="clan-stat-num">Low‑cost</div>
+          <div class="clan-stat-label">Per transaction — flat, simple, fair</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

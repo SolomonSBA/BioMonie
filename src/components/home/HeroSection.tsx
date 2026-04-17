@@ -2,17 +2,18 @@ import { motion, useReducedMotion } from 'framer-motion';
 import type { MouseEvent } from 'react';
 import {
   Globe,
-  RadioTower,
-  HandCoins,
-  ReceiptText,
-  UsersRound,
   ShieldCheck,
   Lock,
   CheckCircle2,
-  ArrowRight,
-  Repeat2,
-  TrendingUp,
-  Handshake,
+  Smartphone,
+  Zap,
+  Tv,
+  Droplets,
+  GraduationCap,
+  Landmark,
+  Shield,
+  Dice5,
+  Plus,
 } from 'lucide-react';
 import { easeOutExpo } from '@/lib/motion';
 import { navigateToSection } from '@/lib/section-nav';
@@ -74,85 +75,27 @@ function FadeUp({
 
 export default function HeroSection() {
   const reduce = useReducedMotion();
-  const productCards = [
-    {
-      product: 'Product 01',
-      name: 'Biomonie Reach',
-      accent: 'Reach',
-      icon: RadioTower,
-      body: 'Direct cash or value disbursement to verified beneficiaries with zero leakage.',
-      flow: [
-        { role: 'Sponsor', value: 'Funds' },
-        { role: 'Auth', value: 'Biometric' },
-        { role: 'Beneficiary', value: 'Receives' },
-      ],
-      connectors: ['via Biomonie', 'confirmed'],
-      cta: 'Explore Reach',
-      tint: 'from-biomonie-lemon/18 to-biomonie-lemon/6',
-      accentText: 'text-biomonie-lemon',
-    },
-    {
-      product: 'Product 02',
-      name: 'Biomonie Collect',
-      accent: 'Collect',
-      icon: HandCoins,
-      body: 'Vendor collection flow with biometric confirmation to prevent duplication and fraud.',
-      flow: [
-        { role: 'Sponsor', value: 'Authorises' },
-        { role: 'Vendor', value: 'Dispenses' },
-        { role: 'Auth', value: 'Biometric' },
-        { role: 'Beneficiary', value: 'Collects' },
-      ],
-      connectors: ['', '', ''],
-      cta: 'Explore Collect',
-      tint: 'from-biomonie-lemon/16 to-biomonie-lemon/5',
-      accentText: 'text-biomonie-lemon',
-    },
-    {
-      product: 'Product 03',
-      name: 'Biomonie Bills',
-      accent: 'Bills',
-      icon: ReceiptText,
-      body: 'Pay utilities, subscriptions, and everyday bills securely like Airtime and Data, Electricity (Prepaid/Postpaid), Cable TV, Internet Services, Water and Waste Management, School Fees and Exam Pins, Government Levies and Taxes (Remita), Insurance Premiums, Betting Wallet Funding, etc.',
-      flow: [
-        { role: 'User', value: 'Selects' },
-        { role: 'Bill Initiates', value: 'via Biomonie' },
-        { role: 'Auth', value: 'Biometric' },
-        { role: 'Payment', value: 'Confirmed' },
-      ],
-      connectors: ['', '', ''],
-      cta: 'Explore Bills',
-      tint: 'from-biomonie-lemon/14 to-biomonie-lemon/4',
-      accentText: 'text-biomonie-lemon',
-    },
-    {
-      product: 'Product 04',
-      name: 'Biomonie Clan',
-      accent: 'Clan',
-      icon: UsersRound,
-      body: 'Built for the people behind the system. Biomonie staff do not just operate the network they power it, grow it, and earn from it. Every action contributes to the ecosystem, and every contribution is rewarded.',
-      flow: [
-        { role: 'Clan Member', value: 'Onboards' },
-        { role: 'Drives', value: 'Growth & Activity' },
-        { role: 'Supports', value: 'Ecosystem' },
-        { role: 'Earns', value: 'Continuously' },
-      ],
-      connectors: ['', '', ''],
-      cta: 'Explore Clan',
-      highlights: [
-        { label: 'Earn Beyond Salary', icon: Repeat2 },
-        { label: 'Growth-Driven Rewards', icon: TrendingUp },
-        { label: 'Aligned With Network Success', icon: Handshake },
-      ],
-      tint: 'from-biomonie-lemon/12 to-biomonie-lemon/4',
-      accentText: 'text-biomonie-lemon',
-    },
+  const billsCategories = [
+    { label: 'Airtime & Data', icon: Smartphone },
+    { label: 'Electricity Prepaid / Postpaid', icon: Zap },
+    { label: 'Cable TV & Internet', icon: Tv },
+    { label: 'Water & Waste Management', icon: Droplets },
+    { label: 'School Fees & Exam Pins', icon: GraduationCap },
+    { label: 'Govt Levies & Taxes (Remita)', icon: Landmark },
+    { label: 'Insurance Premiums', icon: Shield },
+    { label: 'Betting Wallet Funding', icon: Dice5 },
+    { label: 'And more...', icon: Plus },
   ] as const;
 
-  const clanHighlights = [
-    { label: 'Earn Beyond Salary', icon: Repeat2 },
-    { label: 'Growth-Driven Rewards', icon: TrendingUp },
-    { label: 'Aligned With Network Success', icon: Handshake },
+  const reachStats = [
+    { title: 'Sponsor', detail: 'Funds the disbursement' },
+    { title: 'Beneficiary', detail: 'Receives - confirmed, no leakage' },
+  ] as const;
+
+  const collectStats = [
+    { title: 'Sponsor', detail: 'Authorises the collection' },
+    { title: 'Vendor', detail: 'Dispenses goods or vouchers' },
+    { title: 'Beneficiary', detail: 'Collects - verified, fraud-proof' },
   ] as const;
 
   const onSectionClick = (e: MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -404,99 +347,152 @@ export default function HeroSection() {
         delay={0.34}
         className="relative z-[2] mx-auto mt-8 w-full max-w-[1680px]"
       >
-        <div className="via-biomonie-pale/12 to-biomonie-teal-light/16 overflow-hidden rounded-2xl bg-gradient-to-br from-biomonie-teal/20 shadow-[0_14px_44px_rgba(3,32,46,0.22)]">
-          <div className="bg-biomonie-teal-dark/18 px-5 py-4 sm:px-7 sm:py-5">
-            <p className="mb-2 font-sans text-[0.68rem] font-semibold uppercase tracking-[0.08em] text-biomonie-lemon">
-              Built for social good. Powered by biometric truth.
-            </p>
-            <h3 className="font-sans text-[clamp(1.02rem,2.3vw,1.8rem)] font-extrabold leading-[1.2] text-white">
-              Intervention that{' '}
-              <span className="text-biomonie-lemon">reaches</span> the right
-              people and <span className="text-biomonie-lemon">collects</span>{' '}
-              evidence they were there.
-            </h3>
+        <div className="bg-biomonie-teal-dark/24 overflow-hidden rounded-2xl shadow-[0_12px_34px_rgba(3,32,46,0.2)]">
+          <div className="grid grid-cols-1 min-[980px]:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+            <div className="bg-biomonie-teal-dark/24 relative flex items-center justify-center border-b border-biomonie-teal-light/20 px-6 py-7 text-center min-[980px]:border-b-0 min-[980px]:border-r">
+              <span className="absolute inset-y-0 left-0 w-[4px] bg-biomonie-lemon" />
+              <h3 className="mx-auto max-w-[24ch] font-sans text-[clamp(1.05rem,1.8vw,1.65rem)] font-extrabold leading-[1.24] text-white">
+                Your everyday bills paid{' '}
+                <span className="text-biomonie-lemon">smarter</span>, settled
+                instantly, always rewarded with{' '}
+                <span className="text-biomonie-lemon">BIOMONIE</span> Bills.
+              </h3>
+            </div>
+            <div className="bg-biomonie-teal-dark/12 px-6 py-7">
+              <p className="mb-4 max-w-[60ch] text-[1rem] leading-relaxed text-white/100">
+                Pay bills with a flex. No cards. No friction.{' '}
+                <span className="font-semibold text-biomonie-lemon">YOU</span>{' '}
+                are the money access every payment earning you within the{' '}
+                <span className="font-semibold text-biomonie-lemon">
+                  BIOMONIE
+                </span>{' '}
+                ecosystem.
+              </p>
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 min-[1080px]:grid-cols-5">
+                {billsCategories.map((item) => {
+                  const BillIcon = item.icon;
+                  return (
+                    <div
+                      key={item.label}
+                      className="rounded-md border border-biomonie-teal-light/30 bg-white/[0.03] px-2 py-2 text-center transition-colors duration-200 hover:border-biomonie-lemon/35 hover:bg-biomonie-lemon/[0.08]"
+                    >
+                      <BillIcon className="mx-auto mb-1 h-3.5 w-3.5 text-biomonie-lemon/85" />
+                      <span className="text-[0.54rem] font-semibold uppercase tracking-[0.06em] text-white/80">
+                        {item.label}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="mt-4 flex justify-center">
+                <button
+                  type="button"
+                  className="inline-block rounded-lg bg-biomonie-lemon px-5 py-2.5 text-center text-sm font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_8px_32px_rgba(245,255,0,0.25)]"
+                >
+                  Get Started
+                </button>
+              </div>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-3 px-4 py-4 sm:px-5 sm:py-5 min-[980px]:grid-cols-2">
-            {productCards.map((card) => {
-              const Icon = card.icon;
-              return (
-                <article
-                  key={card.product}
-                  className={`flex h-full flex-col rounded-xl bg-gradient-to-br ${card.tint} px-4 py-4 shadow-[0_8px_24px_rgba(6,40,54,0.2)] sm:px-5`}
-                >
-                  <div className="mb-3 flex items-start gap-3">
-                    <span className="bg-biomonie-lemon/14 mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-biomonie-lemon/35">
-                      <Icon className={`h-4 w-4 ${card.accentText}`} />
-                    </span>
-                    <div>
-                      <p className="font-sans text-[0.66rem] font-semibold uppercase tracking-[0.08em] text-white">
-                        {card.product}
-                      </p>
-                      <h3 className="mt-1 font-sans text-[1.05rem] font-extrabold leading-tight text-white">
-                        <span className="text-biomonie-lemon">
-                          {card.name.split(' ')[0]}
-                        </span>{' '}
-                        <span className="text-white">{card.accent}</span>
-                      </h3>
-                    </div>
-                  </div>
-                  <p className="mb-3 text-[0.78rem] leading-snug text-white/[0.68]">
-                    {card.body}
+          <div className="bg-biomonie-teal-dark/24 h-5 border-y border-biomonie-teal-light/20" />
+
+          <div className="grid grid-cols-1 min-[980px]:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+            <div className="bg-biomonie-teal-dark/24 relative flex items-center justify-center border-b border-biomonie-teal-light/20 px-6 py-7 text-center min-[980px]:border-b-0 min-[980px]:border-r">
+              <span className="absolute inset-y-0 left-0 w-[4px] bg-biomonie-lemon" />
+              <h3 className="mx-auto max-w-[24ch] font-sans text-[clamp(1.05rem,1.8vw,1.65rem)] font-extrabold leading-[1.24] text-white">
+                Intervention that{' '}
+                <span className="text-biomonie-lemon">reaches</span> the right
+                people, and{' '}
+                <span className="text-biomonie-lemon">collects</span> evidence
+                they were there with{' '}
+                <span className="text-biomonie-lemon">BIOMONIE</span> Reach &
+                Collect.
+              </h3>
+            </div>
+            <div className="bg-biomonie-teal-dark/12 px-6 py-7">
+              <div className="grid grid-cols-1 gap-5 min-[1080px]:grid-cols-2">
+                <article className="min-w-0 border-b border-biomonie-teal-light/20 pb-5 min-[1080px]:border-b-0 min-[1080px]:border-r min-[1080px]:pr-5">
+                  <h4 className="mb-2 font-sans text-[1.15rem] font-extrabold leading-none text-white">
+                    <span className="text-biomonie-lemon">BIOMONIE</span> Reach
+                  </h4>
+                  <p className="mb-3 text-[0.88rem] leading-relaxed text-white/100">
+                    Direct cash or value disbursement from sponsors to verified
+                    beneficiaries. No leakage. No ghost recipients. Delivery
+                    confirmed to the right person{' '}
+                    <span className="font-semibold text-biomonie-lemon">
+                      YOU
+                    </span>{' '}
+                    are the money access.
                   </p>
-                  <div
-                    className={`mb-4 flex items-center gap-2 ${
-                      card.product === 'Product 02'
-                        ? 'flex-nowrap justify-start overflow-x-auto pb-1 min-[1280px]:justify-center'
-                        : 'flex-wrap justify-center'
-                    }`}
-                  >
-                    {card.flow.map((step, index) => (
+                  <div className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
+                    {reachStats.map((item) => (
                       <div
-                        key={`${card.product}-${step.role}`}
-                        className="flex shrink-0 items-center gap-1.5"
+                        key={item.title}
+                        className="rounded-md border border-biomonie-teal-light/30 bg-white/[0.03] px-3 py-2"
                       >
-                        <div className="min-w-[88px] rounded-md border border-biomonie-lemon/35 bg-biomonie-lemon/10 px-2.5 py-1.5 text-center">
-                          <p className="text-[0.55rem] font-semibold uppercase tracking-[0.08em] text-biomonie-lemon">
-                            {step.role}
-                          </p>
-                          <p className="text-[0.7rem] font-semibold text-white">
-                            {step.value}
-                          </p>
-                        </div>
-                        {index < card.connectors.length && (
-                          <div className="flex items-center gap-1 text-biomonie-lemon/80">
-                            <ArrowRight className="h-3 w-3" />
-                            {card.connectors[index] ? (
-                              <span className="whitespace-nowrap text-[0.52rem] font-semibold uppercase tracking-[0.08em]">
-                                {card.connectors[index]}
-                              </span>
-                            ) : null}
-                          </div>
-                        )}
+                        <p className="mb-1 text-[0.7rem] font-bold uppercase tracking-[0.06em] text-biomonie-lemon">
+                          {item.title}
+                        </p>
+                        <p className="text-[0.62rem] leading-snug text-white/70">
+                          {item.detail}
+                        </p>
                       </div>
                     ))}
                   </div>
                   <div className="flex justify-center">
                     <button
                       type="button"
-                      className={
-                        card.product === 'Product 02' ||
-                        card.product === 'Product 03'
-                          ? 'inline-block w-full rounded-lg border-2 border-white/40 bg-white/[0.04] px-5 py-2.5 text-center text-sm font-semibold text-white no-underline backdrop-blur-[2px] transition duration-200 hover:border-biomonie-lemon hover:bg-white/[0.07] hover:text-biomonie-lemon sm:w-auto sm:px-7'
-                          : 'inline-block w-full rounded-lg bg-biomonie-lemon px-5 py-2.5 text-center text-sm font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_8px_32px_rgba(245,255,0,0.25)] sm:w-auto sm:px-7'
-                      }
+                      className="inline-block rounded-lg bg-biomonie-lemon px-5 py-2.5 text-center text-sm font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_8px_32px_rgba(245,255,0,0.25)]"
                     >
-                      {card.cta}
+                      Get Started
                     </button>
                   </div>
                 </article>
-              );
-            })}
+
+                <article className="min-w-0 min-[1080px]:pl-1">
+                  <h4 className="mb-2 font-sans text-[1.15rem] font-extrabold leading-none text-white">
+                    <span className="text-biomonie-lemon">BIOMONIE</span>{' '}
+                    Collect
+                  </h4>
+                  <p className="mb-3 text-[0.88rem] leading-relaxed text-white/100">
+                    Goods and voucher collection at approved vendor outlets.
+                    Recipients are verified at the point of collection{' '}
+                    <span className="font-semibold text-biomonie-lemon">
+                      YOU
+                    </span>{' '}
+                    are the money access. No duplication, no fraud.
+                  </p>
+                  <div className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-3">
+                    {collectStats.map((item) => (
+                      <div
+                        key={item.title}
+                        className="rounded-md border border-biomonie-teal-light/30 bg-white/[0.03] px-3 py-2"
+                      >
+                        <p className="mb-1 text-[0.7rem] font-bold uppercase tracking-[0.06em] text-biomonie-lemon">
+                          {item.title}
+                        </p>
+                        <p className="text-[0.62rem] leading-snug text-white/70">
+                          {item.detail}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex justify-center">
+                    <button
+                      type="button"
+                      className="inline-block rounded-lg border-2 border-white/40 bg-white/[0.04] px-5 py-2.5 text-sm font-semibold text-white backdrop-blur-[2px] transition duration-200 hover:border-biomonie-lemon hover:bg-white/[0.07] hover:text-biomonie-lemon"
+                    >
+                      Get Started
+                    </button>
+                  </div>
+                </article>
+              </div>
+            </div>
           </div>
 
-          <div className="flex justify-end overflow-x-auto bg-biomonie-teal-dark/20 px-5 py-3 sm:px-7">
-            <div className="flex min-w-max flex-nowrap items-center justify-end gap-3">
+          <div className="flex justify-center overflow-x-auto bg-biomonie-teal-dark/20 px-5 py-3 sm:px-7">
+            <div className="flex min-w-max flex-nowrap items-center justify-center gap-3">
               <span className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap text-[0.52rem] font-bold uppercase tracking-[0.07em] text-white/80">
                 <ShieldCheck className="h-3 w-3 text-biomonie-lemon" />
                 Zero Leakage
@@ -526,21 +522,6 @@ export default function HeroSection() {
                 <CheckCircle2 className="h-3 w-3 text-biomonie-lemon" />
                 Traceable Transactions
               </span>
-              <span className="hidden h-3 w-px bg-biomonie-lemon/35 sm:block" />
-              {clanHighlights.map((item, index) => {
-                const HighlightIcon = item.icon;
-                return (
-                  <div key={`footer-${item.label}`} className="contents">
-                    <span className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap text-[0.52rem] font-bold uppercase tracking-[0.07em] text-white/80">
-                      <HighlightIcon className="h-3 w-3 text-biomonie-lemon" />
-                      {item.label}
-                    </span>
-                    {index < clanHighlights.length - 1 ? (
-                      <span className="hidden h-3 w-px bg-biomonie-lemon/35 sm:block" />
-                    ) : null}
-                  </div>
-                );
-              })}
             </div>
           </div>
         </div>

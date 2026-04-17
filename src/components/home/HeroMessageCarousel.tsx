@@ -206,7 +206,7 @@ export default function HeroMessageCarousel() {
             exit={reduce ? undefined : { opacity: 0, x: -34 }}
             transition={{ duration: 0.52, ease: slideEase }}
           >
-            <div className="relative z-[2] flex w-[48%] min-w-[190px] max-w-[520px] flex-col justify-center bg-[linear-gradient(90deg,rgba(5,15,20,0.98)_0%,rgba(5,15,20,0.95)_55%,rgba(5,15,20,0.82)_100%)] px-3 py-4 sm:w-[46%] sm:px-4 sm:py-5 md:px-8 md:py-6 lg:w-[20%] lg:max-w-none lg:px-10 xl:w-[50%]">
+            <div className="relative z-[2] flex w-[48%] min-w-[190px] max-w-[520px] flex-col justify-center bg-[linear-gradient(90deg,rgba(5,15,20,0.98)_0%,rgba(5,15,20,0.95)_55%,rgba(5,15,20,0.82)_100%)] px-3 py-4 sm:w-[46%] sm:px-4 sm:py-5 md:px-8 md:py-6 lg:w-[45%] lg:max-w-none lg:px-10 xl:w-[45%]">
               <div className="pointer-events-none absolute left-0 top-0 h-full w-[5px] bg-[linear-gradient(180deg,#E2FF02_0%,#295C72_65%,transparent_100%)]" />
               <div className="from-[#050f14]/92 md:from-[#050f14]/86 pointer-events-none absolute inset-y-0 -right-20 z-[3] w-20 bg-gradient-to-r via-[#050f14]/55 to-transparent md:via-[#050f14]/45" />
               <div className="pointer-events-none absolute -right-5 top-1/2 hidden h-24 w-24 -translate-y-1/2 rounded-full border border-biomonie-lemon/15 md:block">
@@ -223,7 +223,7 @@ export default function HeroMessageCarousel() {
                 src={imageSrc}
                 alt=""
                 className="absolute inset-0 h-full w-full object-cover [object-position:center_20%] sm:[object-position:center_16%] md:[object-position:center_12%] lg:object-top"
-                sizes="(max-width: 767px) 100vw, 54vw"
+                sizes="(max-width: 767px) 100vw, 55vw"
                 loading={index === 0 ? 'eager' : 'lazy'}
                 decoding="async"
                 fetchPriority={index === 0 ? 'high' : 'auto'}

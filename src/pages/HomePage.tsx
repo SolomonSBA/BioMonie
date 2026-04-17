@@ -10,6 +10,7 @@ import EarnSection from "@/components/home/EarnSection";
 import LoansSection from "@/components/home/LoansSection";
 import MerchantsSection from "@/components/home/MerchantsSection";
 import FAQSection from "@/components/home/FAQSection";
+import ClanSection from "@/components/home/ClanSection";
 import JoinCTASection from "@/components/home/JoinCTASection";
 import { useLocation } from "react-router-dom";
 import { syncSectionNavigationFromUrl } from "@/lib/section-nav";
@@ -34,6 +35,7 @@ export default function HomePage() {
         <LoansSection />
         <MerchantsSection />
         <FAQSection />
+        <ClanSection />
         <JoinCTASection />
       </main>
       <Footer />
