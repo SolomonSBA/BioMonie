@@ -2,16 +2,21 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { easeOutExpo } from '@/lib/motion';
 
-const INTERVAL_MS = 8000;
+const INTERVAL_MS = 5000;
 
 const SLIDER_FILENAMES = [
-  'biomonie_banner_1.png',
-  'biomonie_banner_2.png',
-  'biomonie_banner_3.png',
-  'biomonie_banner_4.png',
-  'biomonie_banner_1.png',
-  'biomonie_banner_6.png',
-  'biomonie_banner_2.png',
+  // 'biomonie_banner_1.png',
+  // 'biomonie_banner_2.png',
+  // 'biomonie_banner_3.png',
+  // 'biomonie_banner_4.png',
+  // 'biomonie_banner_1.png',
+  // 'biomonie_banner_6.png',
+  // 'biomonie_banner_2.png',
+  'Group2.png',
+  'Group7.png',
+  'street.jpeg',
+  'slide4.png',
+  'slide5.png',
 ];
 
 const slideEase = [0.4, 0, 0.2, 1] as const;

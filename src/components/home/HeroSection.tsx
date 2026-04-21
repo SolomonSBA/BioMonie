@@ -80,11 +80,11 @@ export default function HeroSection() {
     { label: 'Electricity Prepaid / Postpaid', icon: Zap },
     { label: 'Cable TV & Internet', icon: Tv },
     { label: 'Water & Waste Management', icon: Droplets },
-    { label: 'School Fees & Exam Pins', icon: GraduationCap },
-    { label: 'Govt Levies & Taxes (Remita)', icon: Landmark },
+    { label: 'And more...', icon: Plus },
+    { label: 'Govt Levies & Taxes', icon: Landmark },
     { label: 'Insurance Premiums', icon: Shield },
     { label: 'Betting Wallet Funding', icon: Dice5 },
-    { label: 'And more...', icon: Plus },
+    { label: 'School Fees & Exam Pins', icon: GraduationCap },
   ] as const;
 
   const reachStats = [
@@ -351,7 +351,7 @@ export default function HeroSection() {
           <div className="grid grid-cols-1 min-[980px]:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
             <div className="bg-biomonie-teal-dark/24 relative flex items-center justify-center border-b border-biomonie-teal-light/20 px-6 py-7 text-center min-[980px]:border-b-0 min-[980px]:border-r">
               <span className="absolute inset-y-0 left-0 w-[4px] bg-biomonie-lemon" />
-              <h3 className="mx-auto max-w-[24ch] font-sans text-[clamp(1.05rem,1.8vw,1.65rem)] font-extrabold leading-[1.24] text-white">
+              <h3 className="mx-auto max-w-[24ch] font-sans text-[clamp(1.25rem,1.8vw,1.65rem)] font-extrabold leading-[1.24] text-white">
                 Your everyday bills paid{' '}
                 <span className="text-biomonie-lemon">smarter</span>, settled
                 instantly, always rewarded with{' '}
@@ -389,7 +389,7 @@ export default function HeroSection() {
                   type="button"
                   className="inline-block rounded-lg bg-biomonie-lemon px-5 py-2.5 text-center text-sm font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_8px_32px_rgba(245,255,0,0.25)]"
                 >
-                  Get Started
+                  Get Started & PAY BILLS Now...
                 </button>
               </div>
             </div>
@@ -445,7 +445,7 @@ export default function HeroSection() {
                       type="button"
                       className="inline-block rounded-lg bg-biomonie-lemon px-5 py-2.5 text-center text-sm font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_8px_32px_rgba(245,255,0,0.25)]"
                     >
-                      Get Started
+                      Get Started & REACH Someone Now...
                     </button>
                   </div>
                 </article>
@@ -483,10 +483,10 @@ export default function HeroSection() {
                       type="button"
                       className="inline-block rounded-lg border-2 border-white/40 bg-white/[0.04] px-5 py-2.5 text-sm font-semibold text-white backdrop-blur-[2px] transition duration-200 hover:border-biomonie-lemon hover:bg-white/[0.07] hover:text-biomonie-lemon"
                     >
-                      Get Started
+                      Get Started with  COLLECT Now...
                     </button>
                   </div>
-                </article>
+                </article> 
               </div>
             </div>
           </div>
