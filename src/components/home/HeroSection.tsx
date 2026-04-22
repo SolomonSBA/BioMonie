@@ -18,6 +18,7 @@ import {
 import { easeOutExpo } from '@/lib/motion';
 import { navigateToSection } from '@/lib/section-nav';
 import HeroMessageCarousel from '@/components/home/HeroMessageCarousel';
+import myImage from '../../../public/imageforslider/71.png';
 
 /** Stat tiles: 3 across on desktop hero; minmax(0,1fr) + min-w-0 cells prevents middle-column overlap.
  *  Equal min-height on desktop so shorter stat rows don’t steal flex space and push CTAs out of alignment. */
@@ -29,7 +30,7 @@ const heroStatDescClass =
   'mt-1.5 max-w-full break-words text-[0.8rem] leading-snug text-white/[0.68]';
 
 /** Centered mark above column index (1 / 2 / 3). Assets live in /public. */
-function HeroColumnMark({ variant }: { variant: 1 | 2 | 3 }) {
+function HeroColumnMark({ variant }: { variant: 1 | 2 | 3 | 4}) {
   const src =
     variant === 1 ? '/stickMan.svg' : variant === 2 ? '/7.png' : '/8.png';
   return (
@@ -349,14 +350,25 @@ export default function HeroSection() {
       >
         <div className="bg-biomonie-teal-dark/24 overflow-hidden rounded-2xl shadow-[0_12px_34px_rgba(3,32,46,0.2)]">
           <div className="grid grid-cols-1 min-[980px]:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
-            <div className="bg-biomonie-teal-dark/24 relative flex items-center justify-center border-b border-biomonie-teal-light/20 px-6 py-7 text-center min-[980px]:border-b-0 min-[980px]:border-r">
+            <div className="bg-biomonie-teal-dark/24 border-biomonie-lemon/1 relative flex items-center justify-center border-b px-6 py-7 text-center min-[980px]:border-b-0 min-[980px]:border-r">
               <span className="absolute inset-y-0 left-0 w-[4px] bg-biomonie-lemon" />
-              <h3 className="mx-auto max-w-[24ch] font-sans text-[clamp(1.25rem,1.8vw,1.65rem)] font-extrabold leading-[1.24] text-white">
+              <div className="mx-auto w-full max-w-[24ch]">
+                <div className="mb-3 flex justify-center">
+                  <img
+                    src={myImage}
+                    alt=""
+                    width={64}
+                    height={64}
+                    className="h-12 w-12 object-contain object-center"
+                  />
+                </div>
+                <h3 className="font-sans text-[clamp(1.25rem,1.8vw,1.65rem)] font-extrabold leading-[1.24] text-white">
                 Your everyday bills paid{' '}
                 <span className="text-biomonie-lemon">smarter</span>, settled
                 instantly, always rewarded with{' '}
                 <span className="text-biomonie-lemon">BIOMONIE</span> Bills.
-              </h3>
+                </h3>
+              </div>
             </div>
             <div className="bg-biomonie-teal-dark/12 px-6 py-7">
               <p className="mb-4 max-w-[60ch] text-[1rem] leading-relaxed text-white/100">
@@ -371,15 +383,22 @@ export default function HeroSection() {
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 min-[1080px]:grid-cols-5">
                 {billsCategories.map((item) => {
                   const BillIcon = item.icon;
+                  const isAndMore = item.label === 'And more...';
                   return (
                     <div
                       key={item.label}
-                      className="rounded-md border border-biomonie-teal-light/30 bg-white/[0.03] px-2 py-2 text-center transition-colors duration-200 hover:border-biomonie-lemon/35 hover:bg-biomonie-lemon/[0.08]"
+                      className={`rounded-md border border-biomonie-teal-light/30 bg-white/[0.03] px-2 py-2 text-center transition-colors duration-200 hover:border-biomonie-lemon/35 hover:bg-biomonie-lemon/[0.08] ${
+                        isAndMore
+                          ? 'flex items-center justify-center min-[1080px]:col-start-5 min-[1080px]:row-span-2'
+                          : ''
+                      }`}
                     >
-                      <BillIcon className="mx-auto mb-1 h-3.5 w-3.5 text-biomonie-lemon/85" />
-                      <span className="text-[0.54rem] font-semibold uppercase tracking-[0.06em] text-white/80">
-                        {item.label}
-                      </span>
+                      <div className={isAndMore ? '' : ''}>
+                        <BillIcon className="mx-auto mb-1 h-3.5 w-3.5 text-biomonie-lemon/85" />
+                        <span className="text-[0.54rem] font-semibold uppercase tracking-[0.06em] text-white/80">
+                          {item.label}
+                        </span>
+                      </div>
                     </div>
                   );
                 })}
@@ -387,7 +406,7 @@ export default function HeroSection() {
               <div className="mt-4 flex justify-center">
                 <button
                   type="button"
-                  className="inline-block rounded-lg bg-biomonie-lemon px-5 py-2.5 text-center text-sm font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_8px_32px_rgba(245,255,0,0.25)]"
+                  className="inline-block w-full self-start rounded-lg bg-biomonie-lemon px-6 py-3.5 text-center text-base font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_8px_32px_rgba(245,255,0,0.25)] sm:w-auto sm:px-9"
                 >
                   Get Started & PAY BILLS Now...
                 </button>
@@ -398,9 +417,19 @@ export default function HeroSection() {
           <div className="bg-biomonie-teal-dark/24 h-5 border-y border-biomonie-teal-light/20" />
 
           <div className="grid grid-cols-1 min-[980px]:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
-            <div className="bg-biomonie-teal-dark/24 relative flex items-center justify-center border-b border-biomonie-teal-light/20 px-6 py-7 text-center min-[980px]:border-b-0 min-[980px]:border-r">
+            <div className="bg-biomonie-teal-dark/24 border-biomonie-white-light/20 relative flex items-center justify-center border-b px-6 py-7 text-center min-[980px]:border-b-0 min-[980px]:border-r">
               <span className="absolute inset-y-0 left-0 w-[4px] bg-biomonie-lemon" />
-              <h3 className="mx-auto max-w-[24ch] font-sans text-[clamp(1.05rem,1.8vw,1.65rem)] font-extrabold leading-[1.24] text-white">
+              <div className="mx-auto w-full max-w-[24ch]">
+                <div className="mb-3 flex justify-center">
+                  <img
+                    src="/7.png"
+                    alt=""
+                    width={64}
+                    height={64}
+                    className="h-12 w-12 object-contain object-center"
+                  />
+                </div>
+                <h3 className="font-sans text-[clamp(1.05rem,1.8vw,1.65rem)] font-extrabold leading-[1.24] text-white">
                 Intervention that{' '}
                 <span className="text-biomonie-lemon">reaches</span> the right
                 people, and{' '}
@@ -408,11 +437,15 @@ export default function HeroSection() {
                 they were there with{' '}
                 <span className="text-biomonie-lemon">BIOMONIE</span> Reach &
                 Collect.
-              </h3>
+                </h3>
+              </div>
             </div>
             <div className="bg-biomonie-teal-dark/12 px-6 py-7">
-              <div className="grid grid-cols-1 gap-5 min-[1080px]:grid-cols-2">
-                <article className="min-w-0 border-b border-biomonie-teal-light/20 pb-5 min-[1080px]:border-b-0 min-[1080px]:border-r min-[1080px]:pr-5">
+              <div className="relative grid grid-cols-1 gap-5 min-[1080px]:grid-cols-2">
+                 {/* <span className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-white/[50] min-[1080px]:block" /> */}
+                
+               {/* <article className="min-w-0 border-b border-biomonie-white-light/20 pb-5 min-[1080px]:border-b-0 min-[1080px]:pr-5"> */}
+               <article className="min-w-0 border-b border-white/[0.2] pb-5 min-[1080px]:border-b-0 min-[1080px]:border-r min-[1080px]:border-white/[0.28] min-[1080px]:pr-5">
                   <h4 className="mb-2 font-sans text-[1.15rem] font-extrabold leading-none text-white">
                     <span className="text-biomonie-lemon">BIOMONIE</span> Reach
                   </h4>
@@ -443,14 +476,14 @@ export default function HeroSection() {
                   <div className="flex justify-center">
                     <button
                       type="button"
-                      className="inline-block rounded-lg bg-biomonie-lemon px-5 py-2.5 text-center text-sm font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_8px_32px_rgba(245,255,0,0.25)]"
+                      className="inline-block w-full self-start rounded-lg bg-biomonie-lemon px-6 py-3.5 text-center text-base font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_8px_32px_rgba(245,255,0,0.25)] sm:w-auto sm:px-9"
                     >
                       Get Started & REACH Someone Now...
                     </button>
                   </div>
                 </article>
 
-                <article className="min-w-0 min-[1080px]:pl-1">
+                <article className="min-w-0 min-[1080px]:pl-5">
                   <h4 className="mb-2 font-sans text-[1.15rem] font-extrabold leading-none text-white">
                     <span className="text-biomonie-lemon">BIOMONIE</span>{' '}
                     Collect
@@ -472,7 +505,7 @@ export default function HeroSection() {
                         <p className="mb-1 text-[0.7rem] font-bold uppercase tracking-[0.06em] text-biomonie-lemon">
                           {item.title}
                         </p>
-                        <p className="text-[0.62rem] leading-snug text-white/70">
+                        <p className="text-[0.5rem] leading-snug text-white/70">
                           {item.detail}
                         </p>
                       </div>
@@ -481,12 +514,12 @@ export default function HeroSection() {
                   <div className="flex justify-center">
                     <button
                       type="button"
-                      className="inline-block rounded-lg border-2 border-white/40 bg-white/[0.04] px-5 py-2.5 text-sm font-semibold text-white backdrop-blur-[2px] transition duration-200 hover:border-biomonie-lemon hover:bg-white/[0.07] hover:text-biomonie-lemon"
+                      className="inline-block w-full rounded-lg border-2 border-white/40 bg-white/[0.04] px-6 py-3.5 text-center text-base font-semibold text-white no-underline backdrop-blur-[2px] transition duration-200 hover:border-biomonie-lemon hover:bg-white/[0.07] hover:text-biomonie-lemon sm:w-auto sm:px-9"
                     >
-                      Get Started with  COLLECT Now...
+                      Get Started with COLLECT Now...
                     </button>
                   </div>
-                </article> 
+                </article>
               </div>
             </div>
           </div>
