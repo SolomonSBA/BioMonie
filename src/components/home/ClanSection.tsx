@@ -28,7 +28,7 @@ export default function ClanSection() {
       <Reveal>
         {/* <div className="relative z-[1] mx-auto w-full max-w-[1140px] overflow-hidden rounded-2xl border border-biomonie-teal-light/25 bg-gradient-to-br from-biomonie-teal/16 via-biomonie-teal-mid/14 to-biomonie-teal-dark/20 shadow-[0_14px_44px_rgba(3,32,46,0.22)]"> */}
           <div className="grid grid-cols-1 items-center justify-center min-[980px]:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
-            <div className="relative border-b border-biomonie-teal-light/20 bg-biomonie-teal-dark/24 px-6 py-7 text-center min-[980px]:border-b-0 min-[980px]:border-r">
+            <div className="relative border-b border-biomonie-white-light/20 bg-biomonie-teal-dark/24 px-6 py-7 text-center min-[980px]:border-b-0 min-[980px]:border-r">
               <span className="absolute inset-y-0 left-0 w-[4px] bg-biomonie-lemon" />
               <h3 className="mx-auto max-w-[20ch] font-sans text-[clamp(1.08rem,1.85vw,1.75rem)] font-extrabold leading-[1.2] text-white">
                 Built for the people behind the system.

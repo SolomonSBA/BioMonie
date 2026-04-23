@@ -18,7 +18,6 @@ import {
 import { easeOutExpo } from '@/lib/motion';
 import { navigateToSection } from '@/lib/section-nav';
 import HeroMessageCarousel from '@/components/home/HeroMessageCarousel';
-import myImage from '../../../public/imageforslider/71.png';
 
 /** Stat tiles: 3 across on desktop hero; minmax(0,1fr) + min-w-0 cells prevents middle-column overlap.
  *  Equal min-height on desktop so shorter stat rows don’t steal flex space and push CTAs out of alignment. */
@@ -30,7 +29,7 @@ const heroStatDescClass =
   'mt-1.5 max-w-full break-words text-[0.8rem] leading-snug text-white/[0.68]';
 
 /** Centered mark above column index (1 / 2 / 3). Assets live in /public. */
-function HeroColumnMark({ variant }: { variant: 1 | 2 | 3 | 4}) {
+function HeroColumnMark({ variant }: { variant: 1 | 2 | 3 | 4 }) {
   const src =
     variant === 1 ? '/stickMan.svg' : variant === 2 ? '/7.png' : '/8.png';
   return (
@@ -355,7 +354,7 @@ export default function HeroSection() {
               <div className="mx-auto w-full max-w-[24ch]">
                 <div className="mb-3 flex justify-center">
                   <img
-                    src={myImage}
+                    src="/imageforslider/71.png"
                     alt=""
                     width={64}
                     height={64}
@@ -363,22 +362,23 @@ export default function HeroSection() {
                   />
                 </div>
                 <h3 className="font-sans text-[clamp(1.25rem,1.8vw,1.65rem)] font-extrabold leading-[1.24] text-white">
-                Your everyday bills paid{' '}
-                <span className="text-biomonie-lemon">smarter</span>, settled
-                instantly, always rewarded with{' '}
-                <span className="text-biomonie-lemon">BIOMONIE</span> Bills.
+                  Everyday bills paid{' '}
+                  <span className="text-biomonie-lemon">smarter</span> with you
+                  always earning. YOU also earn everytime your downlines pay
+                  bills too with{' '}
+                  <span className="text-biomonie-lemon">BIOMONIE</span> Bills.
                 </h3>
               </div>
             </div>
             <div className="bg-biomonie-teal-dark/12 px-6 py-7">
               <p className="mb-4 max-w-[60ch] text-[1rem] leading-relaxed text-white/100">
-                Pay bills with a flex. No cards. No friction.{' '}
+                Pay bills with a flex. No friction. Nothing else.{' '}
                 <span className="font-semibold text-biomonie-lemon">YOU</span>{' '}
-                are the money access every payment earning you within the{' '}
+                are the money access; every bills payment earns within the{' '}
                 <span className="font-semibold text-biomonie-lemon">
                   BIOMONIE
                 </span>{' '}
-                ecosystem.
+                Ecosystem.
               </p>
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 min-[1080px]:grid-cols-5">
                 {billsCategories.map((item) => {
@@ -403,7 +403,7 @@ export default function HeroSection() {
                   );
                 })}
               </div>
-              <div className="mt-4 flex justify-center">
+              <div className="mt-14 flex justify-center">
                 <button
                   type="button"
                   className="inline-block w-full self-start rounded-lg bg-biomonie-lemon px-6 py-3.5 text-center text-base font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_8px_32px_rgba(245,255,0,0.25)] sm:w-auto sm:px-9"
@@ -430,22 +430,22 @@ export default function HeroSection() {
                   />
                 </div>
                 <h3 className="font-sans text-[clamp(1.05rem,1.8vw,1.65rem)] font-extrabold leading-[1.24] text-white">
-                Intervention that{' '}
-                <span className="text-biomonie-lemon">reaches</span> the right
-                people, and{' '}
-                <span className="text-biomonie-lemon">collects</span> evidence
-                they were there with{' '}
-                <span className="text-biomonie-lemon">BIOMONIE</span> Reach &
-                Collect.
+                  Intervention that{' '}
+                  <span className="text-biomonie-lemon">reaches</span> the right
+                  people, and{' '}
+                  <span className="text-biomonie-lemon">collects</span> evidence
+                  they were there with{' '}
+                  <span className="text-biomonie-lemon">BIOMONIE</span> Reach &
+                  Collect.
                 </h3>
               </div>
             </div>
             <div className="bg-biomonie-teal-dark/12 px-6 py-7">
               <div className="relative grid grid-cols-1 gap-5 min-[1080px]:grid-cols-2">
-                 {/* <span className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-white/[50] min-[1080px]:block" /> */}
-                
-               {/* <article className="min-w-0 border-b border-biomonie-white-light/20 pb-5 min-[1080px]:border-b-0 min-[1080px]:pr-5"> */}
-               <article className="min-w-0 border-b border-white/[0.2] pb-5 min-[1080px]:border-b-0 min-[1080px]:border-r min-[1080px]:border-white/[0.28] min-[1080px]:pr-5">
+                {/* <span className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-white/[50] min-[1080px]:block" /> */}
+
+                {/* <article className="min-w-0 border-b border-biomonie-white-light/20 pb-5 min-[1080px]:border-b-0 min-[1080px]:pr-5"> */}
+                <article className="min-w-0 border-b border-white/[0.1] pb-5 min-[1080px]:border-b-0 min-[1080px]:border-r min-[1080px]:border-white/[0.28] min-[1080px]:pr-5">
                   <h4 className="mb-2 font-sans text-[1.15rem] font-extrabold leading-none text-white">
                     <span className="text-biomonie-lemon">BIOMONIE</span> Reach
                   </h4>
@@ -473,7 +473,7 @@ export default function HeroSection() {
                       </div>
                     ))}
                   </div>
-                  <div className="flex justify-center">
+                  <div className="flex justify-center mt-14">
                     <button
                       type="button"
                       className="inline-block w-full self-start rounded-lg bg-biomonie-lemon px-6 py-3.5 text-center text-base font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_8px_32px_rgba(245,255,0,0.25)] sm:w-auto sm:px-9"
@@ -511,7 +511,7 @@ export default function HeroSection() {
                       </div>
                     ))}
                   </div>
-                  <div className="flex justify-center">
+                  <div className="flex justify-center mt-14">
                     <button
                       type="button"
                       className="inline-block w-full rounded-lg border-2 border-white/40 bg-white/[0.04] px-6 py-3.5 text-center text-base font-semibold text-white no-underline backdrop-blur-[2px] transition duration-200 hover:border-biomonie-lemon hover:bg-white/[0.07] hover:text-biomonie-lemon sm:w-auto sm:px-9"

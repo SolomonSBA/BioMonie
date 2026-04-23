@@ -17,6 +17,8 @@ const SLIDER_FILENAMES = [
   'street.jpeg',
   'slide4.png',
   'slide5.png',
+  'Slide6.jpeg',
+  'slide1.png',
 ];
 
 const slideEase = [0.4, 0, 0.2, 1] as const;
