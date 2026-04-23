@@ -354,11 +354,11 @@ export default function HeroSection() {
               <div className="mx-auto w-full max-w-[24ch]">
                 <div className="mb-3 flex justify-center">
                   <img
-                    src="/imageforslider/71.png"
+                    src="/imageforslider/BillsLogo.png"
                     alt=""
-                    width={64}
-                    height={64}
-                    className="h-12 w-12 object-contain object-center"
+                    width={100}
+                    height={100}
+                    className="h-20 w-20 object-contain object-center"
                   />
                 </div>
                 <h3 className="font-sans text-[clamp(1.25rem,1.8vw,1.65rem)] font-extrabold leading-[1.24] text-white">
@@ -422,11 +422,11 @@ export default function HeroSection() {
               <div className="mx-auto w-full max-w-[24ch]">
                 <div className="mb-3 flex justify-center">
                   <img
-                    src="/7.png"
+                    src="/imageforslider/ReachLogo.png"
                     alt=""
-                    width={64}
-                    height={64}
-                    className="h-12 w-12 object-contain object-center"
+                    width={100}
+                    height={100}
+                    className="h-20 w-20 object-contain object-center"
                   />
                 </div>
                 <h3 className="font-sans text-[clamp(1.05rem,1.8vw,1.65rem)] font-extrabold leading-[1.24] text-white">
