@@ -120,7 +120,7 @@ export default function HeroSection() {
           <p className="text-[1rem]">The First-Ever Global Biometric <span className="block">Cardless Payment Ecosystem</span> </p>
           
         </div>
-        <div className="grid w-full max-w-[1000px] grid-cols-2 gap-x-4 gap-y-4 font-sans font-bold sm:grid-cols-4 min-[1180px]:w-[min(50vw,760px)] min-[1180px]:grid-cols-[repeat(4,max-content)] min-[1180px]:justify-between min-[1180px]:translate-x-[50%]">
+        <div className="grid w-full max-w-[1000px] grid-cols-2 gap-x-4 gap-y-4 font-sans font-bold sm:grid-cols-4 min-[1180px]:w-[min(50vw,760px)] min-[1180px]:grid-cols-[repeat(4,max-content)] min-[1180px]:justify-between min-[1180px]:translate-x-[35%]">
           {[
             { top: 'Finger', bottom: 'Nah Money!' },
             { top: 'Tẹ̀ka', bottom: 'Gbowó.' },
