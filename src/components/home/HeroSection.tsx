@@ -114,13 +114,13 @@ export default function HeroSection() {
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         }}
       />
-      <div className="-mt-4 mb-3 flex flex-col items-center gap-2 min-[1180px]:mb-10 min-[1180px]:flex-row min-[1180px]:items-center min-[1180px]:justify-start min-[1180px]:gap-3">
-        <div className="inline-flex max-w-full items-center gap-2 rounded-md border border-biomonie-lemon/40 bg-biomonie-lemon/[0.11] px-3 py-2 text-left text-[2rem] font-bold uppercase leading-snug tracking-[0.12em] text-biomonie-lemon shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] sm:px-4 sm:text-[0.72rem] sm:tracking-[0.14em]">
+      <div className="-mt-4 mb-3 flex w-full flex-col items-center gap-3 min-[1180px]:mb-10 min-[1180px]:flex-row min-[1180px]:items-center min-[1180px]:justify-between">
+        <div className="inline-flex max-w-full items-center gap-2 rounded-md border border-biomonie-lemon/40 bg-biomonie-lemon/[0.11] px-3 py-2 text-left text-[0.62rem] font-bold uppercase leading-snug tracking-[0.12em] text-biomonie-lemon shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] sm:px-4 sm:text-[0.72rem] sm:tracking-[0.14em]">
           <Globe className="h-3.5 w-3.5 shrink-0 opacity-90" aria-hidden />
           <p className="text-[1rem]">The First-Ever Global Biometric <span className="block">Cardless Payment Ecosystem</span> </p>
           
         </div>
-        <div className="grid w-full max-w-[1000px] grid-cols-2 gap-x-4 gap-y-4 font-sans font-bold sm:grid-cols-4 min-[1180px]:w-[min(50vw,760px)] min-[1180px]:grid-cols-[repeat(4,max-content)] min-[1180px]:justify-between min-[1180px]:translate-x-[35%]">
+        <div className="grid w-full grid-cols-2 gap-x-4 gap-y-4 font-sans font-bold sm:grid-cols-4 min-[1180px]:w-auto min-[1180px]:grid-cols-[repeat(4,max-content)] min-[1180px]:justify-end min-[1180px]:gap-x-5">
           {[
             { top: 'Finger', bottom: 'Nah Money!' },
             { top: 'Tẹ̀ka', bottom: 'Gbowó.' },
