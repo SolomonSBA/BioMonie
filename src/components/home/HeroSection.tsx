@@ -114,10 +114,39 @@ export default function HeroSection() {
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         }}
       />
-      <div className="mb-8 flex justify-center min-[1180px]:mb-10 min-[1180px]:justify-start">
-        <div className="inline-flex max-w-full items-center gap-2 rounded-md border border-biomonie-lemon/40 bg-biomonie-lemon/[0.11] px-3 py-2 text-left text-[0.62rem] font-bold uppercase leading-snug tracking-[0.12em] text-biomonie-lemon shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] sm:px-4 sm:text-[0.72rem] sm:tracking-[0.14em]">
+      <div className="-mt-4 mb-3 flex flex-col items-center gap-2 min-[1180px]:mb-10 min-[1180px]:flex-row min-[1180px]:items-center min-[1180px]:justify-start min-[1180px]:gap-3">
+        <div className="inline-flex max-w-full items-center gap-2 rounded-md border border-biomonie-lemon/40 bg-biomonie-lemon/[0.11] px-3 py-2 text-left text-[2rem] font-bold uppercase leading-snug tracking-[0.12em] text-biomonie-lemon shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] sm:px-4 sm:text-[0.72rem] sm:tracking-[0.14em]">
           <Globe className="h-3.5 w-3.5 shrink-0 opacity-90" aria-hidden />
-          The First-Ever Global Biometric Cardless Payment Ecosystem
+          <p className="text-[1rem]">The First-Ever Global Biometric <span className="block">Cardless Payment Ecosystem</span> </p>
+          
+        </div>
+        <div className="grid w-full max-w-[1000px] grid-cols-2 gap-x-4 gap-y-4 font-sans font-bold sm:grid-cols-4 min-[1180px]:w-[min(50vw,760px)] min-[1180px]:grid-cols-[repeat(4,max-content)] min-[1180px]:justify-between min-[1180px]:translate-x-[50%]">
+          {[
+            { top: 'Finger', bottom: 'Nah Money!' },
+            { top: 'Tẹ̀ka', bottom: 'Gbowó.' },
+            { top: 'Yatsan', bottom: 'Kuɗi.' },
+            { top: 'Ákà', bottom: 'Ègò.' },
+          ].map((item) => (
+            <div
+              key={item.top}
+              className="inline-grid grid-cols-[auto_1fr] grid-rows-2 items-center justify-center gap-x-1.5 text-left"
+            >
+              <img
+                src="/stickMan.svg"
+                alt=""
+                width={20}
+                height={20}
+                className="row-span-2 h-12 w-12 self-center object-contain opacity-95"
+                aria-hidden
+              />
+              <span className="whitespace-nowrap font-sans text-[clamp(1.05rem,1.9vw,1.5rem)] font-extrabold leading-none text-white">
+                {item.top}
+              </span>
+              <span className="mt-1 whitespace-nowrap text-[0.95rem] font-extrabold leading-none text-white">
+                {item.bottom}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -473,7 +502,7 @@ export default function HeroSection() {
                       </div>
                     ))}
                   </div>
-                  <div className="flex justify-center mt-14">
+                  <div className="mt-14 flex justify-center">
                     <button
                       type="button"
                       className="inline-block w-full self-start rounded-lg bg-biomonie-lemon px-6 py-3.5 text-center text-base font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_8px_32px_rgba(245,255,0,0.25)] sm:w-auto sm:px-9"
@@ -511,7 +540,7 @@ export default function HeroSection() {
                       </div>
                     ))}
                   </div>
-                  <div className="flex justify-center mt-14">
+                  <div className="mt-14 flex justify-center">
                     <button
                       type="button"
                       className="inline-block w-full rounded-lg border-2 border-white/40 bg-white/[0.04] px-6 py-3.5 text-center text-base font-semibold text-white no-underline backdrop-blur-[2px] transition duration-200 hover:border-biomonie-lemon hover:bg-white/[0.07] hover:text-biomonie-lemon sm:w-auto sm:px-9"
