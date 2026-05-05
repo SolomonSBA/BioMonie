@@ -8,7 +8,7 @@ const cards = [
     title: "Threshold-Based Eligibility",
     body: (
       <>
-        Loans are offered against guaranteed payouts. If <span className="font-semibold text-biomonie-lemon">YOU</span> consistently meet your transaction thresholds over a period, you qualify to apply for a BIOMONIE loan.
+        PAY-FRONTs are offered against guaranteed payouts. If <span className="font-semibold text-biomonie-lemon">YOU</span> consistently meet your transaction thresholds over a period, you qualify to apply for a BIOMONIE PAY-FRONT.
       </>
     ),
   },
@@ -17,7 +17,7 @@ const cards = [
     title: "Paid into Your BIOWALLET",
     body: (
       <>
-        All loan disbursements go directly into your <span className="font-semibold text-biomonie-lemon">BIOWALLET</span>  instantly accessible for payments, transfers, and everyday use within the ecosystem.
+        All PAY-FRONTs disbursements go directly into your <span className="font-semibold text-biomonie-lemon">BIOWALLET</span>  instantly accessible for payments, transfers, and everyday use within the ecosystem.
       </>
     ),
   },
@@ -26,7 +26,7 @@ const cards = [
     title: "Keep Transacting, Keep Earning",
     body: (
       <>
-        Your activity level determines your loan eligibility. The more active <span className="font-semibold text-biomonie-lemon">YOU</span> are in the BIOMONIE ecosystem, the stronger your borrowing profile becomes.
+        Your activity level determines your PAY-FRONTs eligibility. The more active <span className="font-semibold text-biomonie-lemon">YOU</span> are in the BIOMONIE ecosystem, the stronger your borrowing profile becomes.
       </>
     ),
   },
@@ -49,7 +49,7 @@ export default function LoansSection() {
         </Reveal>
         <Reveal delay={0.1}>
           <p className="mb-14 max-w-[620px] text-[1.06rem] leading-[1.75] text-white/[0.8]">
-            Meet your transaction thresholds and unlock access to <span className="font-semibold text-biomonie-lemon">BIOMONIE</span> loans  all deposited directly into your{" "}
+            Meet your transaction thresholds and unlock access to <span className="font-semibold text-biomonie-lemon">BIOMONIE</span> <span>PAY-FRONTs</span>   all deposited directly into your{" "}
             <span className="font-semibold text-biomonie-lemon">BIOWALLET</span>.
           </p>
         </Reveal>

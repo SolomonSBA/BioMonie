@@ -28,10 +28,10 @@ export default function EarnSection() {
               <strong className="font-semibold text-biomonie-teal">
                 BIOMONIE
               </strong>
-              &apos;s Single Downline Model (SLD) allows anyone and everyone to
-              refer and earn when anyone you introduce performs a transaction
+              &apos;s Single-Level Downline Model (SLD) allows anyone and everyone to
+              refer and earn when transactions are  performed
               using the platform. It's transparent, transaction-based and
-              completely free.{' '}
+              always a NET-GAIN.{' '}
               {/* <strong className="font-semibold text-biomonie-teal">YOU</strong>{' '} */}
             </p>
           </Reveal>
@@ -41,9 +41,9 @@ export default function EarnSection() {
               title: 'Refer Anyone and Everyone; Earn on Everything',
               body: (
                 <>
-                  Grow your downlines by introducing a Customer, Merchant or an
+                  Grow your downlines by introducing any or all of the following; Customer, Merchant or
                   Agent into the Ecosystem and earn a guaranteed payout on
-                  transactions performed or referral fee for Merchants or
+                  transactions they perform or referral fee for Merchants or
                   Agents. Payouts into{' '}
                   <strong className="font-semibold text-biomonie-teal">
                     BIOWALLETS
@@ -64,7 +64,7 @@ export default function EarnSection() {
                     BIOWALLETS
                   </strong>{' '}
                   once you meet the applicable transaction threshold. Your first
-                  payout is unlocked once the your referrals meet the sign-on
+                  payout is unlocked once your referrals meet the sign-on
                   requirements and subsequent payouts drop based on the
                   applicable transaction thresholds.
                 </>
@@ -79,7 +79,7 @@ export default function EarnSection() {
                   <strong className="font-semibold text-biomonie-teal">
                     YOU
                   </strong>{' '}
-                  can refer or limits to growing your Single Level Downlines
+                  can refer or limits to growing your Single-Level Downlines
                   (SLD) or how much you can earn. Keep growing your downlines,
                   earn forever as long as they perform transactions.
                 </>
@@ -125,12 +125,12 @@ export default function EarnSection() {
                 s: 'For everyone in the ecosystem',
                 v: 'Earn per transaction and accessible per defined activity thresholds',
               },
-              { l: 'Referral Payouts', s: '', v: 'First is Instant and subsequent is tied to Performance Activity' },
+              { l: 'Referral Payouts', s: '', v: 'Instant and also subject to Performance Activities' },
               { l: 'Activity Payout Threshold', s: '', v: 'Every 75 transactions' },
               {
                 l: 'Referral Earning Threshold',
                 s: '',
-                v: 'Every 75 transactions (Agent/Merchant)',
+                v: 'Tied to Performance Activities (Agent/Merchant)',
               },
               {
                 l: 'Who You Can Refer',
@@ -138,7 +138,7 @@ export default function EarnSection() {
                 v: 'Customers, Agents, Merchants',
               },
               { l: 'Payout Method', s: '', v: "Paid into the User's BIOWALLET" },
-              { l: 'Cost to Join', s: '', v: 'Completely Free' },
+              { l: 'Cost to Join', s: '', v: "Annual Recurring Earned-Back Fees  (NET-GAIN)" },
               {
                 l: 'Earning Expiry',
                 s: '',
@@ -163,8 +163,8 @@ export default function EarnSection() {
               </div>
             ))}
             <div className="relative z-[2] mt-6 rounded-lg border border-biomonie-lemon/20 bg-biomonie-lemon/[0.12] p-4 text-[0.84rem] leading-relaxed text-white/[0.88]">
-              All earnings are transaction-based and only from user downlines.
-              The Single Level Downline Model (SLD) governs the process.
+              All earnings are transaction-based and only from users' downlines.
+              The Single-Level Downline Model (SLD) governs the process.
               Everybody earns in the BIOMONIE ecosystem.
             </div>
           </motion.div>

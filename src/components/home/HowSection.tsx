@@ -1,11 +1,25 @@
-import { Dna, Store, Coins } from 'lucide-react';
+import { Banknote, Coins, UserPlus, ArrowLeftRight,  Forward } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Reveal, RevealItem, RevealStagger } from '@/lib/motion';
 
 const steps = [
   {
     n: '01',
-    Icon: Dna,
+    Icon: UserPlus,
+    title: 'Sign Up',
+    body: (
+      <>
+        Download the{' '}
+        <strong className="font-semibold text-biomonie-teal">BIOMONIE</strong>{' '}
+       App on PlayStore or Appstore or visit a{' '}
+        <strong className="font-semibold text-biomonie-teal">BIOMONIE</strong>{' '}
+        Merchant or Agent outlet to open a <strong className="font-semibold text-biomonie-teal">BIOMONIE</strong>{' '} wallet with your NIN or BVN, fund with a transfer and  <strong className="font-semibold text-biomonie-teal">YOU</strong> are Ready to Flex, Pay or Spend within the <strong className="font-semibold text-biomonie-teal">BIOMONIE</strong>{' '} Ecosystem .
+      </>
+    ),
+  },
+  {
+    n: '02',
+    Icon: Banknote,
     title: 'Transfer and Transact',
     body: (
       <>
@@ -20,8 +34,8 @@ const steps = [
     ),
   },
   {
-    n: '02',
-    Icon: Store,
+    n: '03',
+    Icon: ArrowLeftRight, Forward,
     title: 'Transact',
     body: (
       <>
@@ -33,7 +47,7 @@ const steps = [
     ),
   },
   {
-    n: '03',
+    n: '04',
     Icon: Coins,
     title: 'Earn',
     body: (
@@ -78,7 +92,7 @@ export default function HowSection() {
             just show, flex and pay or spend.
           </p>
         </Reveal>
-        <RevealStagger className="grid grid-cols-1 gap-8 min-[900px]:grid-cols-3">
+        <RevealStagger className="grid grid-cols-1 gap-8 sm:grid-cols-2 min-[1180px]:grid-cols-4">
           {steps.map((s) => (
             <RevealItem key={s.n}>
               <motion.div
@@ -95,7 +109,7 @@ export default function HowSection() {
                 <h3 className="mb-2 text-[1.12rem] font-bold text-biomonie-text">
                   {s.title}
                 </h3>
-                <p className="text-[0.93rem] leading-relaxed text-biomonie-text/[0.72]">
+                <p className="text-[0.80rem] leading-relaxed text-biomonie-text/[0.72]">
                   {s.body}
                 </p>
               </motion.div>

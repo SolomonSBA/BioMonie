@@ -4,7 +4,7 @@ import { Reveal } from '@/lib/motion';
 
 const benefits = [
   <>
-    <strong>No Device issues.</strong> Your mobile phone becomes the payment
+    <strong>Guarantee Uptime.</strong> Your mobile phone becomes the payment
     acceptance device leveraging our new form of money access.
   </>,
   <>
@@ -12,8 +12,8 @@ const benefits = [
     paid. No waiting. No doubt.
   </>,
   <>
-    <strong>Next to Zero chargebacks.</strong> Transactions are verified at
-    point of payment disputes are virtually eliminated or auto resolved.
+    <strong>Zero chargebacks.</strong> Transactions are verified at
+    point of payment. Disputes are virtually eliminated or auto resolved.
   </>,
   <>
     <strong>Built for all businesses.</strong> Net-gain adoption cost, seamless,
@@ -47,8 +47,8 @@ export default function MerchantsSection() {
           <Reveal delay={0.1}>
             <p className="mb-6 text-[1.06rem] leading-[1.75] text-biomonie-text/[0.74]">
               Your customers pay with the new form of money access;{' '}
-              <strong className="font-semibold text-biomonie-teal">YOU</strong>{' '}
-              and you paid instantly every time transactions are performed. No
+              <strong className="font-semibold text-biomonie-teal">YOU,</strong>{' '}
+              and you earn instantly every time transactions are performed. No
               Device issues. No downtime.
             </p>
           </Reveal>

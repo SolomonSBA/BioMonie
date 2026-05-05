@@ -1,5 +1,5 @@
-import { motion, useReducedMotion } from 'framer-motion';
-import type { MouseEvent } from 'react';
+import { motion, useReducedMotion, type Variants } from 'framer-motion';
+import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import {
   Globe,
   ShieldCheck,
@@ -73,6 +73,167 @@ function FadeUp({
   );
 }
 
+const HERO_LANGUAGE_TAGLINES = [
+  { top: 'Finger', bottom: 'Nah Money!' },
+  { top: 'Tẹ̀ka', bottom: 'Gbowó.' },
+  { top: 'Yatsan', bottom: 'Kuɗi.' },
+  { top: 'Ákà', bottom: 'Ègò.' },
+] as const;
+
+const LANG_CYCLE_MS = 4000;
+
+const wordRevealContainer: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.14,
+      delayChildren: 0.38,
+    },
+  },
+};
+
+const wordRevealChild: Variants = {
+  hidden: { opacity: 0, y: 10, filter: 'blur(6px)' },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { duration: 0.45, ease: easeOutExpo },
+  },
+};
+
+/** Cycles each language: stickman shakes L→R, then bottom line reveals word-by-word; all four always stay visible. */
+function HeroLanguageTaglineStrip() {
+  const reduceMotion = useReducedMotion();
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [playKey, setPlayKey] = useState(() => [0, 0, 0, 0]);
+  const prevActiveIdx = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (reduceMotion) return;
+    const id = window.setInterval(() => {
+      setActiveIdx((i) => (i + 1) % HERO_LANGUAGE_TAGLINES.length);
+    }, LANG_CYCLE_MS);
+    return () => window.clearInterval(id);
+  }, [reduceMotion]);
+
+  useEffect(() => {
+    if (reduceMotion) return;
+    if (prevActiveIdx.current === null) {
+      prevActiveIdx.current = activeIdx;
+      return;
+    }
+    if (prevActiveIdx.current === activeIdx) return;
+    prevActiveIdx.current = activeIdx;
+    setPlayKey((prev) => {
+      const next = [...prev];
+      next[activeIdx] += 1;
+      return next;
+    });
+  }, [activeIdx, reduceMotion]);
+
+  const gridClass =
+    'grid w-full min-w-0 grid-cols-2 gap-x-3 gap-y-3 font-sans font-bold sm:grid-cols-4 min-[1180px]:w-auto min-[1180px]:grid-cols-[repeat(4,max-content)] min-[1180px]:justify-end min-[1180px]:gap-x-4';
+
+  if (reduceMotion) {
+    return (
+      <div
+        className={gridClass}
+        role="list"
+        aria-label="Taglines in multiple languages"
+      >
+        {HERO_LANGUAGE_TAGLINES.map((item) => (
+          <div
+            key={item.top}
+            role="listitem"
+            className="inline-grid min-w-0 grid-cols-[auto_1fr] grid-rows-2 items-center justify-items-start gap-x-1.5 text-left"
+          >
+            <img
+              src="/stickMan.svg"
+              alt=""
+              width={20}
+              height={20}
+              className="row-span-2 h-10 w-10 shrink-0 self-center object-contain min-[1180px]:h-12 min-[1180px]:w-12"
+              aria-hidden
+            />
+            <span className="whitespace-nowrap font-sans text-[clamp(0.85rem,2.4vw,1.45rem)] font-extrabold leading-none text-white">
+              {item.top}
+            </span>
+            <span className="mt-1 whitespace-nowrap text-[clamp(0.75rem,1.8vw,0.95rem)] font-extrabold leading-none text-white">
+              {item.bottom}
+            </span>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className={gridClass}
+      role="list"
+      aria-label="Taglines in multiple languages"
+    >
+      {HERO_LANGUAGE_TAGLINES.map((item, idx) => {
+        const isTurn = activeIdx === idx;
+        const tokens = item.bottom.split(/(\s+)/).filter((t) => t.length > 0);
+
+        return (
+          <div
+            key={item.top}
+            role="listitem"
+            className="inline-grid min-w-0 grid-cols-[auto_1fr] grid-rows-2 items-center justify-items-start gap-x-1.5 text-left"
+          >
+            <motion.img
+              key={`stick-${idx}-${playKey[idx]}`}
+              src="/stickMan.svg"
+              alt=""
+              width={20}
+              height={20}
+              className="row-span-2 h-10 w-10 shrink-0 self-center object-contain min-[1180px]:h-12 min-[1180px]:w-12"
+              aria-hidden
+              initial={{ x: 0 }}
+              animate={
+                isTurn ? { x: [0, -6, 6, -5, 5, -4, 4, -2, 2, 0] } : { x: 0 }
+              }
+              transition={{ duration: 0.52, ease: 'easeInOut' }}
+            />
+            <span className="whitespace-nowrap font-sans text-[clamp(0.85rem,2.4vw,1.45rem)] font-extrabold leading-none text-white">
+              {item.top}
+            </span>
+            {isTurn ? (
+              <motion.span
+                key={`bottom-${idx}-${playKey[idx]}`}
+                className="mt-1 flex min-w-0 flex-wrap items-baseline gap-x-1 font-extrabold leading-none text-biomonie-lemon"
+                style={{
+                  fontSize: 'clamp(0.75rem, 1.8vw, 0.95rem)',
+                }}
+                initial="hidden"
+                animate="visible"
+                variants={wordRevealContainer}
+              >
+                {tokens.map((token, wi) => (
+                  <motion.span
+                    key={`${wi}-${token}`}
+                    variants={wordRevealChild}
+                    className="inline-block whitespace-pre"
+                  >
+                    {token}
+                  </motion.span>
+                ))}
+              </motion.span>
+            ) : (
+              <span className="mt-1 whitespace-nowrap text-[clamp(0.75rem,1.8vw,0.95rem)] font-extrabold leading-none text-white">
+                {item.bottom}
+              </span>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function HeroSection() {
   const reduce = useReducedMotion();
   const billsCategories = [
@@ -117,37 +278,12 @@ export default function HeroSection() {
       <div className="-mt-4 mb-3 flex w-full flex-col items-center gap-3 min-[1180px]:mb-10 min-[1180px]:flex-row min-[1180px]:items-center min-[1180px]:justify-between">
         <div className="inline-flex max-w-full items-center gap-2 rounded-md border border-biomonie-lemon/40 bg-biomonie-lemon/[0.11] px-3 py-2 text-left text-[0.62rem] font-bold uppercase leading-snug tracking-[0.12em] text-biomonie-lemon shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] sm:px-4 sm:text-[0.72rem] sm:tracking-[0.14em]">
           <Globe className="h-3.5 w-3.5 shrink-0 opacity-90" aria-hidden />
-          <p className="text-[1rem]">The First-Ever Global Biometric <span className="block">Cardless Payment Ecosystem</span> </p>
-          
+          <p className="text-[1rem]">
+            The First-Ever Global Biometric{' '}
+            <span className="block">Cardless Payment Ecosystem</span>{' '}
+          </p>
         </div>
-        <div className="grid w-full grid-cols-2 gap-x-4 gap-y-4 font-sans font-bold sm:grid-cols-4 min-[1180px]:w-auto min-[1180px]:grid-cols-[repeat(4,max-content)] min-[1180px]:justify-end min-[1180px]:gap-x-5">
-          {[
-            { top: 'Finger', bottom: 'Nah Money!' },
-            { top: 'Tẹ̀ka', bottom: 'Gbowó.' },
-            { top: 'Yatsan', bottom: 'Kuɗi.' },
-            { top: 'Ákà', bottom: 'Ègò.' },
-          ].map((item) => (
-            <div
-              key={item.top}
-              className="inline-grid grid-cols-[auto_1fr] grid-rows-2 items-center justify-center gap-x-1.5 text-left"
-            >
-              <img
-                src="/stickMan.svg"
-                alt=""
-                width={20}
-                height={20}
-                className="row-span-2 h-12 w-12 self-center object-contain opacity-95"
-                aria-hidden
-              />
-              <span className="whitespace-nowrap font-sans text-[clamp(1.05rem,1.9vw,1.5rem)] font-extrabold leading-none text-white">
-                {item.top}
-              </span>
-              <span className="mt-1 whitespace-nowrap text-[0.95rem] font-extrabold leading-none text-white">
-                {item.bottom}
-              </span>
-            </div>
-          ))}
-        </div>
+        <HeroLanguageTaglineStrip />
       </div>
 
       <HeroMessageCarousel />
