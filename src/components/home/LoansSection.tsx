@@ -8,7 +8,7 @@ const cards = [
     title: "Threshold-Based Eligibility",
     body: (
       <>
-        PAY-FRONTs are offered against guaranteed payouts. If <span className="font-semibold text-biomonie-lemon">YOU</span> consistently meet your transaction thresholds over a period, you qualify to apply for a BIOMONIE PAY-FRONT.
+        PAY-FRONTs are offered against guaranteed payouts. If <span className="font-semibold text-biomonie-lemon">YOU</span> consistently meet your transaction activity threshold over a period, you qualify to apply for a BIOMONIE PAY-FRONT.
       </>
     ),
   },

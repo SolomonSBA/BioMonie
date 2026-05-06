@@ -4,7 +4,7 @@ import { Reveal } from '@/lib/motion';
 
 const benefits = [
   <>
-    <strong>Guarantee Uptime.</strong> Your mobile phone becomes the payment
+    <strong>Guaranteed Uptime.</strong> Your mobile phone becomes the payment
     acceptance device leveraging our new form of money access.
   </>,
   <>

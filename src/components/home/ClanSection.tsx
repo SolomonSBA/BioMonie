@@ -11,7 +11,7 @@ const clanFlow = [
     action:
       'They are ARMs who are also entrusted with similar responsibilities but additionally supervise others ARMs. They build, manage, and grow the network of ARMs in their assigned clusters thereby driving ecosystem growth and overall platform earning capacity.',
   },
-  { actor: 'PEEP (PP)', action: 'They are the backroom personnel responsible for platform availability , stability, reliability,  and overall performance. They provide support to BIOMONIE affilaite, relationships managers, clusters managers, technical partners' },
+  { actor: 'PEEP (PP)', action: 'They are the backroom personnel responsible for platform availability , stability, reliability,  and overall performance. They provide support to BIOMONIE Affiliates, Affiliate Relationships Managers, Cluster Managers, technical partners and any other partner.' },
 ] as const;
 
 // const clanStats = [
