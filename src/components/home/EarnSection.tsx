@@ -5,7 +5,7 @@ import { Reveal } from '@/lib/motion';
 export default function EarnSection() {
   return (
     <section id="earn" className="bg-biomonie-pale px-[5%] py-[100px]">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 items-start gap-16 min-[900px]:grid-cols-2 min-[900px]:gap-20">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 items-start gap-16 min-[900px]:grid-cols-2 min-[900px]:items-stretch min-[900px]:gap-20">
         <div>
           <Reveal>
             <div className="mb-4 border-l-[3px] border-biomonie-lemon pl-3 text-[0.75rem] font-bold uppercase tracking-[0.14em] text-biomonie-teal">
@@ -104,11 +104,11 @@ export default function EarnSection() {
           ))}
         </div>
 
-        <Reveal delay={0.08}>
+        <Reveal delay={0.08} className="min-[900px]:h-full">
           <motion.div
             whileHover={{ y: -3 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="relative overflow-hidden rounded-2xl border border-biomonie-teal/15 bg-biomonie-teal p-10 shadow-biomonie-md"
+            className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-biomonie-teal/15 bg-biomonie-teal p-10 shadow-biomonie-md min-[900px]:h-full"
           >
             <div className="absolute -right-[15%] -top-[30%] h-80 w-80 rounded-full bg-[radial-gradient(circle,rgba(245,255,0,.12),transparent_70%)]" />
             <h3 className="relative z-[2] mb-6 text-[1.22rem] font-bold text-biomonie-lemon">
@@ -178,10 +178,12 @@ export default function EarnSection() {
                 </span>
               </div>
             ))}
-            <div className="relative z-[2] mt-6 rounded-lg border border-biomonie-lemon/20 bg-biomonie-lemon/[0.12] p-4 text-[0.84rem] leading-relaxed text-white/[0.88]">
+            <div className="relative z-[2] mt-auto pt-6">
+              <div className="rounded-lg border border-biomonie-lemon/20 bg-biomonie-lemon/[0.12] p-4 text-[0.84rem] leading-relaxed text-white/[0.88]">
               All earnings are transaction-based and only from users' downlines.
               The Single-Level Downline Model (SLD) governs the process.
-              Everybody earns in the BIOMONIE ecosystem..
+              Everybody earns in the BIOMONIE ecosystem.
+              </div>
             </div>
           </motion.div>
         </Reveal>

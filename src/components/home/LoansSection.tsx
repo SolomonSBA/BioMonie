@@ -49,7 +49,12 @@ export default function LoansSection() {
         </Reveal>
         <Reveal delay={0.1}>
           <p className="mb-14 max-w-[620px] text-[1.06rem] leading-[1.75] text-white/[0.8]">
-            Meet your transaction thresholds and unlock access to <span className="font-semibold text-biomonie-lemon">BIOMONIE</span> <span>PAY-FRONTs</span>   all deposited directly into your{" "}
+            Meet your transaction thresholds and unlock access to{" "}
+            <span className="inline-flex whitespace-nowrap">
+              <span className="font-semibold text-biomonie-lemon">BIOMONIE</span>
+              <span className="ml-1">PAY-FRONTs</span>
+            </span>{" "}
+            all deposited directly into your{" "}
             <span className="font-semibold text-biomonie-lemon">BIOWALLET</span>.
           </p>
         </Reveal>
