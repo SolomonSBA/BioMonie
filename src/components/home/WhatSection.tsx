@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import type { MouseEvent } from 'react';
-import { PadlockWithKeyIcon } from '@/components/icons/PadlockWithKeyIcon';
+import { CheckCircle2 } from 'lucide-react';
 import { Reveal, easeOutExpo } from '@/lib/motion';
 import { navigateToSection } from '@/lib/section-nav';
 
@@ -16,40 +16,87 @@ export default function WhatSection() {
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-16 min-[900px]:grid-cols-2 min-[900px]:gap-20">
         <Reveal className="order-2 min-[900px]:order-1">
           <motion.div
-            className="relative flex min-h-[400px] flex-col items-center justify-center overflow-hidden rounded-2xl bg-biomonie-teal p-12 shadow-biomonie-md"
+            className="relative flex min-h-[520px] items-center justify-center"
             whileHover={reduce ? undefined : { scale: 1.01 }}
             transition={{ duration: 0.45, ease: easeOutExpo }}
           >
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_65%_30%,rgba(245,255,0,.14),transparent_58%)]" />
-            <div className="absolute inset-0 bg-[linear-gradient(145deg,transparent_40%,rgba(15,30,38,0.25)_100%)]" />
-            {reduce ? (
-              <PadlockWithKeyIcon
-                className="relative z-[2] h-36 w-36 text-biomonie-lemon drop-shadow-[0_0_36px_rgba(245,255,0,0.35)]"
-                strokeWidth={1.15}
-              />
-            ) : (
+            <div className="relative mx-auto flex w-full max-w-[520px] items-center justify-center">
+              <div className="pointer-events-none absolute -left-10 top-2 h-[80px] w-[80px] rounded-[44%_56%_60%_40%/52%_40%_60%_48%] bg-biomonie-lemon/40 blur-[0.5px]" />
+
+              <div className="relative z-[2] w-[340px] overflow-hidden rounded-2xl shadow-[0_24px_60px_rgba(12,26,34,.18)]">
+                <motion.img
+                  src="/imageforsection/customer.webp"
+                  alt="Biomonie biometric payment"
+                  className="h-[500px] w-full object-cover object-top"
+                  animate={
+                    reduce
+                      ? undefined
+                      : { scale: [1, 1.035, 1], y: [0, -6, 0] }
+                  }
+                  transition={
+                    reduce
+                      ? undefined
+                      : { duration: 9, repeat: Infinity, ease: 'easeInOut' }
+                  }
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_50%,rgba(12,26,34,.7)_100%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_15%,rgba(12,26,34,.78)_100%)]" />
+                <div className="absolute bottom-5 left-5 font-serif text-[1.25rem] font-bold leading-[1.15] text-white">
+                  Just <span className="text-biomonie-lemon">YOU</span>.
+                  <br />
+                  No pin. No card. No limit.
+                </div>
+              </div>
+
               <motion.div
-                className="relative z-[2]"
-                animate={{ y: [0, -4, 0] }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
+                className="absolute -right-10 top-14 z-[2] hidden w-[140px] overflow-hidden border-4 border-cyan-50 rounded-2xl shadow-[0_18px_44px_rgba(12,26,34,.14)] min-[1100px]:block"
+                animate={reduce ? undefined : { y: [0, -10, 0] }}
+                transition={
+                  reduce
+                    ? undefined
+                    : { duration: 7, repeat: Infinity, ease: 'easeInOut' }
+                }
                 aria-hidden
               >
-                <PadlockWithKeyIcon
-                  className="h-36 w-36 text-biomonie-lemon drop-shadow-[0_0_36px_rgba(245,255,0,0.35)]"
-                  strokeWidth={1.15}
+                <img
+                  src="/imageforsection/Firefly_Gemini Flash_A handsome Nigerian man in his late 20s to mid-30s, wearing a cream traditional agbad 735960.webp"
+                  alt=""
+                  className="h-[180px] w-full object-cover object-top"
                 />
+                {/* <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(12,26,34,.45)_100%)]" /> */}
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_15%,rgba(12,26,34,.78)_100%)]" />
               </motion.div>
-            )}
-            <div className="relative z-[2] mt-5 inline-flex items-center justify-center gap-2 text-center text-[0.92rem] font-bold uppercase tracking-[0.12em] text-biomonie-lemon">
-              <span>YOU are the money access</span>
-              <PadlockWithKeyIcon
-                className="h-4 w-auto shrink-0 text-biomonie-lemon [aspect-ratio:32/24]"
-                strokeWidth={2.2}
-              />
+
+              <motion.div
+                className="absolute bottom-[22%] left-[-12%] z-[3] hidden items-center gap-2 rounded-xl border border-white/40 bg-white px-4 py-3 text-[0.78rem] font-semibold text-biomonie-text shadow-[0_8px_32px_rgba(0,0,0,.18)] sm:flex"
+                animate={reduce ? undefined : { y: [0, -10, 0] }}
+                transition={
+                  reduce
+                    ? undefined
+                    : { duration: 4, repeat: Infinity, ease: 'easeInOut' }
+                }
+              >
+                <span className="h-2 w-2 rounded-full bg-biomonie-lemon" />
+                <span>No PIN needed</span>
+              </motion.div>
+
+              <motion.div
+                className="absolute right-[-10%] top-[30%] z-[3] hidden items-center gap-2 rounded-xl border border-white/40 bg-white px-4 py-3 text-[0.78rem] font-semibold text-biomonie-text shadow-[0_8px_32px_rgba(0,0,0,.18)] sm:flex"
+                animate={reduce ? undefined : { y: [0, -10, 0] }}
+                transition={
+                  reduce
+                    ? undefined
+                    : {
+                        duration: 5,
+                        repeat: Infinity,
+                        ease: 'easeInOut',
+                        delay: 1,
+                      }
+                }
+              >
+                <CheckCircle2 className="h-4 w-4 text-biomonie-teal" />
+                <span>Zero chargebacks</span>
+              </motion.div>
             </div>
           </motion.div>
         </Reveal>

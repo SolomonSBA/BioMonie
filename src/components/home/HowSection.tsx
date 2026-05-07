@@ -1,10 +1,9 @@
-import { Banknote, Coins, UserPlus, ArrowLeftRight,  Forward } from 'lucide-react';
+import { Banknote, Coins, UserPlus, ArrowRight, ScanLine } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Reveal, RevealItem, RevealStagger } from '@/lib/motion';
 
 const steps = [
   {
-    n: '01',
     Icon: UserPlus,
     title: 'Sign Up',
     body: (
@@ -18,7 +17,6 @@ const steps = [
     ),
   },
   {
-    n: '02',
     Icon: Banknote,
     title: 'Transfer and Transact',
     body: (
@@ -34,9 +32,8 @@ const steps = [
     ),
   },
   {
-    n: '03',
-    Icon: ArrowLeftRight, Forward,
-    title: 'Transact',
+    Icon: ScanLine,
+    title: 'Flex & Transact',
     body: (
       <>
         Fund your wallet then continuously Flex, Pay or Spend, Cash-in or
@@ -47,7 +44,6 @@ const steps = [
     ),
   },
   {
-    n: '04',
     Icon: Coins,
     title: 'Earn',
     body: (
@@ -75,9 +71,8 @@ export default function HowSection() {
         </Reveal>
         <Reveal delay={0.05}>
           <h2 className="mb-4 text-[clamp(1.9rem,4vw,3rem)] font-extrabold leading-[1.15] tracking-tight text-biomonie-text">
-            Three easy steps
+            Four easy steps to
             <br />
-            to{' '}
             <em className="not-italic text-biomonie-teal">
               your new money access
             </em>
@@ -92,30 +87,53 @@ export default function HowSection() {
             just show, flex and pay or spend.
           </p>
         </Reveal>
-        <RevealStagger className="grid grid-cols-1 gap-8 sm:grid-cols-2 min-[1180px]:grid-cols-4">
-          {steps.map((s) => (
-            <RevealItem key={s.n}>
-              <motion.div
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-                className="relative h-full rounded-xl border border-[#dde8f0] bg-biomonie-card p-8 shadow-biomonie-sm transition-shadow duration-300 hover:border-biomonie-teal/20 hover:shadow-biomonie-md"
-              >
-                <span className="absolute right-6 top-5 font-mono text-[3rem] font-bold leading-none text-biomonie-teal/[0.12]">
-                  {s.n}
-                </span>
-                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-biomonie-teal/10 text-biomonie-teal">
-                  <s.Icon className="h-6 w-6" strokeWidth={1.5} />
-                </div>
-                <h3 className="mb-2 text-[1.12rem] font-bold text-biomonie-text">
-                  {s.title}
-                </h3>
-                <p className="text-[0.80rem] leading-relaxed text-biomonie-text/[0.72]">
-                  {s.body}
-                </p>
-              </motion.div>
-            </RevealItem>
-          ))}
-        </RevealStagger>
+
+        <div className="relative">
+          <div className="pointer-events-none absolute left-[12%] right-[12%] top-[34px] hidden h-px bg-gradient-to-r from-transparent via-biomonie-teal/20 to-transparent min-[1180px]:block" />
+          <RevealStagger className="grid grid-cols-1 gap-8 sm:grid-cols-2 min-[1180px]:grid-cols-4 min-[1180px]:gap-0">
+            {steps.map((s, i) => (
+              <RevealItem key={s.title}>
+                <motion.div
+                  whileHover={{ y: -6 }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative px-1 text-center min-[1180px]:px-5"
+                >
+                  <div className="relative mx-auto mb-5 flex h-[68px] w-[68px] items-center justify-center">
+                    <motion.div
+                      className="absolute inset-0 rounded-full border-2 border-biomonie-lemon/45"
+                      animate={{ rotate: 360 }}
+                      transition={{
+                        duration: 8,
+                        repeat: Infinity,
+                        ease: 'linear',
+                        delay: i * 0.25,
+                      }}
+                    >
+                      <span className="absolute -top-[4px] left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-biomonie-lemon shadow-[0_0_10px_rgba(245,255,0,0.7)]" />
+                    </motion.div>
+                    <div className="flex h-[52px] w-[52px] items-center justify-center rounded-full bg-gradient-to-br from-biomonie-teal to-biomonie-teal-dark shadow-[0_6px_20px_rgba(41,92,114,.3)]">
+                      <s.Icon
+                        className="h-[22px] w-[22px] text-biomonie-lemon"
+                        strokeWidth={1.5}
+                      />
+                    </div>
+                  </div>
+                  <h3 className="mb-2 font-serif text-[1.2rem] font-bold text-biomonie-text">
+                    {s.title}
+                  </h3>
+                  <p className="mx-auto text-left max-w-[260px] text-[0.83rem] leading-[1.7] text-biomonie-text/65">
+                    {s.body}
+                  </p>
+                  {i < steps.length - 1 && (
+                    <div className="absolute right-[-14px] top-[20px] hidden h-7 w-7 items-center justify-center rounded-full border border-biomonie-lemon/40 bg-biomonie-pale text-biomonie-lemon min-[1180px]:flex">
+                      <ArrowRight className="h-3 w-3" strokeWidth={2.5} />
+                    </div>
+                  )}
+                </motion.div>
+              </RevealItem>
+            ))}
+          </RevealStagger>
+        </div>
       </div>
     </section>
   );

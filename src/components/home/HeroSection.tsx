@@ -638,7 +638,7 @@ export default function HeroSection() {
                       </div>
                     ))}
                   </div>
-                  <div className="mt-14 flex justify-center">
+                  <div className="mt-10 flex justify-center">
                     <button
                       type="button"
                       className="inline-block w-full self-start rounded-lg bg-biomonie-lemon px-6 py-3.5 text-center text-base font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_8px_32px_rgba(245,255,0,0.25)] sm:w-auto sm:px-9"
