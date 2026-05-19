@@ -1,5 +1,12 @@
 import { motion, useReducedMotion, type Variants } from 'framer-motion';
-import { useEffect, useRef, useState, type MouseEvent } from 'react';
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type CSSProperties,
+  type MouseEvent,
+} from 'react';
 import {
   Globe,
   ShieldCheck,
@@ -82,6 +89,58 @@ const HERO_LANGUAGE_TAGLINES = [
 
 const LANG_CYCLE_MS = 4000;
 
+type HeroParticle = {
+  left: string;
+  top: string;
+  size: number;
+  opacity: number;
+  dx: number;
+  duration: number;
+  delay: number;
+};
+
+function HeroFloatingParticles() {
+  const reduceMotion = useReducedMotion();
+  const particles = useMemo<HeroParticle[]>(
+    () =>
+      Array.from({ length: 12 }, () => ({
+        left: `${Math.random() * 100}%`,
+        top: `${50 + Math.random() * 50}%`,
+        size: 2 + Math.random() * 3,
+        opacity: 0.3 + Math.random() * 0.7,
+        dx: (Math.random() - 0.5) * 180,
+        duration: 5 + Math.random() * 8,
+        delay: -Math.random() * 8,
+      })),
+    [],
+  );
+
+  if (reduceMotion) return null;
+
+  return (
+    <div className="hero-particles" aria-hidden>
+      {particles.map((p, i) => (
+        <div
+          key={i}
+          className="hero-particle"
+          style={
+            {
+              left: p.left,
+              top: p.top,
+              width: p.size,
+              height: p.size,
+              opacity: p.opacity,
+              '--dx': `${p.dx}px`,
+              animationDuration: `${p.duration}s`,
+              animationDelay: `${p.delay}s`,
+            } as CSSProperties
+          }
+        />
+      ))}
+    </div>
+  );
+}
+
 const wordRevealContainer: Variants = {
   hidden: {},
   visible: {
@@ -93,11 +152,10 @@ const wordRevealContainer: Variants = {
 };
 
 const wordRevealChild: Variants = {
-  hidden: { opacity: 0, y: 10, filter: 'blur(6px)' },
+  hidden: { opacity: 0, y: 8 },
   visible: {
     opacity: 1,
     y: 0,
-    filter: 'blur(0px)',
     transition: { duration: 0.45, ease: easeOutExpo },
   },
 };
@@ -236,6 +294,19 @@ function HeroLanguageTaglineStrip() {
 
 export default function HeroSection() {
   const reduce = useReducedMotion();
+  const heroRef = useRef<HTMLElement>(null);
+  const [heroInView, setHeroInView] = useState(true);
+
+  useEffect(() => {
+    const el = heroRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setHeroInView(entry.isIntersecting),
+      { root: null, threshold: 0, rootMargin: '0px 0px -20% 0px' },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
   const billsCategories = [
     { label: 'Airtime & Data', icon: Smartphone },
     { label: 'Electricity Prepaid / Postpaid', icon: Zap },
@@ -265,16 +336,17 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="biomonie-grain relative flex min-h-screen flex-col justify-center overflow-hidden bg-gradient-to-br from-biomonie-teal-dark via-biomonie-teal-mid to-[#1e5c78] px-[5%] pb-24 pt-[120px]">
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(15,30,38,0.2)_0%,transparent_45%,rgba(15,30,38,0.35)_100%)]" />
-      <div className="pointer-events-none absolute -right-[8%] -top-[15%] h-[700px] w-[700px] rounded-full bg-[radial-gradient(circle,rgba(245,255,0,.09),transparent_72%)]" />
-      <div className="pointer-events-none absolute -bottom-[20%] -left-[5%] h-[450px] w-[450px] rounded-full bg-[radial-gradient(circle,rgba(41,92,114,.45),transparent_70%)]" />
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}
-      />
+    <section
+      ref={heroRef}
+      className={`relative flex min-h-screen flex-col justify-center overflow-hidden bg-biomonie-teal-dark px-[5%] pb-24 pt-[120px] ${heroInView ? '' : 'hero-animations-paused'}`}
+    >
+      <div className="hero-mesh" aria-hidden />
+      <HeroFloatingParticles />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(180deg,rgba(15,30,38,0.2)_0%,transparent_45%,rgba(15,30,38,0.35)_100%)]" />
+      <div className="pointer-events-none absolute -right-[8%] -top-[15%] z-[1] h-[700px] w-[700px] rounded-full bg-[radial-gradient(circle,rgba(245,255,0,.09),transparent_72%)]" />
+      <div className="pointer-events-none absolute -bottom-[20%] -left-[5%] z-[1] h-[450px] w-[450px] rounded-full bg-[radial-gradient(circle,rgba(41,92,114,.45),transparent_70%)]" />
+
+      <div className="relative z-[2] flex w-full flex-col">
       <div className="-mt-4 mb-3 flex w-full flex-col items-center gap-3 min-[1180px]:mb-10 min-[1180px]:flex-row min-[1180px]:items-center min-[1180px]:justify-between">
         <div className="inline-flex max-w-full items-center gap-2 rounded-md border border-biomonie-lemon/40 bg-biomonie-lemon/[0.11] px-3 py-2 text-left text-[0.62rem] font-bold uppercase leading-snug tracking-[0.12em] text-biomonie-lemon shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] sm:px-4 sm:text-[0.72rem] sm:tracking-[0.14em]">
           <Globe className="h-3.5 w-3.5 shrink-0 opacity-90" aria-hidden />
@@ -288,7 +360,7 @@ export default function HeroSection() {
 
       <HeroMessageCarousel />
 
-      <div className="relative z-[2] mx-auto grid w-full max-w-[1680px] grid-cols-1 items-stretch gap-y-14 min-[1180px]:grid-cols-3 min-[1180px]:gap-x-6 min-[1180px]:gap-y-0 xl:gap-x-8">
+      <div className="relative mx-auto grid w-full max-w-[1680px] grid-cols-1 items-stretch gap-y-14 min-[1180px]:grid-cols-3 min-[1180px]:gap-x-6 min-[1180px]:gap-y-0 xl:gap-x-8">
         {/* <div className="min-[1024px]:col-span-3">
           
         </div> */}
@@ -510,7 +582,7 @@ export default function HeroSection() {
 
       <FadeUp
         delay={0.34}
-        className="relative z-[2] mx-auto mt-8 w-full max-w-[1680px]"
+        className="relative mx-auto mt-8 w-full max-w-[1680px]"
       >
         <div className="bg-biomonie-teal-dark/24 overflow-hidden rounded-2xl shadow-[0_12px_34px_rgba(3,32,46,0.2)]">
           <div className="grid grid-cols-1 min-[980px]:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
@@ -724,6 +796,7 @@ export default function HeroSection() {
           </div>
         </div>
       </FadeUp>
+      </div>
     </section>
   );
 }

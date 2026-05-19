@@ -49,3 +49,91 @@ body {
   opacity: 0.035;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
+
+@keyframes heroGradShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes heroParticleDrift {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) translateX(var(--dx, 0px));
+    opacity: 0;
+  }
+}
+
+.hero-mesh {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  transform: translateZ(0);
+  contain: paint;
+  background: linear-gradient(
+    135deg,
+    #0c1a22 0%,
+    #1a3d4f 45%,
+    #295c72 75%,
+    #0c1a22 100%
+  );
+  background-size: 400% 400%;
+  animation: heroGradShift 14s ease infinite;
+}
+
+.hero-mesh::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 70% 80% at 55% 50%,
+      rgba(226, 255, 2, 0.05),
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 40% 60% at 10% 80%,
+      rgba(41, 92, 114, 0.5),
+      transparent 60%
+    );
+}
+
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: #e2ff02;
+  will-change: transform, opacity;
+  animation: heroParticleDrift linear infinite;
+}
+
+.hero-animations-paused .hero-mesh,
+.hero-animations-paused .hero-particle {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-mesh {
+    animation: none;
+    background-position: 0% 50%;
+  }
+
+  .hero-particle {
+    animation: none;
+    opacity: 0.35;
+  }
+}
