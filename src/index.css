@@ -79,13 +79,13 @@ body {
   contain: paint;
   background: linear-gradient(
     135deg,
-    #0c1a22 0%,
-    #1a3d4f 45%,
-    #295c72 75%,
-    #0c1a22 100%
+    var(--hero-grad-1, #0c1a22) 0%,
+    var(--hero-grad-2, #1a3d4f) 45%,
+    var(--hero-grad-3, #295c72) 75%,
+    var(--hero-grad-4, #0c1a22) 100%
   );
   background-size: 400% 400%;
-  animation: heroGradShift 14s ease infinite;
+  animation: heroGradShift var(--hero-grad-duration, 14s) ease infinite;
 }
 
 .hero-mesh::after {
@@ -103,6 +103,18 @@ body {
       rgba(41, 92, 114, 0.5),
       transparent 60%
     );
+}
+
+.hero-grid-lines {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.75;
+  background-image:
+    linear-gradient(rgba(226, 255, 2, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(226, 255, 2, 0.08) 1px, transparent 1px);
+  background-size: 72px 72px;
 }
 
 .hero-particles {

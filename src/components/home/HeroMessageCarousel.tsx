@@ -201,7 +201,7 @@ export default function HeroMessageCarousel() {
       aria-roledescription="carousel"
       aria-label="Key messages"
     >
-      <div className="relative isolate min-h-[13.5rem] overflow-hidden border-y border-white/[0.12] shadow-[0_12px_48px_rgba(15,30,38,0.45)] sm:min-h-[15rem] sm:rounded-xl sm:border sm:border-white/[0.12] lg:min-h-[15rem] xl:min-h-[15rem]">
+      <div className="relative isolate min-h-[13.5rem] overflow-hidden border-y border-white/[0.12] bg-[linear-gradient(120deg,rgba(8,24,32,0.95)_0%,rgba(20,53,69,0.9)_58%,rgba(12,28,36,0.95)_100%)] shadow-[0_12px_48px_rgba(15,30,38,0.45)] sm:min-h-[15rem] sm:rounded-xl sm:border sm:border-white/[0.12] lg:min-h-[15rem] xl:min-h-[15rem]">
         <div className="pointer-events-none absolute left-0 top-0 z-[6] h-0 w-0 border-r-[48px] border-t-[48px] border-r-transparent border-t-biomonie-lemon sm:border-r-[64px] sm:border-t-[64px]" />
 
         <AnimatePresence mode="sync" initial={false}>

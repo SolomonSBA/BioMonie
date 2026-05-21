@@ -144,7 +144,7 @@ export default function WhatSection() {
               <strong className="font-semibold text-biomonie-teal">
                 BIOMONIE
               </strong>{' '}
-              ecosystem: from the moment you opt to join, you automaically
+              ecosystem: from the moment you opt to join, you Automatically
               become a Biomonie Affiliate and can grow your downlines and earn
               everytime tranasctions are performed.{' '}
               {/* <strong className="font-semibold text-biomonie-teal">YOU</strong>.

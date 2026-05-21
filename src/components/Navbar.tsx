@@ -40,7 +40,7 @@ export default function Navbar() {
     { key: 'customers', sectionId: 'who', label: 'For Customers' },
     { key: 'agents', sectionId: 'who', label: 'For Agents' },
     { key: 'merchants', sectionId: 'merchants', label: 'For Merchants' },
-    { key: 'faq', sectionId: 'faq', label: 'FAQ' },
+    { key: 'faq', sectionId: 'faq', label: 'FAQS' },
   ];
 
   const onSectionClick = (

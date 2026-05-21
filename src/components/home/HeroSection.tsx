@@ -81,13 +81,21 @@ function FadeUp({
 }
 
 const HERO_LANGUAGE_TAGLINES = [
-  { top: 'Finger', bottom: 'Nah Money!' },
+  { top: 'Finger', bottom: 'Na Money!' },
   { top: 'Tẹ̀ka', bottom: 'Gbowó.' },
   { top: 'Yatsan', bottom: 'Kuɗi.' },
   { top: 'Ákà', bottom: 'Ègò.' },
 ] as const;
 
 const LANG_CYCLE_MS = 4000;
+const HERO_DOT_COUNT = 70;
+const HERO_GRADIENT_DURATION_SEC = 18;
+const HERO_GRADIENT_COLORS = {
+  c1: '#0c1a22',
+  c2: '#1f4a61',
+  c3: '#2f7393',
+  c4: '#0c1a22',
+};
 
 type HeroParticle = {
   left: string;
@@ -103,7 +111,7 @@ function HeroFloatingParticles() {
   const reduceMotion = useReducedMotion();
   const particles = useMemo<HeroParticle[]>(
     () =>
-      Array.from({ length: 12 }, () => ({
+      Array.from({ length: HERO_DOT_COUNT }, () => ({
         left: `${Math.random() * 100}%`,
         top: `${50 + Math.random() * 50}%`,
         size: 2 + Math.random() * 3,
@@ -339,463 +347,474 @@ export default function HeroSection() {
     <section
       ref={heroRef}
       className={`relative flex min-h-screen flex-col justify-center overflow-hidden bg-biomonie-teal-dark px-[5%] pb-24 pt-[120px] ${heroInView ? '' : 'hero-animations-paused'}`}
+      style={
+        {
+          '--hero-grad-duration': `${HERO_GRADIENT_DURATION_SEC}s`,
+          '--hero-grad-1': HERO_GRADIENT_COLORS.c1,
+          '--hero-grad-2': HERO_GRADIENT_COLORS.c2,
+          '--hero-grad-3': HERO_GRADIENT_COLORS.c3,
+          '--hero-grad-4': HERO_GRADIENT_COLORS.c4,
+        } as CSSProperties
+      }
     >
       <div className="hero-mesh" aria-hidden />
+      <div className="hero-grid-lines" aria-hidden />
       <HeroFloatingParticles />
       <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(180deg,rgba(15,30,38,0.2)_0%,transparent_45%,rgba(15,30,38,0.35)_100%)]" />
       <div className="pointer-events-none absolute -right-[8%] -top-[15%] z-[1] h-[700px] w-[700px] rounded-full bg-[radial-gradient(circle,rgba(245,255,0,.09),transparent_72%)]" />
       <div className="pointer-events-none absolute -bottom-[20%] -left-[5%] z-[1] h-[450px] w-[450px] rounded-full bg-[radial-gradient(circle,rgba(41,92,114,.45),transparent_70%)]" />
 
       <div className="relative z-[2] flex w-full flex-col">
-      <div className="-mt-4 mb-3 flex w-full flex-col items-center gap-3 min-[1180px]:mb-10 min-[1180px]:flex-row min-[1180px]:items-center min-[1180px]:justify-between">
-        <div className="inline-flex max-w-full items-center gap-2 rounded-md border border-biomonie-lemon/40 bg-biomonie-lemon/[0.11] px-3 py-2 text-left text-[0.62rem] font-bold uppercase leading-snug tracking-[0.12em] text-biomonie-lemon shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] sm:px-4 sm:text-[0.72rem] sm:tracking-[0.14em]">
-          <Globe className="h-3.5 w-3.5 shrink-0 opacity-90" aria-hidden />
-          <p className="text-[1rem]">
-            The First-Ever Global Biometric{' '}
-            <span className="block">Cardless Payment Ecosystem</span>{' '}
-          </p>
+        <div className="-mt-4 mb-3 flex w-full flex-col items-center gap-3 min-[1180px]:mb-10 min-[1180px]:flex-row min-[1180px]:items-center min-[1180px]:justify-between">
+          <div className="inline-flex max-w-full items-center gap-2 rounded-md border border-biomonie-lemon/40 bg-biomonie-lemon/[0.11] px-3 py-2 text-left text-[0.62rem] font-bold uppercase leading-snug tracking-[0.12em] text-biomonie-lemon shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] sm:px-4 sm:text-[0.72rem] sm:tracking-[0.14em]">
+            <Globe className="h-3.5 w-3.5 shrink-0 opacity-90" aria-hidden />
+            <p className="text-[1rem]">
+              The First-Ever Global Biometric{' '}
+              <span className="block">Cardless Payment Ecosystem</span>{' '}
+            </p>
+          </div>
+          <HeroLanguageTaglineStrip />
         </div>
-        <HeroLanguageTaglineStrip />
-      </div>
 
-      <HeroMessageCarousel />
+        <HeroMessageCarousel />
 
-      <div className="relative mx-auto grid w-full max-w-[1680px] grid-cols-1 items-stretch gap-y-14 min-[1180px]:grid-cols-3 min-[1180px]:gap-x-6 min-[1180px]:gap-y-0 xl:gap-x-8">
-        {/* <div className="min-[1024px]:col-span-3">
+        <div className="relative mx-auto grid w-full max-w-[1680px] grid-cols-1 items-stretch gap-y-14 min-[1180px]:grid-cols-3 min-[1180px]:gap-x-6 min-[1180px]:gap-y-0 xl:gap-x-8">
+          {/* <div className="min-[1024px]:col-span-3">
           
         </div> */}
-        {/* Push this panel toward the center divider: outer flex justify-end + inner max-width (not w-full on outer). */}
-        <div className="w-full min-w-0 max-[1179px]:mx-auto max-[1179px]:max-w-xl lg:pr-10 min-[1180px]:flex min-[1180px]:h-full min-[1180px]:min-h-0 min-[1180px]:max-w-none min-[1180px]:flex-col min-[1180px]:items-start min-[1180px]:justify-start min-[1180px]:pr-6">
-          <div className="flex w-full max-w-[540px] flex-col text-left max-[1179px]:mx-auto min-[1180px]:h-full min-[1180px]:min-h-0 min-[1180px]:flex-1">
-            <HeroColumnMark variant={1} />
-            <div className="flex min-h-0 flex-col min-[1180px]:flex-1">
-              <div className="min-[1180px]:overflow-visible">
-                <FadeUp delay={0.08}>
-                  <h1 className="mb-5 text-center text-[clamp(0.95rem,3.5vw,2.9rem)] font-extrabold leading-[1.08] tracking-[-0.04em] text-white min-[1180px]:min-h-0">
-                    <span className="block">Explore the </span>
-                    <span className="block"> new form of</span>
-                    <span className="block text-[0.94em] tracking-[-0.05em] sm:whitespace-nowrap">
-                      Money Access
-                    </span>
-                    <em className="not-italic">
-                      &quot;
-                      <span className="text-biomonie-lemon drop-shadow-[0_0_40px_rgba(245,255,0,0.15)]">
-                        YOU
+          {/* Push this panel toward the center divider: outer flex justify-end + inner max-width (not w-full on outer). */}
+          <div className="w-full min-w-0 max-[1179px]:mx-auto max-[1179px]:max-w-xl lg:pr-10 min-[1180px]:flex min-[1180px]:h-full min-[1180px]:min-h-0 min-[1180px]:max-w-none min-[1180px]:flex-col min-[1180px]:items-start min-[1180px]:justify-start min-[1180px]:pr-6">
+            <div className="flex w-full max-w-[540px] flex-col text-left max-[1179px]:mx-auto min-[1180px]:h-full min-[1180px]:min-h-0 min-[1180px]:flex-1">
+              <HeroColumnMark variant={1} />
+              <div className="flex min-h-0 flex-col min-[1180px]:flex-1">
+                <div className="min-[1180px]:overflow-visible">
+                  <FadeUp delay={0.08}>
+                    <h1 className="mb-5 text-center text-[clamp(0.95rem,3.5vw,2.9rem)] font-extrabold leading-[1.08] tracking-[-0.04em] text-white min-[1180px]:min-h-0">
+                      <span className="block">Explore the </span>
+                      <span className="block"> new form of</span>
+                      <span className="block text-[0.94em] tracking-[-0.05em] sm:whitespace-nowrap">
+                        Money Access
                       </span>
-                      &quot;
-                    </em>
-                  </h1>
-                </FadeUp>
-                <FadeUp delay={0.16}>
-                  <p className="mb-5 mt-0 max-w-[540px] text-[0.8rem] leading-snug text-white/[0.88] min-[1180px]:min-h-[92px]">
-                    <span className="block">
-                      <span className="font-semibold text-biomonie-lemon">
-                        BIOMONIE
-                      </span>{' '}
-                      makes you the money access for any and all your payment
-                      and cash needs.
-                    </span>
-                    <span className="block">
-                      No pin, No password and Nothing else;
-                    </span>
+                      <em className="not-italic">
+                        &quot;
+                        <span className="text-biomonie-lemon drop-shadow-[0_0_40px_rgba(245,255,0,0.15)]">
+                          YOU
+                        </span>
+                        &quot;
+                      </em>
+                    </h1>
+                  </FadeUp>
+                  <FadeUp delay={0.16}>
+                    <p className="mb-5 mt-0 max-w-[540px] text-[0.8rem] leading-snug text-white/[0.88] min-[1180px]:min-h-[92px]">
+                      <span className="block">
+                        <span className="font-semibold text-biomonie-lemon">
+                          BIOMONIE
+                        </span>{' '}
+                        makes you the money access for any and all your payment
+                        and cash needs.
+                      </span>
+                      <span className="block">
+                        No PIN, No password and Nothing else;
+                      </span>
 
-                    <span className="block">
-                      Just{' '}
-                      <strong className="font-bold text-biomonie-lemon">
-                        YOU
-                      </strong>
-                      .
-                    </span>
-                  </p>
+                      <span className="block">
+                        Just{' '}
+                        <strong className="font-bold text-biomonie-lemon">
+                          YOU
+                        </strong>
+                        .
+                      </span>
+                    </p>
+                  </FadeUp>
+                </div>
+
+                <FadeUp delay={0.22} className="w-full min-[1180px]:mt-0">
+                  <div className="mb-6 flex w-full flex-shrink-0 flex-wrap justify-center gap-3 sm:gap-4 min-[1180px]:mb-3 min-[1180px]:justify-center">
+                    <motion.a
+                      href="/join"
+                      onClick={(e) => onSectionClick(e, 'join')}
+                      whileTap={{ scale: 0.98 }}
+                      className="inline-block w-full self-start rounded-lg bg-biomonie-lemon px-6 py-3.5 text-center text-base font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_8px_32px_rgba(245,255,0,0.25)] sm:w-auto sm:px-9"
+                    >
+                      Get Started — It&apos;s Free
+                    </motion.a>
+                  </div>
                 </FadeUp>
               </div>
 
-              <FadeUp delay={0.22} className="w-full min-[1180px]:mt-0">
-                <div className="mb-6 flex w-full flex-shrink-0 flex-wrap justify-center gap-3 sm:gap-4 min-[1180px]:mb-3 min-[1180px]:justify-center">
-                  <motion.a
-                    href="/join"
-                    onClick={(e) => onSectionClick(e, 'join')}
-                    whileTap={{ scale: 0.98 }}
-                    className="inline-block w-full self-start rounded-lg bg-biomonie-lemon px-6 py-3.5 text-center text-base font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_8px_32px_rgba(245,255,0,0.25)] sm:w-auto sm:px-9"
-                  >
-                    Get Started — It&apos;s Free
-                  </motion.a>
+              <FadeUp delay={0.28}>
+                <div className={heroStatGridClass}>
+                  {[
+                    { k: 'Net-Gain', l: 'To join and refer.' },
+                    {
+                      k: 'Payout',
+                      l: 'Earned per activated Agent / Merchant referral.',
+                    },
+                    {
+                      k: 'Low-cost',
+                      l: 'Per transaction. Flat, simple and fair.',
+                    },
+                  ].map((s) => (
+                    <div key={s.k} className="min-w-0 text-left">
+                      <div className={heroStatTitleClass}>{s.k}</div>
+                      <div className={heroStatDescClass}>{s.l}</div>
+                    </div>
+                  ))}
                 </div>
               </FadeUp>
             </div>
+          </div>
 
-            <FadeUp delay={0.28}>
-              <div className={heroStatGridClass}>
-                {[
-                  { k: 'Net-Gain', l: 'To join and refer.' },
-                  {
-                    k: 'Payout',
-                    l: 'Earned per activated Agent / Merchant referral.',
-                  },
-                  {
-                    k: 'Low-cost',
-                    l: 'Per transaction. Flat, simple and fair.',
-                  },
-                ].map((s) => (
-                  <div key={s.k} className="min-w-0 text-left">
-                    <div className={heroStatTitleClass}>{s.k}</div>
-                    <div className={heroStatDescClass}>{s.l}</div>
-                  </div>
-                ))}
+          <motion.div
+            className="relative w-full min-w-0 max-[1179px]:mx-auto max-[1179px]:max-w-xl min-[1180px]:mx-0 min-[1180px]:flex min-[1180px]:h-full min-[1180px]:min-h-0 min-[1180px]:max-w-none min-[1180px]:flex-col min-[1180px]:pl-6"
+            initial={reduce ? false : { opacity: 0, y: 20 }}
+            animate={reduce ? false : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.2, ease: easeOutExpo }}
+          >
+            <HeroColumnMark variant={2} />
+            <div className="pointer-events-none absolute left-0 top-0 hidden h-[610px] w-px bg-white/[0.28] min-[1180px]:block" />
+            <div className="flex min-h-0 flex-col min-[1180px]:flex-1">
+              <div className="min-[1180px]:overflow-visible">
+                <p className="mb-5 text-center text-[clamp(0.95rem,3.5vw,2.9rem)] font-extrabold leading-[1.08] tracking-[-0.04em] text-white min-[1180px]:min-h-0">
+                  <span className="block">Be part</span>
+                  <span className="block">of the new</span>
+                  <span className="block text-[0.94em] tracking-[-0.05em]">
+                    <span className="text-biomonie-lemon">BIOMONIE</span>
+                  </span>
+                  <span className="block text-[0.94em] tracking-[-0.05em]">
+                    Ecosystem
+                  </span>
+                </p>
+
+                <p className="mb-5 mt-0 text-[0.8rem] leading-snug text-white/[0.88] min-[1180px]:min-h-[92px] min-[1180px]:max-w-[540px]">
+                  <span className="font-semibold text-biomonie-lemon">
+                    BIOMONIE
+                  </span>{' '}
+                  ecosystem allows Customers pay, Merchants receive payments and
+                  Agents offer cash-in or cash-out services. All with the new
+                  money access.{' '}
+                  {/* <span className="font-semibold text-biomonie-lemon">YOU</span>. */}
+                </p>
               </div>
-            </FadeUp>
-          </div>
-        </div>
 
-        <motion.div
-          className="relative w-full min-w-0 max-[1179px]:mx-auto max-[1179px]:max-w-xl min-[1180px]:mx-0 min-[1180px]:flex min-[1180px]:h-full min-[1180px]:min-h-0 min-[1180px]:max-w-none min-[1180px]:flex-col min-[1180px]:pl-6"
-          initial={reduce ? false : { opacity: 0, y: 20 }}
-          animate={reduce ? false : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.2, ease: easeOutExpo }}
-        >
-          <HeroColumnMark variant={2} />
-          <div className="pointer-events-none absolute left-0 top-0 hidden h-[610px] w-px bg-white/[0.28] min-[1180px]:block" />
-          <div className="flex min-h-0 flex-col min-[1180px]:flex-1">
-            <div className="min-[1180px]:overflow-visible">
-              <p className="mb-5 text-center text-[clamp(0.95rem,3.5vw,2.9rem)] font-extrabold leading-[1.08] tracking-[-0.04em] text-white min-[1180px]:min-h-0">
-                <span className="block">Be part</span>
-                <span className="block">of the new</span>
-                <span className="block text-[0.94em] tracking-[-0.05em]">
-                  <span className="text-biomonie-lemon">BIOMONIE</span>
-                </span>
-                <span className="block text-[0.94em] tracking-[-0.05em]">
-                  Ecosystem
-                </span>
-              </p>
-
-              <p className="mb-5 mt-0 text-[0.8rem] leading-snug text-white/[0.88] min-[1180px]:min-h-[92px] min-[1180px]:max-w-[540px]">
-                <span className="font-semibold text-biomonie-lemon">
-                  BIOMONIE
-                </span>{' '}
-                ecosystem allows Customers pay, Merchants receive payments and
-                Agents offer cash-in or cash-out services. All with the new
-                money access.{' '}
-                {/* <span className="font-semibold text-biomonie-lemon">YOU</span>. */}
-              </p>
-            </div>
-
-            <div className="mb-6 flex w-full flex-shrink-0 flex-wrap justify-center gap-3 sm:gap-4 min-[1180px]:mb-3 min-[1180px]:mt-0 min-[1180px]:justify-center">
-              <motion.a
-                href="/how"
-                onClick={(e) => onSectionClick(e, 'how')}
-                whileTap={{ scale: 0.98 }}
-                className="inline-block w-full rounded-lg border-2 border-white/40 bg-white/[0.04] px-6 py-3.5 text-center text-base font-semibold text-white no-underline backdrop-blur-[2px] transition duration-200 hover:border-biomonie-lemon hover:bg-white/[0.07] hover:text-biomonie-lemon sm:w-auto sm:px-9"
-              >
-                Learn How It Works
-              </motion.a>
-            </div>
-          </div>
-
-          <div className={heroStatGridClass}>
-            {[
-              { k: 'Customers', l: ' can pay with a flex and earn.' },
-              {
-                k: 'Merchants',
-                l: 'can receive payments with a flex and earn.',
-              },
-              {
-                k: 'Agents',
-                l: 'can provide agent banking services with a flex and earn.',
-              },
-            ].map((s) => (
-              <div key={s.k} className="min-w-0 text-left">
-                <div className={heroStatTitleClass}>{s.k}</div>
-                <div className={heroStatDescClass}>{s.l}</div>
+              <div className="mb-6 flex w-full flex-shrink-0 flex-wrap justify-center gap-3 sm:gap-4 min-[1180px]:mb-3 min-[1180px]:mt-0 min-[1180px]:justify-center">
+                <motion.a
+                  href="/how"
+                  onClick={(e) => onSectionClick(e, 'how')}
+                  whileTap={{ scale: 0.98 }}
+                  className="inline-block w-full rounded-lg border-2 border-white/40 bg-white/[0.04] px-6 py-3.5 text-center text-base font-semibold text-white no-underline backdrop-blur-[2px] transition duration-200 hover:border-biomonie-lemon hover:bg-white/[0.07] hover:text-biomonie-lemon sm:w-auto sm:px-9"
+                >
+                  Learn How It Works
+                </motion.a>
               </div>
-            ))}
-          </div>
-        </motion.div>
-
-        <motion.div
-          className="relative w-full min-w-0 max-[1179px]:mx-auto max-[1179px]:max-w-xl min-[1180px]:mx-0 min-[1180px]:flex min-[1180px]:h-full min-[1180px]:min-h-0 min-[1180px]:max-w-none min-[1180px]:flex-col min-[1180px]:pl-6"
-          initial={reduce ? false : { opacity: 0, y: 20 }}
-          animate={reduce ? false : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.28, ease: easeOutExpo }}
-        >
-          <HeroColumnMark variant={3} />
-          <div className="pointer-events-none absolute left-0 top-0 hidden h-[610px] w-px bg-white/[0.28] min-[1180px]:block" />
-          <div className="flex min-h-0 flex-col min-[1180px]:flex-1">
-            <div className="min-[1180px]:overflow-visible">
-              <p className="mb-5 text-center text-[clamp(0.95rem,3.5vw,2.9rem)] font-extrabold leading-[1.08] tracking-[-0.04em] text-white min-[1180px]:min-h-0">
-                <span className="block">Join &amp; Earn</span>
-                <span className="block">as a</span>
-                <span className="block text-[0.94em] tracking-[-0.05em]">
-                  <span className="text-biomonie-lemon">BIOMONIE</span>
-                </span>
-                <span className="block text-[0.94em] tracking-[-0.05em]">
-                  Affiliate
-                </span>
-              </p>
-
-              <p className="mb-5 mt-0 text-[0.8rem] leading-snug text-white/[0.88] min-[1180px]:min-h-[92px] min-[1180px]:max-w-[540px]">
-                <span className="font-semibold text-biomonie-lemon">
-                  BIOMONIE
-                </span>{' '}
-                Affiliates allows anyone and everyone to refer customers,
-                merchants or agents as Single Level Downline (SLD), earn
-                refferal fee and continoulsy earn on transactions they perform
-                within the ecosystem.{' '}
-                {/* <span className="font-semibold text-biomonie-lemon">YOU</span>. */}
-              </p>
             </div>
 
-            <div className="mb-6 flex w-full flex-shrink-0 flex-wrap justify-center gap-3 sm:gap-4 min-[1180px]:mb-3 min-[1180px]:mt-0 min-[1180px]:justify-center">
-              <motion.a
-                href="/join"
-                onClick={(e) => onSectionClick(e, 'join')}
-                whileTap={{ scale: 0.98 }}
-                className="inline-block w-full self-start rounded-lg bg-biomonie-lemon px-6 py-3.5 text-center text-base font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_8px_32px_rgba(245,255,0,0.25)] sm:w-auto sm:px-9"
-              >
-                Join Now — It&apos;s Free
-              </motion.a>
-            </div>
-          </div>
-
-          <div className={heroStatGridClass}>
-            {[
-              {
-                k: 'Refer',
-                l: ' everyone and anyone; customers, agents or merchants.',
-              },
-              {
-                k: 'Earn',
-                l: 'everytime they perform transactions.',
-              },
-              {
-                k: 'Grow',
-                l: 'your downlines and earn perpetually.',
-              },
-            ].map((s) => (
-              <div key={`third-${s.k}`} className="min-w-0 text-left">
-                <div className={heroStatTitleClass}>{s.k}</div>
-                <div className={heroStatDescClass}>{s.l}</div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-      </div>
-
-      <FadeUp
-        delay={0.34}
-        className="relative mx-auto mt-8 w-full max-w-[1680px]"
-      >
-        <div className="bg-biomonie-teal-dark/24 overflow-hidden rounded-2xl shadow-[0_12px_34px_rgba(3,32,46,0.2)]">
-          <div className="grid grid-cols-1 min-[980px]:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
-            <div className="bg-biomonie-teal-dark/24 border-biomonie-lemon/1 relative flex items-center justify-center border-b px-6 py-7 text-center min-[980px]:border-b-0 min-[980px]:border-r">
-              <span className="absolute inset-y-0 left-0 w-[4px] bg-biomonie-lemon" />
-              <div className="mx-auto w-full max-w-[24ch]">
-                <div className="mb-3 flex justify-center">
-                  <img
-                    src="/imageforslider/BillsLogo.png"
-                    alt=""
-                    width={100}
-                    height={100}
-                    className="h-20 w-20 object-contain object-center"
-                  />
+            <div className={heroStatGridClass}>
+              {[
+                { k: 'Customers', l: ' can pay with a flex and earn.' },
+                {
+                  k: 'Merchants',
+                  l: 'can receive payments with a flex and earn.',
+                },
+                {
+                  k: 'Agents',
+                  l: 'can provide agent banking services with a flex and earn.',
+                },
+              ].map((s) => (
+                <div key={s.k} className="min-w-0 text-left">
+                  <div className={heroStatTitleClass}>{s.k}</div>
+                  <div className={heroStatDescClass}>{s.l}</div>
                 </div>
-                <h3 className="font-sans text-[clamp(1.25rem,1.8vw,1.65rem)] font-extrabold leading-[1.24] text-white">
-                  Everyday bills paid{' '}
-                  <span className="text-biomonie-lemon">smarter</span> with you
-                  always earning. YOU also earn everytime your downlines pay
-                  bills too with{' '}
-                  <span className="text-biomonie-lemon">BIOMONIE</span> Bills.
-                </h3>
-              </div>
+              ))}
             </div>
-            <div className="bg-biomonie-teal-dark/12 px-6 py-7">
-              <p className="mb-4 max-w-[60ch] text-[1rem] leading-relaxed text-white/100">
-                Pay bills with a flex. No friction. Nothing else.{' '}
-                <span className="font-semibold text-biomonie-lemon">YOU</span>{' '}
-                are the money access; every bills payment earns within the{' '}
-                <span className="font-semibold text-biomonie-lemon">
-                  BIOMONIE
-                </span>{' '}
-                Ecosystem.
-              </p>
-              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 min-[1080px]:grid-cols-5">
-                {billsCategories.map((item) => {
-                  const BillIcon = item.icon;
-                  const isAndMore = item.label === 'And more...';
-                  return (
-                    <div
-                      key={item.label}
-                      className={`rounded-md border border-biomonie-teal-light/30 bg-white/[0.03] px-2 py-2 text-center transition-colors duration-200 hover:border-biomonie-lemon/35 hover:bg-biomonie-lemon/[0.08] ${
-                        isAndMore
-                          ? 'flex items-center justify-center min-[1080px]:col-start-5 min-[1080px]:row-span-2'
-                          : ''
-                      }`}
-                    >
-                      <div className={isAndMore ? '' : ''}>
-                        <BillIcon className="mx-auto mb-1 h-3.5 w-3.5 text-biomonie-lemon/85" />
-                        <span className="text-[0.54rem] font-semibold uppercase tracking-[0.06em] text-white/80">
-                          {item.label}
-                        </span>
-                      </div>
-                    </div>
-                  );
-                })}
+          </motion.div>
+
+          <motion.div
+            className="relative w-full min-w-0 max-[1179px]:mx-auto max-[1179px]:max-w-xl min-[1180px]:mx-0 min-[1180px]:flex min-[1180px]:h-full min-[1180px]:min-h-0 min-[1180px]:max-w-none min-[1180px]:flex-col min-[1180px]:pl-6"
+            initial={reduce ? false : { opacity: 0, y: 20 }}
+            animate={reduce ? false : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.28, ease: easeOutExpo }}
+          >
+            <HeroColumnMark variant={3} />
+            <div className="pointer-events-none absolute left-0 top-0 hidden h-[610px] w-px bg-white/[0.28] min-[1180px]:block" />
+            <div className="flex min-h-0 flex-col min-[1180px]:flex-1">
+              <div className="min-[1180px]:overflow-visible">
+                <p className="mb-5 text-center text-[clamp(0.95rem,3.5vw,2.9rem)] font-extrabold leading-[1.08] tracking-[-0.04em] text-white min-[1180px]:min-h-0">
+                  <span className="block">Join &amp; Earn</span>
+                  <span className="block">as a</span>
+                  <span className="block text-[0.94em] tracking-[-0.05em]">
+                    <span className="text-biomonie-lemon">BIOMONIE</span>
+                  </span>
+                  <span className="block text-[0.94em] tracking-[-0.05em]">
+                    Affiliate
+                  </span>
+                </p>
+
+                <p className="mb-5 mt-0 text-[0.8rem] leading-snug text-white/[0.88] min-[1180px]:min-h-[92px] min-[1180px]:max-w-[540px]">
+                  <span className="font-semibold text-biomonie-lemon">
+                    BIOMONIE
+                  </span>{' '}
+                  Affiliates allows anyone and everyone to refer customers,
+                  merchants or agents as Single Level Downline (SLD), earn
+                  refferal fee and continoulsy earn on transactions they perform
+                  within the ecosystem.{' '}
+                  {/* <span className="font-semibold text-biomonie-lemon">YOU</span>. */}
+                </p>
               </div>
-              <div className="mt-14 flex justify-center">
-                <button
-                  type="button"
+
+              <div className="mb-6 flex w-full flex-shrink-0 flex-wrap justify-center gap-3 sm:gap-4 min-[1180px]:mb-3 min-[1180px]:mt-0 min-[1180px]:justify-center">
+                <motion.a
+                  href="/join"
+                  onClick={(e) => onSectionClick(e, 'join')}
+                  whileTap={{ scale: 0.98 }}
                   className="inline-block w-full self-start rounded-lg bg-biomonie-lemon px-6 py-3.5 text-center text-base font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_8px_32px_rgba(245,255,0,0.25)] sm:w-auto sm:px-9"
                 >
-                  Get Started & PAY BILLS Now...
-                </button>
+                  Join Now — It&apos;s Free
+                </motion.a>
               </div>
             </div>
-          </div>
 
-          <div className="bg-biomonie-teal-dark/24 h-5 border-y border-biomonie-teal-light/20" />
-
-          <div className="grid grid-cols-1 min-[980px]:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
-            <div className="bg-biomonie-teal-dark/24 border-biomonie-white-light/20 relative flex items-center justify-center border-b px-6 py-7 text-center min-[980px]:border-b-0 min-[980px]:border-r">
-              <span className="absolute inset-y-0 left-0 w-[4px] bg-biomonie-lemon" />
-              <div className="mx-auto w-full max-w-[24ch]">
-                <div className="mb-3 flex justify-center">
-                  <img
-                    src="/imageforslider/ReachLogo.png"
-                    alt=""
-                    width={100}
-                    height={100}
-                    className="h-20 w-20 object-contain object-center"
-                  />
+            <div className={heroStatGridClass}>
+              {[
+                {
+                  k: 'Refer',
+                  l: ' everyone and anyone; customers, agents or merchants.',
+                },
+                {
+                  k: 'Earn',
+                  l: 'everytime they perform transactions.',
+                },
+                {
+                  k: 'Grow',
+                  l: 'your downlines and earn perpetually.',
+                },
+              ].map((s) => (
+                <div key={`third-${s.k}`} className="min-w-0 text-left">
+                  <div className={heroStatTitleClass}>{s.k}</div>
+                  <div className={heroStatDescClass}>{s.l}</div>
                 </div>
-                <h3 className="font-sans text-[clamp(1.05rem,1.8vw,1.65rem)] font-extrabold leading-[1.24] text-white">
-                  Intervention that{' '}
-                  <span className="text-biomonie-lemon">reaches</span> the right
-                  people, and{' '}
-                  <span className="text-biomonie-lemon">collects</span> evidence
-                  they were there with{' '}
-                  <span className="text-biomonie-lemon">BIOMONIE</span> Reach &
-                  Collect.
-                </h3>
-              </div>
+              ))}
             </div>
-            <div className="bg-biomonie-teal-dark/12 px-6 py-7">
-              <div className="relative grid grid-cols-1 gap-5 min-[1080px]:grid-cols-2">
-                {/* <span className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-white/[50] min-[1080px]:block" /> */}
-
-                {/* <article className="min-w-0 border-b border-biomonie-white-light/20 pb-5 min-[1080px]:border-b-0 min-[1080px]:pr-5"> */}
-                <article className="min-w-0 border-b border-white/[0.1] pb-5 min-[1080px]:border-b-0 min-[1080px]:border-r min-[1080px]:border-white/[0.28] min-[1080px]:pr-5">
-                  <h4 className="mb-2 font-sans text-[1.15rem] font-extrabold leading-none text-white">
-                    <span className="text-biomonie-lemon">BIOMONIE</span> Reach
-                  </h4>
-                  <p className="mb-3 text-[0.88rem] leading-relaxed text-white/100">
-                    Direct cash or value disbursement from sponsors to verified
-                    beneficiaries. No leakage. No ghost recipients. Delivery
-                    confirmed to the right person{' '}
-                    <span className="font-semibold text-biomonie-lemon">
-                      YOU
-                    </span>{' '}
-                    are the money access.
-                  </p>
-                  <div className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
-                    {reachStats.map((item) => (
-                      <div
-                        key={item.title}
-                        className="rounded-md border border-biomonie-teal-light/30 bg-white/[0.03] px-3 py-2"
-                      >
-                        <p className="mb-1 text-[0.7rem] font-bold uppercase tracking-[0.06em] text-biomonie-lemon">
-                          {item.title}
-                        </p>
-                        <p className="text-[0.62rem] leading-snug text-white/70">
-                          {item.detail}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-10 flex justify-center">
-                    <button
-                      type="button"
-                      className="inline-block w-full self-start rounded-lg bg-biomonie-lemon px-6 py-3.5 text-center text-base font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_8px_32px_rgba(245,255,0,0.25)] sm:w-auto sm:px-9"
-                    >
-                      Get Started & REACH Someone Now...
-                    </button>
-                  </div>
-                </article>
-
-                <article className="min-w-0 min-[1080px]:pl-5">
-                  <h4 className="mb-2 font-sans text-[1.15rem] font-extrabold leading-none text-white">
-                    <span className="text-biomonie-lemon">BIOMONIE</span>{' '}
-                    Collect
-                  </h4>
-                  <p className="mb-3 text-[0.88rem] leading-relaxed text-white/100">
-                    Goods and voucher collection at approved vendor outlets.
-                    Recipients are verified at the point of collection{' '}
-                    <span className="font-semibold text-biomonie-lemon">
-                      YOU
-                    </span>{' '}
-                    are the money access. No duplication, no fraud.
-                  </p>
-                  <div className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-3">
-                    {collectStats.map((item) => (
-                      <div
-                        key={item.title}
-                        className="rounded-md border border-biomonie-teal-light/30 bg-white/[0.03] px-3 py-2"
-                      >
-                        <p className="mb-1 text-[0.7rem] font-bold uppercase tracking-[0.06em] text-biomonie-lemon">
-                          {item.title}
-                        </p>
-                        <p className="text-[0.5rem] leading-snug text-white/70">
-                          {item.detail}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-14 flex justify-center">
-                    <button
-                      type="button"
-                      className="inline-block w-full rounded-lg border-2 border-white/40 bg-white/[0.04] px-6 py-3.5 text-center text-base font-semibold text-white no-underline backdrop-blur-[2px] transition duration-200 hover:border-biomonie-lemon hover:bg-white/[0.07] hover:text-biomonie-lemon sm:w-auto sm:px-9"
-                    >
-                      Get Started with COLLECT Now...
-                    </button>
-                  </div>
-                </article>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex justify-center bg-biomonie-teal-dark/20 px-5 py-3 sm:px-7">
-            <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
-              <span className="inline-flex items-center gap-1 whitespace-nowrap text-[0.52rem] font-bold uppercase tracking-[0.07em] text-white/80">
-                <ShieldCheck className="h-3 w-3 text-biomonie-lemon" />
-                Zero Leakage
-              </span>
-              <span className="hidden h-3 w-px bg-biomonie-lemon/35 sm:block" />
-              <span className="inline-flex items-center gap-1 whitespace-nowrap text-[0.52rem] font-bold uppercase tracking-[0.07em] text-white/80">
-                <Lock className="h-3 w-3 text-biomonie-lemon" />
-                No Ghost Recipients
-              </span>
-              <span className="hidden h-3 w-px bg-biomonie-lemon/35 sm:block" />
-              <span className="inline-flex items-center gap-1 whitespace-nowrap text-[0.52rem] font-bold uppercase tracking-[0.07em] text-white/80">
-                <CheckCircle2 className="h-3 w-3 text-biomonie-lemon" />
-                Auditable Records
-              </span>
-              <span className="hidden h-3 w-px bg-biomonie-lemon/35 sm:block" />
-              <span className="inline-flex items-center gap-1 whitespace-nowrap text-[0.52rem] font-bold uppercase tracking-[0.07em] text-white/80">
-                <ShieldCheck className="h-3 w-3 text-biomonie-lemon" />
-                Instant Payments
-              </span>
-              <span className="hidden h-3 w-px bg-biomonie-lemon/35 sm:block" />
-              <span className="inline-flex items-center gap-1 whitespace-nowrap text-[0.52rem] font-bold uppercase tracking-[0.07em] text-white/80">
-                <Lock className="h-3 w-3 text-biomonie-lemon" />
-                Fraud-Proof Authorisation
-              </span>
-              <span className="hidden h-3 w-px bg-biomonie-lemon/35 sm:block" />
-              <span className="inline-flex items-center gap-1 whitespace-nowrap text-[0.52rem] font-bold uppercase tracking-[0.07em] text-white/80">
-                <CheckCircle2 className="h-3 w-3 text-biomonie-lemon" />
-                Traceable Transactions
-              </span>
-            </div>
-          </div>
+          </motion.div>
         </div>
-      </FadeUp>
+
+        <FadeUp
+          delay={0.34}
+          className="relative mx-auto mt-8 w-full max-w-[1680px]"
+        >
+          <div className="bg-biomonie-teal-dark/24 overflow-hidden rounded-2xl shadow-[0_12px_34px_rgba(3,32,46,0.2)]">
+            <div className="grid grid-cols-1 min-[980px]:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+              <div className="bg-biomonie-teal-dark/24 border-biomonie-lemon/1 relative flex items-center justify-center border-b px-6 py-7 text-center min-[980px]:border-b-0 min-[980px]:border-r">
+                <span className="absolute inset-y-0 left-0 w-[4px] bg-biomonie-lemon" />
+                <div className="mx-auto w-full max-w-[24ch]">
+                  <div className="mb-3 flex justify-center">
+                    <img
+                      src="/imageforslider/BillsLogo.png"
+                      alt=""
+                      width={100}
+                      height={100}
+                      className="h-20 w-20 object-contain object-center"
+                    />
+                  </div>
+                  <h3 className="font-sans text-[clamp(1.25rem,1.8vw,1.65rem)] font-extrabold leading-[1.24] text-white">
+                    Everyday bills paid{' '}
+                    <span className="text-biomonie-lemon">smarter</span> with
+                    you always earning. YOU also earn everytime your downlines
+                    pay bills too with{' '}
+                    <span className="text-biomonie-lemon">BIOMONIE</span> Bills.
+                  </h3>
+                </div>
+              </div>
+              <div className="bg-biomonie-teal-dark/12 px-6 py-7">
+                <p className="mb-4 max-w-[60ch] text-[1rem] leading-relaxed text-white/100">
+                  Pay bills with a flex. No friction. Nothing else.{' '}
+                  <span className="font-semibold text-biomonie-lemon">YOU</span>{' '}
+                  are the money access; every bills payment earns within the{' '}
+                  <span className="font-semibold text-biomonie-lemon">
+                    BIOMONIE
+                  </span>{' '}
+                  Ecosystem.
+                </p>
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 min-[1080px]:grid-cols-5">
+                  {billsCategories.map((item) => {
+                    const BillIcon = item.icon;
+                    const isAndMore = item.label === 'And more...';
+                    return (
+                      <div
+                        key={item.label}
+                        className={`rounded-md border border-biomonie-teal-light/30 bg-white/[0.03] px-2 py-2 text-center transition-colors duration-200 hover:border-biomonie-lemon/35 hover:bg-biomonie-lemon/[0.08] ${
+                          isAndMore
+                            ? 'flex items-center justify-center min-[1080px]:col-start-5 min-[1080px]:row-span-2'
+                            : ''
+                        }`}
+                      >
+                        <div className={isAndMore ? '' : ''}>
+                          <BillIcon className="mx-auto mb-1 h-3.5 w-3.5 text-biomonie-lemon/85" />
+                          <span className="text-[0.54rem] font-semibold uppercase tracking-[0.06em] text-white/80">
+                            {item.label}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="mt-14 flex justify-center">
+                  <button
+                    type="button"
+                    className="inline-block w-full self-start rounded-lg bg-biomonie-lemon px-6 py-3.5 text-center text-base font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_8px_32px_rgba(245,255,0,0.25)] sm:w-auto sm:px-9"
+                  >
+                    Get Started & PAY BILLS Now...
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-biomonie-teal-dark/24 h-5 border-y border-biomonie-teal-light/20" />
+
+            <div className="grid grid-cols-1 min-[980px]:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+              <div className="bg-biomonie-teal-dark/24 border-biomonie-white-light/20 relative flex items-center justify-center border-b px-6 py-7 text-center min-[980px]:border-b-0 min-[980px]:border-r">
+                <span className="absolute inset-y-0 left-0 w-[4px] bg-biomonie-lemon" />
+                <div className="mx-auto w-full max-w-[24ch]">
+                  <div className="mb-3 flex justify-center">
+                    <img
+                      src="/imageforslider/ReachLogo.png"
+                      alt=""
+                      width={100}
+                      height={100}
+                      className="h-20 w-20 object-contain object-center"
+                    />
+                  </div>
+                  <h3 className="font-sans text-[clamp(1.05rem,1.8vw,1.65rem)] font-extrabold leading-[1.24] text-white">
+                    Intervention that{' '}
+                    <span className="text-biomonie-lemon">reaches</span> the
+                    right people, and{' '}
+                    <span className="text-biomonie-lemon">collects</span>{' '}
+                    evidence they were there with{' '}
+                    <span className="text-biomonie-lemon">BIOMONIE</span> Reach
+                    & Collect.
+                  </h3>
+                </div>
+              </div>
+              <div className="bg-biomonie-teal-dark/12 px-6 py-7">
+                <div className="relative grid grid-cols-1 gap-5 min-[1080px]:grid-cols-2">
+                  {/* <span className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-white/[50] min-[1080px]:block" /> */}
+
+                  {/* <article className="min-w-0 border-b border-biomonie-white-light/20 pb-5 min-[1080px]:border-b-0 min-[1080px]:pr-5"> */}
+                  <article className="min-w-0 border-b border-white/[0.1] pb-5 min-[1080px]:border-b-0 min-[1080px]:border-r min-[1080px]:border-white/[0.28] min-[1080px]:pr-5">
+                    <h4 className="mb-2 font-sans text-[1.15rem] font-extrabold leading-none text-white">
+                      <span className="text-biomonie-lemon">BIOMONIE</span>{' '}
+                      Reach
+                    </h4>
+                    <p className="mb-3 text-[0.88rem] leading-relaxed text-white/100">
+                      Direct cash or value disbursement from sponsors to
+                      verified beneficiaries. No leakage. No ghost recipients.
+                      Delivery confirmed to the right person{' '}
+                      <span className="font-semibold text-biomonie-lemon">
+                        YOU
+                      </span>{' '}
+                      are the money access.
+                    </p>
+                    <div className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
+                      {reachStats.map((item) => (
+                        <div
+                          key={item.title}
+                          className="rounded-md border border-biomonie-teal-light/30 bg-white/[0.03] px-3 py-2"
+                        >
+                          <p className="mb-1 text-[0.7rem] font-bold uppercase tracking-[0.06em] text-biomonie-lemon">
+                            {item.title}
+                          </p>
+                          <p className="text-[0.62rem] leading-snug text-white/70">
+                            {item.detail}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-10 flex justify-center">
+                      <button
+                        type="button"
+                        className="inline-block w-full self-start rounded-lg bg-biomonie-lemon px-6 py-3.5 text-center text-base font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_8px_32px_rgba(245,255,0,0.25)] sm:w-auto sm:px-9"
+                      >
+                        Get Started & REACH Someone Now...
+                      </button>
+                    </div>
+                  </article>
+
+                  <article className="min-w-0 min-[1080px]:pl-5">
+                    <h4 className="mb-2 font-sans text-[1.15rem] font-extrabold leading-none text-white">
+                      <span className="text-biomonie-lemon">BIOMONIE</span>{' '}
+                      Collect
+                    </h4>
+                    <p className="mb-3 text-[0.88rem] leading-relaxed text-white/100">
+                      Goods and voucher collection at approved vendor outlets.
+                      Recipients are verified at the point of collection{' '}
+                      <span className="font-semibold text-biomonie-lemon">
+                        YOU
+                      </span>{' '}
+                      are the money access. No duplication, no fraud.
+                    </p>
+                    <div className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-3">
+                      {collectStats.map((item) => (
+                        <div
+                          key={item.title}
+                          className="rounded-md border border-biomonie-teal-light/30 bg-white/[0.03] px-3 py-2"
+                        >
+                          <p className="mb-1 text-[0.7rem] font-bold uppercase tracking-[0.06em] text-biomonie-lemon">
+                            {item.title}
+                          </p>
+                          <p className="text-[0.5rem] leading-snug text-white/70">
+                            {item.detail}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-14 flex justify-center">
+                      <button
+                        type="button"
+                        className="inline-block w-full rounded-lg border-2 border-white/40 bg-white/[0.04] px-6 py-3.5 text-center text-base font-semibold text-white no-underline backdrop-blur-[2px] transition duration-200 hover:border-biomonie-lemon hover:bg-white/[0.07] hover:text-biomonie-lemon sm:w-auto sm:px-9"
+                      >
+                        Get Started with COLLECT Now...
+                      </button>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex justify-center bg-biomonie-teal-dark/20 px-5 py-3 sm:px-7">
+              <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
+                <span className="inline-flex items-center gap-1 whitespace-nowrap text-[0.52rem] font-bold uppercase tracking-[0.07em] text-white/80">
+                  <ShieldCheck className="h-3 w-3 text-biomonie-lemon" />
+                  Zero Leakage
+                </span>
+                <span className="hidden h-3 w-px bg-biomonie-lemon/35 sm:block" />
+                <span className="inline-flex items-center gap-1 whitespace-nowrap text-[0.52rem] font-bold uppercase tracking-[0.07em] text-white/80">
+                  <Lock className="h-3 w-3 text-biomonie-lemon" />
+                  No Ghost Recipients
+                </span>
+                <span className="hidden h-3 w-px bg-biomonie-lemon/35 sm:block" />
+                <span className="inline-flex items-center gap-1 whitespace-nowrap text-[0.52rem] font-bold uppercase tracking-[0.07em] text-white/80">
+                  <CheckCircle2 className="h-3 w-3 text-biomonie-lemon" />
+                  Auditable Records
+                </span>
+                <span className="hidden h-3 w-px bg-biomonie-lemon/35 sm:block" />
+                <span className="inline-flex items-center gap-1 whitespace-nowrap text-[0.52rem] font-bold uppercase tracking-[0.07em] text-white/80">
+                  <ShieldCheck className="h-3 w-3 text-biomonie-lemon" />
+                  Instant Payments
+                </span>
+                <span className="hidden h-3 w-px bg-biomonie-lemon/35 sm:block" />
+                <span className="inline-flex items-center gap-1 whitespace-nowrap text-[0.52rem] font-bold uppercase tracking-[0.07em] text-white/80">
+                  <Lock className="h-3 w-3 text-biomonie-lemon" />
+                  Fraud-Proof Authorisation
+                </span>
+                <span className="hidden h-3 w-px bg-biomonie-lemon/35 sm:block" />
+                <span className="inline-flex items-center gap-1 whitespace-nowrap text-[0.52rem] font-bold uppercase tracking-[0.07em] text-white/80">
+                  <CheckCircle2 className="h-3 w-3 text-biomonie-lemon" />
+                  Traceable Transactions
+                </span>
+              </div>
+            </div>
+          </div>
+        </FadeUp>
       </div>
     </section>
   );
