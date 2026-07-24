@@ -16,6 +16,7 @@ dist-ssr
 server/config.local.js
 server/config.local.json
 server/public
+server/.env
 
 # Editor directories and files
 .vscode/*

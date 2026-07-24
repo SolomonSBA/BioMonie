@@ -2,16 +2,6 @@ import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/home/HeroSection";
-import TrustBanner from "@/components/home/TrustBanner";
-import WhatSection from "@/components/home/WhatSection";
-import HowSection from "@/components/home/HowSection";
-import ForWhomSection from "@/components/home/ForWhomSection";
-import EarnSection from "@/components/home/EarnSection";
-import LoansSection from "@/components/home/LoansSection";
-import MerchantsSection from "@/components/home/MerchantsSection";
-import FAQSection from "@/components/home/FAQSection";
-import ClanSection from "@/components/home/ClanSection";
-import JoinCTASection from "@/components/home/JoinCTASection";
 import { useLocation } from "react-router-dom";
 import { syncSectionNavigationFromUrl } from "@/lib/section-nav";
 
@@ -22,23 +12,25 @@ export default function HomePage() {
     syncSectionNavigationFromUrl(location.pathname, window.location.hash);
   }, [location.pathname]);
 
+  useEffect(() => {
+    const html = document.documentElement;
+    const prevHtmlOverflow = html.style.overflow;
+    const prevBodyOverflow = document.body.style.overflow;
+    html.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+    return () => {
+      html.style.overflow = prevHtmlOverflow;
+      document.body.style.overflow = prevBodyOverflow;
+    };
+  }, []);
+
   return (
-    <>
+    <div className="flex h-dvh flex-col overflow-hidden">
       <Navbar />
-      <main>
+      <main className="flex min-h-0 flex-1 flex-col overflow-hidden">
         <HeroSection />
-        <TrustBanner />
-        <WhatSection />
-        <HowSection />
-        <ForWhomSection />
-        <EarnSection />
-        <LoansSection />
-        <MerchantsSection />
-        <FAQSection />
-        <ClanSection />
-        <JoinCTASection />
       </main>
-      <Footer />
-    </>
+      <Footer compact />
+    </div>
   );
 }

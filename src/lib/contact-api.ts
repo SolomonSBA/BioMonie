@@ -1,6 +1,7 @@
 /**
- * BioMonie contact form — posts to Node API (single-folder deploy).
- * Set VITE_CONTACT_API_URL in .env.production to your live origin if needed.
+ * BioMonie contact form — posts to Node API (same pattern as EncryptKey).
+ * - Same-host SmarterASP deploy: leave VITE_CONTACT_API_URL unset; forms POST to /api/contact.
+ * - Local dev: set VITE_CONTACT_API_URL=http://localhost:3000 in .env.local, run `npm run server`.
  */
 
 export function getContactApiUrl(): string | undefined {
@@ -17,12 +18,13 @@ export type ContactFormData = {
 };
 
 export async function submitContactForm(
-  data: ContactFormData
+  data: ContactFormData,
 ): Promise<{ ok: boolean; error?: string }> {
   const apiUrl = getContactApiUrl();
-  const baseUrl = apiUrl ?? "";
+  const endpoint = apiUrl ? `${apiUrl}/api/contact` : "/api/contact";
+
   try {
-    const res = await fetch(`${baseUrl}/contact`, {
+    const res = await fetch(endpoint, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -31,24 +33,21 @@ export async function submitContactForm(
         phone: data.phone || "",
         interest: data.interest || "",
         message: data.message,
+        _subject: "BioMonie website – Contact form",
       }),
     });
-    const text = await res.text();
-    let json: { ok?: boolean; error?: string } = {};
-    try {
-      json = text ? (JSON.parse(text) as typeof json) : {};
-    } catch {
-      /* non-JSON body */
-    }
+    const json = (await res.json().catch(() => ({}))) as {
+      ok?: boolean;
+      error?: string;
+    };
     if (!res.ok) {
-      const fromServer = typeof json.error === "string" ? json.error : "";
-      const hint404 =
-        res.status === 404
-          ? "Contact API not found. While developing, run `npm run server` in a second terminal (API on port 3000) and keep `npm run dev` running."
-          : "";
       return {
         ok: false,
-        error: fromServer || hint404 || `Request failed (${res.status}). Try again or check that the server is running.`,
+        error:
+          json.error ||
+          (res.status === 404
+            ? "Contact API not found. Run `npm run server` in a second terminal while developing locally."
+            : `Request failed (${res.status}). Try again later.`),
       };
     }
     return { ok: true };
@@ -58,7 +57,7 @@ export async function submitContactForm(
       return {
         ok: false,
         error:
-          "Cannot reach the contact service. Start the API with `npm run server` (port 3000) while using the site locally, or deploy the Node server that serves `/contact`.",
+          "Cannot reach the contact service. Run `npm run server` locally, or deploy the Node server folder to SmarterASP.",
       };
     }
     return { ok: false, error: msg };

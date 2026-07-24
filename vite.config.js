@@ -7,7 +7,7 @@ export default defineConfig({
         host: "::",
         port: 8080,
         proxy: {
-            "/contact": "http://localhost:3000",
+            "/api": "http://localhost:3000",
         },
     },
     resolve: {

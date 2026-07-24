@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "npx vite",
     "build": "npx vite build",
+    "build:deploy": "npm run build:single",
     "preview": "npx vite preview",
     "server": "node server/server.js",
     "build:single": "npx vite build && node -e \"const fs=require('fs'); const p=require('path'); const out=p.join('server','public'); fs.mkdirSync(out,{recursive:true}); fs.readdirSync('dist').forEach(f=>{ const src=p.join('dist',f); const dest=p.join(out,f); fs.cpSync(src, dest, {recursive: true}); }); const srcAssets=p.join('src','assets'); const publicSrcAssets=p.join(out,'src','assets'); if(fs.existsSync(srcAssets)){ fs.mkdirSync(publicSrcAssets,{recursive:true}); fs.cpSync(srcAssets, publicSrcAssets, {recursive:true}); }\""

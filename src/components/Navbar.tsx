@@ -1,9 +1,8 @@
-import { useState, useEffect, type MouseEvent } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import BiomonieLogo from '@/components/icons/BiomonieLogo';
-import { navigateToSection } from '@/lib/section-nav';
 
 const navLinkClass =
   'relative text-sm font-medium text-white/[0.92] transition-colors duration-200 hover:text-biomonie-lemon after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-biomonie-lemon after:transition-all after:duration-300 hover:after:w-full';
@@ -32,30 +31,6 @@ export default function Navbar() {
     };
   }, [open]);
 
-  /** `sectionId` must exist in section-nav; `key` is unique for React lists. */
-  const links: { key: string; sectionId: string; label: string }[] = [
-    { key: 'how', sectionId: 'how', label: 'How It Works' },
-    { key: 'who', sectionId: 'who', label: "Who It's For" },
-    { key: 'earn', sectionId: 'earn', label: 'Earn' },
-    { key: 'customers', sectionId: 'who', label: 'For Customers' },
-    { key: 'agents', sectionId: 'who', label: 'For Agents' },
-    { key: 'merchants', sectionId: 'merchants', label: 'For Merchants' },
-    { key: 'faq', sectionId: 'faq', label: 'FAQS' },
-  ];
-
-  const onSectionClick = (
-    e: MouseEvent<HTMLAnchorElement>,
-    sectionId: string,
-  ) => {
-    e.preventDefault();
-    if (open) {
-      setOpen(false);
-      window.setTimeout(() => navigateToSection(sectionId), 120);
-      return;
-    }
-    navigateToSection(sectionId);
-  };
-
   return (
     <motion.nav
       initial={false}
@@ -82,32 +57,12 @@ export default function Navbar() {
       </Link>
 
       <ul className="hidden min-w-0 list-none items-center justify-end gap-3 min-[1180px]:flex 2xl:gap-5">
-        {links.map((l) => (
-          <li key={l.key} className="shrink-0">
-            <a
-              href={`/${l.sectionId}`}
-              className={`${navLinkClass} whitespace-nowrap text-xs 2xl:text-sm`}
-              onClick={(e) => onSectionClick(e, l.sectionId)}
-            >
-              {l.label}
-            </a>
-          </li>
-        ))}
-        <li className="shrink-0">
-          <a
-            href="/join"
-            className="whitespace-nowrap rounded-lg bg-biomonie-lemon px-4 py-2 text-xs font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_6px_28px_rgba(245,255,0,0.28)] active:scale-[0.98] 2xl:px-5 2xl:py-2.5 2xl:text-sm"
-            onClick={(e) => onSectionClick(e, 'join')}
-          >
-            Get Started
-          </a>
-        </li>
         <li className="shrink-0">
           <Link
             to="/contact"
-            className="whitespace-nowrap text-xs font-semibold text-biomonie-lemon no-underline transition-colors hover:text-white 2xl:text-sm"
+            className={`${navLinkClass} whitespace-nowrap text-xs 2xl:text-sm`}
           >
-            Contact
+            Contact Us
           </Link>
         </li>
       </ul>
@@ -133,33 +88,13 @@ export default function Navbar() {
           >
             <div className="border-b border-white/10 bg-biomonie-teal-dark px-[5%] py-5 shadow-biomonie-nav">
               <ul className="flex list-none flex-col gap-1">
-                {links.map((l) => (
-                  <li key={l.key}>
-                    <a
-                      href={`/${l.sectionId}`}
-                      className="block rounded-lg px-2 py-3 text-[0.95rem] text-white/90 no-underline transition-colors hover:bg-white/5 hover:text-biomonie-lemon"
-                      onClick={(e) => onSectionClick(e, l.sectionId)}
-                    >
-                      {l.label}
-                    </a>
-                  </li>
-                ))}
-                <li className="pt-2">
-                  <a
-                    href="/join"
-                    className="block rounded-lg bg-biomonie-lemon py-3 text-center text-sm font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta"
-                    onClick={(e) => onSectionClick(e, 'join')}
-                  >
-                    Get Started
-                  </a>
-                </li>
                 <li>
                   <Link
                     to="/contact"
                     className="block rounded-lg px-2 py-3 text-center text-sm font-semibold text-biomonie-lemon no-underline hover:text-white"
                     onClick={() => setOpen(false)}
                   >
-                    Contact
+                    Contact Us
                   </Link>
                 </li>
               </ul>
