@@ -46,7 +46,7 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:8080/contact`, submit the form, and check **contact@sterlingprong.com**.
+Open `http://localhost:5173/contact`, submit the form, and check **contact@sterlingprong.com**.
 
 ---
 
