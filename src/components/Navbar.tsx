@@ -76,7 +76,7 @@ export default function Navbar() {
         className="flex min-h-0 min-w-0 max-w-[50vw] shrink items-center no-underline transition-opacity hover:opacity-95 sm:max-w-[240px] min-[1180px]:max-w-[280px]"
       >
         <BiomonieLogo
-          className="block h-12 w-auto max-h-12 translate-y-1 origin-left sm:h-[52px] sm:max-h-[52px] sm:translate-y-1.5 min-[1180px]:h-[60px] min-[1180px]:max-h-[60px] min-[1180px]:translate-y-[15px]"
+          className="block h-10 w-auto max-h-10 sm:h-11 sm:max-h-11 min-[1180px]:h-12 min-[1180px]:max-h-12"
           aria-label="Biomonie"
         />
       </Link>

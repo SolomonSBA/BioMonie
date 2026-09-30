@@ -25,6 +25,9 @@ import {
 import { easeOutExpo } from '@/lib/motion';
 import { navigateToSection } from '@/lib/section-nav';
 import HeroMessageCarousel from '@/components/home/HeroMessageCarousel';
+import BiomonieMark from '@/components/icons/BiomonieMark';
+import HeroColumnScene from '@/components/home/HeroColumnScenes';
+import ProductScene from '@/components/home/ProductScenes';
 
 /** Stat tiles: 3 across on desktop hero; minmax(0,1fr) + min-w-0 cells prevents middle-column overlap.
  *  Equal min-height on desktop so shorter stat rows don’t steal flex space and push CTAs out of alignment. */
@@ -35,23 +38,19 @@ const heroStatTitleClass =
 const heroStatDescClass =
   'mt-1.5 max-w-full break-words text-[0.8rem] leading-snug text-white/[0.68]';
 
-/** Centered mark above column index (1 / 2 / 3). Assets live in /public. */
-function HeroColumnMark({ variant }: { variant: 1 | 2 | 3 | 4 }) {
-  const src =
-    variant === 1 ? '/stickMan.svg' : variant === 2 ? '/7.png' : '/8.png';
+/** Shared box for the Reach / Collect CTAs so both render the same size (colours set per button). */
+const reachCollectButtonClass =
+  'inline-flex w-full items-center justify-center rounded-lg border-2 px-6 py-3.5 text-center text-base font-bold leading-snug no-underline transition duration-200 ease-out-expo max-w-[26rem] min-[1080px]:max-[1439px]:min-h-[4.75rem]';
+
+/** Centered animated mark above column index (1 / 2 / 3): You · Ecosystem · Partner. */
+function HeroColumnMark({ variant }: { variant: 1 | 2 | 3 }) {
   return (
     <div className="mb-3 flex w-full justify-center min-[1180px]:mb-4">
       <div
-        className="flex h-[6.5rem] w-[6.5rem] items-center justify-center rounded-2xl sm:h-[7.5rem] sm:w-[7.5rem] xl:h-[8.5rem] xl:w-[8.5rem]"
+        className="flex h-[6.5rem] w-[6.5rem] items-center justify-center p-1 sm:h-[7.5rem] sm:w-[7.5rem] xl:h-[8.5rem] xl:w-[8.5rem]"
         aria-hidden
       >
-        <img
-          src={src}
-          alt=""
-          width={100}
-          height={100}
-          className="max-h-[96%] max-w-[96%] object-contain object-center"
-        />
+        <HeroColumnScene variant={variant} />
       </div>
     </div>
   );
@@ -168,7 +167,7 @@ const wordRevealChild: Variants = {
   },
 };
 
-/** Cycles each language: stickman shakes L→R, then bottom line reveals word-by-word; all four always stay visible. */
+/** Cycles each language: Biomonie mark cheers (scan pulse, jump), then bottom line reveals word-by-word; all four always stay visible. */
 function HeroLanguageTaglineStrip() {
   const reduceMotion = useReducedMotion();
   const [activeIdx, setActiveIdx] = useState(0);
@@ -214,14 +213,7 @@ function HeroLanguageTaglineStrip() {
             role="listitem"
             className="inline-grid min-w-0 grid-cols-[auto_1fr] grid-rows-2 items-center justify-items-start gap-x-1.5 text-left"
           >
-            <img
-              src="/stickMan.svg"
-              alt=""
-              width={20}
-              height={20}
-              className="row-span-2 h-10 w-10 shrink-0 self-center object-contain min-[1180px]:h-12 min-[1180px]:w-12"
-              aria-hidden
-            />
+            <BiomonieMark className="row-span-2 h-10 w-10 shrink-0 self-center text-biomonie-lemon min-[1180px]:h-12 min-[1180px]:w-12" />
             <span className="whitespace-nowrap font-sans text-[clamp(0.85rem,2.4vw,1.45rem)] font-extrabold leading-none text-white">
               {item.top}
             </span>
@@ -250,19 +242,9 @@ function HeroLanguageTaglineStrip() {
             role="listitem"
             className="inline-grid min-w-0 grid-cols-[auto_1fr] grid-rows-2 items-center justify-items-start gap-x-1.5 text-left"
           >
-            <motion.img
-              key={`stick-${idx}-${playKey[idx]}`}
-              src="/stickMan.svg"
-              alt=""
-              width={20}
-              height={20}
-              className="row-span-2 h-10 w-10 shrink-0 self-center object-contain min-[1180px]:h-12 min-[1180px]:w-12"
-              aria-hidden
-              initial={{ x: 0 }}
-              animate={
-                isTurn ? { x: [0, -6, 6, -5, 5, -4, 4, -2, 2, 0] } : { x: 0 }
-              }
-              transition={{ duration: 0.52, ease: 'easeInOut' }}
+            <BiomonieMark
+              play={isTurn}
+              className="row-span-2 h-10 w-10 shrink-0 self-center text-biomonie-lemon min-[1180px]:h-12 min-[1180px]:w-12"
             />
             <span className="whitespace-nowrap font-sans text-[clamp(0.85rem,2.4vw,1.45rem)] font-extrabold leading-none text-white">
               {item.top}
@@ -546,7 +528,7 @@ export default function HeroSection() {
                     <span className="text-biomonie-lemon">BIOMONIE</span>
                   </span>
                   <span className="block text-[0.94em] tracking-[-0.05em]">
-                    Affiliate
+                    Partner
                   </span>
                 </p>
 
@@ -554,7 +536,7 @@ export default function HeroSection() {
                   <span className="font-semibold text-biomonie-lemon">
                     BIOMONIE
                   </span>{' '}
-                  Affiliates allows anyone and everyone to refer customers,
+                  Partners allows anyone and everyone to refer customers,
                   merchants or agents as Single Level Downline (SLD), earn
                   refferal fee and continoulsy earn on transactions they perform
                   within the ecosystem.{' '}
@@ -608,13 +590,9 @@ export default function HeroSection() {
                 <span className="absolute inset-y-0 left-0 w-[4px] bg-biomonie-lemon" />
                 <div className="mx-auto w-full max-w-[24ch]">
                   <div className="mb-3 flex justify-center">
-                    <img
-                      src="/imageforslider/BillsLogo.png"
-                      alt=""
-                      width={100}
-                      height={100}
-                      className="h-20 w-20 object-contain object-center"
-                    />
+                    <div className="h-20 w-20" aria-hidden>
+                      <ProductScene variant="bills" />
+                    </div>
                   </div>
                   <h3 className="font-sans text-[clamp(1.25rem,1.8vw,1.65rem)] font-extrabold leading-[1.24] text-white">
                     Everyday bills paid{' '}
@@ -676,13 +654,9 @@ export default function HeroSection() {
                 <span className="absolute inset-y-0 left-0 w-[4px] bg-biomonie-lemon" />
                 <div className="mx-auto w-full max-w-[24ch]">
                   <div className="mb-3 flex justify-center">
-                    <img
-                      src="/imageforslider/ReachLogo.png"
-                      alt=""
-                      width={100}
-                      height={100}
-                      className="h-20 w-20 object-contain object-center"
-                    />
+                    <div className="h-20 w-20" aria-hidden>
+                      <ProductScene variant="reach" />
+                    </div>
                   </div>
                   <h3 className="font-sans text-[clamp(1.05rem,1.8vw,1.65rem)] font-extrabold leading-[1.24] text-white">
                     Intervention that{' '}
@@ -700,7 +674,7 @@ export default function HeroSection() {
                   {/* <span className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-white/[50] min-[1080px]:block" /> */}
 
                   {/* <article className="min-w-0 border-b border-biomonie-white-light/20 pb-5 min-[1080px]:border-b-0 min-[1080px]:pr-5"> */}
-                  <article className="min-w-0 border-b border-white/[0.1] pb-5 min-[1080px]:border-b-0 min-[1080px]:border-r min-[1080px]:border-white/[0.28] min-[1080px]:pr-5">
+                  <article className="flex min-w-0 flex-col border-b border-white/[0.1] pb-5 min-[1080px]:border-b-0 min-[1080px]:pb-0 min-[1080px]:border-r min-[1080px]:border-white/[0.28] min-[1080px]:pr-5">
                     <h4 className="mb-2 font-sans text-[1.15rem] font-extrabold leading-none text-white">
                       <span className="text-biomonie-lemon">BIOMONIE</span>{' '}
                       Reach
@@ -729,17 +703,17 @@ export default function HeroSection() {
                         </div>
                       ))}
                     </div>
-                    <div className="mt-10 flex justify-center">
+                    <div className="mt-auto flex justify-center pt-10">
                       <button
                         type="button"
-                        className="inline-block w-full self-start rounded-lg bg-biomonie-lemon px-6 py-3.5 text-center text-base font-bold text-biomonie-teal-dark no-underline shadow-biomonie-cta transition duration-200 ease-out-expo hover:bg-biomonie-lemon2 hover:shadow-[0_8px_32px_rgba(245,255,0,0.25)] sm:w-auto sm:px-9"
+                        className={`${reachCollectButtonClass} border-biomonie-lemon bg-biomonie-lemon text-biomonie-teal-dark shadow-biomonie-cta hover:border-biomonie-lemon2 hover:bg-biomonie-lemon2 hover:shadow-[0_8px_32px_rgba(245,255,0,0.25)]`}
                       >
                         Get Started & REACH Someone Now...
                       </button>
                     </div>
                   </article>
 
-                  <article className="min-w-0 min-[1080px]:pl-5">
+                  <article className="flex min-w-0 flex-col min-[1080px]:pl-5">
                     <h4 className="mb-2 font-sans text-[1.15rem] font-extrabold leading-none text-white">
                       <span className="text-biomonie-lemon">BIOMONIE</span>{' '}
                       Collect
@@ -767,10 +741,10 @@ export default function HeroSection() {
                         </div>
                       ))}
                     </div>
-                    <div className="mt-14 flex justify-center">
+                    <div className="mt-auto flex justify-center pt-10">
                       <button
                         type="button"
-                        className="inline-block w-full rounded-lg border-2 border-white/40 bg-white/[0.04] px-6 py-3.5 text-center text-base font-semibold text-white no-underline backdrop-blur-[2px] transition duration-200 hover:border-biomonie-lemon hover:bg-white/[0.07] hover:text-biomonie-lemon sm:w-auto sm:px-9"
+                        className={`${reachCollectButtonClass} border-white/40 bg-white/[0.04] text-white backdrop-blur-[2px] hover:border-biomonie-lemon hover:bg-white/[0.07] hover:text-biomonie-lemon`}
                       >
                         Get Started with COLLECT Now...
                       </button>

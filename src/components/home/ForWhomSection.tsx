@@ -64,7 +64,7 @@ export default function ForWhomSection() {
             works for anyone; Customers, Merchants or Agents either Paying or
             Spending, Receiving Payment or Cash-in / Cash-out all earning as{' '}
             <span className="font-semibold text-biomonie-lemon">BIOMONIE</span>{' '}
-            Affiliates perpetually.
+            Partners perpetually.
           </p>
         </Reveal>
         <RevealStagger className="grid grid-cols-1 gap-6 min-[900px]:grid-cols-3">

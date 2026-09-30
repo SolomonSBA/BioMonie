@@ -6,14 +6,14 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: "::",
-    port: 8080,
+    port: 5173,
     proxy: {
       "/contact": "http://localhost:3000",
     },
   },
   /** Same proxy as dev — `vite preview` otherwise POST /contact hits the static server and fails. */
   preview: {
-    port: 8080,
+    port: 5173,
     proxy: {
       "/contact": "http://localhost:3000",
     },

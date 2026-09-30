@@ -145,7 +145,7 @@ export default function WhatSection() {
                 BIOMONIE
               </strong>{' '}
               ecosystem: from the moment you opt to join, you Automatically
-              become a Biomonie Affiliate and can grow your downlines and earn
+              become a Biomonie Partner and can grow your downlines and earn
               everytime tranasctions are performed.{' '}
               {/* <strong className="font-semibold text-biomonie-teal">YOU</strong>.
               No one is orphaned on{' '}

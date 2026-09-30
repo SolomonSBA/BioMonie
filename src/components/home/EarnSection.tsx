@@ -9,7 +9,7 @@ export default function EarnSection() {
         <div>
           <Reveal>
             <div className="mb-4 border-l-[3px] border-biomonie-lemon pl-3 text-[0.75rem] font-bold uppercase tracking-[0.14em] text-biomonie-teal">
-              BIOMONIE Affiliates
+              BIOMONIE Partners
             </div>
           </Reveal>
           <Reveal delay={0.06}>
@@ -64,7 +64,7 @@ export default function EarnSection() {
                     BIOWALLETS
                   </strong>{' '}
                   once you meet the applicable transaction threshold. Your first
-                  payout is unlocked once your referrals meet the sign-on
+                  payout is unlocked once your downlines meet the sign-on
                   requirements and subsequent payouts drop based on the
                   applicable transaction thresholds.
                 </>

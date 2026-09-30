@@ -2,16 +2,16 @@ import { Reveal } from '@/lib/motion';
 
 const clanFlow = [
   {
-    actor: 'Affiliate Relationship Manager (ARM)',
+    actor: 'Sales Relationship Manager (SRM)',
     action:
-      'They are responsible for signing up customers, merchants, and agents. They also provide support to users to ensure guaranteed platform satisfaction. ARMs are allowed to work flexibly, fully remote, and at thier own pace whilst still earning.',
+      'They are responsible for signing up customers, merchants, and agents. They also provide support to users to ensure guaranteed platform satisfaction. SRMs are allowed to work flexibly, fully remote, and at thier own pace whilst still earning.',
   },
   {
-    actor: 'Cluster Manager (CM)',
+    actor: 'State Manager (SM)',
     action:
-      'They are ARMs who are also entrusted with similar responsibilities but additionally supervise others ARMs. They build, manage, and grow the network of ARMs in their assigned clusters thereby driving ecosystem growth and overall platform earning capacity.',
+      'They are SRMs who are also entrusted with similar responsibilities but additionally supervise others SRMs. They build, manage, and grow the network of SRMs in their assigned states thereby driving ecosystem growth and overall platform earning capacity.',
   },
-  { actor: 'PEEP (PP)', action: 'They are the backroom personnel responsible for platform availability , stability, reliability,  and overall performance. They provide support to BIOMONIE Affiliates, Affiliate Relationships Managers, Cluster Managers, technical partners and any other partner.' },
+  { actor: 'PEEP (PP)', action: 'They are the backroom personnel responsible for platform availability , stability, reliability,  and overall performance. They provide support to BIOMONIE Partners, Sales Relationship Managers, State Managers, technical partners and any other partner.' },
 ] as const;
 
 // const clanStats = [
@@ -50,8 +50,8 @@ export default function ClanSection() {
               <span className="font-semibold text-biomonie-lemon">
                 BIOMONIE
               </span>{' '}
-              Clan are the Affiliate Relationship Managers (ARMs), Cluster
-              Managers (CMs) and the PEEPs (PPs). They do not just operate the
+              Clan are the Sales Relationship Managers (SRMs), State
+              Managers (SMs) and the PEEPs (PPs). They do not just operate the
               network, they power it, grow it, and earn from it. Every action
               contributes to the ecosystem, and every contribution is rewarded.
             </p>

@@ -108,7 +108,7 @@ export default function ContactPage() {
                   <option value="Customer">Customer</option>
                   <option value="Agent">Agent</option>
                   <option value="Merchant">Merchant</option>
-                  <option value="Affiliate BRM">Affiliate BRM</option>
+                  <option value="Partner SRM">Partner SRM</option>
                   <option value="Other">Other</option>
                 </select>
               </div>

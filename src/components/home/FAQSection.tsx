@@ -27,7 +27,7 @@ const faqs: { q: ReactNode; a: ReactNode }[] = [
     ),
   },
   {
-    q: "How exactly do I earn as an Affiliate BRM?",
+    q: "How exactly do I earn as a Partner SRM?",
     a: "Share your referral code and ensure everyone you introduce uses it. You earn once they complete their 200th transaction for referral-based earnings (₦3,000 — only applicable to Agents and Merchants). After that, you earn ₦500 for every subsequent block of 75 transactions — with no limit and no expiry.",
   },
   {
@@ -47,10 +47,10 @@ const faqs: { q: ReactNode; a: ReactNode }[] = [
     ),
   },
   {
-    q: "Can I earn from the people my referrals refer?",
+    q: "Can I earn from the people my downlines refer?",
     a: (
       <>
-        No. <strong className="text-biomonie-teal">BIOMONIE</strong> uses a Single Level Downline Model (SLD) you earn only from the people you personally introduce. You do not earn from their referrals.
+        No. <strong className="text-biomonie-teal">BIOMONIE</strong> uses a Single Level Downline Model (SLD) you earn only from the people you personally introduce. You do not earn from their downlines.
       </>
     ),
   },
@@ -171,7 +171,7 @@ export default function FAQSection() {
         </Reveal>
         <Reveal delay={0.1}>
           <p className="mb-14 max-w-[620px] text-[1.06rem] leading-[1.75] text-biomonie-text/[0.72]">
-            Everything you need to know about <strong className="font-semibold text-biomonie-teal">BIOMONIE</strong>, the referral programme, and how to get started.
+            Everything you need to know about <strong className="font-semibold text-biomonie-teal">BIOMONIE</strong>, the SLD, and how to get started.
           </p>
         </Reveal>
         <RevealStagger className="grid grid-cols-1 gap-5 min-[900px]:grid-cols-2">

@@ -29,7 +29,7 @@ export default function JoinCTASection() {
         </Reveal>
         <Reveal delay={0.1}>
           <p className="mx-auto mb-12 max-w-[600px] text-[1.06rem] leading-[1.75] text-white/[0.82]">
-            Register free as a Customer, Agent, Merchant, or Affiliate BRM. Start earning the moment your first referral transacts. Everybody earns in the BIOMONIE ecosystem.
+            Register free as a Customer, Agent, Merchant, or Partner SRM. Start earning the moment your first downline transacts. Everybody earns in the BIOMONIE ecosystem.
           </p>
         </Reveal>
         <Reveal delay={0.14}>

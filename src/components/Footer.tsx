@@ -72,10 +72,10 @@ export default function Footer() {
               onClick={(e) => onSectionClick(e, 'earn')}
               className="mb-1.5 block text-[0.86rem] text-white/[0.58] no-underline transition-colors hover:text-biomonie-lemon"
             >
-              Affiliate programme
+              Partner programme
             </a>
             <span className="mb-1 block text-[0.84rem] text-white/[0.42]">
-              BRM &amp; portal links coming soon
+              SRM &amp; portal links coming soon
             </span>
           </div>
           <div>
