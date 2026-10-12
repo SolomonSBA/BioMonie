@@ -51,7 +51,7 @@ const cards: Card[] = [
   {
     id: 'for-merchants',
     label: 'For Merchants',
-    image: '/imageforsection/ForMerchants.jpg',
+    image: '/imageforsection/FirstMerchant.jpg',
     alt: 'Merchant accepting payment at her stall',
     headline:
       'Accept payment for goods and services at your shop, stall or outlets.',
@@ -61,7 +61,7 @@ const cards: Card[] = [
   {
     id: 'for-agents',
     label: 'For Agents',
-    image: '/imageforsection/agent.webp',
+    image: '/imageforsection/AgentImage.jpg',
     alt: 'Agent facilitating cash-in and cash-out',
     headline:
       'As the financial hub of the community facilitating cash-in & cash-out services with and other financial transactions',

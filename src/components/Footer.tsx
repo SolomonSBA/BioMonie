@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import type { MouseEvent, ReactNode } from 'react';
-import { SiTiktok,SiX } from "react-icons/si"; 
-import { Facebook, Instagram, Linkedin,Youtube,Twitter  } from 'lucide-react';
+import { SiTiktok, SiX, SiWhatsapp } from 'react-icons/si';
+import { Facebook, Instagram, Linkedin, Phone, Youtube } from 'lucide-react';
 import BiomonieLogo from '@/components/icons/BiomonieLogo';
 import { navigateToSection } from '@/lib/section-nav';
 
@@ -109,6 +109,33 @@ export default function Footer() {
                 className="transition-colors hover:text-biomonie-lemon"
               >
                 <SiTiktok className="h-5 w-5" strokeWidth={1.75} />
+              </a>
+              <a
+                href="https://wa.me/2349047813250"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Chat with BIOMONIE on WhatsApp"
+                className="transition-colors hover:text-biomonie-lemon"
+              >
+                <SiWhatsapp className="h-5 w-5" />
+              </a>
+            </div>
+            <div className="mt-4 space-y-2 text-[0.86rem] text-white/70">
+              <a
+                href="https://wa.me/2349047813250"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 transition-colors hover:text-biomonie-lemon"
+              >
+                <SiWhatsapp className="h-4 w-4 shrink-0" />
+                <span>WhatsApp: 09047813250</span>
+              </a>
+              <a
+                href="tel:+2347127099907"
+                className="flex items-center gap-2 transition-colors hover:text-biomonie-lemon"
+              >
+                <Phone className="h-4 w-4 shrink-0" />
+                <span>Customer Service Line: +2347127099907</span>
               </a>
             </div>
           </div>

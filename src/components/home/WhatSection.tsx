@@ -48,24 +48,7 @@ export default function WhatSection() {
                 </div>
               </div>
 
-              <motion.div
-                className="absolute -right-10 top-14 z-[2] hidden w-[140px] overflow-hidden border-4 border-cyan-50 rounded-2xl shadow-[0_18px_44px_rgba(12,26,34,.14)] min-[1100px]:block"
-                animate={reduce ? undefined : { y: [0, -10, 0] }}
-                transition={
-                  reduce
-                    ? undefined
-                    : { duration: 7, repeat: Infinity, ease: 'easeInOut' }
-                }
-                aria-hidden
-              >
-                <img
-                  src="/imageforsection/Firefly_Gemini Flash_A handsome Nigerian man in his late 20s to mid-30s, wearing a cream traditional agbad 735960.webp"
-                  alt=""
-                  className="h-[180px] w-full object-cover object-top"
-                />
-                {/* <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(12,26,34,.45)_100%)]" /> */}
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_15%,rgba(12,26,34,.78)_100%)]" />
-              </motion.div>
+              {/* Secondary portrait hidden; keep the Zero chargebacks badge below. */}
 
               <motion.div
                 className="absolute bottom-[22%] left-[-12%] z-[3] hidden items-center gap-2 rounded-xl border border-white/40 bg-white px-4 py-3 text-[0.78rem] font-semibold text-biomonie-text shadow-[0_8px_32px_rgba(0,0,0,.18)] sm:flex"

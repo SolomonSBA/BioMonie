@@ -88,7 +88,7 @@ export default function MerchantsSection() {
           >
             <div className="relative z-[2] overflow-hidden rounded-[28px] shadow-[0_24px_70px_rgba(41,92,114,.25)]">
               <motion.img
-                src="/imageforsection/ForMerchants.jpg"
+                src="/imageforsection/SecondMerchantSection.jpg"
                 alt="Merchant receiving payment"
                 className="h-[480px] w-full object-cover object-center"
                 animate={{ scale: [1, 1.03, 1], y: [0, -6, 0] }}
@@ -140,7 +140,6 @@ export default function MerchantsSection() {
                 +₦500
               </p>
             </motion.div>
-            <div className="absolute -bottom-1 left-[-16px] right-[-16px] z-[3] h-[6px] rounded-b-md bg-biomonie-lemon shadow-[0_4px_20px_rgba(226,255,2,.35)]" />
           </motion.div>
         </Reveal>
       </div>
