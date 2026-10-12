@@ -13,12 +13,12 @@ type Slide = {
   sub: ReactNode;
 };
 
-const img = (name: string) => encodeURI(`/imageforsection/${name}`);
+const img = (name: string) => encodeURI(`/imageforslider/${name}`);
 
 const slides: Slide[] = [
   {
     id: 'everywhere',
-    image: img('customer.webp'),
+    image: img('Slide6.jpeg'),
     headline: <>The money access for everyone everywhere.</>,
     sub: (
       <>
@@ -30,7 +30,7 @@ const slides: Slide[] = [
   {
     id: 'access',
     image: img(
-      'Firefly_Gemini Flash_A handsome Nigerian man in his late 20s to mid-30s, wearing a cream traditional agbad 735960.webp',
+      'slide1.png',
     ),
     headline: (
       <>
@@ -43,7 +43,7 @@ const slides: Slide[] = [
   {
     id: 'hard',
     image: img(
-      'Firefly_Gemini Flash_A warm, approachable Nigerian woman in her 40s standing behind a small shop counter, 735960.webp',
+      'YOUworkhardforyourmoney.jpg',
     ),
     headline: (
       <>
@@ -56,7 +56,7 @@ const slides: Slide[] = [
   {
     id: 'show',
     image: img(
-      'Firefly_Gemini Flash_Five young Nigerian adults gathered closely together outdoors, laughing and reacting 735960.webp',
+      'Showupflexandearnimage.jpg',
     ),
     headline: (
       <>
@@ -68,7 +68,7 @@ const slides: Slide[] = [
   },
   {
     id: 'safety1',
-    image: img('agent.webp'),
+    image: img('YOUareyourmoneyaccessimage.jpg'),
     headline: (
       <>
         <em className="not-italic text-biomonie-lemon">YOU</em> are your money
@@ -80,7 +80,7 @@ const slides: Slide[] = [
   {
     id: 'safety2',
     image: img(
-      'Firefly_Gemini Flash_A young Nigerian mother in a vibrant Ankara-African print dress leans down tenderly o 735960.webp',
+      'WithYoubeingtheMoneyAccess.jpg',
     ),
     headline: (
       <>
@@ -92,7 +92,7 @@ const slides: Slide[] = [
   },
   {
     id: 'netgain',
-    image: img('ForMerchants.webp'),
+    image: img('BimoniealwaysaNetgain.jpg'),
     headline: (
       <>
         <em className="not-italic text-biomonie-lemon">BIOMONIE</em>. Always a
