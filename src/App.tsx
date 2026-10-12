@@ -11,6 +11,11 @@ export default function App() {
       <Route path="/earn" element={<HomePage />} />
       <Route path="/merchants" element={<HomePage />} />
       <Route path="/faq" element={<HomePage />} />
+      <Route path="/join" element={<HomePage />} />
+      <Route path="/products" element={<HomePage />} />
+      <Route path="/for-customers" element={<HomePage />} />
+      <Route path="/for-merchants" element={<HomePage />} />
+      <Route path="/for-agents" element={<HomePage />} />
       <Route path="/foin" element={<HomePage />} />
       <Route path="/contact" element={<ContactPage />} />
     </Routes>

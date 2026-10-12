@@ -12,6 +12,39 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Firefox only: Chromium ignores the ::-webkit-scrollbar styles below when these are set. */
+@supports (-moz-appearance: none) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(245, 255, 0, 0.75) #0f1e26;
+  }
+}
+
+/* Chrome, Edge, Safari: slim brand scrollbar with a pill thumb. */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f1e26;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #f5ff00 0%, #e2ff02 100%);
+  border: 3px solid #0f1e26;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f5ff00;
+  border-width: 2px;
+}
+
+::-webkit-scrollbar-corner {
+  background: #0f1e26;
+}
+
 body {
   @apply overflow-x-hidden bg-white font-sans text-biomonie-text antialiased;
   text-rendering: optimizeLegibility;

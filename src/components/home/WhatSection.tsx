@@ -25,7 +25,7 @@ export default function WhatSection() {
 
               <div className="relative z-[2] w-[340px] overflow-hidden rounded-2xl shadow-[0_24px_60px_rgba(12,26,34,.18)]">
                 <motion.img
-                  src="/imageforsection/customer.webp"
+                  src="/imageforsection/Black_woman_pointing_at_herself.jpg"
                   alt="Biomonie biometric payment"
                   className="h-[500px] w-full object-cover object-top"
                   animate={
@@ -108,7 +108,7 @@ export default function WhatSection() {
           </Reveal>
           <Reveal delay={0.06}>
             <h2 className="mb-5 text-[clamp(1.9rem,4vw,3rem)] font-extrabold leading-[1.15] tracking-tight text-biomonie-text">
-              A new form of
+              The new form of
               <br />
               <em className="not-italic text-biomonie-teal">money access.</em>
             </h2>

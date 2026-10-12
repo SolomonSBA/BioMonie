@@ -13,11 +13,11 @@ const SLIDER_FILENAMES = [
   // 'biomonie_banner_6.png',
   // 'biomonie_banner_2.png',
   'Group2.png',
-  'Group7.png',
-  'street.jpeg',
-  'slide4.png',
-  'slide5.png',
-  'Slide6.jpeg',
+  'YOUworkhardforyourmoney.jpg',
+  'Showupflexandearnimage.jpg',
+  'YOUareyourmoneyaccessimage.jpg',
+  'WithYoubeingtheMoneyAccess.jpg',
+  'BimoniealwaysaNetgain.jpg',
   'slide1.png',
 ];
 

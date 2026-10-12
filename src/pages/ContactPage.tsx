@@ -39,7 +39,7 @@ export default function ContactPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-biomonie-pale pt-28 pb-20">
+      <main className="min-h-screen bg-biomonie-pale pt-40 pb-20">
         <div className="mx-auto max-w-2xl px-[5%]">
           <Reveal>
             <p className="mb-2 text-[0.75rem] font-bold uppercase tracking-[0.14em] text-biomonie-teal">Contact</p>

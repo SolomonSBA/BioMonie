@@ -1,11 +1,28 @@
-const NAV_OFFSET_PX = 82;
-const SECTION_IDS = new Set(['how', 'who', 'earn', 'merchants', 'faq', 'join']);
+const NAV_OFFSET_FALLBACK_PX = 82;
+const SECTION_IDS = new Set([
+  'how',
+  'who',
+  'earn',
+  'merchants',
+  'faq',
+  'join',
+  'products',
+  'for-customers',
+  'for-merchants',
+  'for-agents',
+]);
+
+/** Height of the fixed header (top bar + navbar), so sections land just below it. */
+function navOffset() {
+  const header = document.getElementById('site-header');
+  return header ? header.offsetHeight + 12 : NAV_OFFSET_FALLBACK_PX;
+}
 
 function scrollToSection(sectionId: string, behavior: ScrollBehavior = 'smooth') {
   const section = document.getElementById(sectionId);
   if (!section) return;
 
-  const top = section.getBoundingClientRect().top + window.scrollY - NAV_OFFSET_PX;
+  const top = section.getBoundingClientRect().top + window.scrollY - navOffset();
   window.scrollTo({ top: Math.max(0, top), behavior });
 }
 
