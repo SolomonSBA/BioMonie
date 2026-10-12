@@ -151,7 +151,7 @@ export default function EarnSection() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
             {glanceCards.map((card, i) => (
               <Reveal key={card.title} delay={0.04 * i}>
-                <article className="flex h-full min-h-[168px] flex-col rounded-[18px] bg-biomonie-teal-mid px-5 py-5 sm:min-h-[180px] sm:px-6 sm:py-6">
+                <article className="flex h-full min-h-[148px] flex-col rounded-[18px] bg-biomonie-teal-mid px-5 py-5 sm:min-h-[120px] sm:px-6 sm:py-6">
                   <h3 className="text-[0.98rem] font-bold leading-snug text-biomonie-lemon sm:text-[1.02rem]">
                     {card.title}
                   </h3>
@@ -160,7 +160,7 @@ export default function EarnSection() {
                       {card.subtitle}
                     </p>
                   ) : null}
-                  <p className="mt-auto pt-6 text-[0.92rem] font-medium leading-snug text-white">
+                  <p className="mt-4 text-[0.92rem] font-medium leading-snug text-white">
                     {card.value}
                   </p>
                 </article>
