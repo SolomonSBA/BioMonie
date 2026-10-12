@@ -95,7 +95,7 @@ export function MarkFigure({ play = false, loop, scan = true }: MarkFigureProps)
           cx={572}
           cy={601}
           r={41}
-          fill="#ff9800"
+          fill="#F5FF00"
           initial={initial}
           animate={active ? { y: [0, 6, -26, 4, -6, 0] } : { y: 0 }}
           transition={jump}
