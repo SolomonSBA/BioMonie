@@ -1,6 +1,7 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import StoreBadges from '@/components/home/StoreBadges';
+import LanguageTaglines from '@/components/LanguageTaglines';
 import { easeOutExpo } from '@/lib/motion';
 
 const INTERVAL_MS = 6000;
@@ -186,7 +187,7 @@ export default function HeroSection() {
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-56 bg-[linear-gradient(180deg,rgba(10,22,28,0.7),transparent)]" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-[linear-gradient(0deg,rgba(10,22,28,0.75),transparent)]" />
 
-      <div className="relative mx-auto w-full max-w-[1280px] px-[5%] pb-24 pt-[150px] sm:pt-[170px] xl:px-[4%]">
+      <div className="relative mx-auto w-full max-w-[1280px] px-[5%] pb-24 pt-[140px] sm:pt-[160px] xl:px-[4%]">
         <p className="mb-5 max-w-[30ch] font-sans text-[clamp(0.95rem,1.5vw,1.15rem)] font-extrabold italic leading-snug text-biomonie-lemon">
           The First-Ever Global Biometric Cardless Payment Ecosystem
         </p>
@@ -197,7 +198,10 @@ export default function HeroSection() {
           </AnimatePresence>
         </div>
 
-        <StoreBadges className="mt-8" />
+        <div className="mt-8 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
+          <StoreBadges />
+          <LanguageTaglines className="shrink-0" />
+        </div>
       </div>
 
       <div

@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import BiomonieLogo from '@/components/icons/BiomonieLogo';
-import LanguageTaglines from '@/components/LanguageTaglines';
 import { navigateToSection } from '@/lib/section-nav';
 
 const navLinkClass =
@@ -105,7 +104,7 @@ export default function Navbar() {
   return (
     <header id="site-header" className="fixed inset-x-0 top-0 z-[100]">
       <div className="bg-biomonie-teal shadow-[0_1px_0_rgba(255,255,255,0.06)]">
-        <div className="mx-auto flex h-12 max-w-[1280px] items-center justify-between gap-4 px-3 sm:px-[5%] xl:h-14 xl:px-[4%]">
+        <div className="mx-auto flex h-10 max-w-[1280px] items-center justify-end gap-4 px-3 sm:h-11 sm:px-[5%] xl:px-[4%]">
           <div
             className="flex min-w-0 items-center gap-1 sm:gap-2"
             role="group"
@@ -130,7 +129,6 @@ export default function Navbar() {
               );
             })}
           </div>
-          <LanguageTaglines className="hidden shrink-0 sm:block" />
         </div>
       </div>
 
@@ -177,9 +175,6 @@ export default function Navbar() {
               </Link>
             </li>
           </ul>
-
-          {/* Phones: the taglines move into the navbar row, between logo and menu. */}
-          <LanguageTaglines className="flex justify-center sm:hidden" />
 
           <div className="flex items-center justify-end gap-2">
             <a

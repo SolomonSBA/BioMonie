@@ -164,6 +164,15 @@ body {
   animation: heroParticleDrift linear infinite;
 }
 
+/* Pale-background variant: teal dots instead of lemon ones. */
+.hero-particles--light .hero-particle {
+  background: #295c72;
+}
+
+.hero-particles--light .hero-particle:nth-child(4n) {
+  background: #b8c400;
+}
+
 .hero-animations-paused .hero-mesh,
 .hero-animations-paused .hero-particle {
   animation-play-state: paused;

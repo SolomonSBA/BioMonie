@@ -90,7 +90,7 @@ export default function MerchantsSection() {
               <motion.img
                 src="/imageforsection/SecondMerchantSection.jpg"
                 alt="Merchant receiving payment"
-                className="h-[480px] w-full object-cover object-center"
+                className="h-[340px] w-full object-cover object-center sm:h-[420px] lg:h-[480px]"
                 animate={{ scale: [1, 1.03, 1], y: [0, -6, 0] }}
                 transition={{
                   duration: 10,

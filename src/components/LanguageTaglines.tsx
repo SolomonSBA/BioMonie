@@ -84,8 +84,8 @@ function Tagline({
 }
 
 /**
- * The four language taglines. Wide screens show all four with the active one
- * highlighted; narrower screens show one at a time, rotating.
+ * The four language taglines. Large screens show all four with the active one
+ * highlighted; smaller screens show one at a time, rotating.
  */
 export default function LanguageTaglines({
   className = '',
@@ -117,7 +117,7 @@ export default function LanguageTaglines({
 
   return (
     <div className={className} aria-label="Taglines in multiple languages">
-      <div role="list" className="hidden items-center gap-x-6 xl:flex">
+      <div role="list" className="hidden items-center gap-x-5 lg:flex xl:gap-x-6">
         {TAGLINES.map((item, idx) => (
           <Tagline
             key={item.top}
@@ -129,7 +129,7 @@ export default function LanguageTaglines({
         ))}
       </div>
 
-      <div role="list" className="relative h-9 xl:hidden">
+      <div role="list" className="relative h-9 lg:hidden">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={activeIdx}
