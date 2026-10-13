@@ -32,9 +32,9 @@ const wordRevealChild: Variants = {
 };
 
 const topClass =
-  'whitespace-nowrap font-sans text-[0.95rem] font-extrabold leading-none text-white xl:text-[1.05rem]';
+  'whitespace-nowrap font-sans text-[1.05rem] font-extrabold leading-none text-white xl:text-[1.15rem]';
 const bottomClass =
-  'mt-1 whitespace-nowrap text-[0.72rem] font-extrabold leading-none xl:text-[0.8rem]';
+  'mt-1 whitespace-nowrap text-[0.78rem] font-extrabold leading-none xl:text-[0.86rem]';
 
 function Tagline({
   item,
@@ -55,7 +55,7 @@ function Tagline({
     >
       <BiomonieMark
         play={active && !reduce}
-        className="row-span-2 h-8 w-8 shrink-0 self-center text-biomonie-lemon xl:h-9 xl:w-9"
+        className="row-span-2 h-9 w-9 shrink-0 self-center text-biomonie-lemon xl:h-10 xl:w-10"
       />
       <span className={topClass}>{item.top}</span>
       {active && !reduce ? (

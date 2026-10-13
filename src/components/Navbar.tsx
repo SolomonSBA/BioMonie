@@ -10,9 +10,9 @@ const navLinkClass =
 
 /** Top-bar toggles; each scrolls to its card in the "Who is BIOMONIE for?" section. */
 const audiences = [
-  { id: 'for-customers', label: 'For Customers' },
-  { id: 'for-merchants', label: 'For Merchants' },
-  { id: 'for-agents', label: 'For Agents' },
+  { id: 'for-customers', label: 'Customers' },
+  { id: 'for-merchants', label: 'Merchants' },
+  { id: 'for-agents', label: 'Agents' },
 ] as const;
 
 type AudienceId = (typeof audiences)[number]['id'];
@@ -152,7 +152,7 @@ export default function Navbar() {
             className="flex min-w-0 items-center no-underline transition-opacity hover:opacity-95"
           >
             <BiomonieLogo
-              className="block h-10 w-auto max-h-10 sm:h-11 sm:max-h-11"
+              className="block h-14 w-auto max-h-14 translate-y-2 sm:h-14 sm:max-h-14"
               aria-label="Biomonie"
             />
           </Link>

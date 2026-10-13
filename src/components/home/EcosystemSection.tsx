@@ -174,7 +174,7 @@ function EcosystemCard({
   const reduce = useReducedMotion();
   return (
     <motion.article
-      className="group relative mx-auto flex h-full w-full max-w-xl flex-col overflow-hidden rounded-[28px] bg-[linear-gradient(165deg,#336f89_0%,#295C72_42%,#1d4557_100%)] px-6 pb-6 pt-4 shadow-[0_28px_60px_-24px_rgba(15,30,38,0.55),0_2px_6px_rgba(15,30,38,0.08)] ring-1 ring-white/10 transition-shadow duration-300 hover:shadow-[0_36px_70px_-24px_rgba(15,30,38,0.6),0_0_0_1px_rgba(245,255,0,0.25)] sm:px-8 min-[1180px]:max-w-none"
+      className="group relative mx-auto flex h-full w-full max-w-xl flex-col overflow-hidden rounded-[28px] bg-[linear-gradient(165deg,#336f89_0%,#295C72_42%,#1d4557_100%)] px-6 pb-6 pt-4 shadow-[0_24px_32px_-8px_rgba(0,0,0,0.68),0_8px_18px_rgba(0,0,0,0.42),6px_0_18px_rgba(0,0,0,0.36),-6px_0_18px_rgba(0,0,0,0.36)] ring-1 ring-white/10 transition-shadow duration-300 hover:shadow-[0_30px_40px_-8px_rgba(0,0,0,0.75),0_10px_22px_rgba(0,0,0,0.5),8px_0_20px_rgba(0,0,0,0.42),-8px_0_20px_rgba(0,0,0,0.42),0_0_0_1px_rgba(245,255,0,0.25)] sm:px-8 min-[1180px]:max-w-none"
       initial={reduce ? false : { opacity: 0, y: 28 }}
       whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
       whileHover={reduce ? undefined : { y: -6 }}

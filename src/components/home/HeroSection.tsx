@@ -188,19 +188,21 @@ export default function HeroSection() {
       <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-[linear-gradient(0deg,rgba(10,22,28,0.75),transparent)]" />
 
       <div className="relative mx-auto w-full max-w-[1280px] px-[5%] pb-24 pt-[140px] sm:pt-[160px] xl:px-[4%]">
-        <p className="mb-5 max-w-[30ch] font-sans text-[clamp(0.95rem,1.5vw,1.15rem)] font-extrabold italic leading-snug text-biomonie-lemon">
-          The First-Ever Global Biometric Cardless Payment Ecosystem
-        </p>
+        <div className="relative">
+          <p className="mb-5 max-w-[30ch] font-sans text-[clamp(0.95rem,1.5vw,1.15rem)] font-extrabold italic leading-snug text-biomonie-lemon">
+            The First-Ever Global Biometric Cardless Payment Ecosystem
+          </p>
 
-        <div className="min-h-[clamp(15rem,34vw,22rem)]" aria-live="polite">
-          <AnimatePresence mode="wait" initial={false}>
-            <SlideText key={slide.id} slide={slide} reduce={reduce} />
-          </AnimatePresence>
+          <div className="min-h-[clamp(15rem,34vw,22rem)]" aria-live="polite">
+            <AnimatePresence mode="wait" initial={false}>
+              <SlideText key={slide.id} slide={slide} reduce={reduce} />
+            </AnimatePresence>
+          </div>
         </div>
 
         <div className="mt-8 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
           <StoreBadges />
-          <LanguageTaglines className="shrink-0" />
+          <LanguageTaglines className="shrink-0 lg:translate-x-6 xl:translate-x-8" />
         </div>
       </div>
 
