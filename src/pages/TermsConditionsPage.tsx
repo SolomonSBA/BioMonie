@@ -3,7 +3,11 @@ import { Link, useLocation } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
-type ContentBlock = string | { list: string[] };
+type ContentBlock =
+  | string
+  | { list: string[] }
+  | { clause: string; text: string }
+  | { subclauses: string[] };
 type TermsSection = { title: string; content: ContentBlock[] };
 
 const sections: TermsSection[] = [
@@ -61,7 +65,7 @@ const sections: TermsSection[] = [
       { clause: '4.3 Merchant Services.', text: 'Registered Merchants may use the Platform to accept payments from customers, access transaction records, and participate in the SLD Programme.' },
       { clause: '4.5 Agent Services.', text: 'Registered Agents may use the Platform to facilitate transactions and Platform onboarding for users at physical locations.' },
       { clause: '4.6 SLD Programme.', text: 'The SLD Programme lets Partners (Customer, Merchants and Agents) to onboard new partners on the platform and earn perpetually from their transactions and subscription renewal, for as long as the Downline remains active on the Platform. Specific terms applicable to SLD participation is comprehensively communicated In-App.' },
-      { clause: '4.7 Service Availability.', text: 'Biomonie will use reasonable efforts to keep the Platform available at all times, but does not guarantee uninterrupted access. The Platform may be suspended for maintenance, upgrades, or circumstances beyond our reasonable control.' },
+      { clause: '4.7 Service Availability.', text: 'Biomonie will use reasonable efforts to keep the Platform available at all times, but does not guarantee uninterrupted access. The Platform may be suspended for maintenance, upgrades, or circumstances beyond our reasonable control. Before any such interruptions, this will be promptly communicated to you.' },
     ],
   },
   {
@@ -77,7 +81,7 @@ const sections: TermsSection[] = [
     title: 'Third-Party Merchants and Services',
     content: [
       { clause: '6.1 Independent Merchants.', text: 'Merchants on the Platform are independent third parties. Biomonie provides the payment infrastructure but is not a party to any contract between you and a Merchant for the supply of goods or services. Any dispute about the quality, delivery, or fitness of goods or services must be resolved directly with the Merchant.' },
-      { clause: '6.2 Biomonie Not a Merchant.', text: "Unless expressly stated otherwise, Biomonie does not sell goods or services through the Platform. The presence of a Merchant on the Platform is not an endorsement by Biomonie of that Merchant's products, services, or business practices." },
+      { clause: '6.2', text: "Biomonie serves solely as a technology and payment services platform and, unless expressly stated otherwise, does not manufacture, offer, sell, distribute, or endorse any goods or services provided by Merchants through the Platform. The listing, availability, or participation of a Merchant on the Platform shall not be construed as an endorsement, recommendation, warranty, or representation by Biomonie regarding the Merchant, its products, services, quality, reliability, legality, or business practices. All transactions for goods or services are solely between the Merchant and the Customer, and Biomonie shall not be responsible or liable for any Merchant's acts, omissions, products, services, or performance." },
       { clause: '6.3 Merchant Compliance.', text: 'Merchants are responsible for ensuring that their goods and services comply with all applicable Nigerian laws and regulations. Biomonie may remove a Merchant from the Platform if we reasonably determine that the Merchant is engaged in unlawful or prohibited activity.' },
     ],
   },
@@ -167,7 +171,12 @@ const sections: TermsSection[] = [
     title: 'Limitation of Liability',
     content: [
       { clause: '14.1 No Indirect Loss.', text: 'To the fullest extent permitted by applicable law, Biomonie shall not be liable for any indirect, incidental, special, punitive, or consequential loss arising out of or in connection with your use of the Platform, including loss of profits, loss of data, or loss of business opportunity.' },
-      { clause: '14.2 Cap on Liability.', text: "Biomonie's total aggregate liability to you for any claim arising out of or in connection with these Terms shall not exceed the total value of Transactions processed through your Account in the 90-day period immediately preceding the event giving rise to the claim." },
+      { clause: '14.2', text: "Notwithstanding any other provision of this Agreement, Biomonie's total cumulative liability for all claims arising out of or in connection with this Agreement shall not exceed the lesser of:" },
+      { subclauses: [
+        '(a) the total fees, commissions, and charges earned by Biomonie from the Merchant during the ninety (90) days immediately preceding the event giving rise to the claim; or',
+        '(b) ₦500,000 (Five Hundred Thousand Naira).',
+      ] },
+      'This limitation shall apply irrespective of the cause of action and whether such claim arises in contract, tort, negligence, breach of statutory duty, equity, or otherwise.',
       { clause: '14.3 No Warranty.', text: 'The Platform is provided "as is" and "as available". Biomonie makes no warranty, express or implied, that the Platform will be error-free, uninterrupted, or fit for any particular purpose beyond what is expressly stated in these Terms.' },
       { clause: '14.4 Exceptions.', text: "Nothing in these Terms limits Biomonie's liability for death or personal injury caused by its negligence, fraud, or any liability that cannot be excluded by applicable Nigerian law." },
     ],
@@ -295,7 +304,8 @@ export default function TermsConditionsPage({ appVersion = false }: { appVersion
                 {section.content.map((block, blockIndex) => {
                   if (typeof block === 'string') return <p key={blockIndex} className={paragraphClass}>{block}</p>;
                   if ('list' in block) return <ul key={blockIndex} className="my-4 list-disc space-y-2.5 pl-6 text-base leading-7 text-biomonie-text/75 marker:text-biomonie-teal">{block.list.map((item) => <li key={item}>{item}</li>)}</ul>;
-                  return <p key={blockIndex} className={paragraphClass}><strong>{block.clause}</strong> {block.text}</p>;
+                  if ('clause' in block) return <p key={blockIndex} className={paragraphClass}><strong>{block.clause}</strong> {block.text}</p>;
+                  return <div key={blockIndex} className="my-3 space-y-3 pl-5 text-base leading-7 text-biomonie-text/75">{block.subclauses.map((subclause) => <p key={subclause}>{subclause}</p>)}</div>;
                 })}
               </section>)}
             </article>
