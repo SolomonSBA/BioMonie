@@ -18,6 +18,7 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     <script type="text/javascript">
+  if (window.location.pathname !== "/app-policy" && window.location.pathname !== "/app-terms") {
   window.ZOHOIM = window.ZOHOIM || function (a, b) { ZOHOIM[a] = b; };
   window.ZOHOIM.prefilledMessage = "";
   (function () {
@@ -28,6 +29,7 @@
     s.src = "https://im.zoho.com/api/v1/public/channel/bd4e492af14d55a789a86ac0cee0e15c/widget";
     d.getElementsByTagName("head")[0].appendChild(s);
   })();
+  }
 </script>
   </body>
 </html>

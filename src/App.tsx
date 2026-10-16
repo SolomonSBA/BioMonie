@@ -1,6 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
 import HomePage from '@/pages/HomePage';
+import PrivacyPolicyPage from '@/pages/PrivacyPolicyPage';
+import AppPolicyPage from '@/pages/AppPolicyPage';
+import TermsConditionsPage from '@/pages/TermsConditionsPage';
 import ContactPage from '@/pages/ContactPage';
+import NotFoundPage from '@/pages/NotFoundPage';
 
 export default function App() {
   return (
@@ -18,6 +22,11 @@ export default function App() {
       <Route path="/for-agents" element={<HomePage />} />
       <Route path="/foin" element={<HomePage />} />
       <Route path="/contact" element={<ContactPage />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+      <Route path="/app-policy" element={<AppPolicyPage />} />
+      <Route path="/terms-and-conditions" element={<TermsConditionsPage />} />
+      <Route path="/app-terms" element={<TermsConditionsPage appVersion />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 }

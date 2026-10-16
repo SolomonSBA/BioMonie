@@ -20,9 +20,9 @@ const companyLinks = [
 ] as const;
 
 const legalLinks = [
-  { label: 'Privacy policy', href: '/contact', sectionId: '' },
-  { label: 'Terms of Service', href: '/contact', sectionId: '' },
-  { label: 'Acceptable use policy', href: '/contact', sectionId: '' },
+  { label: 'Privacy policy', href: '/privacy-policy', sectionId: '' },
+  { label: 'Terms & Conditions', href: '/terms-and-conditions', sectionId: '' },
+  { label: 'Acceptable use policy', href: '/privacy-policy', sectionId: '' },
   { label: 'Help center', href: '/contact', sectionId: '' },
   { label: 'FAQ', href: '/faq', sectionId: 'faq' },
 ] as const;
