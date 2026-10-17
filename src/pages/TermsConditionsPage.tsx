@@ -81,7 +81,7 @@ const sections: TermsSection[] = [
     title: 'Third-Party Merchants and Services',
     content: [
       { clause: '6.1 Independent Merchants.', text: 'Merchants on the Platform are independent third parties. Biomonie provides the payment infrastructure but is not a party to any contract between you and a Merchant for the supply of goods or services. Any dispute about the quality, delivery, or fitness of goods or services must be resolved directly with the Merchant.' },
-      { clause: '6.2', text: "Biomonie serves solely as a technology and payment services platform and, unless expressly stated otherwise, does not manufacture, offer, sell, distribute, or endorse any goods or services provided by Merchants through the Platform. The listing, availability, or participation of a Merchant on the Platform shall not be construed as an endorsement, recommendation, warranty, or representation by Biomonie regarding the Merchant, its products, services, quality, reliability, legality, or business practices. All transactions for goods or services are solely between the Merchant and the Customer, and Biomonie shall not be responsible or liable for any Merchant's acts, omissions, products, services, or performance." },
+      { clause: '6.2 Biomonie Is Not a Merchant.', text: "Biomonie is not a Merchant and serves solely as a technology and payment services platform. Unless expressly stated otherwise, Biomonie does not manufacture, offer, sell, distribute, or endorse any goods or services provided by Merchants through the Platform. The listing, availability, or participation of a Merchant on the Platform shall not be construed as an endorsement, recommendation, warranty, or representation by Biomonie regarding the Merchant, its products, services, quality, reliability, legality, or business practices. All transactions for goods or services are solely between the Merchant and the Customer, and Biomonie shall not be responsible or liable for any Merchant's acts, omissions, products, services, or performance." },
       { clause: '6.3 Merchant Compliance.', text: 'Merchants are responsible for ensuring that their goods and services comply with all applicable Nigerian laws and regulations. Biomonie may remove a Merchant from the Platform if we reasonably determine that the Merchant is engaged in unlawful or prohibited activity.' },
     ],
   },
@@ -211,11 +211,14 @@ const sections: TermsSection[] = [
     title: 'Contact Us',
     content: [
       'If you have any questions about these Terms, your Account, or the Platform, we are here to help.',
+      'Biomonie Technologies Limited',
+      'Data Protection Officer',
+      'Email: dpo@biomonie.com',
       'Biomonie',
       'Email: contact@biomonie.com',
       'Website: www.biomonie.com',
       'Stay connected with us; follow Biomonie on social media for product updates, merchant tips, and SLD Programme news. Find us on Instagram, Facebook, Twitter/X, and LinkedIn by searching @Biomonie.',
-      'Biomonie - Explore the New Form of Money Access — YOU',
+      'Biomonie · The New Form of Money Access. "YOU".',
     ],
   },
 ];
