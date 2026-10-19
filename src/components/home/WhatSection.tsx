@@ -41,10 +41,10 @@ export default function WhatSection() {
                 />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_50%,rgba(12,26,34,.7)_100%)]" />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_15%,rgba(12,26,34,.78)_100%)]" />
-                <div className="absolute bottom-5 left-5 font-serif text-[1.25rem] font-bold leading-[1.15] text-white">
-                  Just <span className="text-biomonie-lemon">YOU</span>.
+                <div className="absolute bottom-5 left-5 font-serif text-[0.9rem] font-bold leading-[1.15] text-white">
+                  Just <span className="text-biomonie-lemon text-[1.5rem]">YOU</span>.
                   <br />
-                  No pin. No card. No limit.
+                  Nothing carried. No password. Nothing else.
                 </div>
               </div>
 
@@ -59,8 +59,8 @@ export default function WhatSection() {
                     : { duration: 4, repeat: Infinity, ease: 'easeInOut' }
                 }
               >
-                <span className="h-2 w-2 rounded-full bg-biomonie-lemon" />
-                <span>No PIN needed</span>
+                <span className="h-2 w-2 rounded-full bg-biomonie-lemon font-serif" />
+                <span>Nothing else; just YOU</span>
               </motion.div>
 
               <motion.div
@@ -107,7 +107,7 @@ export default function WhatSection() {
               {/* <strong className="font-semibold text-biomonie-text">No pin. No password. No wallet to carry.</strong> The only thing you need to pay or get paid is{" "}
               <strong className="font-semibold text-biomonie-teal">YOU</strong> verified instantly by your biometrics. */}
               to be the money access for all payment activities either to pay,
-              receive payment or cash related services. No pin, No password and
+              receive payment or cash related services. Nothing Carried, No password and
               Nothing else. Just show up, flex and pay.
             </p>
           </Reveal>

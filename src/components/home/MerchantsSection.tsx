@@ -20,8 +20,8 @@ const benefits = [
     guaranteed uptime within your control. Your phone is what you need.
   </>,
   <>
-    <strong>Earn in the ecosystem.</strong> Refer other merchants / agents and
-    earn referral fee per activation plus ongoing transaction fees.
+    <strong>Earn in the ecosystem.</strong> Onboard other merchants / agents / customers and
+    earn subscription fees per activation plus ongoing transaction fees.
   </>,
 ];
 
@@ -70,7 +70,7 @@ export default function MerchantsSection() {
               <p className="mb-2 text-[0.98rem] italic leading-relaxed text-biomonie-text/[0.88]">
                 &quot;With{' '}
                 <strong className="not-italic text-biomonie-teal">BIOMONIE</strong>
-                , I don&apos;t worry about POS terminal downtimes anymore. My
+                , I don&apos;t worry about downtimes anymore. My
                 customers enjoy the new form of money access.&quot;
               </p>
               <cite className="text-[0.83rem] font-semibold not-italic text-biomonie-text/60">
@@ -101,10 +101,10 @@ export default function MerchantsSection() {
               <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_15%,rgba(12,26,34,.78)_100%)]" />
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(41,92,114,.15),transparent_10%),linear-gradient(180deg,transparent_10%,rgba(12,26,34,.65)_100%)]" />
               <div className="absolute bottom-5 left-1/2 z-[3] w-[86%] -translate-x-1/2 rounded-xl border border-biomonie-lemon/35 bg-white/0 px-4 py-3 text-center font-bold uppercase tracking-[0.1em] text-biomonie-lemon backdrop-blur-[2px]">
-                The Customer IS the payment.
-                <span className="mt-2 block text-[0.78rem] font-medium normal-case tracking-normal text-white/80">
+                The Customer enjoys  the New Form of Money Access.
+                {/* <span className="mt-2 block text-[0.78rem] font-medium normal-case tracking-normal text-white/80">
                   New form of money access.
-                </span>
+                </span> */}
               </div>
             </div>
             <motion.div

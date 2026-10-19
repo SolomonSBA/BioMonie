@@ -22,19 +22,19 @@ const faqs: { q: ReactNode; a: ReactNode }[] = [
     q: "Is it really free to join?",
     a: (
       <>
-        Absolutely. No registration fees, no subscription fees, no hidden charges. Anyone who asks you to pay money to join <strong className="text-biomonie-teal">BIOMONIE</strong> is not authorised.
+        YES as a regular user but requires subscription to join SLD and become a BIOMONIE Partner. 
       </>
     ),
   },
   {
-    q: "How exactly do I earn as a Partner SRM?",
-    a: "Share your referral code and ensure everyone you introduce uses it. You earn once they complete their 200th transaction for referral-based earnings (₦3,000 — only applicable to Agents and Merchants). After that, you earn ₦500 for every subsequent block of 75 transactions — with no limit and no expiry.",
+    q: "How exactly do I earn as a BIOMONIE Partner?",
+    a: "Share your onboard code and ensure everyone you introduce uses it. You earn once they meet their defined performance thresholds and remain subscribed to SLD - with no limit and no expiry.",
   },
   {
     q: "When do I get paid?",
     a: (
       <>
-        Your earnings are calculated and paid into your <strong className="text-biomonie-teal">BIOWALLET</strong> once you achieve your applicable transaction earning threshold or referral earning threshold  instantly, as you meet each milestone.
+        Your earnings are calculated and paid into your <strong className="text-biomonie-teal">BIOWALLET</strong> once you achieve your applicable transaction earning threshold or subscription earning threshold  instantly, as you meet each milestone.
       </>
     ),
   },
@@ -42,15 +42,15 @@ const faqs: { q: ReactNode; a: ReactNode }[] = [
     q: "Is my money and data safe?",
     a: (
       <>
-        <strong className="text-biomonie-teal">BIOMONIE</strong> is licensed as a processor. Your data is encrypted and stored.
+        <strong className="text-biomonie-teal">BIOMONIE</strong> is duly licensed by the central bank and  it is also globally compliant with data privacy  regulation (GDPR,NDPC). it is also payment application certified.
       </>
     ),
   },
   {
-    q: "Can I earn from the people my downlines refer?",
+    q: "Can I earn from the people my downlines onboard?",
     a: (
       <>
-        No. <strong className="text-biomonie-teal">BIOMONIE</strong> uses a Single Level Downline Model (SLD) you earn only from the people you personally introduce. You do not earn from their downlines.
+        No. <strong className="text-biomonie-teal">BIOMONIE</strong> uses a Single Level Downline proprietary technology (SLD) that allows you earn only from the people you directly onboard. You do not earn from other people's downlines.
       </>
     ),
   },
@@ -74,7 +74,7 @@ const faqs: { q: ReactNode; a: ReactNode }[] = [
     q: "Are there POS terminals involved?",
     a: (
       <>
-        No. The <strong className="text-biomonie-teal">BIOMONIE</strong> ecosystem leverages mobile phones, with a proprietary app that allows the customer to be the new form of money access. No POS terminal, no card reader, no hardware to manage.
+        No. The <strong className="text-biomonie-teal">BIOMONIE</strong> ecosystem leverages a unique biometric authentication with  mobile phones that allows the customer to be the new form of money access. No POS terminal, no card reader, and no cards.
       </>
     ),
   },

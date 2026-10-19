@@ -298,10 +298,10 @@ export default function EcosystemSection() {
               </motion.a>
             }
             stats={[
-              { k: 'Net-Gain', l: 'To join and refer.' },
+              { k: 'Net-Gain', l: 'To join and grow.' },
               {
                 k: 'Payout',
-                l: 'Earned per activated Agent / Merchant referral.',
+                l: 'Earned per onboarded Agents / Merchants / Customers.',
               },
               { k: 'Low-cost', l: 'Per transaction. Flat, simple and fair.' },
             ]}
@@ -327,9 +327,11 @@ export default function EcosystemSection() {
                 <span className="font-semibold text-biomonie-lemon">
                   BIOMONIE
                 </span>{' '}
-                ecosystem allows Customers pay, Merchants receive payments and
-                Agents offer cash-in or cash-out services. All with the new
-                money access.
+                ecosystem allows Customers to pay or spend, Merchants receive payments and
+                Agents offer cash-in or cash-out services. All with the new form of 
+                money access; <span className="font-semibold text-biomonie-lemon">
+                   YOU
+                  </span>.{' '}
               </p>
             }
             cta={
@@ -360,7 +362,7 @@ export default function EcosystemSection() {
             delay={0.25}
             heading={
               <p className={cardHeadingClass}>
-                <span className="block">Join &amp; Earn</span>
+                <span className="block">Join &amp; Grow</span>
                 <span className="block">as a</span>
                 <span className="block text-[0.94em] tracking-[-0.05em]">
                   <span className="text-biomonie-lemon">BIOMONIE</span>
@@ -375,9 +377,9 @@ export default function EcosystemSection() {
                 <span className="font-semibold text-biomonie-lemon">
                   BIOMONIE
                 </span>{' '}
-                Partners allows anyone and everyone to refer customers,
-                merchants or agents as Single Level Downline (SLD), earn
-                refferal fee and continoulsy earn on transactions they perform
+                Partners allows anyone and everyone to onboard customers,
+                merchants or agents as Single Level Downlines (SLD), earn
+                 fees and continoulsy earn on transactions they perform
                 within the ecosystem.
               </p>
             }
@@ -393,7 +395,7 @@ export default function EcosystemSection() {
             }
             stats={[
               {
-                k: 'Refer',
+                k: 'Onboard',
                 l: ' everyone and anyone; customers, agents or merchants.',
               },
               { k: 'Earn', l: 'everytime they perform transactions.' },
@@ -432,8 +434,8 @@ export default function EcosystemSection() {
               <div className="flex flex-col justify-center rounded-2xl bg-biomonie-teal-dark/24 px-5 py-8 text-center shadow-[0_12px_34px_rgba(3,32,46,0.2)] sm:px-10 sm:py-12">
                 <h3 className="mb-5 font-sans text-[clamp(1.1rem,1.6vw,1.4rem)] font-extrabold leading-[1.3] text-white">
                   Everyday bills paid{' '}
-                  <span className="text-biomonie-lemon">smarter</span> with you
-                  always earning. YOU also earn everytime your downlines pay
+                  <span className="text-biomonie-lemon">smarter</span> whilst <span className="text-biomonie-lemon">YOU</span> earn 
+                . <span className="text-biomonie-lemon">YOU</span> also earn everytime your downlines pay
                   bills too with{' '}
                   <span className="text-biomonie-lemon">BIOMONIE</span> Bills.
                 </h3>

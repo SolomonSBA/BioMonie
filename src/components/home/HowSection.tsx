@@ -33,7 +33,7 @@ const steps = [
     title: 'Earn',
     body: (
       <>
-        Every referral or transaction performed by YOU or any of your Single
+        Every onboard or transaction performed by YOU or any of your Single
         Level Downline keeps earning you money perpetually. Just introduce
         Downlines, ensure they Flex & transact and you automatically earn with
         no limit and no expiry. It is always a Net-Gain on {' '}

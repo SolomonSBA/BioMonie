@@ -3,9 +3,9 @@ import { Reveal } from '@/lib/motion';
 
 const glanceCards = [
   {
-    title: 'Referral Onboarding Fee',
-    subtitle: 'Agents & Merchants Only',
-    value: 'Guaranteed Payout Per Referral',
+    title: 'Subscription  Fee',
+    subtitle: ' Customers, Agents & Merchants',
+    value: 'Guaranteed Payout Per subscribed downline.',
   },
   {
     title: 'Activity-Based Fee',
@@ -17,20 +17,20 @@ const glanceCards = [
     value: 'Every 75 transactions',
   },
   {
-    title: 'Referral Payouts',
-    value: 'Instant and also subject to Performance Activities',
+    title: 'Subscription Payouts',
+    value: 'SLD defined cycle and also subject to Performance Activities',
   },
   {
-    title: 'Who You Can Refer',
+    title: 'Who You Can Onboard',
     value: 'Customers, Agents, Merchants',
   },
   {
     title: 'Cost to Join',
-    value: 'Annual Recurring Earned-Back Fees (NET-GAIN)',
+    value: 'Subscription with recurring Earned Payout (NET-GAIN)',
   },
   {
-    title: 'Referral Earning Threshold',
-    value: 'Tied to Performance Activities (Agent/Merchant)',
+    title: 'Subscription Earning Threshold',
+    value: 'Tied to downline subscriptions and performance Activities  (Customer / Agent / Merchant)',
   },
   {
     title: 'Earning Expiry',
@@ -50,29 +50,29 @@ export default function EarnSection() {
           </Reveal>
           <Reveal delay={0.06}>
             <h2 className="mb-4 max-w-[18ch] text-[clamp(1.9rem,4vw,3rem)] font-extrabold leading-[1.15] tracking-tight text-biomonie-text">
-              Build and turn your downline into{' '}
+              Build and turn your downlines into{' '}
               <em className="not-italic text-biomonie-teal">perpetual income.</em>
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mb-12 max-w-3xl text-[1.06rem] leading-[1.75] text-biomonie-text/[0.72]">
               <strong className="font-semibold text-biomonie-teal">BIOMONIE</strong>
-              &apos;s Single-Level Downline Model (SLD) allows anyone and everyone to
-              refer and earn when transactions are performed using the platform.
-              It&apos;s transparent, transaction-based and always a NET-GAIN.
+              &apos;s Single-Level Downline proprietary technology (SLD) allows anyone and everyone to
+              onboard anyone and earn when transactions are performed using the platform.
+              It is transparent, transaction-based and always a NET-GAIN.
             </p>
           </Reveal>
           <div className="grid grid-cols-1 gap-8 min-[800px]:grid-cols-3 min-[800px]:gap-6">
             {[
               {
                 Icon: Users,
-                title: 'Refer Anyone and Everyone; Earn on Everything',
+                title: 'Onboard Anyone and Everyone; Earn on  Every transaction they perform.',
                 body: (
                   <>
                     Grow your downlines by introducing any or all of the
                     following; Customer, Merchant or Agent into the Ecosystem and
                     earn a guaranteed payout on transactions they perform or
-                    referral fee for Merchants or Agents. Payouts into{' '}
+                    subscription fees for Merchants, Agents or Customers. Payouts into{' '}
                     <strong className="font-semibold text-biomonie-teal">
                       BIOWALLETS
                     </strong>{' '}
@@ -86,7 +86,7 @@ export default function EarnSection() {
                 title: 'Instant Payouts',
                 body: (
                   <>
-                    Commissions and referral earnings are calculated and paid into
+                    Commissions and subscription earnings are calculated and paid into
                     your{' '}
                     <strong className="font-semibold text-biomonie-teal">
                       BIOWALLETS
@@ -107,7 +107,7 @@ export default function EarnSection() {
                     <strong className="font-semibold text-biomonie-teal">
                       YOU
                     </strong>{' '}
-                    can refer or limits to growing your Single-Level Downlines
+                    can onboard or limits to growing your Single-Level Downlines
                     (SLD) or how much you can earn. Keep growing your downlines,
                     earn forever as long as they perform transactions.
                   </>
@@ -138,13 +138,13 @@ export default function EarnSection() {
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <h2 className="mb-3 text-[clamp(1.85rem,4vw,2.75rem)] font-extrabold tracking-tight text-biomonie-text">
-              Earnings at a glance
+              Earnings at a glance.
             </h2>
           </Reveal>
           <Reveal delay={0.06}>
             <p className="mb-10 max-w-3xl text-[0.98rem] leading-relaxed text-biomonie-text/70">
               All earnings are transaction-based and only from users&apos; downlines.
-              The Single-Level Downline Model (SLD) governs the process.
+              The Single-Level Downline proprietary technology (SLD) governs the process.
               Everybody earns in the BIOMONIE ecosystem.
             </p>
           </Reveal>
