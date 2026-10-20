@@ -1,7 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import {
   useEffect,
-  useMemo,
   useRef,
   useState,
   type CSSProperties,
@@ -64,7 +63,6 @@ function FadeUp({
   );
 }
 
-const HERO_DOT_COUNT = 70;
 const HERO_GRADIENT_DURATION_SEC = 18;
 const HERO_GRADIENT_COLORS = {
   c1: '#0c1a22',
@@ -72,62 +70,6 @@ const HERO_GRADIENT_COLORS = {
   c3: '#2f7393',
   c4: '#0c1a22',
 };
-
-type HeroParticle = {
-  left: string;
-  top: string;
-  size: number;
-  opacity: number;
-  dx: number;
-  duration: number;
-  delay: number;
-};
-
-function HeroFloatingParticles({ tone = 'dark' }: { tone?: 'dark' | 'light' }) {
-  const reduceMotion = useReducedMotion();
-  const light = tone === 'light';
-  const particles = useMemo<HeroParticle[]>(
-    () =>
-      Array.from({ length: HERO_DOT_COUNT }, () => ({
-        left: `${Math.random() * 100}%`,
-        top: light ? `${10 + Math.random() * 90}%` : `${50 + Math.random() * 50}%`,
-        size: 2 + Math.random() * 3,
-        opacity: 0.3 + Math.random() * 0.7,
-        dx: (Math.random() - 0.5) * 180,
-        duration: 5 + Math.random() * 8,
-        delay: -Math.random() * 8,
-      })),
-    [light],
-  );
-
-  if (reduceMotion) return null;
-
-  return (
-    <div
-      className={`hero-particles ${light ? 'hero-particles--light' : ''}`}
-      aria-hidden
-    >
-      {particles.map((p, i) => (
-        <div
-          key={i}
-          className="hero-particle"
-          style={
-            {
-              left: p.left,
-              top: p.top,
-              width: p.size,
-              height: p.size,
-              opacity: p.opacity,
-              '--dx': `${p.dx}px`,
-              animationDuration: `${p.duration}s`,
-              animationDelay: `${p.delay}s`,
-            } as CSSProperties
-          }
-        />
-      ))}
-    </div>
-  );
-}
 
 // Placeholder until the final bills photo is supplied.
 const BILLS_IMAGE = encodeURI(
@@ -244,7 +186,6 @@ export default function EcosystemSection() {
         ref={cardsRef}
         className={`relative overflow-hidden bg-biomonie-pale px-[5%] py-6 sm:py-8 ${cardsInView ? '' : 'hero-animations-paused'}`}
       >
-        <HeroFloatingParticles tone="light" />
         <div className="pointer-events-none absolute -right-[10%] -top-[20%] z-[1] h-[620px] w-[620px] rounded-full bg-[radial-gradient(circle,rgba(226,255,2,0.28),transparent_68%)]" />
         <div className="pointer-events-none absolute -bottom-[25%] -left-[10%] z-[1] h-[560px] w-[560px] rounded-full bg-[radial-gradient(circle,rgba(41,92,114,0.16),transparent_70%)]" />
 
@@ -411,7 +352,6 @@ export default function EcosystemSection() {
         style={darkBackgroundStyle}
       >
         <div className="hero-mesh" aria-hidden />
-        <HeroFloatingParticles />
         <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(180deg,rgba(15,30,38,0.2)_0%,transparent_45%,rgba(15,30,38,0.35)_100%)]" />
         <div className="pointer-events-none absolute -right-[8%] -top-[15%] z-[1] h-[700px] w-[700px] rounded-full bg-[radial-gradient(circle,rgba(245,255,0,.09),transparent_72%)]" />
         <div className="pointer-events-none absolute -bottom-[20%] -left-[5%] z-[1] h-[450px] w-[450px] rounded-full bg-[radial-gradient(circle,rgba(41,92,114,.45),transparent_70%)]" />

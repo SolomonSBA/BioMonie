@@ -91,17 +91,6 @@ body {
   }
 }
 
-@keyframes heroParticleDrift {
-  0% {
-    transform: translateY(0) translateX(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100px) translateX(var(--dx, 0px));
-    opacity: 0;
-  }
-}
-
 .hero-mesh {
   position: absolute;
   inset: 0;
@@ -146,24 +135,8 @@ body {
   background-size: 48px 48px;
 }
 
-.hero-particles {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.hero-particle {
-  position: absolute;
-  border-radius: 50%;
-  background: #e2ff02;
-  will-change: transform, opacity;
-  animation: heroParticleDrift linear infinite;
-}
-
 .hero-animations-paused .hero-mesh,
-.hero-animations-paused .hero-particle {
+.hero-animations-paused .hero-mesh {
   animation-play-state: paused;
 }
 
@@ -173,8 +146,4 @@ body {
     background-position: 0% 50%;
   }
 
-  .hero-particle {
-    animation: none;
-    opacity: 0.35;
-  }
 }
