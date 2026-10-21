@@ -23,7 +23,7 @@ type Card = {
 };
 
 const earn =
-  'Earn a fee for any Customer / Merchant / Agent onboarded and on all transactions performed by all your single level downlines (Customers / Merchants / Agents) perpetually.';
+  'Earn a fee for any Customer, Merchant or Agent onboarded and on transactions performed by all your single level downlines (Customers, Merchants or Agents) perpetually.';
 
 const cards: Card[] = [
   {
@@ -41,7 +41,8 @@ const cards: Card[] = [
     body: (
       <>
         Nothing to carry, No passwords and nothing else; just{' '}
-        <span className="font-bold text-biomonie-lemon">YOU</span>.{' '}
+        <span className="font-bold text-biomonie-lemon">YOU</span>.
+        <br />
         <span className="font-bold text-biomonie-lemon">YOU</span> are the money
         access; Flex, Pay or Spend everywhere and anywhere in the ecosystem.
       </>
@@ -64,7 +65,7 @@ const cards: Card[] = [
     image: '/imageforsection/AgentImage.jpg',
     alt: 'Agent facilitating cash-in and cash-out',
     headline:
-      'As the financial hub of the community facilitating cash-in & cash-out services with and other financial transactions;',
+      'As the financial hub of the community facilitating cash-in & cash-out services and other financial transactions;',
     body: 'The customers enjoys the new form of money access with a flex and zero downtimes while both the agent and customer uplines earn.',
     layout: 'flush',
   },

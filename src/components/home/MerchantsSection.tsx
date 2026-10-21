@@ -20,7 +20,7 @@ const benefits = [
     guaranteed uptime within your control. Your phone is what you need.
   </>,
   <>
-    <strong>Earn in the ecosystem.</strong> Onboard other merchants / agents / customers and
+    <strong>Earn in the ecosystem.</strong> Onboard other merchants, agents or customers and
     earn subscription fees per activation plus ongoing transaction fees.
   </>,
 ];
@@ -46,7 +46,7 @@ export default function MerchantsSection() {
             <p className="mb-6 text-[1.06rem] leading-[1.75] text-biomonie-text/[0.74]">
               Your customers pay with the new form of money access;{' '}
               <strong className="font-semibold text-biomonie-teal">YOU,</strong>{' '}
-              and you earn instantly every time transactions are performed. No
+              and you earn when transactions are performed. No
               Device issues. No downtime.
             </p>
           </Reveal>
@@ -134,10 +134,10 @@ export default function MerchantsSection() {
               }}
             >
               <p className="text-[0.65rem] uppercase tracking-[0.08em] text-biomonie-teal/80">
-                Referral earned
+                Upline earned
               </p>
               <p className="font-mono text-[0.86rem] font-bold text-biomonie-teal">
-                +₦500
+                +₦50
               </p>
             </motion.div>
           </motion.div>

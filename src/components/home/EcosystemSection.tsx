@@ -219,10 +219,7 @@ export default function EcosystemSection() {
                   cash needs.
                 </span>
                 <span className="block">
-                  No PIN, No password and Nothing else;
-                </span>
-                <span className="block">
-                  Just{' '}
+                  Nothing carried, No password and Nothing else; Just{' '}
                   <strong className="font-bold text-biomonie-lemon">YOU</strong>
                   .
                 </span>

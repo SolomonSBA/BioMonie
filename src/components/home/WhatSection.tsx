@@ -106,7 +106,7 @@ export default function WhatSection() {
               (Finger or FACE){' '}
               {/* <strong className="font-semibold text-biomonie-text">No pin. No password. No wallet to carry.</strong> The only thing you need to pay or get paid is{" "}
               <strong className="font-semibold text-biomonie-teal">YOU</strong> verified instantly by your biometrics. */}
-              to be the money access for all payment activities either to pay,
+              to be the money access for all payment activities either to pay or spend,
               receive payment or cash related services. Nothing Carried, No password and
               Nothing else. Just show up, flex and pay.
             </p>
@@ -127,9 +127,9 @@ export default function WhatSection() {
               <strong className="font-semibold text-biomonie-teal">
                 BIOMONIE
               </strong>{' '}
-              ecosystem: from the moment you opt to join, you Automatically
+              ecosystem: from the moment you opt to join, you automatically
               become a Biomonie Partner and can grow your downlines and earn
-              everytime tranasctions are performed.{' '}
+              on transactions are performed.{' '}
               {/* <strong className="font-semibold text-biomonie-teal">YOU</strong>.
               No one is orphaned on{' '}
               <strong className="font-semibold text-biomonie-teal">

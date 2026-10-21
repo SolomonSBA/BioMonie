@@ -189,13 +189,67 @@ export default function Footer() {
           </FooterColumn>
         </div>
 
-        <p className="mt-12 text-center text-[0.8rem] text-white/[60]">
-          © {new Date().getFullYear()}{' '}
-          <span className="font-semibold text-biomonie-lemon">BIOMONIE</span>. All
-          rights reserved.
-        </p>
+        <div className="mt-12 flex flex-col items-center gap-4 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-3">
+          <div className="flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+            <PartnerMark
+              label="Licensed by CBN"
+              src="/SponsorsLogos/cbn_logo.png"
+              alt="Central Bank of Nigeria"
+            />
+            <PartnerMark
+              label="Insured by NDIC"
+              src="/SponsorsLogos/NDIC.png"
+              alt="Nigeria Deposit Insurance Corporation"
+            />
+          </div>
+
+          <p className="text-center text-[0.8rem] text-white/[60] lg:px-3">
+            © {new Date().getFullYear()}{' '}
+            <span className="font-semibold text-biomonie-lemon">BIOMONIE</span>. All
+            rights reserved.
+          </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-3 lg:justify-end">
+            <PartnerMark
+              label="Powered by PROVIDUS"
+              src="/SponsorsLogos/providus unity.png"
+              alt="ProvidusUnity Bank"
+            />
+            <PartnerMark
+              label="Powered by Uniswitch"
+              src="/SponsorsLogos/uniswitch Upscaled.png"
+              alt="Uniswitch"
+              invert
+            />
+          </div>
+        </div>
       </div>
     </footer>
+  );
+}
+
+function PartnerMark({
+  label,
+  src,
+  alt,
+  invert = false,
+}: {
+  label: string;
+  src: string;
+  alt: string;
+  invert?: boolean;
+}) {
+  return (
+    <div className="flex items-center gap-1.5">
+      <img
+        src={encodeURI(src)}
+        alt={alt}
+        className={`h-7 w-auto max-w-[3.75rem] object-contain sm:h-8 sm:max-w-[4.5rem]${invert ? ' brightness-0 invert' : ''}`}
+      />
+      <span className="max-w-[5.5rem] text-[0.62rem] leading-tight text-white/55">
+        {label}
+      </span>
+    </div>
   );
 }
 

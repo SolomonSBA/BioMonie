@@ -14,11 +14,11 @@ const glanceCards = [
   },
   {
     title: 'Activity Payout Threshold',
-    value: 'Every 75 transactions',
+    value: 'SLD defined payout cycle ',
   },
   {
     title: 'Subscription Payouts',
-    value: 'SLD defined cycle and also subject to Performance Activities',
+    value: 'SLD defined payout cycle and also subject to Performance Activities',
   },
   {
     title: 'Who You Can Onboard',
@@ -66,7 +66,7 @@ export default function EarnSection() {
             {[
               {
                 Icon: Users,
-                title: 'Onboard Anyone and Everyone; Earn on  Every transaction they perform.',
+                title: 'Onboard Anyone and Everyone; Earn on transactions they perform.',
                 body: (
                   <>
                     Grow your downlines by introducing any or all of the
