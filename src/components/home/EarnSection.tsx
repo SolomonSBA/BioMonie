@@ -1,172 +1,101 @@
-import { Users, Zap, RefreshCw } from 'lucide-react';
+import { RefreshCw, Users, Zap } from 'lucide-react';
 import { Reveal } from '@/lib/motion';
 
-const glanceCards = [
+const benefits = [
   {
-    title: 'Subscription  Fee',
-    subtitle: ' Customers, Agents & Merchants',
-    value: 'Guaranteed Payout Per subscribed downline.',
+    Icon: Users,
+    title: 'Onboard Anyone and Everyone; Earn on transactions they perform.',
+    body: (
+      <>
+        Grow your downlines by introducing any or all of the following: Customer,
+        Merchant or Agent into the Ecosystem and earn a guaranteed payout on
+        transactions they perform or subscription fees for Merchants, Agents or
+        Customers. Payouts into <strong>BIOWALLETS</strong> are done based on
+        applicable transaction payment threshold with no limit and no expiry.
+      </>
+    ),
   },
   {
-    title: 'Activity-Based Fee',
-    subtitle: 'For everyone in the Ecosystem',
-    value: 'Earn per transaction and accessible per defined activity thresholds',
+    Icon: Zap,
+    title: 'Instant Payouts',
+    body: (
+      <>
+        Commissions and subscription earnings are calculated and paid into your{' '}
+        <strong>BIOWALLETS</strong> once you meet the applicable transaction
+        threshold. Your first payout is unlocked once your downlines meet the
+        sign-on requirements and subsequent payouts drop based on the applicable
+        transaction thresholds.
+      </>
+    ),
   },
   {
-    title: 'Activity Payout Threshold',
-    value: 'SLD defined payout cycle ',
-  },
-  {
-    title: 'Subscription Payouts',
-    value: 'SLD defined payout cycle and also subject to Performance Activities',
-  },
-  {
-    title: 'Who You Can Onboard',
-    value: 'Customers, Agents, Merchants',
-  },
-  {
-    title: 'Cost to Join',
-    value: 'Subscription with recurring Earned Payout (NET-GAIN)',
-  },
-  {
-    title: 'Subscription Earning Threshold',
-    value: 'Tied to downline subscriptions and performance Activities  (Customer / Agent / Merchant)',
-  },
-  {
-    title: 'Earning Expiry',
-    value: 'None; continues Perpetually.',
+    Icon: RefreshCw,
+    title: 'No Limit. No Expiry.',
+    body: (
+      <>
+        There is no cap on how many people <strong>YOU</strong> can onboard or
+        limits to growing your Single-Level Downlines (SLD) or how much you can
+        earn. Keep growing your downlines, earn forever as long as they perform
+        transactions.
+      </>
+    ),
   },
 ] as const;
 
 export default function EarnSection() {
   return (
-    <section id="earn" className="bg-white">
-      <div className="bg-biomonie-pale px-[5%] py-[100px]">
-        <div className="mx-auto max-w-6xl">
+    <section id="earn" className="overflow-hidden border border-biomonie-teal/50 bg-biomonie-pale">
+      <div className="earn-section-layout mx-auto grid max-w-[1440px] grid-cols-1 gap-10 px-5 py-12 sm:px-8 sm:py-14 lg:gap-14 lg:px-12 lg:py-14 xl:px-16">
+        <div className="min-w-0">
           <Reveal>
-            <div className="mb-4 border-l-[3px] border-biomonie-lemon pl-3 text-[0.75rem] font-bold uppercase tracking-[0.14em] text-biomonie-teal">
+            <div className="earn-kicker mb-3 border-l-2 border-biomonie-lemon pl-2 text-[0.5rem] font-bold uppercase tracking-[0.14em] text-biomonie-teal lg:text-xs">
               BIOMONIE Partners
             </div>
           </Reveal>
-          <Reveal delay={0.06}>
-            <h2 className="mb-4 max-w-[18ch] text-[clamp(1.9rem,4vw,3rem)] font-extrabold leading-[1.15] tracking-tight text-biomonie-text">
+          <Reveal delay={0.05}>
+            <h2 className="mb-3 max-w-[19ch] text-[clamp(1.8rem,4vw,3.25rem)] font-extrabold leading-[1.08] tracking-[-0.04em] text-biomonie-text">
               Build and turn your downlines into{' '}
-              <em className="not-italic text-biomonie-teal">perpetual income.</em>
+              <span className="text-biomonie-teal">perpetual income.</span>
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mb-12 max-w-3xl text-[1.06rem] leading-[1.75] text-biomonie-text/[0.72]">
+            <p className="earn-intro-copy max-w-[62ch] text-sm leading-[1.65] text-biomonie-text/70 lg:text-[0.9rem]">
               <strong className="font-semibold text-biomonie-teal">BIOMONIE</strong>
-              &apos;s Single-Level Downline proprietary technology (SLD) allows anyone and everyone to
-              onboard anyone and earn when transactions are performed using the platform.
-              It is transparent, transaction-based and always a NET-GAIN.
+              &apos;s Single-Level Downline proprietary technology (SLD) allows anyone
+              and everyone to onboard anyone and earn when transactions are performed
+              using the platform. It is transparent, transaction-based and always a
+              NET-GAIN.
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 gap-8 min-[800px]:grid-cols-3 min-[800px]:gap-6">
-            {[
-              {
-                Icon: Users,
-                title: 'Onboard Anyone and Everyone; Earn on transactions they perform.',
-                body: (
-                  <>
-                    Grow your downlines by introducing any or all of the
-                    following; Customer, Merchant or Agent into the Ecosystem and
-                    earn a guaranteed payout on transactions they perform or
-                    subscription fees for Merchants, Agents or Customers. Payouts into{' '}
-                    <strong className="font-semibold text-biomonie-teal">
-                      BIOWALLETS
-                    </strong>{' '}
-                    are done based on applicable transaction payment thresh-hold
-                    with no limit and no expiry.{' '}
-                  </>
-                ),
-              },
-              {
-                Icon: Zap,
-                title: 'Instant Payouts',
-                body: (
-                  <>
-                    Commissions and subscription earnings are calculated and paid into
-                    your{' '}
-                    <strong className="font-semibold text-biomonie-teal">
-                      BIOWALLETS
-                    </strong>{' '}
-                    once you meet the applicable transaction threshold. Your first
-                    payout is unlocked once your downlines meet the sign-on
-                    requirements and subsequent payouts drop based on the
-                    applicable transaction thresholds.
-                  </>
-                ),
-              },
-              {
-                Icon: RefreshCw,
-                title: 'No Limit. No Expiry.',
-                body: (
-                  <>
-                    There is no cap on how many people{' '}
-                    <strong className="font-semibold text-biomonie-teal">
-                      YOU
-                    </strong>{' '}
-                    can onboard or limits to growing your Single-Level Downlines
-                    (SLD) or how much you can earn. Keep growing your downlines,
-                    earn forever as long as they perform transactions.
-                  </>
-                ),
-              },
-            ].map((block, i) => (
-              <Reveal key={block.title} delay={0.12 + i * 0.06}>
-                <div className="flex h-full gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[10px] bg-biomonie-teal text-white shadow-biomonie-sm ring-1 ring-biomonie-teal/20">
-                    <block.Icon className="h-6 w-6" strokeWidth={1.5} />
-                  </div>
-                  <div>
-                    <h4 className="mb-1.5 text-[1.06rem] font-bold text-biomonie-text">
-                      {block.title}
-                    </h4>
-                    <p className="text-[0.93rem] leading-relaxed text-biomonie-text/[0.72]">
-                      {block.body}
-                    </p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal delay={0.15}>
+            <img
+              src="/imageforsection/EcosystemImage.png"
+              alt="Customers, merchants, and agents connected in the BIOMONIE ecosystem, earning more through one trusted platform."
+              className="earn-section-image mx-auto mt-7 block h-auto w-full max-w-[760px] object-contain sm:mt-8 lg:mt-6"
+              loading="lazy"
+              decoding="async"
+            />
+          </Reveal>
         </div>
-      </div>
 
-      <div className="px-[5%] py-[88px]">
-        <div className="mx-auto max-w-6xl">
-          <Reveal>
-            <h2 className="mb-3 text-[clamp(1.85rem,4vw,2.75rem)] font-extrabold tracking-tight text-biomonie-text">
-              Earnings at a glance.
-            </h2>
-          </Reveal>
-          <Reveal delay={0.06}>
-            <p className="mb-10 max-w-3xl text-[0.98rem] leading-relaxed text-biomonie-text/70">
-              All earnings are transaction-based and only from users&apos; downlines.
-              The Single-Level Downline proprietary technology (SLD) governs the process.
-              Everybody earns in the BIOMONIE ecosystem.
-            </p>
-          </Reveal>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
-            {glanceCards.map((card, i) => (
-              <Reveal key={card.title} delay={0.04 * i}>
-                <article className="flex h-full min-h-[148px] flex-col rounded-[18px] bg-biomonie-teal-mid px-5 py-5 sm:min-h-[120px] sm:px-6 sm:py-6">
-                  <h3 className="text-[0.98rem] font-bold leading-snug text-biomonie-lemon sm:text-[1.02rem]">
-                    {card.title}
+        <div className="earn-benefits grid grid-cols-1 gap-8 lg:gap-10 lg:pt-0.5">
+          {benefits.map(({ Icon, title, body }, index) => (
+            <Reveal key={title} delay={0.08 + index * 0.07}>
+              <article className="flex items-start gap-3 sm:gap-3.5">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[9px] bg-biomonie-teal text-white shadow-biomonie-sm sm:h-11 sm:w-11">
+                  <Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.7} />
+                </div>
+                <div className="min-w-0">
+                  <h3 className="earn-benefit-title mb-1 text-sm font-bold leading-snug text-biomonie-text lg:text-[0.9rem]">
+                    {title}
                   </h3>
-                  {'subtitle' in card && card.subtitle ? (
-                    <p className="mt-1.5 text-[0.82rem] leading-snug text-white/70">
-                      {card.subtitle}
-                    </p>
-                  ) : null}
-                  <p className="mt-4 text-[0.92rem] font-medium leading-snug text-white">
-                    {card.value}
+                  <p className="earn-benefit-copy text-[0.8rem] leading-[1.55] text-biomonie-text lg:text-[0.82rem]">
+                    {body}
                   </p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
+                </div>
+              </article>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

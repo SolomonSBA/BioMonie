@@ -160,9 +160,9 @@ export default function EcosystemSection() {
     { label: 'Electricity Prepaid / Postpaid', icon: Zap },
     { label: 'Cable TV & Internet', icon: Tv },
     { label: 'Water & Waste Management', icon: Droplets },
-    { label: 'Govt Levies & Taxes', icon: Landmark },
+    // { label: 'Govt Levies & Taxes', icon: Landmark },
     { label: 'Insurance Premiums', icon: Shield },
-    { label: 'Betting Wallet Funding', icon: Dice5 },
+    // { label: 'Betting Wallet Funding', icon: Dice5 },
     { label: 'School Fees & Exam Pins', icon: GraduationCap },
     { label: 'And more', icon: Plus },
   ] as const;
@@ -391,7 +391,7 @@ export default function EcosystemSection() {
                     return (
                       <div
                         key={item.label}
-                        className="flex min-h-[78px] flex-col items-center justify-center rounded-lg border border-biomonie-teal-light/30 bg-white/[0.03] px-2 py-3.5 text-center transition-colors duration-200 hover:border-biomonie-lemon/35 hover:bg-biomonie-lemon/[0.08]"
+                        className={`flex min-h-[78px] flex-col items-center justify-center rounded-lg border border-biomonie-teal-light/30 bg-white/[0.03] px-2 py-3.5 text-center transition-colors duration-200 hover:border-biomonie-lemon/35 hover:bg-biomonie-lemon/[0.08] ${item.label === 'And more' ? 'col-span-full' : ''}`}
                       >
                         <BillIcon className="mb-2 h-4 w-4 text-biomonie-lemon/85" />
                         <span className="text-[0.75rem] font-medium leading-snug text-white/85 sm:text-[0.8rem]">

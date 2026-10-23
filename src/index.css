@@ -26,6 +26,90 @@ body {
   @apply text-biomonie-lemon;
 }
 
+@media (min-width: 700px) {
+  .earn-section-layout {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.95fr);
+    column-gap: 3.75rem;
+    padding: 3.75rem 2.25rem 2.5rem;
+  }
+
+  .earn-section-image {
+    max-width: 300px;
+    margin-top: 1.25rem;
+  }
+
+  .earn-benefits {
+    height: 100%;
+    grid-template-rows: repeat(3, auto);
+    align-content: space-between;
+    gap: 1rem;
+  }
+
+  .earn-benefits article > div:first-child {
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 0.4rem;
+  }
+
+  .earn-benefits article > div:first-child svg {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+
+  .earn-kicker {
+    font-size: 0.5rem;
+  }
+
+  .earn-intro-copy {
+    font-size: 0.7rem;
+  }
+
+  .earn-benefit-title {
+    font-size: 0.72rem;
+  }
+
+  .earn-benefit-copy {
+    font-size: 0.66rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .earn-section-layout {
+    grid-template-columns: minmax(0, 1.55fr) minmax(300px, 0.9fr);
+    column-gap: 3.5rem;
+  }
+
+  .earn-section-image {
+    max-width: 650px;
+    margin-top: 1.5rem;
+  }
+
+  .earn-section-layout > .earn-benefits {
+    display: flex;
+    height: auto;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 2rem;
+    padding-top: 14rem;
+  }
+
+  .earn-benefits article > div:first-child {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .earn-benefits article > div:first-child svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+@media (max-width: 699px) {
+  .earn-section-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 .privacy-toc-scrollbar {
   scrollbar-color: #295c72 #ebf3f7;
   scrollbar-width: thin;
