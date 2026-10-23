@@ -192,35 +192,47 @@ export default function Footer() {
         <div className="mt-12 flex flex-col items-center gap-4 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-3">
           <div className="flex flex-wrap items-center justify-center gap-3 lg:justify-start">
             <PartnerMark
-              label="Licensed by CBN"
               src="/SponsorsLogos/cbn_logo.png"
               alt="Central Bank of Nigeria"
             />
             <PartnerMark
-              label="Insured by NDIC"
               src="/SponsorsLogos/NDIC.png"
               alt="Nigeria Deposit Insurance Corporation"
             />
           </div>
 
-          <p className="text-center text-[0.8rem] text-white/[60] lg:px-3">
-            © {new Date().getFullYear()}{' '}
-            <span className="font-semibold text-biomonie-lemon">BIOMONIE</span>. All
-            rights reserved.
-          </p>
+          <div className="space-y-1 text-center text-[0.8rem] text-white/[60] lg:px-3">
+            <p>
+              © {new Date().getFullYear()}{' '}
+              <span className="font-semibold text-biomonie-lemon">BIOMONIE</span>. All
+              rights reserved.
+            </p>
+            <p>
+              &copy; {new Date().getFullYear()}{' '}
+              <span className="font-semibold text-biomonie-lemon">
+                Single-Level Downlines (SLD).
+              </span>All rights reserved.
+            </p>
+          </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-3 lg:justify-end">
-            <PartnerMark
-              label="Powered by PROVIDUS"
-              src="/SponsorsLogos/providus unity.png"
-              alt="ProvidusUnity Bank"
-            />
-            <PartnerMark
-              label="Powered by Uniswitch"
-              src="/SponsorsLogos/uniswitch Upscaled.png"
-              alt="Uniswitch"
-              invert
-            />
+          <div className="grid grid-cols-[1fr_auto_1fr] grid-rows-[auto_auto] items-center gap-x-3 gap-y-1 lg:justify-self-end">
+            <span className="col-span-3 justify-self-center text-[0.75rem] font-medium text-white/80">
+              Powered by
+            </span>
+            <div className="justify-self-end">
+              <PartnerMark
+                src="/SponsorsLogos/ProvidusUnityBank.png"
+                alt="Providus Unity Bank"
+              />
+            </div>
+            <span aria-hidden="true" />
+            <div className="justify-self-start">
+              <PartnerMark
+                src="/SponsorsLogos/uniswitch Upscaled.png"
+                alt="Uniswitch"
+                invert
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -229,26 +241,21 @@ export default function Footer() {
 }
 
 function PartnerMark({
-  label,
   src,
   alt,
   invert = false,
 }: {
-  label: string;
   src: string;
   alt: string;
   invert?: boolean;
 }) {
   return (
-    <div className="flex items-center gap-1.5">
+    <div className="flex items-center">
       <img
         src={encodeURI(src)}
         alt={alt}
-        className={`h-7 w-auto max-w-[3.75rem] object-contain sm:h-8 sm:max-w-[4.5rem]${invert ? ' brightness-0 invert' : ''}`}
+        className={`h-9 w-auto max-w-[5.25rem] object-contain sm:h-10 sm:max-w-[6.75rem]${invert ? ' brightness-0 invert' : ''}`}
       />
-      <span className="max-w-[5.5rem] text-[0.62rem] leading-tight text-white/55">
-        {label}
-      </span>
     </div>
   );
 }

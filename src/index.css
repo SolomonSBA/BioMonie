@@ -90,7 +90,7 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     gap: 2rem;
-    padding-top: 14rem;
+    padding-top: 16rem;
   }
 
   .earn-benefits article > div:first-child {
