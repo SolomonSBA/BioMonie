@@ -84,7 +84,7 @@ const slides: Slide[] = [
     ),
     headline: (
       <>
-        With <em className="not-italic text-biomonie-lemon text-[1.5rem] font-bold front-serif">YOU</em> being the
+        With <em className="not-italic text-biomonie-lemon ">YOU</em> being the
         money access.
       </>
     ),
