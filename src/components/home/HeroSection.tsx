@@ -23,7 +23,11 @@ const slides: Slide[] = [
     headline: <>The money access for everyone everywhere.</>,
     sub: (
       <>
-        Just <em className="not-italic text-biomonie-lemon">YOU</em>
+        <strong className="font-bold">
+          Just <em className="not-italic text-biomonie-lemon">YOU</em>.
+          <br />
+          Nothing carried. No password. Nothing else.
+        </strong>
       </>
     ),
   },
