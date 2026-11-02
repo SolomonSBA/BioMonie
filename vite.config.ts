@@ -8,14 +8,14 @@ export default defineConfig({
     host: "::",
     port: 5173,
     proxy: {
-      "/contact": "http://localhost:3000",
+      "/api": "http://localhost:3000",
     },
   },
-  /** Same proxy as dev — `vite preview` otherwise POST /contact hits the static server and fails. */
+  /** Same proxy as dev so API calls during preview reach the local Node server. */
   preview: {
     port: 5173,
     proxy: {
-      "/contact": "http://localhost:3000",
+      "/api": "http://localhost:3000",
     },
   },
   resolve: {

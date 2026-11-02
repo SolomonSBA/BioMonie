@@ -12,9 +12,7 @@ import {
   Tv,
   Droplets,
   GraduationCap,
-  Landmark,
   Shield,
-  Dice5,
   Plus,
 } from 'lucide-react';
 import { easeOutExpo } from '@/lib/motion';

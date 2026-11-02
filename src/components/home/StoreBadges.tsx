@@ -6,7 +6,7 @@ export default function StoreBadges({ className = '' }: StoreBadgesProps) {
   return (
     <div className={`flex flex-wrap items-center gap-3 ${className}`}>
       <a
-        href="https://play.google.com/store"
+        href="https://play.google.com/store/apps/details?id=com.biomonie.purse"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Get it on Google Play"

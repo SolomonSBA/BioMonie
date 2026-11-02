@@ -22,6 +22,8 @@ const companyLinks = [
 const legalLinks = [
   { label: 'Privacy policy', href: '/privacy-policy', sectionId: '' },
   { label: 'Terms & Conditions', href: '/terms-and-conditions', sectionId: '' },
+  { label: 'SLD Partner Terms', href: '/sld-terms', sectionId: '' },
+  { label: 'Request account closure', href: '/request-account-closure', sectionId: '' },
   { label: 'Acceptable use policy', href: '/privacy-policy', sectionId: '' },
   { label: 'Help center', href: '/contact', sectionId: '' },
   { label: 'FAQ', href: '/faq', sectionId: 'faq' },
@@ -210,8 +212,8 @@ export default function Footer() {
             <p>
               &copy; {new Date().getFullYear()}{' '}
               <span className="font-semibold text-biomonie-lemon">
-                Single-Level Downlines (SLD).
-              </span>All rights reserved.
+                Single - Level Downlines (SLD).
+              </span> All rights reserved.
             </p>
           </div>
 

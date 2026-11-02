@@ -26,11 +26,6 @@ function scrollToSection(sectionId: string, behavior: ScrollBehavior = 'smooth')
   window.scrollTo({ top: Math.max(0, top), behavior });
 }
 
-function isSectionPath(pathname: string) {
-  const sectionId = pathname.replace(/^\/+/, '').toLowerCase();
-  return SECTION_IDS.has(sectionId);
-}
-
 function sectionFromPath(pathname: string) {
   const sectionId = pathname.replace(/^\/+/, '').toLowerCase();
   return SECTION_IDS.has(sectionId) ? sectionId : '';

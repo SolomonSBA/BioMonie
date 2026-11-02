@@ -23,8 +23,7 @@ const slides: Slide[] = [
     headline: <>The money access for everyone everywhere.</>,
     sub: (
       <>
-        No card to carry, no PIN to remember, no password to forget. Just show
-        up and pay with your finger or face.
+        Just <em className="not-italic text-biomonie-lemon">YOU</em>
       </>
     ),
   },
@@ -61,7 +60,7 @@ const slides: Slide[] = [
     ),
     headline: (
       <>
-        Show up, <em className="not-italic text-biomonie-lemon">flex</em> and
+        Show up, <em className="not-italic text-biomonie-lemon">flex, pay </em> or  <em className="not-italic text-biomonie-lemon">spend</em> and
         earn.
       </>
     ),
@@ -72,11 +71,11 @@ const slides: Slide[] = [
     image: img('YOUareyourmoneyaccessimage.jpg'),
     headline: (
       <>
-        <em className="not-italic text-biomonie-lemon">YOU</em> are your money
+        <em className="not-italic text-biomonie-lemon">YOU</em> are the money
         access.
       </>
     ),
-    sub: <>Safety always on.</>,
+    sub: <>You are the money access and that's on period...</>,
   },
   {
     id: 'safety2',
@@ -85,7 +84,7 @@ const slides: Slide[] = [
     ),
     headline: (
       <>
-        With <em className="not-italic text-biomonie-lemon">YOU</em> being the
+        With <em className="not-italic text-biomonie-lemon text-[1.5rem] font-bold front-serif">YOU</em> being the
         money access.
       </>
     ),

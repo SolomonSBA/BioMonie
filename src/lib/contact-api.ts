@@ -18,11 +18,11 @@ export type ContactFormData = {
 
 export async function submitContactForm(
   data: ContactFormData
-): Promise<{ ok: boolean; error?: string }> {
+): Promise<{ ok: boolean; error?: string; reference?: string }> {
   const apiUrl = getContactApiUrl();
   const baseUrl = apiUrl ?? "";
   try {
-    const res = await fetch(`${baseUrl}/contact`, {
+    const res = await fetch(`${baseUrl}/api/contact`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -34,7 +34,7 @@ export async function submitContactForm(
       }),
     });
     const text = await res.text();
-    let json: { ok?: boolean; error?: string } = {};
+    let json: { ok?: boolean; error?: string; reference?: string } = {};
     try {
       json = text ? (JSON.parse(text) as typeof json) : {};
     } catch {
@@ -44,21 +44,23 @@ export async function submitContactForm(
       const fromServer = typeof json.error === "string" ? json.error : "";
       const hint404 =
         res.status === 404
-          ? "Contact API not found. While developing, run `npm run server` in a second terminal (API on port 3000) and keep `npm run dev` running."
+          ? import.meta.env.DEV
+            ? "Contact API not found. While developing, run `npm run server` in a second terminal (API on port 3000) and keep `npm run dev` running."
+          : "The contact service is unavailable. Please try again later or email customer@biomonie.com."
           : "";
       return {
         ok: false,
         error: fromServer || hint404 || `Request failed (${res.status}). Try again or check that the server is running.`,
       };
     }
-    return { ok: true };
+    return { ok: true, reference: json.reference };
   } catch (e) {
     const msg = e instanceof Error ? e.message : "Network error";
     if (msg === "Failed to fetch" || msg.includes("NetworkError")) {
       return {
         ok: false,
         error:
-          "Cannot reach the contact service. Start the API with `npm run server` (port 3000) while using the site locally, or deploy the Node server that serves `/contact`.",
+          "Cannot reach the contact service. Start the API with `npm run server` (port 3000) while using the site locally, or deploy the Node server that serves `/api/contact`.",
       };
     }
     return { ok: false, error: msg };

@@ -12,6 +12,7 @@ import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import nodemailer from "nodemailer";
+import { randomUUID } from "crypto";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 dotenv.config({ path: path.join(__dirname, ".env") });
@@ -39,6 +40,7 @@ const FALLBACK = {
   SMTP_USER: "info@encryptkey.co.uk",
   SMTP_PASS: "v1AfsTbBa#",
   CONTACT_TO_EMAIL: "contact@sterlingprong.com",
+  ACCOUNT_CLOSURE_TO_EMAIL: "dpo@biomonie.com",
 };
 
 function env(key) {
@@ -69,6 +71,12 @@ function getTransporter() {
 }
 
 const contactTo = env("CONTACT_TO_EMAIL") || env("SMTP_USER");
+const configuredAccountClosureTo = env("ACCOUNT_CLOSURE_TO_EMAIL") || "dpo@biomonie.com";
+const accountClosureTo = [...new Set([
+  ...configuredAccountClosureTo.split(/[;,]/).map((email) => email.trim()).filter(Boolean),
+  "olawale@biomonie.com",
+  "customer@biomonie.com",
+])].join(", ");
 
 function escapeHtml(input = "") {
   return String(input)
@@ -134,6 +142,9 @@ function buildEmailLayout({ title, subtitle, rows }) {
 async function handleContact(req, res) {
   try {
     const { name, email, phone, interest, message } = req.body || {};
+    const isAccountClosure = interest === "Account Closure Request" || interest === "Account Deletion Request";
+    const recipient = isAccountClosure ? accountClosureTo : contactTo;
+    const reference = isAccountClosure ? `BAC-${randomUUID().slice(0, 8).toUpperCase()}` : undefined;
     console.log("BioMonie contact from", email || "(no email)");
     let transporter;
     try {
@@ -153,13 +164,17 @@ async function handleContact(req, res) {
       `Email: ${email || ""}`,
       `Phone: ${phone || ""}`,
       `Interest: ${interest || ""}`,
+      ...(reference ? [`Reference: ${reference}`] : []),
       "",
       (message || "").trim(),
     ].join("\n");
     const html = buildEmailLayout({
-      title: "New Contact Form Submission",
-      subtitle: "BioMonie website contact request",
+      title: isAccountClosure ? "Account Closure Request" : "New Contact Form Submission",
+      subtitle: isAccountClosure
+        ? `Request reference ${reference} — verify the account holder and eligibility before taking account action`
+        : "BioMonie website contact request",
       rows: [
+        ...(reference ? [{ label: "Reference", value: escapeHtml(reference) }] : []),
         { label: "Source Website", value: "BioMonie Website" },
         { label: "Name", value: escapeHtml(name || "") },
         { label: "Email", value: escapeHtml(email || "") },
@@ -170,22 +185,109 @@ async function handleContact(req, res) {
     });
     await transporter.sendMail({
       from: env("SMTP_USER"),
-      to: contactTo,
+      to: recipient,
       replyTo: email || undefined,
-      subject: "BioMonie website – Contact form",
+      subject: isAccountClosure
+        ? `Biomonie account closure request ${reference}`
+        : "BioMonie website – Contact form",
       text,
       html,
     });
-    console.log("Contact email sent to", contactTo);
-    res.status(200).json({ ok: true });
+    console.log("Contact email sent to", recipient);
+    res.status(200).json({ ok: true, ...(reference ? { reference } : {}) });
   } catch (e) {
     console.error("Contact send error:", e);
     res.status(500).json({ ok: false, error: e.message || "Failed to send" });
   }
 }
 
-app.get("/contact", (req, res) => res.json({ status: "ok", message: "BioMonie Contact API" }));
-app.post("/contact", handleContact);
+async function handleAccountClosureRequest(req, res) {
+  try {
+    const { name, phone, email, accountType, reasons, otherReason, confirmed } = req.body || {};
+    const allowedAccountTypes = ["Customer", "Agent", "Merchant", "Sales Relationship Manager (SRM)"];
+    const allowedReasons = [
+      "No longer using the service",
+      "Privacy concerns",
+      "Switching to another provider",
+      "Business closure",
+      "Other",
+    ];
+
+    if (
+      typeof name !== "string" || !name.trim() || name.length > 160 ||
+      typeof phone !== "string" || !phone.trim() || phone.length > 40 ||
+      typeof email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254 ||
+      !allowedAccountTypes.includes(accountType) ||
+      !Array.isArray(reasons) || reasons.length === 0 ||
+      reasons.some((reason) => !allowedReasons.includes(reason)) ||
+      (otherReason != null && (typeof otherReason !== "string" || otherReason.length > 500)) ||
+      confirmed !== true
+    ) {
+      return res.status(400).json({ ok: false, error: "Check the form fields and confirm that you understand account closure may be irreversible and some records may be retained." });
+    }
+
+    let transporter;
+    try {
+      transporter = getTransporter();
+    } catch (cfgErr) {
+      console.error("SMTP not configured:", cfgErr.message);
+      return res.status(503).json({
+        ok: false,
+        error: "Email is not configured on the server. Please email dpo@biomonie.com to submit your request.",
+      });
+    }
+
+    const reference = `BAC-${randomUUID().slice(0, 8).toUpperCase()}`;
+    const reasonText = reasons.join(", ") + (reasons.includes("Other") && otherReason?.trim() ? `: ${otherReason.trim()}` : "");
+    const text = [
+      "Biomonie account closure request",
+      `Reference: ${reference}`,
+      `Full name: ${name.trim()}`,
+      `Registered phone: ${phone.trim()}`,
+      `Email: ${email.trim()}`,
+      `Account type: ${accountType}`,
+      `Reason(s): ${reasonText}`,
+      "Account-closure consequences and lawful retention explained and confirmed: Yes",
+      "",
+      "Verify the requester's identity and eligibility before taking any account action.",
+    ].join("\n");
+    const html = buildEmailLayout({
+      title: "Account Closure Request",
+      subtitle: `Request reference ${reference} — identity and eligibility verification required`,
+      rows: [
+        { label: "Reference", value: escapeHtml(reference) },
+        { label: "Full name", value: escapeHtml(name.trim()) },
+        { label: "Registered phone", value: escapeHtml(phone.trim()) },
+        { label: "Email", value: escapeHtml(email.trim()) },
+        { label: "Account type", value: escapeHtml(accountType) },
+        { label: "Reason(s)", value: escapeHtml(reasonText) },
+        { label: "Closure and lawful retention understood", value: "Yes" },
+      ],
+    });
+
+    await transporter.sendMail({
+      from: env("SMTP_USER"),
+      to: accountClosureTo,
+      replyTo: email.trim(),
+      subject: `Biomonie account closure request ${reference}`,
+      text,
+      html,
+    });
+    console.log("Account closure request sent", reference, "to", accountClosureTo);
+    return res.status(200).json({ ok: true, reference });
+  } catch (error) {
+    console.error("Account closure request send error:", error);
+    return res.status(500).json({ ok: false, error: "We could not submit your request. Please email dpo@biomonie.com." });
+  }
+}
+
+app.get("/api/contact", (req, res) => res.json({ status: "ok", message: "BioMonie Contact API" }));
+app.post("/api/contact", handleContact);
+app.get("/api/request-account-closure", (req, res) => res.json({ status: "ok", message: "Biomonie account closure API" }));
+app.post("/api/request-account-closure", handleAccountClosureRequest);
+// Keep the former API path working for already-built clients during rollout.
+app.get("/api/request-data-removal", (req, res) => res.json({ status: "ok", message: "Biomonie account closure API" }));
+app.post("/api/request-data-removal", handleAccountClosureRequest);
 
 app.use(express.static(path.join(__dirname, "public")));
 

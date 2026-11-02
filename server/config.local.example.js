@@ -8,4 +8,5 @@ module.exports = {
   SMTP_USER: "info@encryptkey.co.uk",
   SMTP_PASS: "your-smtp-password",
   CONTACT_TO_EMAIL: "contact@sterlingprong.com",
+  ACCOUNT_CLOSURE_TO_EMAIL: "dpo@biomonie.com,olawale@biomonie.com,customer@biomonie.com",
 };

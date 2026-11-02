@@ -1,8 +1,10 @@
-import { Routes, Route } from 'react-router-dom';
+import { Navigate, Routes, Route } from 'react-router-dom';
 import HomePage from '@/pages/HomePage';
 import PrivacyPolicyPage from '@/pages/PrivacyPolicyPage';
 import AppPolicyPage from '@/pages/AppPolicyPage';
 import TermsConditionsPage from '@/pages/TermsConditionsPage';
+import SldTermsPage from '@/pages/SldTermsPage';
+import AccountClosurePage from '@/pages/AccountClosurePage';
 import ContactPage from '@/pages/ContactPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 
@@ -25,6 +27,12 @@ export default function App() {
       <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
       <Route path="/app-policy" element={<AppPolicyPage />} />
       <Route path="/terms-and-conditions" element={<TermsConditionsPage />} />
+      <Route path="/sld-terms" element={<SldTermsPage />} />
+      <Route path="/app-sld-terms" element={<SldTermsPage appVersion />} />
+      <Route path="/request-account-closure" element={<AccountClosurePage />} />
+      <Route path="/app-request-account-closure" element={<AccountClosurePage appVersion />} />
+      <Route path="/request-data-removal" element={<Navigate to="/request-account-closure" replace />} />
+      <Route path="/app-request-data-removal" element={<Navigate to="/app-request-account-closure" replace />} />
       <Route path="/app-terms" element={<TermsConditionsPage appVersion />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
