@@ -79,7 +79,7 @@ const slides: Slide[] = [
         access.
       </>
     ),
-    sub: <>You are the money access and that's on period...</>,
+    sub: <> And that's on period...</>,
   },
   {
     id: 'safety2',
