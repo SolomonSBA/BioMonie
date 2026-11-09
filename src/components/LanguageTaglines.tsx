@@ -8,7 +8,7 @@ import {
 import BiomonieMark from '@/components/icons/BiomonieMark';
 import { easeOutExpo } from '@/lib/motion';
 
-const TAGLINES = [
+export const TAGLINES = [
   { top: 'Finger', bottom: 'Na Money!' },
   { top: 'Tẹ̀ka', bottom: 'Gbowó.' },
   { top: 'Yatsan', bottom: 'Kuɗi.' },
@@ -36,7 +36,7 @@ const topClass =
 const bottomClass =
   'mt-1 whitespace-nowrap text-[0.78rem] font-extrabold leading-none xl:text-[0.86rem]';
 
-function Tagline({
+export function Tagline({
   item,
   active,
   playKey,
@@ -89,10 +89,14 @@ function Tagline({
  */
 export default function LanguageTaglines({
   className = '',
+  staticAll = false,
+  align = 'left',
 }: {
   className?: string;
+  staticAll?: boolean;
+  align?: 'left' | 'center';
 }) {
-  const reduce = Boolean(useReducedMotion());
+  const reduce = Boolean(useReducedMotion()) || staticAll;
   const [activeIdx, setActiveIdx] = useState(0);
   const [playKeys, setPlayKeys] = useState(() => [0, 0, 0, 0]);
   const prevIdx = useRef(activeIdx);
@@ -106,14 +110,37 @@ export default function LanguageTaglines({
   }, [reduce]);
 
   useEffect(() => {
-    if (prevIdx.current === activeIdx) return;
+    if (reduce || prevIdx.current === activeIdx) return;
     prevIdx.current = activeIdx;
     setPlayKeys((prev) => {
       const next = [...prev];
       next[activeIdx] += 1;
       return next;
     });
-  }, [activeIdx]);
+  }, [reduce, activeIdx]);
+
+  if (staticAll) {
+    return (
+      <div className={className} aria-label="Taglines in multiple languages">
+        <div
+          role="list"
+          className={`flex items-center ${
+            align === 'center' ? 'justify-between w-full' : 'gap-x-4'
+          }`}
+        >
+          {TAGLINES.map((item, idx) => (
+            <Tagline
+              key={item.top}
+              item={item}
+              active={idx === 0}
+              playKey={0}
+              reduce={true}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={className} aria-label="Taglines in multiple languages">

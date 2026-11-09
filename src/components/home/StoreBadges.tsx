@@ -1,14 +1,37 @@
+import { FaApple } from 'react-icons/fa6';
+import {
+  GOOGLE_PLAY_STORE_URL,
+  APP_STORE_URL,
+  isAppStorePlaceholder,
+} from '@/lib/storeLinks';
+
 type StoreBadgesProps = {
   className?: string;
+  googlePlayUrl?: string;
+  appStoreUrl?: string;
+  target?: '_blank' | '_self';
+  appStoreDisabled?: boolean;
 };
 
-export default function StoreBadges({ className = '' }: StoreBadgesProps) {
+export default function StoreBadges({
+  className = '',
+  googlePlayUrl = GOOGLE_PLAY_STORE_URL,
+  appStoreUrl = APP_STORE_URL,
+  target = '_blank',
+  appStoreDisabled,
+}: StoreBadgesProps) {
+  const rel = target === '_blank' ? 'noopener noreferrer' : undefined;
+  const isAppleDisabled =
+    appStoreDisabled !== undefined
+      ? appStoreDisabled
+      : isAppStorePlaceholder(appStoreUrl);
+
   return (
     <div className={`flex flex-wrap items-center gap-3 ${className}`}>
       <a
-        href="https://play.google.com/store/apps/details?id=com.biomonie.purse"
-        target="_blank"
-        rel="noopener noreferrer"
+        href={googlePlayUrl}
+        target={target}
+        rel={rel}
         aria-label="Get it on Google Play"
         className="inline-flex h-[46px] min-w-[148px] items-center gap-2.5 rounded-lg border border-white/25 bg-black px-3.5 py-2 text-white no-underline transition-opacity hover:opacity-90"
       >
@@ -22,23 +45,45 @@ export default function StoreBadges({ className = '' }: StoreBadgesProps) {
           </span>
         </span>
       </a>
-      <a
-        href="https://apps.apple.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Download on the App Store"
-        className="inline-flex h-[46px] min-w-[148px] items-center gap-2.5 rounded-lg border border-white/25 bg-black px-3.5 py-2 text-white no-underline transition-opacity hover:opacity-90"
-      >
-        <AppleMark />
-        <span className="flex flex-col items-start leading-none">
-          <span className="text-[9px] font-medium tracking-wide text-white/90">
-            Download on the
+
+      {isAppleDisabled ? (
+        <div
+          role="button"
+          tabIndex={-1}
+          aria-disabled="true"
+          aria-label="App Store (Coming soon)"
+          title="The iPhone app is coming soon"
+          className="inline-flex h-[46px] min-w-[148px] cursor-not-allowed items-center gap-2.5 rounded-lg border border-white/15 bg-black/60 px-3.5 py-2 text-white/60 no-underline select-none"
+        >
+          <FaApple className="h-6 w-5 shrink-0 text-white/40" aria-hidden="true" />
+          <span className="flex flex-col items-start leading-none">
+            <span className="text-[9px] font-medium tracking-wide text-white/50">
+              Coming soon to
+            </span>
+            <span className="mt-0.5 text-[15px] font-semibold tracking-tight text-white/70">
+              App Store
+            </span>
           </span>
-          <span className="mt-0.5 text-[15px] font-semibold tracking-tight">
-            App Store
+        </div>
+      ) : (
+        <a
+          href={appStoreUrl}
+          target={target}
+          rel={rel}
+          aria-label="Download on the App Store"
+          className="inline-flex h-[46px] min-w-[148px] items-center gap-2.5 rounded-lg border border-white/25 bg-black px-3.5 py-2 text-white no-underline transition-opacity hover:opacity-90"
+        >
+          <FaApple className="h-6 w-5 shrink-0 text-white" aria-hidden="true" />
+          <span className="flex flex-col items-start leading-none">
+            <span className="text-[9px] font-medium tracking-wide text-white/90">
+              Download on the
+            </span>
+            <span className="mt-0.5 text-[15px] font-semibold tracking-tight">
+              App Store
+            </span>
           </span>
-        </span>
-      </a>
+        </a>
+      )}
     </div>
   );
 }
@@ -50,14 +95,6 @@ function GooglePlayMark() {
       <path d="m11.2 11.8 2.6-2.8L3.3.7c-.4-.3-.9-.3-1.3-.1l9.2 11.2Z" fill="#EA4335" />
       <path d="m11.2 12.2 2.6 2.8 8.1-4.6c.7-.4.7-1.4 0-1.8l-8.1-4.6-2.6 2.8 5.2 3.6-5.2 1.8Z" fill="#FBBC04" />
       <path d="m11.2 12.2-9.2 11.2c.4.2.9.2 1.3-.1l10.5-6 2.6-2.8-5.2-2.3Z" fill="#34A853" />
-    </svg>
-  );
-}
-
-function AppleMark() {
-  return (
-    <svg width="18" height="22" viewBox="0 0 18 22" fill="currentColor" aria-hidden="true">
-      <path d="M14.7 11.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.8-2-1.6-.2-3.1 1-3.9 1-.8 0-2.1-1-3.5-1C3.7 5.8 1.8 7 0.8 8.8c-2 3.4-.5 8.5 1.4 11.3.9 1.4 2 2.9 3.4 2.8 1.3-.1 1.8-.9 3.4-.9s2 .9 3.4.8c1.5 0 2.4-1.4 3.3-2.8.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.5-1-2.3-5.7ZM12.1 3.8c.7-.9 1.2-2.1 1.1-3.3-1 .1-2.3.7-3 1.6-.7.8-1.3 2.1-1.1 3.3 1.2 0 2.3-.6 3-1.6Z" />
     </svg>
   );
 }

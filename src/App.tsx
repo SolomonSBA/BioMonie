@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Navigate, Routes, Route } from 'react-router-dom';
 import HomePage from '@/pages/HomePage';
 import PrivacyPolicyPage from '@/pages/PrivacyPolicyPage';
@@ -7,8 +8,20 @@ import SldTermsPage from '@/pages/SldTermsPage';
 import AccountClosurePage from '@/pages/AccountClosurePage';
 import ContactPage from '@/pages/ContactPage';
 import NotFoundPage from '@/pages/NotFoundPage';
+import SignaturePage from '@/pages/SignaturePage';
+import BannerRenderPage from '@/pages/BannerRenderPage';
+import DownloadPage from '@/pages/DownloadPage';
+import { IS_STAGING } from '@/lib/storeLinks';
+import { setRobotsMeta } from '@/lib/seo';
 
 export default function App() {
+  // Staging safety: ensure noindex, nofollow is set site-wide when hosted on onrender.com
+  useEffect(() => {
+    if (IS_STAGING) {
+      setRobotsMeta('noindex, nofollow');
+    }
+  }, []);
+
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
@@ -34,6 +47,9 @@ export default function App() {
       <Route path="/request-data-removal" element={<Navigate to="/request-account-closure" replace />} />
       <Route path="/app-request-data-removal" element={<Navigate to="/app-request-account-closure" replace />} />
       <Route path="/app-terms" element={<TermsConditionsPage appVersion />} />
+      <Route path="/signature" element={<SignaturePage />} />
+      <Route path="/banner-render" element={<BannerRenderPage />} />
+      <Route path="/download" element={<DownloadPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );

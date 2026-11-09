@@ -4,6 +4,7 @@ import { SiTiktok, SiX, SiWhatsapp } from 'react-icons/si';
 import { Facebook, Instagram, Linkedin, Phone, Youtube } from 'lucide-react';
 import BiomonieLogo from '@/components/icons/BiomonieLogo';
 import { navigateToSection } from '@/lib/section-nav';
+import { IS_STAGING } from '@/lib/storeLinks';
 
 const productLinks = [
   { label: 'BIOMONIE Bills', href: '/how', sectionId: 'how' },
@@ -204,10 +205,20 @@ export default function Footer() {
           </div>
 
           <div className="space-y-1 text-center text-[0.8rem] text-white/[60] lg:px-3">
-            <p>
-              © {new Date().getFullYear()}{' '}
-              <span className="font-semibold text-biomonie-lemon">BIOMONIE</span>. All
-              rights reserved.
+            <p className="flex items-center justify-center gap-2">
+              <span>
+                © {new Date().getFullYear()}{' '}
+                <span className="font-semibold text-biomonie-lemon">BIOMONIE</span>. All
+                rights reserved.
+              </span>
+              {IS_STAGING && (
+                <span
+                  data-testid="staging-badge"
+                  className="inline-flex items-center rounded border border-amber-500/40 bg-amber-500/20 px-1.5 py-0.5 text-[0.65rem] font-bold uppercase tracking-wider text-amber-300"
+                >
+                  STAGING
+                </span>
+              )}
             </p>
             <p>
               &copy; {new Date().getFullYear()}{' '}

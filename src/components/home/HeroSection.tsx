@@ -1,111 +1,11 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import StoreBadges from '@/components/home/StoreBadges';
 import LanguageTaglines from '@/components/LanguageTaglines';
 import { easeOutExpo } from '@/lib/motion';
+import { slides, type Slide } from '@/data/heroSlides';
 
 const INTERVAL_MS = 6000;
-
-type Slide = {
-  id: string;
-  /** Background photo; placeholders until the final hero photos are supplied. */
-  image: string;
-  headline: ReactNode;
-  sub: ReactNode;
-};
-
-const img = (name: string) => encodeURI(`/imageforslider/${name}`);
-
-const slides: Slide[] = [
-  {
-    id: 'everywhere',
-    image: img('Slide6.jpeg'),
-    headline: <>The money access for everyone everywhere.</>,
-    sub: (
-      <>
-        <strong className="font-bold">
-          Just <em className="not-italic text-biomonie-lemon">YOU</em>.
-          <br />
-          Nothing carried. No password. Nothing else.
-        </strong>
-      </>
-    ),
-  },
-  {
-    id: 'access',
-    image: img(
-      'slide1.png',
-    ),
-    headline: (
-      <>
-        <em className="not-italic text-biomonie-lemon">YOU</em> are the access
-        to your money.
-      </>
-    ),
-    sub: <>Flex, pay or spend and earn.</>,
-  },
-  {
-    id: 'hard',
-    image: img(
-      'YOUworkhardforyourmoney.jpg',
-    ),
-    headline: (
-      <>
-        <em className="not-italic text-biomonie-lemon">YOU</em> work hard for
-        your money.
-      </>
-    ),
-    sub: <>Spending it shouldn&apos;t be hard. Just flex, pay or spend.</>,
-  },
-  {
-    id: 'show',
-    image: img(
-      'Showupflexandearnimage.jpg',
-    ),
-    headline: (
-      <>
-        Show up, <em className="not-italic text-biomonie-lemon">flex, pay </em> or  <em className="not-italic text-biomonie-lemon">spend</em> and
-        earn.
-      </>
-    ),
-    sub: <>Just transact and earn.</>,
-  },
-  {
-    id: 'safety1',
-    image: img('YOUareyourmoneyaccessimage.jpg'),
-    headline: (
-      <>
-        <em className="not-italic text-biomonie-lemon">YOU</em> are the money
-        access.
-      </>
-    ),
-    sub: <> And that's on period...</>,
-  },
-  {
-    id: 'safety2',
-    image: img(
-      'WithYoubeingtheMoneyAccess.jpg',
-    ),
-    headline: (
-      <>
-        With <em className="not-italic text-biomonie-lemon ">YOU</em> being the
-        money access.
-      </>
-    ),
-    sub: <>Safety is always on.</>,
-  },
-  {
-    id: 'netgain',
-    image: img('BimoniealwaysaNetgain.jpg'),
-    headline: (
-      <>
-        <em className="not-italic text-biomonie-lemon">BIOMONIE</em>. Always a
-        Net-Gain.
-      </>
-    ),
-    sub: <>Built-in value every time you transact.</>,
-  },
-];
 
 function SlideText({ slide, reduce }: { slide: Slide; reduce: boolean }) {
   const enter = (delay: number, y: number) =>
