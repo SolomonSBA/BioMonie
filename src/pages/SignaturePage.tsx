@@ -4,7 +4,7 @@ import {
   signaturePlainText,
   type SignatureValues,
 } from '@/lib/signatureBuilder';
-import { getPreviewAssetBaseUrl } from '@/lib/signatureConfig';
+import { SITE_ORIGIN, ASSET_BASE_URL } from '@/lib/signatureConfig';
 import { setRobotsMeta } from '@/lib/seo';
 
 const initialValues: SignatureValues = { name: '', title: '', email: '', phone: '' };
@@ -26,7 +26,8 @@ export default function SignaturePage() {
   const previewHtml = useMemo(
     () =>
       buildSignatureHtml(values, {
-        assetBaseUrl: getPreviewAssetBaseUrl(),
+        siteOrigin: SITE_ORIGIN,
+        assetBaseUrl: ASSET_BASE_URL,
         sampleState: true,
       }),
     [values],
@@ -119,8 +120,12 @@ export default function SignaturePage() {
       setStatus('Please fill in all four fields with valid information.');
       return;
     }
-    // Production output: never includes sample text
-    const html = buildSignatureHtml(values, { sampleState: false });
+    // Production output: uses the exact same builder configuration as preview (sampleState: false)
+    const html = buildSignatureHtml(values, {
+      siteOrigin: SITE_ORIGIN,
+      assetBaseUrl: ASSET_BASE_URL,
+      sampleState: false,
+    });
     try {
       if (navigator.clipboard?.write && typeof ClipboardItem !== 'undefined') {
         await navigator.clipboard.write([
@@ -129,14 +134,22 @@ export default function SignaturePage() {
             'text/plain': new Blob([signaturePlainText(values)], { type: 'text/plain' }),
           }),
         ]);
-      } else if (previewRef.current) {
+      } else {
+        // Fallback: copy from off-screen element containing the exact production HTML
+        const tempDiv = document.createElement('div');
+        tempDiv.style.position = 'fixed';
+        tempDiv.style.left = '-9999px';
+        tempDiv.style.top = '-9999px';
+        tempDiv.innerHTML = html;
+        document.body.appendChild(tempDiv);
         const selection = window.getSelection();
         const range = document.createRange();
-        range.selectNodeContents(previewRef.current);
+        range.selectNodeContents(tempDiv);
         selection?.removeAllRanges();
         selection?.addRange(range);
         document.execCommand('copy');
         selection?.removeAllRanges();
+        document.body.removeChild(tempDiv);
       }
       setStatus('Copied');
     } catch {
@@ -149,7 +162,12 @@ export default function SignaturePage() {
       setStatus('Please fill in all four fields with valid information.');
       return;
     }
-    const html = buildSignatureHtml(values, { sampleState: false });
+    // Production output: uses the exact same builder configuration as preview (sampleState: false)
+    const html = buildSignatureHtml(values, {
+      siteOrigin: SITE_ORIGIN,
+      assetBaseUrl: ASSET_BASE_URL,
+      sampleState: false,
+    });
     const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const anchor = document.createElement('a');

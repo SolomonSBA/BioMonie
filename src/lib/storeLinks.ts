@@ -17,24 +17,45 @@ export function normalizeOrigin(origin?: string): string {
 }
 
 /**
- * Canonical site origin.
- * Read from import.meta.env.VITE_SITE_ORIGIN (in browser/Vite) or
- * process.env.VITE_SITE_ORIGIN (in Node.js scripts / tests).
- * Defaults to production: https://biomonie.com
+ * Resolves the canonical site origin across all runtime environments:
+ * 1. Node.js (scripts, tests, SSR): process.env.VITE_SITE_ORIGIN
+ * 2. Vite client build: import.meta.env.VITE_SITE_ORIGIN
+ * 3. Browser runtime fallback: window.location.origin if hosted on onrender.com
+ * 4. Production default: https://biomonie.com
  */
-const rawOrigin =
-  (typeof process !== 'undefined' && process.env?.VITE_SITE_ORIGIN) ||
-  (typeof import.meta !== 'undefined' &&
-    import.meta.env &&
-    (import.meta.env as Record<string, string | undefined>).VITE_SITE_ORIGIN) ||
-  '';
+export function resolveSiteOrigin(): string {
+  // 1. Process environment (Node.js runtime / scripts / tests)
+  if (typeof process !== 'undefined' && process.env?.VITE_SITE_ORIGIN) {
+    return normalizeOrigin(process.env.VITE_SITE_ORIGIN);
+  }
 
-export const SITE_ORIGIN = normalizeOrigin(rawOrigin);
+  // 2. Vite build-time environment variable (client bundle)
+  try {
+    if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_SITE_ORIGIN) {
+      return normalizeOrigin(import.meta.env.VITE_SITE_ORIGIN);
+    }
+  } catch {
+    // Ignore in non-Vite environments
+  }
+
+  // 3. Browser runtime origin fallback (e.g. when loaded on onrender.com)
+  if (typeof window !== 'undefined' && window.location?.origin) {
+    if (window.location.hostname.includes('onrender.com')) {
+      return normalizeOrigin(window.location.origin);
+    }
+  }
+
+  return 'https://biomonie.com';
+}
+
+export const SITE_ORIGIN = resolveSiteOrigin();
 
 /**
  * True when the site origin points to the Render staging environment.
  */
-export const IS_STAGING = SITE_ORIGIN.includes('onrender.com');
+export const IS_STAGING =
+  SITE_ORIGIN.includes('onrender.com') ||
+  (typeof window !== 'undefined' && Boolean(window.location?.hostname?.includes('onrender.com')));
 
 /**
  * 1. Google Play Store URL

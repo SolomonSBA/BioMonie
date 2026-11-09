@@ -192,6 +192,61 @@ describe('buildSignatureHtml', () => {
     assert.ok(!stagingHtml.includes('https://biomonie.com/email'));
   });
 
+  it('fails if any src or href attribute contains https://biomonie.com when origin is https://biomonie1.onrender.com', () => {
+    const stagingOrigin = 'https://biomonie1.onrender.com';
+    const html = buildSignatureHtml(values, {
+      siteOrigin: stagingOrigin,
+      sampleState: false,
+    });
+
+    // Find all src and href attribute values
+    const attrRegex = /\s(?:src|href)="([^"]+)"/g;
+    const matches = Array.from(html.matchAll(attrRegex));
+
+    assert.ok(matches.length > 0, 'Signature HTML must contain src and href attributes');
+
+    const violations: string[] = [];
+    for (const match of matches) {
+      const attrVal = match[1];
+      if (attrVal.includes('https://biomonie.com')) {
+        violations.push(attrVal);
+      }
+    }
+
+    assert.deepStrictEqual(
+      violations,
+      [],
+      `Found src or href attributes containing https://biomonie.com: ${violations.join(', ')}`,
+    );
+
+    // Verify all image src attributes use the staging origin
+    const imgMatches = Array.from(html.matchAll(/<img[^>]+src="([^">]+)"/g));
+    for (const img of imgMatches) {
+      assert.ok(
+        img[1].startsWith(`${stagingOrigin}/email/`),
+        `Image src ${img[1]} must start with ${stagingOrigin}/email/`,
+      );
+    }
+
+    // Verify banner link href uses the staging origin
+    assert.ok(
+      html.includes(`href="${stagingOrigin}/download?utm_source=email_signature`),
+      'Banner link must point to staging download URL',
+    );
+
+    // Verify website link href uses staging origin
+    assert.ok(
+      html.includes(`href="${stagingOrigin}"`),
+      'Website link href must point to staging origin',
+    );
+
+    // Verify intentional visible display text remains www.biomonie.com
+    assert.ok(
+      html.includes('>www.biomonie.com<'),
+      'Visible text must remain www.biomonie.com',
+    );
+  });
+
   it('shrinks name font for longer names', () => {
     const shortNameHtml = buildSignatureHtml({ ...values, name: 'Short Name' });
     assert.ok(shortNameHtml.includes('font-size:15px'));
@@ -315,6 +370,15 @@ describe('Exchange Signature template (Production & Staging)', () => {
     assert.ok(!content.includes('biomonie.com/email'));
     assert.ok(!content.includes('localhost'));
     assert.ok(!content.includes('127.0.0.1'));
+
+    // Verify no src or href contains https://biomonie.com
+    const matches = Array.from(content.matchAll(/\s(?:src|href)="([^"]+)"/g));
+    const violations = matches.map((m) => m[1]).filter((val) => val.includes('https://biomonie.com'));
+    assert.deepStrictEqual(
+      violations,
+      [],
+      `Found staging Exchange src or href containing https://biomonie.com: ${violations.join(', ')}`,
+    );
   });
 });
 

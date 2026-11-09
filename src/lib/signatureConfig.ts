@@ -38,9 +38,7 @@ export const BANNER_SLIDE_IDS = [
 ] as const;
 
 export function getPreviewAssetBaseUrl() {
-  return typeof window !== 'undefined' && window.location.origin
-    ? `${window.location.origin}/email`
-    : ASSET_BASE_URL;
+  return ASSET_BASE_URL;
 }
 
 export const signatureAssets = {
