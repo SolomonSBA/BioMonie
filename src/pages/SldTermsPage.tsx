@@ -42,14 +42,14 @@ const sections: TermSection[] = [
   {
     title: 'SLD Programme Overview',
     blocks: [
-      { type: 'p', text: 'The Biomonie SLD Programme is Biomonie’s structured customer acquisition and ecosystem growth mechanism. Any enrolled Biomonie participant may participate by introducing new participants—Customers, Agents, or Merchants—to the Biomonie platform using their unique Upline Code.' },
-      { type: 'callout', text: 'Important — Transaction-Based, Not Investment-Based: The Biomonie SLD Programme is entirely transaction-based. No SLD Partner is required to deposit, invest, or contribute money to participate or earn commissions; only a monthly subscription fee of ₦1,000 is required for customers and ₦2,000 for Merchants and Agents. All commissions are derived solely from transaction activity on the Biomonie platform. Participation does not constitute an investment, and Biomonie makes no guarantee of income or earnings.' },
+      { type: 'p', text: 'The Biomonie SLD Programme is Biomonie’s structured customer acquisition and ecosystem growth mechanism. Any enrolled Biomonie participant may participate by introducing new participants—Individuals, Agents, or Merchants—to the Biomonie platform using their unique Upline Code.' },
+      { type: 'callout', text: 'Important — Transaction-Based, Not Investment-Based: The Biomonie SLD Programme is entirely transaction-based. No SLD Partner is required to deposit, invest, or contribute money to participate or earn commissions; only a monthly subscription fee of ₦1,000 is required for Individuals and ₦2,000 for Merchants and Agents. All commissions are derived solely from transaction activity on the Biomonie platform. Participation does not constitute an investment, and Biomonie makes no guarantee of income or earnings.' },
       { type: 'p', text: 'The SLD structure is a single-level downline model. SLD Partners earn commissions only on the direct activity of participants they personally introduce or enrol. There is no commission earned on participants introduced by a second-level Downline. This single-level design is intended to keep the Programme compliant with Nigerian regulations governing multi-level marketing and financial incentive schemes.' },
       { type: 'p', text: 'The following participant categories may enrol and be enrolled within the Biomonie ecosystem:' },
       { type: 'list', items: [
-        'Customer — may enrol Customers, Agents, and Merchants.',
-        'Merchant — may enrol Customers, Merchants, and Agents.',
-        'Agent — may enrol Customers, Merchants, and Agents.',
+        'Customer — may enrol Individuals, Agents, and Merchants.',
+        'Merchant — may enrol Individuals, Merchants, and Agents.',
+        'Agent — may enrol Individuals, Merchants, and Agents.',
         'SRM — primarily manages Agent and Merchant networks and earns transaction-volume commissions on their managed network.',
       ] },
     ],

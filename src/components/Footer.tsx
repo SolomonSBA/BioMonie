@@ -52,7 +52,7 @@ export default function Footer() {
               <BiomonieLogo className="h-10 w-auto" aria-label="Biomonie" />
             </Link>
             <p className="text-[0.86rem] leading-relaxed text-white/70">
-              Explore the new form of money access{' '}
+              Explore the new form of money access;{' '}
               <strong className="font-semibold text-biomonie-lemon">YOU</strong>
             </p>
             <p className="mt-2 text-[0.86rem] leading-relaxed text-white/55">
@@ -208,8 +208,7 @@ export default function Footer() {
             <p className="flex items-center justify-center gap-2">
               <span>
                 © {new Date().getFullYear()}{' '}
-                <span className="font-semibold text-biomonie-lemon">BIOMONIE</span>. All
-                rights reserved.
+                <span className="font-semibold text-biomonie-lemon">BIOMONIE</span>. ALL RIGHTS RESERVED.
               </span>
               {IS_STAGING && (
                 <span
@@ -223,8 +222,8 @@ export default function Footer() {
             <p>
               &copy; {new Date().getFullYear()}{' '}
               <span className="font-semibold text-biomonie-lemon">
-                Single - Level Downlines (SLD).
-              </span> All rights reserved.
+                SINGLE-LEVEL DOWNLINES (SLD).
+              </span> ALL RIGHTS RESERVED.
             </p>
           </div>
 

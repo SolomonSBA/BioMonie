@@ -1,25 +1,39 @@
-import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createServer } from 'vite';
 import { chromium } from 'playwright';
 import { PNG } from 'pngjs';
 import gifencPkg from 'gifenc';
+import sharp from 'sharp';
 
 const { GIFEncoder, quantize, applyPalette } = gifencPkg;
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const projectRoot = resolve(__dirname, '..');
-const outputDir = resolve(projectRoot, 'public', 'email');
+// Versioned folder: bumped whenever the signature artwork/cache contract
+// changes. Legacy files directly under public/email stay untouched.
+const { ASSET_VERSION, BANNER_SLIDE_IDS, SIGNATURE_SCALE } = await import(
+  '../src/lib/signatureConfig.ts'
+);
+const { getSignatureLayout } = await import('../src/lib/signatureBuilder.ts');
+const outputDir = resolve(projectRoot, 'public', 'email', ASSET_VERSION);
 
-// Updated slide set per user requirement:
-// 1. 'hard' (approved Figma design, frame 1 static fallback)
-// 2. 'access'
-// 3. 'show'
-// 4. 'netgain'
-// 5. 'safety2'
-// 6. 'encryptkey'
-const DEFAULT_SLIDES = ['hard', 'access', 'show', 'netgain', 'safety2', 'encryptkey'];
+// Approved slide set. Frame 1 ('hard') is the static Outlook fallback.
+// At the larger 1.25x display size the GIF budget only fits four slides.
+const DEFAULT_SLIDES = BANNER_SLIDE_IDS.slice(0, 4);
+
+const TARGET_BYTES = 500 * 1024;
+
+const layout = getSignatureLayout(SIGNATURE_SCALE);
+// Display size inside the signature (394 x 356 at 1.25x).
+const DISPLAY_WIDTH = layout.bannerWidth;
+const DISPLAY_HEIGHT = layout.bannerHeight;
+const TARGET_2X = { width: DISPLAY_WIDTH * 2, height: DISPLAY_HEIGHT * 2 };
+const TARGET_1_5X = {
+  width: Math.round(DISPLAY_WIDTH * 1.5),
+  height: Math.round(DISPLAY_HEIGHT * 1.5),
+};
 
 function parseArgs() {
   const args = process.argv.slice(2);
@@ -57,7 +71,11 @@ function getSlideDelay(slideId) {
   return 3000;
 }
 
-function encodeGif(frames, maxColors = 256) {
+function kb(bytes) {
+  return `${(bytes / 1024).toFixed(1)} KB`;
+}
+
+function encodeGif(frames, maxColors = 128) {
   const gif = GIFEncoder();
   for (const frame of frames) {
     const palette = quantize(frame.data, maxColors);
@@ -73,6 +91,20 @@ function encodeGif(frames, maxColors = 256) {
   return Buffer.from(gif.bytes());
 }
 
+async function resizeFrames(frames, width, height) {
+  const resized = [];
+  for (const frame of frames) {
+    const data = await sharp(Buffer.from(frame.data), {
+      raw: { width: frame.width, height: frame.height, channels: 4 },
+    })
+      .resize(width, height, { fit: 'fill', kernel: 'lanczos3' })
+      .raw()
+      .toBuffer();
+    resized.push({ ...frame, width, height, data });
+  }
+  return resized;
+}
+
 async function main() {
   const { slides, port } = parseArgs();
   console.log('========================================');
@@ -80,6 +112,9 @@ async function main() {
   console.log('========================================');
   console.log(`Requested slides (${slides.length}): ${slides.join(', ')}`);
   console.log(`Frame 1 (approved Figma & Outlook desktop fallback): "${slides[0]}"`);
+  console.log(`Display size:       ${DISPLAY_WIDTH}x${DISPLAY_HEIGHT} (signature ${SIGNATURE_SCALE}x)`);
+  console.log(`Render targets:     2x ${TARGET_2X.width}x${TARGET_2X.height}, 1.5x ${TARGET_1_5X.width}x${TARGET_1_5X.height}`);
+  console.log(`Size target:        under ${kb(TARGET_BYTES)}`);
 
   let viteServer = null;
   let actualPort = port;
@@ -114,9 +149,12 @@ async function main() {
     throw err;
   }
 
+  // The banner canvas is 630x570 CSS pixels. Rasterise it at the 2x target
+  // width so text is painted at device resolution, never upscaled from 1x.
+  const deviceScaleFactor = TARGET_2X.width / 630;
   const context = await browser.newContext({
     viewport: { width: 630, height: 570 },
-    deviceScaleFactor: 1,
+    deviceScaleFactor,
   });
   const page = await context.newPage();
 
@@ -148,14 +186,13 @@ async function main() {
       const canvas = page.locator('#banner-canvas');
       const pngBuffer = await canvas.screenshot({ type: 'png' });
 
-      // Save frame 1 as static fallback PNG
-      if (i === 0) {
-        const pngPath = join(outputDir, 'banner.png');
-        writeFileSync(pngPath, pngBuffer);
-        console.log(`  -> Saved static frame 1 fallback to public/email/banner.png (${(pngBuffer.length / 1024).toFixed(1)} KB)`);
-      }
-
-      const decodedPng = PNG.sync.read(pngBuffer);
+      // The canvas is 630x570 CSS with an aspect ratio very slightly different
+      // from the 394:356 display cell; normalise to the exact 2x raster size.
+      const normalised = await sharp(pngBuffer)
+        .resize(TARGET_2X.width, TARGET_2X.height, { fit: 'fill', kernel: 'lanczos3' })
+        .png()
+        .toBuffer();
+      const decodedPng = PNG.sync.read(normalised);
       frames.push({
         slideId,
         width: decodedPng.width,
@@ -171,43 +208,102 @@ async function main() {
     }
   }
 
-  // Encode GIF with 800 KB threshold handling
-  const MAX_SIZE_BYTES = 800 * 1024; // 800 KB
+  const tryEncode = (label, activeFrames, maxColors) => {
+    const buffer = encodeGif(activeFrames, maxColors);
+    console.log(
+      `  ${label.padEnd(58)} ${kb(buffer.length).padStart(9)} ${buffer.length < TARGET_BYTES ? 'PASS' : 'over'}`,
+    );
+    return buffer;
+  };
+
+  console.log(`\nEncoding ${frames.length} frames...`);
   let activeFrames = [...frames];
-  let droppedEncryptKey = false;
-  let maxColors = 256;
+  let maxColors = 128;
+  let finalWidth = TARGET_2X.width;
+  let finalHeight = TARGET_2X.height;
+  let resolutionLabel = '2x';
+  let droppedSlides = [];
 
-  console.log(`\nEncoding ${activeFrames.length} frames into GIF (630x570, infinite loop)...`);
-  let gifBuffer = encodeGif(activeFrames, maxColors);
-  console.log(`Initial GIF size with ${activeFrames.length} slides: ${(gifBuffer.length / 1024).toFixed(1)} KB`);
+  let gifBuffer = tryEncode(
+    `1. ${resolutionLabel} (${finalWidth}x${finalHeight}), ${maxColors} colours, ${activeFrames.length} frames`,
+    activeFrames,
+    maxColors,
+  );
 
-  // Check if over 800 KB and 'encryptkey' is present
-  if (gifBuffer.length > MAX_SIZE_BYTES && activeFrames.some((f) => f.slideId === 'encryptkey')) {
-    console.warn(`\n[ALERT] GIF size (${(gifBuffer.length / 1024).toFixed(1)} KB) exceeds 800 KB limit.`);
-    console.warn(`Automatically dropping 'encryptkey' slide as required...`);
-    activeFrames = activeFrames.filter((f) => f.slideId !== 'encryptkey');
-    droppedEncryptKey = true;
-    gifBuffer = encodeGif(activeFrames, maxColors);
-    console.log(`New GIF size after dropping 'encryptkey' (${activeFrames.length} slides): ${(gifBuffer.length / 1024).toFixed(1)} KB`);
+  if (gifBuffer.length >= TARGET_BYTES) {
+    activeFrames = await resizeFrames(activeFrames, TARGET_1_5X.width, TARGET_1_5X.height);
+    finalWidth = TARGET_1_5X.width;
+    finalHeight = TARGET_1_5X.height;
+    resolutionLabel = '1.5x';
+    gifBuffer = tryEncode(
+      `2. ${resolutionLabel} (${finalWidth}x${finalHeight}), ${maxColors} colours, ${activeFrames.length} frames`,
+      activeFrames,
+      maxColors,
+    );
   }
 
-  // If still over 800 KB, optimize palette colors
-  if (gifBuffer.length > MAX_SIZE_BYTES) {
-    console.warn(`GIF size (${(gifBuffer.length / 1024).toFixed(1)} KB) still exceeds 800 KB. Optimizing palette with 128 colors...`);
-    maxColors = 128;
-    gifBuffer = encodeGif(activeFrames, maxColors);
-    console.log(`GIF size with 128 colors: ${(gifBuffer.length / 1024).toFixed(1)} KB`);
+  if (gifBuffer.length >= TARGET_BYTES && activeFrames.length > 3) {
+    droppedSlides = activeFrames.slice(3).map((frame) => frame.slideId);
+    activeFrames = activeFrames.slice(0, 3);
+    gifBuffer = tryEncode(
+      `3. drop to 3 frames (dropped: ${droppedSlides.join(', ')}), ${maxColors} colours`,
+      activeFrames,
+      maxColors,
+    );
   }
 
-  if (gifBuffer.length > MAX_SIZE_BYTES) {
-    console.warn(`GIF size (${(gifBuffer.length / 1024).toFixed(1)} KB) still exceeds 800 KB. Optimizing palette with 64 colors...`);
-    maxColors = 64;
-    gifBuffer = encodeGif(activeFrames, maxColors);
-    console.log(`GIF size with 64 colors: ${(gifBuffer.length / 1024).toFixed(1)} KB`);
+  if (gifBuffer.length >= TARGET_BYTES) {
+    maxColors = 96;
+    gifBuffer = tryEncode(
+      `4. ${resolutionLabel}, ${activeFrames.length} frames, ${maxColors} colours`,
+      activeFrames,
+      maxColors,
+    );
+  }
+
+  if (gifBuffer.length >= TARGET_BYTES) {
+    throw new Error(
+      `banner.gif is ${kb(gifBuffer.length)} after every optimisation step (target ${kb(TARGET_BYTES)})`,
+    );
   }
 
   const gifPath = join(outputDir, 'banner.gif');
   writeFileSync(gifPath, gifBuffer);
+
+  // Static first frame at the final raster size (Outlook desktop fallback).
+  const firstFrame = activeFrames[0];
+  const firstFramePng = await sharp(Buffer.from(firstFrame.data), {
+    raw: { width: firstFrame.width, height: firstFrame.height, channels: 4 },
+  })
+    .png()
+    .toBuffer();
+  const optimisedPng = await sharp(firstFramePng)
+    .png({
+      palette: true,
+      quality: 92,
+      effort: 10,
+      compressionLevel: 9,
+      dither: 0.5,
+      adaptiveFiltering: true,
+    })
+    .toBuffer();
+  const pngOut = optimisedPng.length < firstFramePng.length ? optimisedPng : firstFramePng;
+  const pngPath = join(outputDir, 'banner.png');
+  writeFileSync(pngPath, pngOut);
+  console.log(
+    `\nSaved static frame 1 fallback to public/email/${ASSET_VERSION}/banner.png (${kb(firstFramePng.length)} -> ${kb(pngOut.length)})`,
+  );
+
+  // Mirror into the server copy when it exists (local Express/IIS testing).
+  const serverEmailDir = resolve(projectRoot, 'server', 'public', 'email');
+  if (existsSync(serverEmailDir)) {
+    const serverOutputDir = join(serverEmailDir, ASSET_VERSION);
+    mkdirSync(serverOutputDir, { recursive: true });
+    for (const name of ['banner.png', 'banner.gif']) {
+      const source = join(outputDir, name);
+      if (existsSync(source)) copyFileSync(source, join(serverOutputDir, name));
+    }
+  }
 
   const finalSizeKb = (gifBuffer.length / 1024).toFixed(1);
   const finalSizeMb = (gifBuffer.length / (1024 * 1024)).toFixed(2);
@@ -215,16 +311,17 @@ async function main() {
   console.log('\n========================================');
   console.log('BANNER GIF BUILD COMPLETE');
   console.log('========================================');
-  console.log(`Output GIF:        public/email/banner.gif`);
-  console.log(`Output PNG:        public/email/banner.png`);
+  console.log(`Output GIF:        public/email/${ASSET_VERSION}/banner.gif`);
+  console.log(`Output PNG:        public/email/${ASSET_VERSION}/banner.png`);
   console.log(`Final File Size:   ${finalSizeKb} KB (${finalSizeMb} MB)`);
   console.log(`Palette Colors:    ${maxColors}`);
-  console.log(`Dimensions:        630x570 (renders at 315x285 in email signatures)`);
+  console.log(`Resolution:        ${resolutionLabel} (${finalWidth}x${finalHeight})`);
+  console.log(`Display Size:      ${DISPLAY_WIDTH}x${DISPLAY_HEIGHT}`);
   console.log(`Frame Count:       ${activeFrames.length}`);
-  if (droppedEncryptKey) {
-    console.log(`Dropped Slide:     'encryptkey' was automatically dropped to stay under 800 KB`);
+  if (droppedSlides.length > 0) {
+    console.log(`Dropped Slides:    ${droppedSlides.join(', ')}`);
   } else {
-    console.log(`Dropped Slide:     None ('encryptkey' was retained, within size budget)`);
+    console.log(`Dropped Slides:    None`);
   }
   console.log('Included Slides in order:');
   activeFrames.forEach((frame, idx) => {

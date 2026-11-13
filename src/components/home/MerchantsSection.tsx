@@ -20,7 +20,7 @@ const benefits = [
     guaranteed uptime within your control. Your phone is what you need.
   </>,
   <>
-    <strong>Earn in the ecosystem.</strong> Onboard other merchants, agents or customers and
+    <strong>Earn in the ecosystem.</strong> Onboard other merchants, agents or Individuals and
     earn subscription fees per activation plus ongoing transaction fees.
   </>,
 ];
@@ -44,7 +44,7 @@ export default function MerchantsSection() {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mb-6 text-[1.06rem] leading-[1.75] text-biomonie-text/[0.74]">
-              Your customers pay with the new form of money access;{' '}
+              Your Individuals pay with the new form of money access;{' '}
               <strong className="font-semibold text-biomonie-teal">YOU,</strong>{' '}
               and you earn when transactions are performed. No
               Device issues. No downtime.
@@ -71,7 +71,7 @@ export default function MerchantsSection() {
                 &quot;With{' '}
                 <strong className="not-italic text-biomonie-teal">BIOMONIE</strong>
                 , I don&apos;t worry about downtimes anymore. My
-                customers enjoy the new form of money access.&quot;
+                Individuals enjoy the new form of money access.&quot;
               </p>
               <cite className="text-[0.83rem] font-semibold not-italic text-biomonie-text/60">
                 {' '}

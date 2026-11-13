@@ -6,7 +6,7 @@ import { navigateToSection } from '@/lib/section-nav';
 
 /**
  * Card layouts from the Figma:
- * - split:  image and text sit in two separate rounded cards (Customers)
+ * - split:  image and text sit in two separate rounded cards (Individuals)
  * - framed: one card, text left, image framed on the right (Merchants)
  * - flush:  one card, image bleeds to the left edge, text on the right (Agents)
  */
@@ -23,12 +23,12 @@ type Card = {
 };
 
 const earn =
-  'Earn a fee for any Customer, Merchant or Agent onboarded and on transactions performed by all your single level downlines (Customers, Merchants or Agents) perpetually.';
+  'Earn on transactions performed by your single level downlines (Individuals, Merchants or Agents) perpetually.';
 
 const cards: Card[] = [
   {
-    id: 'for-customers',
-    label: 'For Customers',
+    id: 'for-Individuals',
+    label: 'For Individuals',
     image: '/imageforsection/ForCustomersImage.png',
     alt: 'Customer shopping and paying with BIOMONIE',
     headline: (
@@ -56,7 +56,7 @@ const cards: Card[] = [
     alt: 'Merchant accepting payment at her stall',
     headline:
       'Accept payment for goods and services at your shop, stall or outlets.',
-    body: 'Your customers enjoys and pay with the new form of money access; zero downtime while both the merchant and customer uplines earn.',
+    body: 'Your Individuals enjoys and pay with the new form of money access; zero downtime while both the merchant and customer uplines earn.',
     layout: 'framed',
   },
   {
@@ -66,7 +66,7 @@ const cards: Card[] = [
     alt: 'Agent facilitating cash-in and cash-out',
     headline:
       'As the financial hub of the community facilitating cash-in & cash-out services and other financial transactions;',
-    body: 'The customers enjoys the new form of money access with a flex and zero downtimes while both the agent and customer uplines earn.',
+    body: 'The Individuals enjoys the new form of money access with a flex and zero downtimes while both the agent and customer uplines earn.',
     layout: 'flush',
   },
 ];
@@ -101,7 +101,7 @@ function CardImage({ card, className }: { card: Card; className: string }) {
 function CardText({ card }: { card: Card }) {
   return (
     <div className="relative z-[1] flex flex-col justify-center px-6 py-8 sm:px-10 sm:py-11">
-      <div className="mb-4 text-[0.75rem] font-bold uppercase tracking-[0.14em] text-biomonie-lemon">
+      <div className="mb-4 text-[0.75rem] font-bold uppercase tracking-[0.14em] text-[#ff9800]">
         {card.label}
       </div>
       <h3 className="mb-5 text-[clamp(1.55rem,3.1vw,2.5rem)] font-semibold leading-[1.16] tracking-tight text-white">
@@ -191,8 +191,8 @@ export default function ForWhomSection() {
       <div className="pointer-events-none absolute -right-24 top-1/2 h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(245,255,0,.06),transparent_65%)]" />
       <div className="relative mx-auto max-w-6xl">
         <Reveal>
-          <div className="mb-4 border-l-[3px] border-biomonie-lemon pl-3 text-[0.75rem] font-bold uppercase tracking-[0.14em] text-biomonie-lemon">
-            Who Is <span className="text-biomonie-lemon">BIOMONIE</span> For?
+          <div className="mb-4 border-l-[3px] border-[#ff9800] pl-3 text-[0.75rem] font-bold uppercase tracking-[0.14em] text-[#ff9800]">
+            Who Is <span className="text-[#ff9800]">BIOMONIE</span> For?
           </div>
         </Reveal>
         <Reveal delay={0.06}>
@@ -205,7 +205,7 @@ export default function ForWhomSection() {
         <Reveal delay={0.1}>
           <p className="mb-14 max-w-[620px] text-[1.06rem] leading-[1.75] text-white/[0.82]">
             <span className="font-semibold text-biomonie-lemon">BIOMONIE</span>{' '}
-            works for anyone; Customers, Merchants or Agents either Paying or
+            works for anyone; Individuals, Merchants or Agents either Paying or
             Spending, Receiving Payment or Cash-in / Cash-out all earning as{' '}
             <span className="font-semibold text-biomonie-lemon">BIOMONIE</span>{' '}
             Partners perpetually.

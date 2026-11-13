@@ -10,7 +10,7 @@ const benefits = [
         Grow your downlines by introducing any or all of the following: Customer,
         Merchant or Agent into the Ecosystem and earn a guaranteed payout on
         transactions they perform or subscription fees for Merchants, Agents or
-        Customers. Payouts into <strong>BIOWALLETS</strong> are done based on
+        Individuals. Payouts into <strong>BIOWALLETS</strong> are done based on
         applicable transaction payment threshold with no limit and no expiry.
       </>
     ),
@@ -70,7 +70,7 @@ export default function EarnSection() {
           <Reveal delay={0.15}>
             <img
               src="/imageforsection/EcosystemImage.png"
-              alt="Customers, merchants, and agents connected in the BIOMONIE ecosystem, earning more through one trusted platform."
+              alt="Individuals, merchants, and agents connected in the BIOMONIE ecosystem, earning more through one trusted platform."
               className="earn-section-image mx-auto mt-7 block h-auto w-full max-w-[760px] object-contain sm:mt-8 lg:mt-6"
               loading="lazy"
               decoding="async"

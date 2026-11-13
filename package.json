@@ -8,10 +8,17 @@
     "build": "npx vite build",
     "preview": "npx vite preview",
     "server": "node server/server.js",
+    "build:email-assets": "node scripts/build-email-assets.mjs",
+    "optimize:email-images": "node scripts/optimize-email-images.mjs",
     "build:exchange": "node scripts/build-exchange.js",
-    "build:exchange:staging": "cross-env VITE_SITE_ORIGIN=https://biomonie1.onrender.com node scripts/build-exchange.js",
+    "build:exchange:staging": "cross-env VITE_SITE_ORIGIN=https://biomonie1.onrender.com VITE_ASSET_BASE_URL=https://biomonie.com/email node scripts/build-exchange.js",
+    "preview:exchange": "node scripts/preview-exchange.mjs",
+    "count:exchange": "node scripts/count-exchange.mjs",
+    "check:exchange": "node scripts/check-exchange-preview.mjs",
     "build:banner": "node scripts/build-banner.mjs",
+    "check:icons": "node scripts/check-icons.mjs",
     "test": "node --test src/lib/signatureBuilder.test.ts",
+    "test:layout": "node scripts/check-signature-layout.mjs",
     "build:single": "npx vite build && node -e \"const fs=require('fs'); const p=require('path'); const out=p.join('server','public'); fs.mkdirSync(out,{recursive:true}); fs.readdirSync('dist').forEach(f=>{ const src=p.join('dist',f); const dest=p.join(out,f); fs.cpSync(src, dest, {recursive: true}); }); const srcAssets=p.join('src','assets'); const publicSrcAssets=p.join(out,'src','assets'); if(fs.existsSync(srcAssets)){ fs.mkdirSync(publicSrcAssets,{recursive:true}); fs.cpSync(srcAssets, publicSrcAssets, {recursive:true}); }\""
   },
   "dependencies": {
@@ -36,6 +43,7 @@
     "postcss": "^8.4.47",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
+    "sharp": "^0.35.5",
     "tailwindcss": "^3.4.11",
     "typescript": "^5.5.3",
     "vite": "^5.4.1"

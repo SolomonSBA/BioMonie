@@ -15,7 +15,7 @@ const sections: TermsSection[] = [
     title: 'Introduction',
     content: [
       'These Terms and Conditions ("Terms") govern your access to and use of the Biomonie platform, including the Biomonie mobile application, website at www.biomonie.com, and all related services (collectively, the "Platform"). By registering for, accessing, or using any part of the Platform, you agree to be bound by these Terms.',
-      'Biomonie is a financial technology platform that enables individuals and businesses in Nigeria to make and receive payments using biometric authentication. Biomonie also operates the Single-Level Downline (SLD) Programme, which where all Partners (Customers, merchants and agents earn by onboarding another partner.',
+      'Biomonie is a financial technology platform that enables individuals and businesses in Nigeria to make and receive payments using biometric authentication. Biomonie also operates the Single-Level Downline (SLD) Programme, which where all Partners (Individuals, merchants and agents earn by onboarding another partner.',
       'If you do not agree to these Terms, you must not register for or use the Platform. Your continued use of the Platform following any update to these Terms constitutes acceptance of the revised Terms.',
     ],
   },
@@ -62,7 +62,7 @@ const sections: TermsSection[] = [
     content: [
       { clause: '4.1 Wallet.', text: 'Biomonie provides you with a digital Wallet to store funds, make payments, and receive transfers. The Wallet is not a bank account and does not accrue interest. Biomonie does not offer savings products or loans.' },
       { clause: '4.2 Biometric Payments.', text: 'You may authorise payments on the Platform using your fingerprint, subject to the conditions set out in Section 5.' },
-      { clause: '4.3 Merchant Services.', text: 'Registered Merchants may use the Platform to accept payments from customers, access transaction records, and participate in the SLD Programme.' },
+      { clause: '4.3 Merchant Services.', text: 'Registered Merchants may use the Platform to accept payments from Individuals, access transaction records, and participate in the SLD Programme.' },
       { clause: '4.5 Agent Services.', text: 'Registered Agents may use the Platform to facilitate transactions and Platform onboarding for users at physical locations.' },
       { clause: '4.6 SLD Programme.', text: 'The SLD Programme lets Partners (Customer, Merchants and Agents) to onboard new partners on the platform and earn perpetually from their transactions and subscription renewal, for as long as the Downline remains active on the Platform. Specific terms applicable to SLD participation is comprehensively communicated In-App.' },
       { clause: '4.7 Service Availability.', text: 'Biomonie will use reasonable efforts to keep the Platform available at all times, but does not guarantee uninterrupted access. The Platform may be suspended for maintenance, upgrades, or circumstances beyond our reasonable control. Before any such interruptions, this will be promptly communicated to you.' },

@@ -10,7 +10,7 @@ const navLinkClass =
 
 /** Top-bar toggles; each scrolls to its card in the "Who is BIOMONIE for?" section. */
 const audiences = [
-  { id: 'for-customers', label: 'Customers' },
+  { id: 'for-individuals', label: 'Individuals' },
   { id: 'for-merchants', label: 'Merchants' },
   { id: 'for-agents', label: 'Agents' },
 ] as const;
@@ -32,9 +32,9 @@ const menuLinks = [
   { sectionId: 'faq', label: 'FAQs' },
 ];
 
-/** Which audience card is on screen; defaults to customers, as in the Figma. */
+/** Which audience card is on screen; defaults to Individuals, as in the Figma. */
 function useActiveAudience(): AudienceId {
-  const [active, setActive] = useState<AudienceId>('for-customers');
+  const [active, setActive] = useState<AudienceId>('for-individuals');
 
   useEffect(() => {
     const update = () => {
@@ -45,7 +45,7 @@ function useActiveAudience(): AudienceId {
         const rect = document.getElementById(id)?.getBoundingClientRect();
         return rect && rect.top < middle && rect.bottom > headerBottom;
       });
-      setActive(current ? current.id : 'for-customers');
+      setActive(current ? current.id : 'for-individuals');
     };
     update();
     window.addEventListener('scroll', update, { passive: true });

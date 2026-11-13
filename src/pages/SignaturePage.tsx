@@ -1,13 +1,22 @@
 import { useEffect, useMemo, useRef, useState, type ChangeEvent } from 'react';
 import {
   buildSignatureHtml,
+  buildSignatureDocument,
   signaturePlainText,
+  TOTAL_WIDTH,
+  TOTAL_LEFT_HEIGHT,
   type SignatureValues,
 } from '@/lib/signatureBuilder';
 import { SITE_ORIGIN, ASSET_BASE_URL } from '@/lib/signatureConfig';
 import { setRobotsMeta } from '@/lib/seo';
 
-const initialValues: SignatureValues = { name: '', title: '', email: '', phone: '' };
+const initialValues: SignatureValues = {
+  name: '',
+  title: '',
+  email: '',
+  phone: '',
+  secondPhone: '',
+};
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -23,6 +32,7 @@ export default function SignaturePage() {
   const [scale, setScale] = useState(1);
 
   // Preview uses sampleState: true so empty fields show greyed sample text
+  // Second phone never shows sample text (appears only when filled)
   const previewHtml = useMemo(
     () =>
       buildSignatureHtml(values, {
@@ -39,20 +49,23 @@ export default function SignaturePage() {
   const isTitleValid = values.title.trim().length > 0;
   const isEmailValid = values.email.trim().length > 0 && isValidEmail(values.email.trim());
   const isPhoneValid = values.phone.trim().length > 0;
-  const isFormValid = isNameValid && isTitleValid && isEmailValid && isPhoneValid;
+  const isSecondPhoneFilled = Boolean(values.secondPhone && values.secondPhone.trim().length > 0);
+  const isSecondPhoneValid = !isSecondPhoneFilled || values.secondPhone!.trim().length >= 7;
+  const isFormValid =
+    isNameValid && isTitleValid && isEmailValid && isPhoneValid && isSecondPhoneValid;
 
   // Ensure /signature remains noindex everywhere
   useEffect(() => {
     return setRobotsMeta('noindex, nofollow');
   }, []);
 
-  // Responsive scaling observer for 600px preview container
+  // Responsive scaling observer for the fixed-width signature preview
   useEffect(() => {
     const updateScale = () => {
       if (!containerRef.current) return;
       const availableWidth = containerRef.current.clientWidth;
-      if (availableWidth > 0 && availableWidth < 600) {
-        setScale(availableWidth / 600);
+      if (availableWidth > 0 && availableWidth < TOTAL_WIDTH) {
+        setScale(availableWidth / TOTAL_WIDTH);
       } else {
         setScale(1);
       }
@@ -117,7 +130,7 @@ export default function SignaturePage() {
 
   const copySignature = async () => {
     if (!isFormValid) {
-      setStatus('Please fill in all four fields with valid information.');
+      setStatus('Please fill in all required fields with valid information.');
       return;
     }
     // Production output: uses the exact same builder configuration as preview (sampleState: false)
@@ -159,11 +172,11 @@ export default function SignaturePage() {
 
   const downloadSignature = () => {
     if (!isFormValid) {
-      setStatus('Please fill in all four fields with valid information.');
+      setStatus('Please fill in all required fields with valid information.');
       return;
     }
-    // Production output: uses the exact same builder configuration as preview (sampleState: false)
-    const html = buildSignatureHtml(values, {
+    // Download gets a full document with telephone=no; copy stays a fragment.
+    const html = buildSignatureDocument(values, {
       siteOrigin: SITE_ORIGIN,
       assetBaseUrl: ASSET_BASE_URL,
       sampleState: false,
@@ -200,12 +213,83 @@ export default function SignaturePage() {
             className="rounded-2xl border border-[#dde8f0] bg-white p-6 shadow-biomonie-sm sm:p-8"
             aria-labelledby="form-heading"
           >
-            <h2 id="form-heading" className="font-serif text-2xl font-bold">
-              Your details
-            </h2>
+            <div className="flex items-center justify-between gap-4">
+              <h2 id="form-heading" className="font-serif text-2xl font-bold">
+                Your details
+              </h2>
+            </div>
             <p className="mt-1 text-sm text-biomonie-muted">
-              All four fields are required before copying or downloading.
+              Name, job title, email and primary phone are required. Second phone is optional.
             </p>
+
+            {/* Quick Preview Presets for the 4 Cases */}
+            <div className="mt-4 rounded-xl border border-[#e2edf3] bg-[#f8fbfa] p-3.5">
+              <p className="text-xs font-bold uppercase tracking-wider text-biomonie-teal mb-2">
+                Preview Presets:
+              </p>
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setValues({
+                      name: 'Miracle Amos',
+                      title: 'UX Designer',
+                      email: 'miracle@biomonie.com',
+                      phone: '+234 (0) 807 739 4817',
+                      secondPhone: '',
+                    })
+                  }
+                  className="rounded-lg border border-[#c9dbe3] bg-white px-2.5 py-2 text-xs font-semibold text-biomonie-text transition hover:border-biomonie-teal hover:bg-biomonie-pale text-left"
+                >
+                  Short Name (1 phone)
+                </button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setValues({
+                      name: 'Solomon Chukwuka Emmanuel',
+                      title: 'Senior Software Engineer',
+                      email: 'solomon@biomonie.com',
+                      phone: '+234 (0) 801 234 5678',
+                      secondPhone: '',
+                    })
+                  }
+                  className="rounded-lg border border-[#c9dbe3] bg-white px-2.5 py-2 text-xs font-semibold text-biomonie-text transition hover:border-biomonie-teal hover:bg-biomonie-pale text-left"
+                >
+                  Long Name (1 phone)
+                </button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setValues({
+                      name: 'Miracle Amos',
+                      title: 'UX Designer',
+                      email: 'miracle@biomonie.com',
+                      phone: '+234 (0) 807 739 4817',
+                      secondPhone: '+234 (0) 802 345 6789',
+                    })
+                  }
+                  className="rounded-lg border border-[#c9dbe3] bg-white px-2.5 py-2 text-xs font-semibold text-biomonie-text transition hover:border-biomonie-teal hover:bg-biomonie-pale text-left"
+                >
+                  Short Name (2 phones)
+                </button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setValues({
+                      name: 'Solomon Chukwuka Emmanuel',
+                      title: 'Senior Software Engineer',
+                      email: 'solomon@biomonie.com',
+                      phone: '+234 (0) 801 234 5678',
+                      secondPhone: '+234 (0) 809 876 5432',
+                    })
+                  }
+                  className="rounded-lg border border-[#c9dbe3] bg-white px-2.5 py-2 text-xs font-semibold text-biomonie-text transition hover:border-biomonie-teal hover:bg-biomonie-pale text-left"
+                >
+                  Long Name (2 phones)
+                </button>
+              </div>
+            </div>
 
             <form className="mt-6 space-y-4" onSubmit={(e) => e.preventDefault()}>
               <div>
@@ -274,6 +358,20 @@ export default function SignaturePage() {
                   className="mt-1 w-full rounded-lg border border-[#c9dbe3] px-3.5 py-2.5 text-sm outline-none transition focus:border-biomonie-teal focus:ring-2 focus:ring-biomonie-teal/20"
                 />
               </div>
+
+              <div>
+                <label htmlFor="sig-second-phone" className="block text-xs font-bold uppercase tracking-wider text-biomonie-text">
+                  Second phone number (optional)
+                </label>
+                <input
+                  id="sig-second-phone"
+                  type="tel"
+                  value={values.secondPhone || ''}
+                  onChange={update('secondPhone')}
+                  placeholder="e.g. +234 (0) 802 345 6789"
+                  className="mt-1 w-full rounded-lg border border-[#c9dbe3] px-3.5 py-2.5 text-sm outline-none transition focus:border-biomonie-teal focus:ring-2 focus:ring-biomonie-teal/20"
+                />
+              </div>
             </form>
 
             <div className="mt-6 flex flex-wrap gap-3">
@@ -296,7 +394,7 @@ export default function SignaturePage() {
             </div>
             {!isFormValid && (
               <p className="mt-3 text-xs text-biomonie-muted">
-                Please complete all four fields to copy or download your signature.
+                Please complete all required fields to copy or download your signature.
               </p>
             )}
             <p
@@ -318,12 +416,11 @@ export default function SignaturePage() {
                 Live preview
               </h2>
               <span className="text-xs font-semibold uppercase tracking-wider text-biomonie-muted">
-                600px email layout
+                {TOTAL_WIDTH}px email layout
               </span>
             </div>
             <p className="mt-2 text-sm text-biomonie-muted">
-              Empty fields show grey sample text in preview. Copy and download are enabled once
-              all four fields are filled.
+              Empty fields show grey sample text in preview. Second phone appears only when filled.
             </p>
             {missingImages.length > 0 && (
               <p
@@ -334,12 +431,12 @@ export default function SignaturePage() {
               </p>
             )}
 
-            {/* Container that scales the 600px signature down on narrow viewports */}
+            {/* Container that scales the fixed-width signature down on narrow viewports */}
             <div className="mt-6 rounded-lg border border-[#d6e3e9] bg-white p-3 sm:p-5">
               <div ref={containerRef} className="w-full overflow-hidden">
                 <div
                   style={{
-                    height: `${285 * scale}px`,
+                    height: `${TOTAL_LEFT_HEIGHT * scale}px`,
                     position: 'relative',
                     width: '100%',
                   }}
@@ -348,7 +445,7 @@ export default function SignaturePage() {
                     style={{
                       transform: `scale(${scale})`,
                       transformOrigin: 'top left',
-                      width: '600px',
+                      width: `${TOTAL_WIDTH}px`,
                     }}
                   >
                     <div ref={previewRef} dangerouslySetInnerHTML={{ __html: previewHtml }} />

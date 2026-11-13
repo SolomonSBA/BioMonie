@@ -75,7 +75,7 @@ function YouAccessScene() {
 
 /* ---------------------------------------------------------------------------
  * 2 · "Be part of the new BIOMONIE Ecosystem"
- * Customers, Merchants and Agents on one orbit around a BIOMONIE hub. The orbit
+ * Individuals, Merchants and Agents on one orbit around a BIOMONIE hub. The orbit
  * turns (figures stay upright), money flows along the spokes, and each member
  * jumps in turn as their spoke lights up.
  * ------------------------------------------------------------------------- */

@@ -58,7 +58,7 @@ const faqs: { q: ReactNode; a: ReactNode }[] = [
     q: "What kind of businesses can be Merchants?",
     a: (
       <>
-        Any business not just small businesses. If they sell goods or services and accept money from customers, <strong className="text-biomonie-teal">BIOMONIE</strong> works for them. Large or small, the ecosystem welcomes all.
+        Any business not just small businesses. If they sell goods or services and accept money from Individuals, <strong className="text-biomonie-teal">BIOMONIE</strong> works for them. Large or small, the ecosystem welcomes all.
       </>
     ),
   },

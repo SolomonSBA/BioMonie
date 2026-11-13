@@ -106,7 +106,7 @@ const slides: Slide[] = [
         <strong className="text-biomonie-lemon">everyone</strong> everywhere.
       </>
     ),
-    sub: <>One ecosystem for customers, merchants and agents.</>,
+    sub: <>One ecosystem for Individuals, merchants and agents.</>,
   },
 ];
 

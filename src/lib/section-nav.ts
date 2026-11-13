@@ -7,7 +7,7 @@ const SECTION_IDS = new Set([
   'faq',
   'join',
   'products',
-  'for-customers',
+  'for-Individuals',
   'for-merchants',
   'for-agents',
 ]);

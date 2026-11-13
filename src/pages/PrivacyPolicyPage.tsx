@@ -215,14 +215,14 @@ export default function PrivacyPolicyPage() {
                   financial technology company incorporated in Nigeria,
                   developing and operating a biometric-enabled digital payments
                   ecosystem. Our platform enables users to make and receive
-                  payments, onboard customers, merchants and agents, and
+                  payments, onboard Individuals, merchants and agents, and
                   participate in a structured earning network through our
                   Single-Level Downline (SLD) programme.
                 </p>
                 <p className={paragraphClass}>
                   This Privacy Policy applies to all users of our website,
                   mobile application, and associated services, including
-                  customers, merchants, agents, and SRMs.
+                  Individuals, merchants, agents, and SRMs.
                 </p>
                 <p className={paragraphClass}>
                   We are committed to compliance with the{' '}

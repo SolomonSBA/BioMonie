@@ -234,12 +234,21 @@ export default function EcosystemSection() {
               </motion.a>
             }
             stats={[
-              { k: 'Net-Gain', l: 'To join and grow.' },
+              { k: 'Flex', l: ' to pay or spend.' },
               {
-                k: 'Payout',
-                l: 'Earned per onboarded Agents / Merchants / Customers.',
+                k: 'Earn',
+                l: 'every time you perform transactions.',
               },
-              { k: 'Low-cost', l: 'Per transaction. Flat, simple and fair.' },
+              {
+                k: 'Zero-Cost',
+                l: 'to join.',
+              },
+              // { k: 'Net-Gain', l: 'To join and grow.' },
+              // {
+              //   k: 'Payout',
+              //   l: 'Earned per onboarded Agents / Merchants / Individuals.',
+              // },
+              // { k: 'Low-cost', l: 'Per transaction. Flat, simple and fair.' },
             ]}
           />
 
@@ -263,7 +272,7 @@ export default function EcosystemSection() {
                 <span className="font-semibold text-biomonie-lemon">
                   BIOMONIE
                 </span>{' '}
-                ecosystem allows Customers to pay or spend, Merchants receive payments and
+                ecosystem allows anyone to pay or spend, Merchants receive payments and
                 Agents offer cash-in or cash-out services. All with the new form of 
                 money access; <span className="font-semibold text-biomonie-lemon">
                    YOU
@@ -281,15 +290,15 @@ export default function EcosystemSection() {
               </motion.a>
             }
             stats={[
-              { k: 'Customers', l: ' can pay with a flex and earn.' },
+              { k: 'Anyone', l: ' can pay with a flex and earn.' },
               {
-                k: 'Merchants',
-                l: 'can receive payments with a flex and earn.',
-              },
-              {
-                k: 'Agents',
-                l: 'can provide agent banking services with a flex and earn.',
-              },
+                k: 'Business',
+                l: 'can receive payments as a merchant or cash-out as an agent and earn.',
+              },{ k: 'Low-cost', l: 'Per transaction. Flat, simple and fair.' },
+              // {
+              //   k: 'Agents',
+              //   l: 'can provide agent banking services with a flex and earn.',
+              // },
             ]}
           />
 
@@ -313,7 +322,7 @@ export default function EcosystemSection() {
                 <span className="font-semibold text-biomonie-lemon">
                   BIOMONIE
                 </span>{' '}
-                Partners allows anyone and everyone to onboard customers,
+                Partners allows anyone and everyone to onboard Individuals,
                 merchants or agents as Single Level Downlines (SLD), earn
                  fees and continoulsy earn on transactions they perform
                 within the ecosystem.
@@ -330,11 +339,14 @@ export default function EcosystemSection() {
               </motion.a>
             }
             stats={[
-              {
-                k: 'Onboard',
-                l: ' everyone and anyone; customers, agents or merchants.',
-              },
-              { k: 'Earn', l: 'everytime they perform transactions.' },
+              { k: 'Net-Gain', l: 'To join and grow.' },
+              
+            
+              // {
+              //   k: 'Onboard',
+              //   l: ' everyone and anyone; Individuals, agents or merchants.',
+              // },
+              { k: 'Onboard & Earn', l: 'everytime they perform transactions.' },
               { k: 'Grow', l: 'your downlines and earn perpetually.' },
             ]}
           />

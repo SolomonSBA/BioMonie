@@ -11,6 +11,7 @@ import { createRequire } from "module";
 import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
+import compression from "compression";
 import nodemailer from "nodemailer";
 import { randomUUID } from "crypto";
 
@@ -51,6 +52,17 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({ origin: process.env.CORS_ORIGIN || "*" }));
+app.use(
+  compression({
+    // Text is compressed by default; PNG is already deflate-compressed, but the
+    // delivery requirement explicitly includes it so we allow image/png through.
+    filter: (req, res) => {
+      const type = String(res.getHeader("Content-Type") || "");
+      if (type.startsWith("image/png")) return true;
+      return compression.filter(req, res);
+    },
+  }),
+);
 app.use(express.json());
 
 function getTransporter() {
@@ -289,6 +301,17 @@ app.post("/api/request-account-closure", handleAccountClosureRequest);
 app.get("/api/request-data-removal", (req, res) => res.json({ status: "ok", message: "Biomonie account closure API" }));
 app.post("/api/request-data-removal", handleAccountClosureRequest);
 
+// Signature assets: one-month browser/CDN caching. The filenames are stable
+// (old signatures point at them), so no content hash is used.
+app.use(
+  "/email",
+  express.static(path.join(__dirname, "public", "email"), {
+    maxAge: "30d",
+    setHeaders: (res) => {
+      res.setHeader("Cache-Control", "public, max-age=2592000");
+    },
+  }),
+);
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("*", (req, res) => {

@@ -92,7 +92,7 @@ export default function HeroSection() {
 
       <div className="relative mx-auto w-full max-w-[1280px] px-[5%] pb-24 pt-[140px] sm:pt-[160px] xl:px-[4%]">
         <div className="relative">
-          <p className="mb-5 max-w-[30ch] font-sans text-[clamp(0.95rem,1.5vw,1.15rem)] font-extrabold leading-snug text-biomonie-lemon">
+          <p className="mb-5 max-w-[30ch] font-sans text-[clamp(0.95rem,1.5vw,1.15rem)] font-extrabold leading-snug text-[#ff9800]">
             THE FIRST-EVER GLOBAL BIOMETRIC CARDLESS PAYMENT ECOSYSTEM
           </p>
 
